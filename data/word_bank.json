@@ -1,0 +1,162 @@
+[
+  {
+    "topic": "Fruits",
+    "grid_size": 10,
+    "words": [
+      {"label": "Mango",      "image": "images/fruits/mango.jpg"},
+      {"label": "Apple",      "image": "images/fruits/apple.jpg"},
+      {"label": "Banana",     "image": "images/fruits/banana.jpg"},
+      {"label": "Strawberry", "image": "images/fruits/strawberry.jpg"},
+      {"label": "Watermelon", "image": "images/fruits/watermelon.jpg"},
+      {"label": "Grape",      "image": "images/fruits/grape.jpg"},
+      {"label": "Pineapple",  "image": "images/fruits/pineapple.jpg"},
+      {"label": "Cherry",     "image": "images/fruits/cherry.jpg"},
+      {"label": "Orange",     "image": "images/fruits/orange.jpg"},
+      {"label": "Kiwi",       "image": "images/fruits/kiwi.jpg"}
+    ]
+  },
+  {
+    "topic": "Desserts",
+    "grid_size": 10,
+    "words": [
+      {"label": "Brownie",      "image": "images/desserts/brownie.jpg"},
+      {"label": "Tiramisu",     "image": "images/desserts/tiramisu.jpg"},
+      {"label": "Mochi",        "image": "images/desserts/mochi.jpg"},
+      {"label": "Churros",      "image": "images/desserts/churros.jpg"},
+      {"label": "Cheesecake",   "image": "images/desserts/cheesecake.jpg"},
+      {"label": "Macaron",      "image": "images/desserts/macaron.jpg"},
+      {"label": "Baklava",      "image": "images/desserts/baklava.jpg"},
+      {"label": "Creme Brulee", "image": "images/desserts/creme_brulee.jpg"},
+      {"label": "Gelato",       "image": "images/desserts/gelato.jpg"},
+      {"label": "Panna Cotta",  "image": "images/desserts/panna_cotta.jpg"}
+    ]
+  },
+  {
+    "topic": "Street Food",
+    "grid_size": 10,
+    "words": [
+      {"label": "Shawarma",  "image": "images/street_food/shawarma.jpg"},
+      {"label": "Tacos",     "image": "images/street_food/tacos.jpg"},
+      {"label": "Pad Thai",  "image": "images/street_food/pad_thai.jpg"},
+      {"label": "Gyros",     "image": "images/street_food/gyros.jpg"},
+      {"label": "Takoyaki",  "image": "images/street_food/takoyaki.jpg"},
+      {"label": "Churros",   "image": "images/street_food/churros.jpg"},
+      {"label": "Arepas",    "image": "images/street_food/arepas.jpg"},
+      {"label": "Banh Mi",   "image": "images/street_food/banh_mi.jpg"},
+      {"label": "Empanadas", "image": "images/street_food/empanadas.jpg"},
+      {"label": "Samosa",    "image": "images/street_food/samosa.jpg"}
+    ]
+  },
+  {
+    "topic": "Movies",
+    "grid_size": 10,
+    "words": [
+      {"label": "Inception",             "image": "images/movies/inception.jpg"},
+      {"label": "Interstellar",          "image": "images/movies/interstellar.jpg"},
+      {"label": "The Dark Knight",       "image": "images/movies/dark_knight.jpg"},
+      {"label": "Parasite",              "image": "images/movies/parasite.jpg"},
+      {"label": "La La Land",            "image": "images/movies/la_la_land.jpg"},
+      {"label": "Get Out",               "image": "images/movies/get_out.jpg"},
+      {"label": "Everything Everywhere", "image": "images/movies/eeaao.jpg"},
+      {"label": "Dune",                  "image": "images/movies/dune.jpg"},
+      {"label": "Titanic",               "image": "images/movies/titanic.jpg"},
+      {"label": "Avatar",                "image": "images/movies/avatar.jpg"}
+    ]
+  },
+  {
+    "topic": "Sports",
+    "grid_size": 10,
+    "words": [
+      {"label": "Soccer",       "image": "images/sports/soccer.jpg"},
+      {"label": "Basketball",   "image": "images/sports/basketball.jpg"},
+      {"label": "Tennis",       "image": "images/sports/tennis.jpg"},
+      {"label": "Baseball",     "image": "images/sports/baseball.jpg"},
+      {"label": "Golf",         "image": "images/sports/golf.jpg"},
+      {"label": "Swimming",     "image": "images/sports/swimming.jpg"},
+      {"label": "Boxing",       "image": "images/sports/boxing.jpg"},
+      {"label": "Volleyball",   "image": "images/sports/volleyball.jpg"},
+      {"label": "Rugby",        "image": "images/sports/rugby.jpg"},
+      {"label": "Gymnastics",   "image": "images/sports/gymnastics.jpg"}
+    ]
+  },
+  {
+    "topic": "Animals",
+    "grid_size": 10,
+    "words": [
+      {"label": "Lion",      "image": "images/animals/lion.jpg"},
+      {"label": "Tiger",     "image": "images/animals/tiger.jpg"},
+      {"label": "Elephant",  "image": "images/animals/elephant.jpg"},
+      {"label": "Giraffe",   "image": "images/animals/giraffe.jpg"},
+      {"label": "Penguin",   "image": "images/animals/penguin.jpg"},
+      {"label": "Dolphin",   "image": "images/animals/dolphin.jpg"},
+      {"label": "Eagle",     "image": "images/animals/eagle.jpg"},
+      {"label": "Panda",     "image": "images/animals/panda.jpg"},
+      {"label": "Wolf",      "image": "images/animals/wolf.jpg"},
+      {"label": "Kangaroo",  "image": "images/animals/kangaroo.jpg"}
+    ]
+  },
+  {
+    "topic": "Countries",
+    "grid_size": 10,
+    "words": [
+      {"label": "Japan",      "image": "images/countries/japan.jpg"},
+      {"label": "Brazil",     "image": "images/countries/brazil.jpg"},
+      {"label": "France",     "image": "images/countries/france.jpg"},
+      {"label": "Italy",      "image": "images/countries/italy.jpg"},
+      {"label": "Canada",     "image": "images/countries/canada.jpg"},
+      {"label": "Australia",  "image": "images/countries/australia.jpg"},
+      {"label": "Mexico",     "image": "images/countries/mexico.jpg"},
+      {"label": "India",      "image": "images/countries/india.jpg"},
+      {"label": "Germany",    "image": "images/countries/germany.jpg"},
+      {"label": "Egypt",      "image": "images/countries/egypt.jpg"}
+    ]
+  },
+  {
+    "topic": "TV Shows",
+    "grid_size": 10,
+    "words": [
+      {"label": "Breaking Bad",    "image": "images/tv_shows/breaking_bad.jpg"},
+      {"label": "Friends",         "image": "images/tv_shows/friends.jpg"},
+      {"label": "Game of Thrones", "image": "images/tv_shows/got.jpg"},
+      {"label": "Stranger Things", "image": "images/tv_shows/stranger_things.jpg"},
+      {"label": "The Office",      "image": "images/tv_shows/the_office.jpg"},
+      {"label": "Squid Game",      "image": "images/tv_shows/squid_game.jpg"},
+      {"label": "Black Mirror",    "image": "images/tv_shows/black_mirror.jpg"},
+      {"label": "Ted Lasso",       "image": "images/tv_shows/ted_lasso.jpg"},
+      {"label": "Euphoria",        "image": "images/tv_shows/euphoria.jpg"},
+      {"label": "Succession",      "image": "images/tv_shows/succession.jpg"}
+    ]
+  },
+  {
+    "topic": "Video Games",
+    "grid_size": 10,
+    "words": [
+      {"label": "Minecraft",    "image": "images/games/minecraft.jpg"},
+      {"label": "Fortnite",     "image": "images/games/fortnite.jpg"},
+      {"label": "GTA V",        "image": "images/games/gta5.jpg"},
+      {"label": "Zelda",        "image": "images/games/zelda.jpg"},
+      {"label": "Pokemon",      "image": "images/games/pokemon.jpg"},
+      {"label": "Among Us",     "image": "images/games/among_us.jpg"},
+      {"label": "FIFA",         "image": "images/games/fifa.jpg"},
+      {"label": "Call of Duty", "image": "images/games/cod.jpg"},
+      {"label": "Mario Kart",   "image": "images/games/mario_kart.jpg"},
+      {"label": "Elden Ring",   "image": "images/games/elden_ring.jpg"}
+    ]
+  },
+  {
+    "topic": "Celebrities",
+    "grid_size": 10,
+    "words": [
+      {"label": "Beyoncé",        "image": "images/celebrities/beyonce.jpg"},
+      {"label": "Taylor Swift",   "image": "images/celebrities/taylor_swift.jpg"},
+      {"label": "Elon Musk",      "image": "images/celebrities/elon_musk.jpg"},
+      {"label": "Oprah",          "image": "images/celebrities/oprah.jpg"},
+      {"label": "LeBron James",   "image": "images/celebrities/lebron.jpg"},
+      {"label": "Rihanna",        "image": "images/celebrities/rihanna.jpg"},
+      {"label": "Dwayne Johnson", "image": "images/celebrities/dwayne.jpg"},
+      {"label": "Billie Eilish",  "image": "images/celebrities/billie.jpg"},
+      {"label": "Bad Bunny",      "image": "images/celebrities/bad_bunny.jpg"},
+      {"label": "BTS",            "image": "images/celebrities/bts.jpg"}
+    ]
+  }
+]
