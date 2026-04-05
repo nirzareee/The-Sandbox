@@ -37,7 +37,7 @@ TIMER_MULTIPLIER = 1.0          # 0.05 for --fast mode
 ASSIGNMENT_DURATION = 8         # seconds to read role
 HINT_TIME_LIMIT = 90            # max hint phase
 HINT_REVIEW_DURATION = 10       # reading period after all hints
-DISCUSSION_DURATION = 120       # open chat
+DISCUSSION_DURATION = 180       # open chat (3 minutes)
 VOTING_TIME_LIMIT = 60          # voting
 REFLECTION_DURATION = 30        # post-round reflection
 META_GAME_DURATION = 90         # classification form
@@ -347,7 +347,12 @@ async def _on_group_message(session: GameSession, player_id: str, data: dict):
             except Exception:
                 player.connected = False
 
-    _logger.log({"event": "group_message", "sender": player_id, "content": content})
+    _logger.log_group_message(
+        sender=player_id,
+        display_name=session.players[player_id].display_name,
+        content=content,
+        round_number=session.current_round,
+    )
 
 
 async def _on_dm(session: GameSession, player_id: str, data: dict):
@@ -373,7 +378,14 @@ async def _on_dm(session: GameSession, player_id: str, data: dict):
     # Also send to HOST so they see everything
     await _send_to_hosts(session, dm_msg)
 
-    _logger.log({"event": "dm", "sender": player_id, "target": target_id, "content": content})
+    _logger.log_dm(
+        sender=player_id,
+        target=target_id,
+        sender_name=session.players[player_id].display_name,
+        target_name=session.players.get(target_id, Player(target_id, None, True)).display_name,
+        content=content,
+        round_number=session.current_round,
+    )
 
 
 async def _on_vote(session: GameSession, player_id: str, data: dict):
@@ -406,6 +418,12 @@ async def _on_classification(session: GameSession, player_id: str, data: dict):
 
     session.classifications[player_id] = classifications
 
+    _logger.log_classification(
+        player_id=player_id,
+        display_name=session.players[player_id].display_name,
+        classifications=classifications,
+    )
+
     expected = len(session.game_players())
     if len(session.classifications) >= expected and _classification_event:
         _classification_event.set()
@@ -423,6 +441,12 @@ async def _on_survey(session: GameSession, player_id: str, data: dict):
         return
 
     session.survey_responses[player_id] = responses
+
+    _logger.log_survey(
+        player_id=player_id,
+        display_name=session.players[player_id].display_name,
+        responses=responses,
+    )
 
     # Check if all humans have responded
     humans = {pid for pid, p in session.game_players().items() if p.is_human}
@@ -492,6 +516,20 @@ async def _run_game(session: GameSession, logger: GameLogger):
             "event": "all_hints_in",
             "data": {"reading_period": int(_scaled(HINT_REVIEW_DURATION))},
         })
+
+        # Log all hints for this round
+        rs = session.round_state
+        if rs:
+            display_names = {pid: session.players[pid].display_name for pid in game_pids}
+            logger.log_hints(
+                round_number=session.current_round,
+                hints=rs.hints,
+                topic=rs.topic,
+                secret_word=rs.secret_word,
+                imposter_id=rs.imposter_id,
+                display_names=display_names,
+            )
+
         session.phase = Phase.HINT_REVIEW
         await asyncio.sleep(_scaled(HINT_REVIEW_DURATION))
 
@@ -507,7 +545,7 @@ async def _run_game(session: GameSession, logger: GameLogger):
 
         # Time warnings at certain thresholds
         start = asyncio.get_event_loop().time()
-        warning_thresholds = [60, 30, 10]
+        warning_thresholds = [120, 90, 60, 30, 10]
         while True:
             elapsed = asyncio.get_event_loop().time() - start
             remaining = disc_duration - elapsed
@@ -552,7 +590,11 @@ async def _run_game(session: GameSession, logger: GameLogger):
             "data": result,
         })
 
-        logger.log({"event": "round_results", "round": session.current_round, **result})
+        logger.log_votes(
+            round_number=session.current_round,
+            result=result,
+            display_names={pid: session.players[pid].display_name for pid in game_pids},
+        )
 
         # Show results for a few seconds before reflection
         await asyncio.sleep(_scaled(5))
@@ -634,12 +676,13 @@ async def _run_game(session: GameSession, logger: GameLogger):
         },
     })
 
-    logger.log({
-        "event": "grand_reveal",
-        "leaderboard": leaderboard,
-        "classification_scores": cls_scores,
-        "confusion_matrix": confusion,
-    })
+    logger.log_grand_reveal(
+        identities=identities,
+        leaderboard=leaderboard,
+        classification_scores=cls_scores,
+        confusion_matrix=confusion,
+        all_classifications=session.classifications,
+    )
 
     await asyncio.sleep(_scaled(5))
 
@@ -651,6 +694,23 @@ async def _run_game(session: GameSession, logger: GameLogger):
             "final_scores": session.cumulative_scores,
         },
     })
+
+    # Write session manifest and config for analysis
+    logger.log_config({
+        "session_id": session.session_id,
+        "max_players": session.MAX_PLAYERS,
+        "max_rounds": session.MAX_ROUNDS,
+        "discussion_duration": DISCUSSION_DURATION,
+        "hint_time_limit": HINT_TIME_LIMIT,
+        "voting_time_limit": VOTING_TIME_LIMIT,
+        "timer_multiplier": TIMER_MULTIPLIER,
+    })
+    logger.log_session_manifest(
+        players={pid: {"display_name": p.display_name, "is_human": p.is_human}
+                 for pid, p in session.players.items()},
+        total_rounds=session.MAX_ROUNDS,
+        final_scores=session.cumulative_scores,
+    )
 
 
 # ── Mock agent ───────────────────────────────────────────────────────
@@ -675,33 +735,16 @@ MOCK_HINTS_IMPOSTER = [
     "its alright i guess lol",
 ]
 
-MOCK_MESSAGES = [
-    "hmm that hint was kinda weird",
-    "idk anyone else find that sus?",
-    "lol yeah i was thinking the same",
-    "wait what do you guys think",
-    "im not sure who to vote for",
-    "that's a good point actually",
-    "ok so who we voting for",
-    "nah i think they're fine",
-    "the hints all seem normal to me",
-    "someone is definitely lying tho",
-    "i have a feeling about this",
-    "lets figure this out guys",
-]
-
 
 async def _spawn_mock_agent(session: GameSession):
     """Spawn a mock AI agent that connects via internal WebSocket."""
     import websockets
 
-    # Find the next available agent ID
     existing = [pid for pid in session.players if pid.startswith("agent_")]
     agent_num = len(existing) + 1
     agent_id = f"agent_{agent_num}"
     agent_name = f"Agent {agent_num}"
 
-    # Connect via localhost WebSocket
     try:
         uri = f"ws://127.0.0.1:8000/ws/{agent_id}?name={agent_name}&type=AI"
         ws = await websockets.connect(uri)
@@ -711,14 +754,256 @@ async def _spawn_mock_agent(session: GameSession):
 
 
 async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
-    """Mock agent event loop — listens for server events and responds."""
+    """
+    Context-aware mock agent.
+
+    Tracks: role, secret word, grid items, all hints (who said what),
+    chat history, display names. Discussion messages reference real
+    game state — hints, players, grid items.
+    """
     import websockets
 
+    # ── Agent memory ─────────────────────────────────────────────
     my_role = None
     my_secret_word = None
-    game_pids = []
+    my_display_name = agent_id
+    topic = ""
+    grid_labels: list[str] = []
+    roster: dict[str, str] = {}          # pid → display_name
+    hints: dict[str, str] = {}           # pid → hint text
+    chat_history: list[dict] = []        # [{sender, content}]
+    dm_history: list[dict] = []          # [{sender, content}]
+    game_pids: list[str] = []
     hint_submitted = False
     vote_submitted = False
+    suspect_pid: str | None = None       # who the agent suspects
+
+    def name(pid: str) -> str:
+        return roster.get(pid, pid)
+
+    def other_pids() -> list[str]:
+        return [pid for pid in game_pids if pid != agent_id]
+
+    def pick_suspect() -> str:
+        """Pick who to suspect based on hints."""
+        nonlocal suspect_pid
+        candidates = other_pids()
+        if not candidates:
+            return ""
+
+        # If insider: look for vague hints (imposter tells)
+        if my_role == "insider" and hints:
+            vague_words = {"good", "cool", "nice", "alright", "not bad", "ok", "fine",
+                           "pretty", "decent", "overrated", "seen it", "think"}
+            scored = []
+            for pid in candidates:
+                h = hints.get(pid, "").lower()
+                vagueness = sum(1 for w in vague_words if w in h)
+                scored.append((pid, vagueness))
+            scored.sort(key=lambda x: -x[1])
+            if scored[0][1] > 0:
+                suspect_pid = scored[0][0]
+                return suspect_pid
+
+        # Fallback: random
+        suspect_pid = random.choice(candidates)
+        return suspect_pid
+
+    # ── Discussion message generators ────────────────────────────
+
+    def gen_opener() -> str:
+        """First message — react to the hints overall."""
+        templates = [
+            "ok so looking at the hints... some are more specific than others",
+            "alright lets break down these hints",
+            "hmm interesting hints this round",
+            "ok who wants to start? some of these hints are sus",
+            "the hints are in, lets figure this out",
+        ]
+        return random.choice(templates)
+
+    def gen_call_out_hint() -> str:
+        """Call out a specific player's hint."""
+        target = pick_suspect()
+        if not target or target not in hints:
+            return "someone's hint feels way too generic"
+        target_hint = hints[target]
+        templates = [
+            f"{name(target)}'s hint was kinda vague... \"{target_hint}\" could apply to anything",
+            f"idk {name(target)} ur hint \"{target_hint}\" doesnt really narrow it down",
+            f"wait \"{target_hint}\" from {name(target)}?? thats super generic",
+            f"ngl {name(target)} that hint feels like u dont know the word",
+            f"im looking at {name(target)}'s hint and its giving imposter vibes",
+        ]
+        return random.choice(templates)
+
+    def gen_defend_self() -> str:
+        """Defend own hint if being discussed."""
+        my_hint = hints.get(agent_id, "")
+        if my_hint and my_hint != "...":
+            templates = [
+                f"bruh i literally said \"{my_hint}\" how much more specific u want",
+                f"my hint was \"{my_hint}\" thats clearly about the right thing",
+                f"wdym my hint is vague?? \"{my_hint}\" is pretty specific",
+                f"ok \"{my_hint}\" is a legit hint yall are reaching",
+            ]
+            return random.choice(templates)
+        return "my hint made perfect sense idk what yall are on about"
+
+    def gen_reference_grid() -> str:
+        """Reference specific grid items in discussion."""
+        if not grid_labels:
+            return "the grid items make it pretty obvious if u think about it"
+        items = random.sample(grid_labels, min(2, len(grid_labels)))
+        if my_role == "insider" and my_secret_word:
+            # Insider: reference alternatives without revealing the word
+            others = [g for g in grid_labels if g.lower() != my_secret_word.lower()]
+            if others:
+                decoy = random.choice(others)
+                templates = [
+                    f"it could apply to {decoy} too tbh",
+                    f"the hints narrow it down, its definitely not {decoy}",
+                    f"if u look at the grid, some hints rule out {decoy} at least",
+                    f"i mean {items[0]} and {decoy} are both on the grid but the hints point one way",
+                ]
+                return random.choice(templates)
+        else:
+            # Imposter: be vague about grid items
+            templates = [
+                f"tbh looking at {items[0]} on the grid it could go either way",
+                f"most hints point to the same thing pretty clearly",
+                f"the grid has some tricky ones like {items[0]}",
+            ]
+            return random.choice(templates)
+        return f"looking at the grid, {items[0]} stands out"
+
+    def gen_agree_or_push_back() -> str:
+        """React to the last chat message."""
+        if not chat_history:
+            return "yeah thats a good point"
+        last = chat_history[-1]
+        last_sender = name(last["sender"])
+        templates_agree = [
+            f"yeah {last_sender} i was thinking the same thing",
+            f"lol exactly what {last_sender} said",
+            f"true {last_sender} has a point",
+            f"agreed, {last_sender} nailed it",
+        ]
+        templates_disagree = [
+            f"idk {last_sender} i dont see it that way",
+            f"nah {last_sender} i think ur reading into it too much",
+            f"hmm {last_sender} but what about the other hints tho",
+            f"wait {last_sender} that doesnt add up",
+        ]
+        if random.random() < 0.6:
+            return random.choice(templates_agree)
+        return random.choice(templates_disagree)
+
+    def gen_vote_signal() -> str:
+        """Signal voting intention near end of discussion."""
+        target = suspect_pid or pick_suspect()
+        templates = [
+            f"im voting {name(target)} tbh",
+            f"ok i think its {name(target)}, voting for them",
+            f"im between a couple people but leaning {name(target)}",
+            f"sorry {name(target)} but im going with u",
+            f"my gut says {name(target)}",
+        ]
+        return random.choice(templates)
+
+    def gen_dm_suspicion(target: str) -> str:
+        """Private DM to another player sharing suspicion."""
+        sus_target = suspect_pid or pick_suspect()
+        if sus_target == target:
+            # Don't DM the suspect about themselves — pick someone else
+            others = [p for p in other_pids() if p != target]
+            sus_target = random.choice(others) if others else target
+        templates = [
+            f"hey do u think {name(sus_target)} is the imposter?",
+            f"psst {name(sus_target)}'s hint was so generic right",
+            f"im sus of {name(sus_target)} what do u think",
+            f"between u and me {name(sus_target)} is giving imposter energy",
+        ]
+        return random.choice(templates)
+
+    def gen_dm_reply(sender_content: str) -> str:
+        """Reply to a DM."""
+        templates = [
+            "yeah i noticed that too",
+            "hmm interesting, i was thinking the same",
+            "good point lets see how the vote goes",
+            "lol yeah they're definitely sus",
+            "idk im still figuring it out",
+            "true true, lets not make it obvious tho",
+        ]
+        return random.choice(templates)
+
+    # ── Discussion phase orchestrator ────────────────────────────
+
+    async def run_discussion():
+        """
+        Structured discussion flow:
+        1. Opener (2-5s)
+        2. Call out a hint (5-12s)
+        3. React to chat / reference grid (8-18s)
+        4. Maybe send a DM (15-25s)
+        5. Vote signal near end (25-35s)
+
+        Also reacts to incoming DMs between planned messages.
+        """
+        msg_generators = [
+            gen_opener,
+            gen_call_out_hint,
+            lambda: random.choice([gen_reference_grid, gen_agree_or_push_back])(),
+            gen_agree_or_push_back,
+            gen_vote_signal,
+        ]
+
+        # Occasionally defend self if mentioned
+        mentioned_in_chat = False
+
+        for i, gen in enumerate(msg_generators):
+            # Variable delay — early messages faster, later ones slower
+            if i == 0:
+                delay = random.uniform(2, 5)
+            elif i <= 2:
+                delay = random.uniform(4, 10)
+            else:
+                delay = random.uniform(6, 15)
+
+            await asyncio.sleep(delay * TIMER_MULTIPLIER)
+
+            # Check if we were mentioned — if so, defend
+            if mentioned_in_chat and i > 0 and random.random() < 0.7:
+                content = gen_defend_self()
+                mentioned_in_chat = False
+            else:
+                content = gen()
+
+            try:
+                await ws.send(json.dumps({"action": "GROUP_MESSAGE", "content": content}))
+            except Exception:
+                return
+
+            # Maybe send a DM after 2nd or 3rd message
+            if i == 2 and random.random() < 0.5:
+                dm_targets = other_pids()
+                if dm_targets:
+                    dm_target = random.choice(dm_targets)
+                    await asyncio.sleep(random.uniform(2, 5) * TIMER_MULTIPLIER)
+                    dm_content = gen_dm_suspicion(dm_target)
+                    try:
+                        await ws.send(json.dumps({
+                            "action": "DM",
+                            "target_player": dm_target,
+                            "content": dm_content,
+                        }))
+                    except Exception:
+                        pass
+
+    # ── Main event loop ──────────────────────────────────────────
+
+    discussion_task: asyncio.Task | None = None
 
     try:
         async for raw in ws:
@@ -732,13 +1017,20 @@ async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
 
             if event == "player_roster":
                 roster = data.get("roster", {})
-                game_pids = [pid for pid in roster if pid != agent_id and pid != "HOST"]
+                game_pids = list(roster.keys())
+                my_display_name = roster.get(agent_id, agent_id)
 
             elif event == "round_start":
                 my_role = data.get("role", "insider")
                 my_secret_word = data.get("secret_word")
+                topic = data.get("topic", "")
+                grid_labels = data.get("image_grid", [])
+                hints.clear()
+                chat_history.clear()
+                dm_history.clear()
                 hint_submitted = False
                 vote_submitted = False
+                suspect_pid = None
 
             elif event == "hint_phase_start":
                 if not hint_submitted:
@@ -750,20 +1042,54 @@ async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
                     await ws.send(json.dumps({"action": "HINT", "content": hint}))
                     hint_submitted = True
 
+            elif event == "hint_submitted":
+                pid = data.get("player_id", "")
+                hint_text = data.get("hint", "")
+                if pid:
+                    hints[pid] = hint_text
+
             elif event == "discussion_start":
-                # Send 2-4 messages during discussion
-                num_msgs = random.randint(2, 4)
-                for i in range(num_msgs):
-                    await asyncio.sleep(random.uniform(3, 10) * TIMER_MULTIPLIER)
-                    content = random.choice(MOCK_MESSAGES)
-                    await ws.send(json.dumps({"action": "GROUP_MESSAGE", "content": content}))
+                # Run discussion as a background task so we can still receive events
+                discussion_task = asyncio.create_task(run_discussion())
+
+            elif event == "group_message":
+                sender = data.get("player_id", "")
+                content = data.get("content", "")
+                chat_history.append({"sender": sender, "content": content})
+
+                # Check if we were mentioned by name
+                if my_display_name.lower() in content.lower():
+                    pass  # discussion loop will handle defense
+
+            elif event == "dm":
+                sender = data.get("sender", "")
+                content = data.get("content", "")
+                dm_history.append({"sender": sender, "content": content})
+
+                # Reply to DMs reactively
+                if sender != agent_id:
+                    await asyncio.sleep(random.uniform(1.5, 4) * TIMER_MULTIPLIER)
+                    reply = gen_dm_reply(content)
+                    try:
+                        await ws.send(json.dumps({
+                            "action": "DM",
+                            "target_player": sender,
+                            "content": reply,
+                        }))
+                    except Exception:
+                        pass
+
+            elif event == "discussion_end":
+                if discussion_task and not discussion_task.done():
+                    discussion_task.cancel()
 
             elif event == "voting_start":
-                if not vote_submitted and game_pids:
+                if not vote_submitted:
                     await asyncio.sleep(random.uniform(3, 8) * TIMER_MULTIPLIER)
-                    target = random.choice(game_pids)
-                    await ws.send(json.dumps({"action": "VOTE", "target_player": target}))
-                    vote_submitted = True
+                    target = suspect_pid or pick_suspect()
+                    if target:
+                        await ws.send(json.dumps({"action": "VOTE", "target_player": target}))
+                        vote_submitted = True
 
             elif event == "meta_game_start":
                 await asyncio.sleep(random.uniform(2, 5) * TIMER_MULTIPLIER)
@@ -789,6 +1115,8 @@ async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
     except Exception as e:
         print(f"[MockAgent {agent_id}] Error: {e}")
     finally:
+        if discussion_task and not discussion_task.done():
+            discussion_task.cancel()
         try:
             await ws.close()
         except Exception:
@@ -799,7 +1127,8 @@ async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
 
 frontend_dir = Path(__file__).resolve().parent.parent / "frontend"
 if frontend_dir.exists():
-    app.mount("/assets", StaticFiles(directory=str(frontend_dir / "assets")), name="assets")
+    # index.html references /static/assets/... and /static/vite.svg
+    app.mount("/static", StaticFiles(directory=str(frontend_dir)), name="static")
 
     @app.get("/")
     async def serve_frontend():
