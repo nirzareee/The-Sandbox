@@ -1,0 +1,50 @@
+{
+  "session_id": "485ffefa",
+  "start_time": "2026-04-04T18:16:43.661908+00:00",
+  "end_time": "2026-04-04T21:58:57.234198+00:00",
+  "duration_seconds": 13333.6,
+  "total_rounds": 5,
+  "num_humans": 4,
+  "num_ai": 0,
+  "players": [
+    {
+      "player_id": "human_j9qp",
+      "display_name": "Player 2",
+      "is_human": true,
+      "final_score": 6
+    },
+    {
+      "player_id": "human_ucte",
+      "display_name": "Player 4",
+      "is_human": true,
+      "final_score": 3
+    },
+    {
+      "player_id": "human_ltdl",
+      "display_name": "Player 3",
+      "is_human": true,
+      "final_score": 3
+    },
+    {
+      "player_id": "human_bw8d",
+      "display_name": "Player 1",
+      "is_human": true,
+      "final_score": 3
+    }
+  ],
+  "final_scores": {
+    "human_j9qp": 6,
+    "human_ucte": 3,
+    "human_ltdl": 3,
+    "human_bw8d": 3
+  },
+  "files": {
+    "game_log": "game_log.jsonl",
+    "group_chat": "group_chat.jsonl",
+    "dm_logs": "dm_logs/",
+    "hints": "hints/",
+    "votes": "votes/",
+    "human_data": "human_data/",
+    "meta_game_results": "meta_game_results/"
+  }
+}

@@ -1,0 +1,42 @@
+{"ts": "2026-04-04T18:16:43.668454+00:00", "event": "player_connected", "player": "human_j9qp", "type": "HUMAN"}
+{"ts": "2026-04-04T18:16:51.341409+00:00", "event": "player_connected", "player": "human_ucte", "type": "HUMAN"}
+{"ts": "2026-04-04T18:16:55.794371+00:00", "event": "player_connected", "player": "human_ltdl", "type": "HUMAN"}
+{"ts": "2026-04-04T18:16:59.731755+00:00", "event": "player_connected", "player": "human_bw8d", "type": "HUMAN"}
+{"ts": "2026-04-04T18:17:10.459061+00:00", "event": "player_connected", "player": "HOST", "type": "HOST"}
+{"ts": "2026-04-04T18:17:19.548961+00:00", "event": "round_assignment", "round": 1, "imposter": "human_ltdl", "topic": "Movies", "secret_word": "Everything Everywhere", "grid": ["The Dark Knight", "Everything Everywhere", "La La Land", "Dune", "Inception", "Avatar", "Get Out", "Parasite", "Interstellar", "Titanic"]}
+{"ts": "2026-04-04T18:18:09.242136+00:00", "event": "player_action", "player": "human_j9qp", "phase": "hint", "action": "HINT"}
+{"ts": "2026-04-04T18:18:15.579072+00:00", "event": "player_action", "player": "human_ucte", "phase": "hint", "action": "HINT"}
+{"ts": "2026-04-04T18:18:23.989829+00:00", "event": "player_action", "player": "human_ltdl", "phase": "hint", "action": "HINT"}
+{"ts": "2026-04-04T18:18:29.103389+00:00", "event": "player_action", "player": "human_bw8d", "phase": "hint", "action": "HINT"}
+{"ts": "2026-04-04T18:18:29.107491+00:00", "event": "hints_saved", "round": 1, "count": 4}
+{"ts": "2026-04-04T18:18:44.558581+00:00", "event": "player_action", "player": "human_bw8d", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-04-04T18:18:44.560522+00:00", "event": "group_message", "sender": "human_bw8d", "content": "Hi", "round": 1}
+{"ts": "2026-04-04T18:18:51.322787+00:00", "event": "player_action", "player": "human_bw8d", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:18:53.877718+00:00", "event": "player_action", "player": "human_bw8d", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:18:56.838885+00:00", "event": "player_action", "player": "human_bw8d", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:18:56.841030+00:00", "event": "dm", "sender": "human_bw8d", "target": "human_ltdl", "content": "Hi", "round": 1}
+{"ts": "2026-04-04T18:19:20.681296+00:00", "event": "player_action", "player": "human_ucte", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:19:20.684157+00:00", "event": "dm", "sender": "human_ucte", "target": "human_j9qp", "content": "Hi", "round": 1}
+{"ts": "2026-04-04T18:19:27.312231+00:00", "event": "player_action", "player": "human_ucte", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:19:31.443206+00:00", "event": "player_action", "player": "human_ucte", "phase": "discussion", "action": "DM"}
+{"ts": "2026-04-04T18:19:31.444601+00:00", "event": "dm", "sender": "human_ucte", "target": "human_bw8d", "content": "Hi", "round": 1}
+{"ts": "2026-04-04T18:19:42.010194+00:00", "event": "player_action", "player": "human_ltdl", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-04-04T18:19:42.012919+00:00", "event": "group_message", "sender": "human_ltdl", "content": "Hi", "round": 1}
+{"ts": "2026-04-04T18:22:39.116754+00:00", "event": "votes_saved", "round": 1}
+{"ts": "2026-04-04T18:23:14.122326+00:00", "event": "round_assignment", "round": 2, "imposter": "human_ucte", "topic": "Countries", "secret_word": "Canada", "grid": ["Mexico", "Germany", "Italy", "Brazil", "Egypt", "Japan", "India", "France", "Australia", "Canada"]}
+{"ts": "2026-04-04T18:24:52.135049+00:00", "event": "hints_saved", "round": 2, "count": 4}
+{"ts": "2026-04-04T18:28:57.335170+00:00", "event": "player_action", "player": "human_j9qp", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-04-04T18:28:59.460679+00:00", "event": "player_action", "player": "human_ucte", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-04-04T18:29:01.610956+00:00", "event": "player_action", "player": "human_ltdl", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-04-04T18:29:02.144160+00:00", "event": "votes_saved", "round": 2}
+{"ts": "2026-04-04T18:29:37.154273+00:00", "event": "round_assignment", "round": 3, "imposter": "human_bw8d", "topic": "Desserts", "secret_word": "Churros", "grid": ["Macaron", "Cheesecake", "Creme Brulee", "Brownie", "Gelato", "Panna Cotta", "Mochi", "Churros", "Tiramisu", "Baklava"]}
+{"ts": "2026-04-04T18:31:15.176675+00:00", "event": "hints_saved", "round": 3, "count": 4}
+{"ts": "2026-04-04T18:35:25.191071+00:00", "event": "votes_saved", "round": 3}
+{"ts": "2026-04-04T18:36:00.206793+00:00", "event": "round_assignment", "round": 4, "imposter": "human_j9qp", "topic": "TV Shows", "secret_word": "Game of Thrones", "grid": ["Stranger Things", "Euphoria", "Ted Lasso", "The Office", "Succession", "Game of Thrones", "Breaking Bad", "Black Mirror", "Friends", "Squid Game"]}
+{"ts": "2026-04-04T18:37:38.220400+00:00", "event": "hints_saved", "round": 4, "count": 4}
+{"ts": "2026-04-04T18:41:48.239521+00:00", "event": "votes_saved", "round": 4}
+{"ts": "2026-04-04T18:43:38.874004+00:00", "event": "round_assignment", "round": 5, "imposter": "human_j9qp", "topic": "Celebrities", "secret_word": "Billie Eilish", "grid": ["Bad Bunny", "BTS", "Taylor Swift", "Dwayne Johnson", "Billie Eilish", "LeBron James", "Beyonc\u00e9", "Oprah", "Rihanna", "Elon Musk"]}
+{"ts": "2026-04-04T18:45:16.881019+00:00", "event": "hints_saved", "round": 5, "count": 4}
+{"ts": "2026-04-04T20:39:33.451305+00:00", "event": "votes_saved", "round": 5}
+{"ts": "2026-04-04T21:58:52.228284+00:00", "event": "grand_reveal_saved", "leaderboard_entries": 4}
+{"ts": "2026-04-04T21:58:57.239824+00:00", "event": "session_complete", "duration_seconds": 13333.6}
