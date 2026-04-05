@@ -1,0 +1,32 @@
+{
+  "round": 1,
+  "topic": "Movies",
+  "secret_word": "Everything Everywhere",
+  "imposter_id": "human_ltdl",
+  "hints": [
+    {
+      "player_id": "human_j9qp",
+      "display_name": "Player 2",
+      "hint": "Scifi",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_ucte",
+      "display_name": "Player 4",
+      "hint": "Movie",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_ltdl",
+      "display_name": "Player 3",
+      "hint": "2026",
+      "is_imposter": true
+    },
+    {
+      "player_id": "human_bw8d",
+      "display_name": "Player 1",
+      "hint": "Idk",
+      "is_imposter": false
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "human_bw8d": {
+    "display_name": "Player 1",
+    "type": "HUMAN",
+    "model_name": null
+  },
+  "human_j9qp": {
+    "display_name": "Player 2",
+    "type": "HUMAN",
+    "model_name": null
+  },
+  "human_ltdl": {
+    "display_name": "Player 3",
+    "type": "HUMAN",
+    "model_name": null
+  },
+  "human_ucte": {
+    "display_name": "Player 4",
+    "type": "HUMAN",
+    "model_name": null
+  }
+}
