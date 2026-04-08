@@ -1,230 +1,293 @@
-"""
-GameLogger — Structured JSON persistence for research analysis.
-
-Writes to: game_sessions/{session_id}/
-├── game_log.jsonl              All server events (append-only)
-├── group_chat.jsonl            Public messages chronologically
-├── dm_logs/
-│   └── {sender}_{target}.jsonl Per-pair private messages
-├── hints/
-│   └── round_{n}.json          All hints for a given round
-├── votes/
-│   └── round_{n}.json          All votes + outcome for a given round
-├── human_data/
-│   ├── {player}_classifications.json
-│   └── {player}_survey.json
-├── meta_game_results/
-│   ├── leaderboard.json
-│   ├── confusion_matrix.json
-│   ├── all_classifications.json
-│   ├── identities.json
-│   └── classification_scores.json
-├── config.json                 Session configuration snapshot
-└── session_manifest.json       Summary metadata for quick analysis
-"""
+from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+import os
 from pathlib import Path
+from datetime import datetime, timezone
+
+import aiofiles
 
 
 class GameLogger:
-    def __init__(self, session_id: str, base_dir: str = "game_sessions"):
-        self.session_id = session_id
-        self.start_time = datetime.now(timezone.utc)
+    """Handles all persistent JSONL/JSON logging for a game session."""
+
+    def __init__(self, session_id: str, base_dir: str = "game_sessions") -> None:
         self.session_dir = Path(base_dir) / session_id
 
-        # Create directory structure
-        self.session_dir.mkdir(parents=True, exist_ok=True)
-        (self.session_dir / "dm_logs").mkdir(exist_ok=True)
-        (self.session_dir / "hints").mkdir(exist_ok=True)
-        (self.session_dir / "votes").mkdir(exist_ok=True)
-        (self.session_dir / "human_data").mkdir(exist_ok=True)
-        (self.session_dir / "meta_game_results").mkdir(exist_ok=True)
+        subdirs = [
+            self.session_dir,
+            self.session_dir / "dm_logs",
+            self.session_dir / "hints",
+            self.session_dir / "votes",
+            self.session_dir / "ai_internals",
+            self.session_dir / "human_data",
+            self.session_dir / "meta_game_results",
+        ]
+        for d in subdirs:
+            os.makedirs(d, exist_ok=True)
 
-        self.game_log_path = self.session_dir / "game_log.jsonl"
-        self.group_chat_path = self.session_dir / "group_chat.jsonl"
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
 
     def _ts(self) -> str:
+        """Return the current UTC timestamp in ISO format."""
         return datetime.now(timezone.utc).isoformat()
 
-    def _write_jsonl(self, path: Path, entry: dict):
-        with open(path, "a") as f:
-            f.write(json.dumps(entry) + "\n")
+    def _get_ai_dir(self, player_id: str, model_name: str) -> Path:
+        """Build and ensure the ai_internals directory for a given AI player."""
+        ai_dir = self.session_dir / "ai_internals" / f"{player_id}_{model_name}"
+        os.makedirs(ai_dir, exist_ok=True)
+        return ai_dir
 
-    def _write_json(self, path: Path, data):
-        with open(path, "w") as f:
-            json.dump(data, f, indent=2, default=str)
+    def _get_human_dir(self, player_id: str) -> Path:
+        """Build and ensure the human_data directory for a given human player."""
+        human_dir = self.session_dir / "human_data" / player_id
+        os.makedirs(human_dir, exist_ok=True)
+        return human_dir
 
-    # ── Master log ───────────────────────────────────────────────
+    async def _append_jsonl(self, filepath: str | Path, data: dict) -> None:
+        """Append a single JSON object as one line to a JSONL file."""
+        async with aiofiles.open(filepath, mode="a", encoding="utf-8") as f:
+            await f.write(json.dumps(data) + "\n")
+            await f.flush()
 
-    def log(self, event: dict):
-        entry = {"ts": self._ts(), **event}
-        self._write_jsonl(self.game_log_path, entry)
+    async def _write_json(self, filepath: str | Path, data: dict | list) -> None:
+        """Write a complete JSON file (pretty-printed)."""
+        async with aiofiles.open(filepath, mode="w", encoding="utf-8") as f:
+            await f.write(json.dumps(data, indent=2))
 
-    # ── Assignment ───────────────────────────────────────────────
+    # ------------------------------------------------------------------
+    # Public logging methods
+    # ------------------------------------------------------------------
 
-    def log_round_assignment(self, round_number, imposter_id, topic, secret_word, grid_items):
-        self.log({
-            "event": "round_assignment",
-            "round": round_number,
-            "imposter": imposter_id,
-            "topic": topic,
-            "secret_word": secret_word,
-            "grid": [item["label"] for item in grid_items],
-        })
+    async def log_event(self, event: str, data: dict) -> None:
+        """Append a timestamped event to the master game_log.jsonl."""
+        entry = {"ts": self._ts(), "event": event, **data}
+        await self._append_jsonl(self.session_dir / "game_log.jsonl", entry)
 
-    # ── Group chat ───────────────────────────────────────────────
-
-    def log_group_message(self, sender: str, display_name: str, content: str, round_number: int):
+    async def log_group_chat(
+        self, player_id: str, content: str, round_number: int, phase: str
+    ) -> None:
+        """Log a group-chat message."""
         entry = {
             "ts": self._ts(),
-            "round": round_number,
-            "sender_id": sender,
-            "sender_name": display_name,
+            "player_id": player_id,
             "content": content,
+            "round_number": round_number,
+            "phase": phase,
         }
-        self._write_jsonl(self.group_chat_path, entry)
-        self.log({"event": "group_message", "sender": sender, "content": content, "round": round_number})
+        await self._append_jsonl(self.session_dir / "group_chat.jsonl", entry)
+        await self.log_event(
+            "group_chat",
+            {
+                "player_id": player_id,
+                "content": content,
+                "round_number": round_number,
+                "phase": phase,
+            },
+        )
 
-    # ── DMs ──────────────────────────────────────────────────────
-
-    def log_dm(self, sender: str, target: str, sender_name: str, target_name: str, content: str, round_number: int):
-        pair_key = "_".join(sorted([sender, target]))
-        dm_path = self.session_dir / "dm_logs" / f"{pair_key}.jsonl"
+    async def log_dm(
+        self,
+        sender_id: str,
+        recipient_id: str,
+        content: str,
+        round_number: int,
+        phase: str,
+    ) -> None:
+        """Log a direct message between two players."""
+        key = "_".join(sorted([sender_id, recipient_id]))
         entry = {
             "ts": self._ts(),
-            "round": round_number,
-            "sender_id": sender,
-            "sender_name": sender_name,
-            "target_id": target,
-            "target_name": target_name,
+            "sender_id": sender_id,
+            "recipient_id": recipient_id,
             "content": content,
+            "round_number": round_number,
+            "phase": phase,
         }
-        self._write_jsonl(dm_path, entry)
-        self.log({"event": "dm", "sender": sender, "target": target, "content": content, "round": round_number})
-
-    # ── Hints ────────────────────────────────────────────────────
-
-    def log_hints(self, round_number: int, hints: dict, topic: str, secret_word: str, imposter_id: str, display_names: dict):
-        hints_path = self.session_dir / "hints" / f"round_{round_number}.json"
-        data = {
-            "round": round_number,
-            "topic": topic,
-            "secret_word": secret_word,
-            "imposter_id": imposter_id,
-            "hints": [
-                {
-                    "player_id": pid,
-                    "display_name": display_names.get(pid, pid),
-                    "hint": hint_text,
-                    "is_imposter": pid == imposter_id,
-                }
-                for pid, hint_text in hints.items()
-            ],
-        }
-        self._write_json(hints_path, data)
-        self.log({"event": "hints_saved", "round": round_number, "count": len(hints)})
-
-    # ── Votes ────────────────────────────────────────────────────
-
-    def log_votes(self, round_number: int, result: dict, display_names: dict):
-        votes_path = self.session_dir / "votes" / f"round_{round_number}.json"
-        data = {
-            "round": round_number,
-            "imposter_id": result.get("imposter_id"),
-            "imposter_caught": result.get("imposter_caught"),
-            "votes": {
-                voter: {
-                    "voter_name": display_names.get(voter, voter),
-                    "voted_for": target,
-                    "voted_for_name": display_names.get(target, target),
-                    "correct": target == result.get("imposter_id"),
-                }
-                for voter, target in result.get("votes", {}).items()
+        await self._append_jsonl(self.session_dir / "dm_logs" / f"{key}.jsonl", entry)
+        await self.log_event(
+            "dm",
+            {
+                "sender_id": sender_id,
+                "recipient_id": recipient_id,
+                "content": content,
+                "round_number": round_number,
+                "phase": phase,
             },
-            "scores_this_round": result.get("scores_this_round", {}),
-            "cumulative_scores": result.get("cumulative_scores", {}),
-        }
-        self._write_json(votes_path, data)
-        self.log({"event": "votes_saved", "round": round_number})
+        )
 
-    # ── Classifications ──────────────────────────────────────────
+    async def log_hint(self, player_id: str, hint: str, round_number: int) -> None:
+        """Log a hint submission."""
+        await self.log_event(
+            "hint",
+            {"player_id": player_id, "hint": hint, "round_number": round_number},
+        )
 
-    def log_classification(self, player_id: str, display_name: str, classifications: dict):
-        path = self.session_dir / "human_data" / f"{player_id}_classifications.json"
-        data = {
-            "player_id": player_id,
-            "display_name": display_name,
-            "classifications": classifications,
-            "ts": self._ts(),
-        }
-        self._write_json(path, data)
-        self.log({"event": "classification_saved", "player": player_id})
-
-    # ── Survey ───────────────────────────────────────────────────
-
-    def log_survey(self, player_id: str, display_name: str, responses: dict):
-        path = self.session_dir / "human_data" / f"{player_id}_survey.json"
-        data = {
-            "player_id": player_id,
-            "display_name": display_name,
-            "responses": responses,
-            "ts": self._ts(),
-        }
-        self._write_json(path, data)
-        self.log({"event": "survey_saved", "player": player_id})
-
-    # ── Meta-game results ────────────────────────────────────────
-
-    def log_grand_reveal(self, identities, leaderboard, classification_scores, confusion_matrix, all_classifications):
-        results_dir = self.session_dir / "meta_game_results"
-        self._write_json(results_dir / "leaderboard.json", leaderboard)
-        self._write_json(results_dir / "confusion_matrix.json", confusion_matrix)
-        self._write_json(results_dir / "all_classifications.json", all_classifications)
-        self._write_json(results_dir / "identities.json", identities)
-        self._write_json(results_dir / "classification_scores.json", classification_scores)
-        self.log({"event": "grand_reveal_saved", "leaderboard_entries": len(leaderboard)})
-
-    # ── Session config + manifest ────────────────────────────────
-
-    def log_config(self, config: dict):
-        self._write_json(self.session_dir / "config.json", config)
-
-    def log_session_manifest(self, players: dict, total_rounds: int, final_scores: dict):
-        end_time = datetime.now(timezone.utc)
-        duration = (end_time - self.start_time).total_seconds()
-
-        player_list = []
-        for pid, p_info in players.items():
-            if pid == "HOST":
-                continue
-            player_list.append({
-                "player_id": pid,
-                "display_name": p_info.get("display_name", pid),
-                "is_human": p_info.get("is_human", True),
-                "final_score": final_scores.get(pid, 0),
-            })
-
-        manifest = {
-            "session_id": self.session_id,
-            "start_time": self.start_time.isoformat(),
-            "end_time": end_time.isoformat(),
-            "duration_seconds": round(duration, 1),
-            "total_rounds": total_rounds,
-            "num_humans": sum(1 for p in player_list if p["is_human"]),
-            "num_ai": sum(1 for p in player_list if not p["is_human"]),
-            "players": player_list,
-            "final_scores": final_scores,
-            "files": {
-                "game_log": "game_log.jsonl",
-                "group_chat": "group_chat.jsonl",
-                "dm_logs": "dm_logs/",
-                "hints": "hints/",
-                "votes": "votes/",
-                "human_data": "human_data/",
-                "meta_game_results": "meta_game_results/",
+    async def log_vote(
+        self, voter_id: str, voted_for: str, round_number: int
+    ) -> None:
+        """Log a vote."""
+        await self.log_event(
+            "vote",
+            {
+                "voter_id": voter_id,
+                "voted_for": voted_for,
+                "round_number": round_number,
             },
+        )
+
+    async def log_ai_thinking(
+        self,
+        player_id: str,
+        model_name: str,
+        round_number: int,
+        phase: str,
+        thinking: str,
+    ) -> None:
+        """Log an AI player's thinking trace."""
+        ai_dir = self._get_ai_dir(player_id, model_name)
+        entry = {
+            "ts": self._ts(),
+            "round_number": round_number,
+            "phase": phase,
+            "thinking": thinking,
         }
-        self._write_json(self.session_dir / "session_manifest.json", manifest)
-        self.log({"event": "session_complete", "duration_seconds": round(duration, 1)})
+        await self._append_jsonl(ai_dir / "thinking_traces.jsonl", entry)
+
+    async def log_ai_reflection(
+        self,
+        player_id: str,
+        model_name: str,
+        round_number: int,
+        reflection: str,
+    ) -> None:
+        """Log an AI player's reflection."""
+        ai_dir = self._get_ai_dir(player_id, model_name)
+        entry = {
+            "ts": self._ts(),
+            "round_number": round_number,
+            "reflection": reflection,
+        }
+        await self._append_jsonl(ai_dir / "reflections.jsonl", entry)
+
+    async def log_ai_api_call(
+        self,
+        player_id: str,
+        model_name: str,
+        request_summary: str,
+        response_summary: str,
+        round_number: int,
+        phase: str,
+    ) -> None:
+        """Log an AI API call summary."""
+        ai_dir = self._get_ai_dir(player_id, model_name)
+        entry = {
+            "ts": self._ts(),
+            "round_number": round_number,
+            "phase": phase,
+            "request_summary": request_summary,
+            "response_summary": response_summary,
+        }
+        await self._append_jsonl(ai_dir / "api_calls.jsonl", entry)
+
+    async def log_ai_tokens(
+        self,
+        player_id: str,
+        model_name: str,
+        input_tokens: int,
+        output_tokens: int,
+        round_number: int,
+        phase: str,
+    ) -> None:
+        """Log token usage for an AI API call."""
+        ai_dir = self._get_ai_dir(player_id, model_name)
+        entry = {
+            "ts": self._ts(),
+            "round_number": round_number,
+            "phase": phase,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+        }
+        await self._append_jsonl(ai_dir / "token_usage.jsonl", entry)
+
+    async def log_human_action(
+        self, player_id: str, action: str, data: dict
+    ) -> None:
+        """Log an action taken by a human player."""
+        human_dir = self._get_human_dir(player_id)
+        entry = {"ts": self._ts(), "action": action, **data}
+        await self._append_jsonl(human_dir / "actions.jsonl", entry)
+
+    # ------------------------------------------------------------------
+    # Snapshot / structured-data writers
+    # ------------------------------------------------------------------
+
+    async def save_config(self, config: dict) -> None:
+        """Write the session configuration."""
+        await self._write_json(self.session_dir / "config.json", config)
+
+    async def save_word_bank(self, word_bank: list[dict]) -> None:
+        """Write the word bank for this session."""
+        await self._write_json(self.session_dir / "word_bank.json", word_bank)
+
+    async def save_round_hints(self, round_number: int, hints_data: dict) -> None:
+        """Write aggregated hints for a round."""
+        await self._write_json(
+            self.session_dir / "hints" / f"round_{round_number}_hints.json",
+            hints_data,
+        )
+
+    async def save_round_votes(self, round_number: int, votes_data: dict) -> None:
+        """Write aggregated votes for a round."""
+        await self._write_json(
+            self.session_dir / "votes" / f"round_{round_number}_votes.json",
+            votes_data,
+        )
+
+    async def save_classification(
+        self, player_id: str, classification_data: dict
+    ) -> None:
+        """Save a player's classification and update the aggregate file."""
+        # If the player has a human_data directory, write there
+        human_dir = self.session_dir / "human_data" / player_id
+        if human_dir.exists():
+            await self._write_json(
+                human_dir / "classification.json", classification_data
+            )
+
+        # Always update the aggregate classifications file
+        agg_path = self.session_dir / "meta_game_results" / "all_classifications.json"
+        existing: dict = {}
+        if agg_path.exists():
+            async with aiofiles.open(agg_path, mode="r", encoding="utf-8") as f:
+                raw = await f.read()
+                if raw.strip():
+                    existing = json.loads(raw)
+
+        existing[player_id] = classification_data
+        await self._write_json(agg_path, existing)
+
+    async def save_survey(self, player_id: str, survey_data: dict) -> None:
+        """Save a human player's post-game survey."""
+        human_dir = self._get_human_dir(player_id)
+        await self._write_json(human_dir / "post_game_survey.json", survey_data)
+
+    async def save_ground_truth(self, ground_truth: dict) -> None:
+        """Write the ground-truth roles for the session."""
+        await self._write_json(
+            self.session_dir / "meta_game_results" / "ground_truth.json",
+            ground_truth,
+        )
+
+    async def save_meta_game_results(self, results: dict) -> None:
+        """Write the meta-game confusion matrix / results."""
+        await self._write_json(
+            self.session_dir / "meta_game_results" / "confusion_matrix.json",
+            results,
+        )
+
+    async def save_manifest(self, manifest: dict) -> None:
+        """Write the session manifest with player roster and config."""
+        await self._write_json(self.session_dir / "session_manifest.json", manifest)
