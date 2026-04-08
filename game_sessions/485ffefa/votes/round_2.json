@@ -1,0 +1,37 @@
+{
+  "round": 2,
+  "imposter_id": "human_ucte",
+  "imposter_caught": false,
+  "votes": {
+    "human_j9qp": {
+      "voter_name": "Player 2",
+      "voted_for": "human_ltdl",
+      "voted_for_name": "Player 3",
+      "correct": false
+    },
+    "human_ucte": {
+      "voter_name": "Player 4",
+      "voted_for": "human_bw8d",
+      "voted_for_name": "Player 1",
+      "correct": false
+    },
+    "human_ltdl": {
+      "voter_name": "Player 3",
+      "voted_for": "human_j9qp",
+      "voted_for_name": "Player 2",
+      "correct": false
+    }
+  },
+  "scores_this_round": {
+    "human_j9qp": 0,
+    "human_ucte": 3,
+    "human_ltdl": 0,
+    "human_bw8d": 0
+  },
+  "cumulative_scores": {
+    "human_j9qp": 0,
+    "human_ucte": 3,
+    "human_ltdl": 3,
+    "human_bw8d": 0
+  }
+}

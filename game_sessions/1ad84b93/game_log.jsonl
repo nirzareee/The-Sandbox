@@ -1,0 +1,24 @@
+{"ts": "17:43:12Z", "event": "player_connected", "player": "human_y9nm", "type": "HUMAN"}
+{"ts": "17:43:34Z", "event": "player_connected", "player": "human_bz63", "type": "HUMAN"}
+{"ts": "17:43:44Z", "event": "player_connected", "player": "HOST", "type": "HOST"}
+{"ts": "17:43:56Z", "event": "round_assignment", "round": 1, "imposter": "human_bz63", "topic": "Celebrities", "secret_word": "LeBron James", "grid": ["BTS", "Elon Musk", "Beyonc\u00e9", "Bad Bunny", "Taylor Swift", "Oprah", "Rihanna", "Billie Eilish", "LeBron James", "Dwayne Johnson"]}
+{"ts": "17:47:01Z", "event": "player_action", "player": "human_bz63", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "17:47:01Z", "event": "group_message", "sender": "human_bz63", "content": "hgfhg"}
+{"ts": "17:47:07Z", "event": "player_action", "player": "human_bz63", "phase": "discussion", "action": "DM"}
+{"ts": "17:47:07Z", "event": "dm", "sender": "human_bz63", "target": "human_y9nm", "content": "hey"}
+{"ts": "17:47:50Z", "event": "player_action", "player": "human_bz63", "phase": "voting", "action": "VOTE"}
+{"ts": "17:48:44Z", "event": "round_results", "round": 1, "scores_this_round": {"human_y9nm": 0, "human_bz63": 3}, "cumulative_scores": {"human_y9nm": 0, "human_bz63": 3}, "imposter_caught": false, "correct_voters": [], "votes": {"human_bz63": "human_y9nm"}, "imposter_id": "human_bz63"}
+{"ts": "17:49:19Z", "event": "round_assignment", "round": 2, "imposter": "human_y9nm", "topic": "Animals", "secret_word": "Tiger", "grid": ["Elephant", "Lion", "Penguin", "Tiger", "Eagle", "Kangaroo", "Dolphin", "Giraffe", "Wolf", "Panda"]}
+{"ts": "17:50:01Z", "event": "player_action", "player": "human_bz63", "phase": "hint", "action": "HINT"}
+{"ts": "17:52:47Z", "event": "player_action", "player": "human_bz63", "phase": "discussion", "action": "DM"}
+{"ts": "17:52:47Z", "event": "dm", "sender": "human_bz63", "target": "HOST", "content": "hi"}
+{"ts": "17:52:53Z", "event": "player_action", "player": "human_bz63", "phase": "discussion", "action": "DM"}
+{"ts": "17:52:53Z", "event": "dm", "sender": "human_bz63", "target": "human_y9nm", "content": "Hi"}
+{"ts": "17:54:07Z", "event": "round_results", "round": 2, "scores_this_round": {"human_y9nm": 3, "human_bz63": 0}, "cumulative_scores": {"human_y9nm": 3, "human_bz63": 3}, "imposter_caught": false, "correct_voters": [], "votes": {}, "imposter_id": "human_y9nm"}
+{"ts": "17:54:42Z", "event": "round_assignment", "round": 3, "imposter": "human_bz63", "topic": "Movies", "secret_word": "Everything Everywhere", "grid": ["The Dark Knight", "Inception", "Everything Everywhere", "Get Out", "Avatar", "Parasite", "Interstellar", "Titanic", "Dune", "La La Land"]}
+{"ts": "17:58:02Z", "event": "player_connected", "player": "HOST", "type": "HOST"}
+{"ts": "17:59:30Z", "event": "round_results", "round": 3, "scores_this_round": {"human_y9nm": 0, "human_bz63": 3}, "cumulative_scores": {"human_y9nm": 3, "human_bz63": 6}, "imposter_caught": false, "correct_voters": [], "votes": {}, "imposter_id": "human_bz63"}
+{"ts": "18:00:06Z", "event": "round_assignment", "round": 4, "imposter": "human_y9nm", "topic": "TV Shows", "secret_word": "Friends", "grid": ["Friends", "Ted Lasso", "Euphoria", "Black Mirror", "The Office", "Stranger Things", "Squid Game", "Succession", "Game of Thrones", "Breaking Bad"]}
+{"ts": "18:04:54Z", "event": "round_results", "round": 4, "scores_this_round": {"human_y9nm": 3, "human_bz63": 0}, "cumulative_scores": {"human_y9nm": 6, "human_bz63": 6}, "imposter_caught": false, "correct_voters": [], "votes": {}, "imposter_id": "human_y9nm"}
+{"ts": "18:05:29Z", "event": "round_assignment", "round": 5, "imposter": "human_bz63", "topic": "Video Games", "secret_word": "Among Us", "grid": ["Among Us", "Pokemon", "Zelda", "Mario Kart", "Minecraft", "Fortnite", "Elden Ring", "FIFA", "Call of Duty", "GTA V"]}
+{"ts": "18:10:17Z", "event": "round_results", "round": 5, "scores_this_round": {"human_y9nm": 0, "human_bz63": 3}, "cumulative_scores": {"human_y9nm": 6, "human_bz63": 9}, "imposter_caught": false, "correct_voters": [], "votes": {}, "imposter_id": "human_bz63"}
