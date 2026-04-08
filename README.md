@@ -1,5 +1,11 @@
-# The Sandbox
+<p align="center">
+  <img src="assets/banner.png" alt="The Sandbox — The Deception Arena" width="100%" />
+</p>
 
+# The Sandbox — The Deception Arena
+
+> **Who is the human? Who is the model? Spot the impostor.**
+>
 > A multiplayer social-deduction game purpose-built for human–AI interaction research. Real humans play alongside LLM agents (Claude, GPT-4o, Gemini, Llama, Groq-hosted models) in a single competitive session — without knowing in advance which players are AI.
 
 The Sandbox is a controlled environment for studying how well current LLMs can pass as human players, how humans detect them, and how different models compare behaviorally under the same constraints.
@@ -17,7 +23,6 @@ The Sandbox is a controlled environment for studying how well current LLMs can p
 - [Project structure](#project-structure)
 - [Data & logging](#data--logging)
 - [Configuration](#configuration)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -233,7 +238,3 @@ Run `python evaluation.py` after a session to produce summary analytics from the
 | `MAX_PLAYERS` | `6` | Max players per session |
 
 Plus one API key per provider you intend to use (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `TOGETHER_API_KEY`, `GROQ_API_KEY`).
-
-## Acknowledgements
-
-The Sandbox draws inspiration from social-deduction research environments such as [7vik/AmongUs](https://github.com/7vik/AmongUs), which uses *Among Us* as a sandbox for studying deception in language models. The Sandbox extends that line of work by mixing real human players into the loop and standardizing the protocol across many model families.
