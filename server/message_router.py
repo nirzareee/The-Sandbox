@@ -38,7 +38,7 @@ PHASE_ALLOWED_ACTIONS: dict[GamePhase, set[ActionType]] = {
     GamePhase.REFLECTION: {ActionType.GROUP_MESSAGE, ActionType.DM},
     GamePhase.META_GAME: {ActionType.CLASSIFICATION},
     GamePhase.SURVEY: {ActionType.SURVEY},
-    GamePhase.REVEAL: set(),
+    GamePhase.REVEAL: {ActionType.ADVANCE_PHASE},
     GamePhase.FINISHED: set(),
 }
 
@@ -75,6 +75,7 @@ class MessageRouter:
         self.on_vote: Callable[[str, str, int], Awaitable[None]] | None = None
         self.on_classification: Callable[[str, dict], Awaitable[None]] | None = None
         self.on_survey: Callable[[str, dict], Awaitable[None]] | None = None
+        self.on_advance_phase: Callable[[str], Awaitable[None]] | None = None
 
         # Optional validator — returns the list of valid player IDs for vote targets.
         self.get_valid_players: Callable[[], list[str]] | None = None
@@ -137,6 +138,7 @@ class MessageRouter:
                 player_id, msg
             ),
             ActionType.SURVEY: lambda: self._handle_survey(player_id, msg),
+            ActionType.ADVANCE_PHASE: lambda: self._handle_advance_phase(player_id),
         }
 
         handler = dispatch.get(msg.action)
@@ -277,6 +279,14 @@ class MessageRouter:
 
         if self.on_survey is not None:
             await self.on_survey(player_id, submission.responses)
+        return None
+
+    async def _handle_advance_phase(
+        self,
+        player_id: str,
+    ) -> ServerMessage | None:
+        if self.on_advance_phase is not None:
+            await self.on_advance_phase(player_id)
         return None
 
     # ------------------------------------------------------------------

@@ -195,6 +195,10 @@ class RoundManager:
             topic=entry.topic,
             secret_word=entry.secret_word,
             grid_labels=grid_labels,
+            grid_items=[
+                {"label": item.label, "image_path": item.image_path}
+                for item in entry.grid_items
+            ],
             hint_order=hint_order,
         )
 
@@ -232,6 +236,7 @@ class RoundManager:
         topic: str,
         secret_word: str,
         grid_labels: list[str],
+        grid_items: list[dict],
         hint_order: list[str],
     ) -> None:
         """Send round_start to every game player — imposters do NOT learn the secret word."""
@@ -248,6 +253,7 @@ class RoundManager:
                 "topic": topic,
                 "secret_word": None if is_imposter else secret_word,
                 "image_grid": grid_labels,
+                "grid_items": grid_items,
                 "hint_order": hint_order,
             }
             await self.connection_manager.send_personal(
@@ -261,6 +267,7 @@ class RoundManager:
             "topic": topic,
             "secret_word": secret_word,
             "image_grid": grid_labels,
+            "grid_items": grid_items,
             "hint_order": hint_order,
             "imposter_id": imposter_id,
         }
@@ -640,6 +647,15 @@ class RoundManager:
                 self._phase_event.set()
 
     # ===================================================================
+    # Phase advancement (interactive reveal)
+    # ===================================================================
+
+    async def record_advance_phase(self, player_id: str) -> None:
+        """Called when a player signals to advance past the current phase."""
+        log.info("Player %s requested phase advance", player_id)
+        self._phase_event.set()
+
+    # ===================================================================
     # Grand reveal
     # ===================================================================
 
@@ -728,9 +744,9 @@ class RoundManager:
             "leaderboard": leaderboard,
         })
 
-        # Hold the reveal screen for the configured duration
-        if duration > 0:
-            await asyncio.sleep(duration)
+        # Wait for a player to send ADVANCE_PHASE (or 600s timeout as fallback)
+        self._phase_event.clear()
+        await self._wait_for_phase(600)
 
     # ===================================================================
     # Internal helpers

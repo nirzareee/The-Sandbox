@@ -183,6 +183,23 @@ class ConnectionManager:
         for host_id in self.get_host_ids():
             await self.send_personal(host_id, message)
 
+    def get_host_roster(self) -> dict[str, dict]:
+        """Return {pid: {display_name, player_type, model_name, real_name, connected}}
+        for every game player. Host-only — exposes AI vs human identity and the
+        typed human name, so must never be broadcast to regular players."""
+        roster: dict[str, dict] = {}
+        for pid, info in self.player_info.items():
+            if info.player_type == PlayerType.HOST:
+                continue
+            roster[pid] = {
+                "display_name": info.display_name,
+                "player_type": info.player_type.value,
+                "model_name": info.model_name,
+                "real_name": info.real_name,
+                "connected": pid in self.active_connections,
+            }
+        return roster
+
     def get_player_count(self) -> int:
         """Return the total number of registered players (connected + disconnected)."""
         return len(self.player_info)

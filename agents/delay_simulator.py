@@ -50,6 +50,10 @@ class DelaySimulator:
         return DelaySimulator._compute("hint")
 
     @staticmethod
+    def hint_for_role(is_imposter: bool) -> float:
+        return DelaySimulator._compute("hint")
+
+    @staticmethod
     def group_message() -> float:
         return DelaySimulator._compute("group_message")
 

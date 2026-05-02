@@ -40,17 +40,17 @@ AGENT_REGISTRY: dict[str, dict] = {
         "env_key": "TOGETHER_API_KEY",
         "name": "Llama",
     },
-    "kimi": {
+    "qwen": {
         "module": "agents.kimi_agent",
-        "class": "KimiAgent",
-        "env_key": "KIMI_API_KEY",
-        "name": "Kimi K2.5",
+        "class": "QwenAgent",
+        "env_key": "TOGETHER_API_KEY",
+        "name": "Qwen 3.5",
     },
     "deepseek": {
         "module": "agents.deepseek_agent",
         "class": "DeepSeekAgent",
-        "env_key": "DEEPSEEK_API_KEY",
-        "name": "DeepSeek",
+        "env_key": "TOGETHER_API_KEY",
+        "name": "DeepSeek R1",
     },
     "grok": {
         "module": "agents.grok_agent",

@@ -33,12 +33,14 @@ class BaseAgent(ABC):
         model_name: str,
         server_url: str = "ws://localhost:8000",
         api_timeout: int = 15,
+        max_retries: int = 2,
     ) -> None:
         self.player_id = player_id
         self.display_name = display_name
         self.model_name = model_name
         self.server_url = server_url
         self.api_timeout = api_timeout
+        self.max_retries = max_retries
 
         self.ws: websockets.WebSocketClientProtocol | None = None
         self.connected = False
@@ -48,6 +50,7 @@ class BaseAgent(ABC):
         self.current_round: int = 0
         self._num_rounds: int = 5
         self._discussion_task: asyncio.Task | None = None
+        self._phase_task: asyncio.Task | None = None
         self._all_players: list[str] = []
         self._incoming_event = asyncio.Event()  # Fires when agent is mentioned or DM'd
         self._pending_dm_queue: list[str] = []  # Queue of player_ids who DM'd us
@@ -68,6 +71,16 @@ class BaseAgent(ABC):
         """Return (num_players, num_rounds, player_display_names)."""
         names = [self._dn(p) for p in self._all_players]
         return len(names), self._num_rounds, names
+
+    def _cancel_phase_task(self) -> None:
+        """Cancel any in-flight LLM work from a previous phase."""
+        if self._phase_task and not self._phase_task.done():
+            self._phase_task.cancel()
+        self._phase_task = None
+        # Also cancel discussion task (may differ from _phase_task)
+        if self._discussion_task and not self._discussion_task.done():
+            self._discussion_task.cancel()
+        self._discussion_task = None
 
     # ------------------------------------------------------------------
     # Connection
@@ -122,23 +135,22 @@ class BaseAgent(ABC):
     # ------------------------------------------------------------------
 
     async def _send(self, action: str, content: str = "", target_player: str | None = None) -> None:
-        # --- Secret word / grid word filter (safety net) ---
+        # --- Secret word filter (safety net) ---
+        # Only block the secret word. Grid words are fair game — players
+        # reference them during discussion ("your hint fits Titanic more
+        # than Inception"). Blocking grid words kills natural conversation.
         if action in ("GROUP_MESSAGE", "DM") and content:
             rs = self.memory.current_round_state
             if rs:
-                forbidden: list[str] = []
                 sw = rs.get("secret_word")
-                if sw:
-                    forbidden.append(sw)
-                forbidden.extend(rs.get("image_grid", []))
-                content_lower = content.lower()
-                for word in forbidden:
-                    if word and re.search(r"\b" + re.escape(word.lower()) + r"\b", content_lower):
+                if sw and len(sw) > 2:
+                    escaped = re.escape(sw.lower())
+                    if re.search(r"\b" + escaped + r"(?:s|es|ing|ed|er)?\b", content.lower()):
                         log.warning(
-                            "%s: blocked message containing forbidden word '%s'",
-                            self.display_name, word,
+                            "%s: blocked message containing secret word '%s'",
+                            self.display_name, sw,
                         )
-                        return  # silently drop — looks like the agent just paused
+                        return  # silently drop
 
         payload: dict = {"action": action, "content": content}
         if target_player:
@@ -175,6 +187,9 @@ class BaseAgent(ABC):
 
     def _translate_hint_tuples(self, hints: list[tuple[str, str]]) -> list[tuple[str, str]]:
         return [(self._dn(pid), hint) for pid, hint in hints]
+
+    def _translate_hint_timings(self, timings: dict[str, int]) -> dict[str, int]:
+        return {self._dn(k): v for k, v in timings.items()}
 
     def _translate_messages(self, msgs: list[dict]) -> list[dict]:
         out = []
@@ -276,6 +291,7 @@ class BaseAgent(ABC):
             self.memory.set_game_start_context(ctx)
 
     async def _on_round_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_round = data["round_number"]
         self.current_phase = GamePhase.ASSIGNMENT
 
@@ -300,9 +316,9 @@ class BaseAgent(ABC):
         self.memory.record_hint(data["player_id"], data["hint"])
 
     async def _on_hint_phase_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_phase = GamePhase.HINT
-        # Generate and submit hint asynchronously
-        asyncio.ensure_future(self._generate_and_submit_hint())
+        self._phase_task = asyncio.create_task(self._generate_and_submit_hint())
 
     async def _generate_and_submit_hint(self) -> None:
         """Generate a hint using the LLM and submit it."""
@@ -340,7 +356,8 @@ class BaseAgent(ABC):
             log.warning("%s hint fallback: %s", self.display_name, exc)
             hint = "..."
 
-        target_delay = DelaySimulator.hint()
+        is_imposter = rs.get("role") == PlayerRole.IMPOSTER
+        target_delay = DelaySimulator.hint_for_role(is_imposter)
         remaining = max(0, target_delay - (asyncio.get_event_loop().time() - t0))
         await asyncio.sleep(remaining)
         await self._send("HINT", hint)
@@ -361,14 +378,15 @@ class BaseAgent(ABC):
         self._dm_history.setdefault(target, []).append(content)
 
     async def _on_discussion_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_phase = GamePhase.DISCUSSION
         self._dm_history.clear()
         duration = data.get("duration", 180)
         self._discussion_task = asyncio.create_task(self._discussion_behavior(duration))
+        self._phase_task = self._discussion_task
 
     async def _on_discussion_end(self, data: dict) -> None:
-        if self._discussion_task and not self._discussion_task.done():
-            self._discussion_task.cancel()
+        self._cancel_phase_task()
 
     def _compute_chat_state(
         self,
@@ -482,6 +500,7 @@ class BaseAgent(ABC):
                     my_msg_count=my_msg_count,
                     time_remaining=time_remaining,
                     chat_state=chat_state,
+                    hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
                 )
 
                 t0 = loop.time()
@@ -558,7 +577,12 @@ class BaseAgent(ABC):
                 self._incoming_event.set()
 
     async def _on_voting_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_phase = GamePhase.VOTING
+        self._phase_task = asyncio.create_task(self._voting_behavior(data))
+
+    async def _voting_behavior(self, data: dict) -> None:
+        """Generate and submit a vote (runs as a task so dispatch isn't blocked)."""
         candidates = data.get("candidates", [])
         rs = self.memory.current_round_state
         if not rs or "topic" not in rs:
@@ -591,6 +615,7 @@ class BaseAgent(ABC):
             num_rounds=nr,
             player_list=pl,
             recent_thinking=recent_thinking,
+            hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
         )
 
         target = None
@@ -603,6 +628,9 @@ class BaseAgent(ABC):
             thinking = parsed.get("thinking", "")
             self.memory.log_thinking(self.current_round, "voting", thinking)
             self._flush_thinking(self.current_round, "voting", thinking)
+        except asyncio.CancelledError:
+            log.info("%s voting cancelled (phase moved on)", self.display_name)
+            return
         except Exception as exc:
             log.warning("%s vote fallback: %s", self.display_name, exc)
 
@@ -631,8 +659,12 @@ class BaseAgent(ABC):
         )
 
     async def _on_reflection_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_phase = GamePhase.REFLECTION
+        self._phase_task = asyncio.create_task(self._reflection_behavior())
 
+    async def _reflection_behavior(self) -> None:
+        """Reflect on the round and compress memory (runs as a task)."""
         rs = self.memory.current_round_state
         my_name = self._my_display_name or self.player_id
         np, nr, pl = self._get_game_params()
@@ -660,6 +692,7 @@ class BaseAgent(ABC):
             num_players=np,
             num_rounds=nr,
             player_list=pl,
+            hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
         )
 
         try:
@@ -680,17 +713,27 @@ class BaseAgent(ABC):
                         update.get("confidence", 0.5),
                         update.get("note", ""),
                     )
+        except asyncio.CancelledError:
+            log.info("%s reflection cancelled (phase moved on)", self.display_name)
+            # Still compress what we have so memory doesn't grow unbounded
+            await asyncio.shield(self.memory.compress_round(self.current_round))
+            return
         except Exception as exc:
             log.warning("%s reflection error: %s", self.display_name, exc)
 
         # Compress AFTER reflection so the summary includes the reflection text
-        self.memory.compress_round(self.current_round)
+        await self.memory.compress_round(self.current_round)
 
     async def _on_reflection_end(self, data: dict) -> None:
         pass
 
     async def _on_meta_game_start(self, data: dict) -> None:
+        self._cancel_phase_task()
         self.current_phase = GamePhase.META_GAME
+        self._phase_task = asyncio.create_task(self._meta_game_behavior(data))
+
+    async def _meta_game_behavior(self, data: dict) -> None:
+        """Generate and submit classifications (runs as a task)."""
         players_data = data.get("players", {})
         # players_data is a dict: {player_id: {player_id, display_name}}
         if isinstance(players_data, dict):
@@ -730,6 +773,9 @@ class BaseAgent(ABC):
             for key, val in raw_classifications.items():
                 pid = self._resolve_target(key) or key
                 classifications[pid] = val
+        except asyncio.CancelledError:
+            log.info("%s classification cancelled (phase moved on)", self.display_name)
+            return
         except Exception as exc:
             log.warning("%s classification fallback: %s", self.display_name, exc)
             classifications = {}
@@ -819,15 +865,15 @@ class BaseAgent(ABC):
     # LLM interface
     # ------------------------------------------------------------------
 
-    async def _call_llm_with_retry(self, prompt: str, max_retries: int = 2) -> str:
-        for attempt in range(max_retries + 1):
+    async def _call_llm_with_retry(self, prompt: str) -> str:
+        for attempt in range(self.max_retries + 1):
             try:
                 return await asyncio.wait_for(self.call_llm(prompt), timeout=self.api_timeout)
             except (asyncio.TimeoutError, Exception) as exc:
-                if attempt == max_retries:
+                if attempt == self.max_retries:
                     raise
                 wait = min(2 ** attempt, 5)
-                log.warning("%s: LLM retry %d/%d after %s", self.display_name, attempt + 1, max_retries, exc)
+                log.warning("%s: LLM retry %d/%d after %s", self.display_name, attempt + 1, self.max_retries, exc)
                 await asyncio.sleep(wait)
         raise RuntimeError("unreachable")  # satisfy type checker
 
@@ -843,6 +889,8 @@ class BaseAgent(ABC):
     def _parse_response(self, raw: str) -> dict:
         """Parse JSON response from LLM. Tries to extract JSON from markdown fences."""
         text = raw.strip()
+        # Strip <think>...</think> reasoning blocks (DeepSeek R1, Kimi K2.5, etc.)
+        text = re.sub(r"<think>[\s\S]*?</think>\s*", "", text, flags=re.DOTALL).strip()
         # Strip markdown code fences if present
         if text.startswith("```"):
             lines = text.split("\n")

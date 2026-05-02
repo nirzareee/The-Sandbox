@@ -146,7 +146,20 @@ async def _on_survey(player_id: str, responses: dict) -> None:
     if round_manager:
         await round_manager.record_survey(player_id, responses)
     if game_logger:
-        await game_logger.save_survey(player_id, responses)
+        info = connection_manager.player_info.get(player_id)
+        identity = None
+        if info is not None:
+            identity = {
+                "real_name": getattr(info, "real_name", player_id),
+                "player_type": getattr(info.player_type, "value", str(info.player_type)),
+                "display_name": getattr(info, "display_name", player_id),
+            }
+        await game_logger.save_survey(player_id, responses, identity=identity)
+
+
+async def _on_advance_phase(player_id: str) -> None:
+    if round_manager:
+        await round_manager.record_advance_phase(player_id)
 
 
 router.on_group_message = _on_group_message
@@ -155,6 +168,7 @@ router.on_hint = _on_hint
 router.on_vote = _on_vote
 router.on_classification = _on_classification
 router.on_survey = _on_survey
+router.on_advance_phase = _on_advance_phase
 router.get_valid_players = connection_manager.get_game_players
 
 
@@ -322,8 +336,17 @@ async def start_game(request: Request):
 
         # Shuffle display names to anonymize connection order
         roster = connection_manager.shuffle_display_names()
+        # Non-hosts: plain roster (just display names — AI vs human must stay hidden)
         await connection_manager.broadcast(
-            ServerMessage(event="player_roster", data={"roster": roster})
+            ServerMessage(event="player_roster", data={"roster": roster}),
+            exclude=set(connection_manager.get_host_ids()),
+        )
+        # Hosts: rich roster that exposes player_type + model_name
+        await connection_manager.send_to_hosts(
+            ServerMessage(
+                event="host_roster",
+                data={"roster": connection_manager.get_host_roster()},
+            )
         )
 
         # Launch the game loop as a background task.
@@ -381,6 +404,10 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
     params = websocket.query_params
     player_type_str = params.get("type", "HUMAN").upper()
     model_name = params.get("model", None)
+    # Humans pass their typed name as ?name=Alice. We keep it in real_name so
+    # the host UI can show "Player_3 · Alice" alongside the shuffled name.
+    real_name_raw = (params.get("name", "") or "").strip()
+    real_name = real_name_raw or None
 
     try:
         player_type = PlayerType(player_type_str)
@@ -393,7 +420,11 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
     # Assign anonymous "Player N" name to maintain anonymity during gameplay.
     # Reconnecting players keep their existing name. Hosts get "Host".
     if player_id in connection_manager.player_info:
-        display_name = connection_manager.player_info[player_id].display_name
+        existing = connection_manager.player_info[player_id]
+        display_name = existing.display_name
+        # Don't let a reconnect overwrite the real_name (prevents identity swap mid-game)
+        if existing.real_name:
+            real_name = existing.real_name
     elif is_host:
         display_name = "Host"
     else:
@@ -406,6 +437,7 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
             display_name=display_name,
             player_type=player_type,
             model_name=model_name,
+            real_name=real_name,
         )
     except ValueError as exc:
         await websocket.close(code=4001, reason=str(exc))
@@ -415,6 +447,7 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
 
     if is_host:
         # Host sees all existing game players but is invisible to them.
+        # Hosts receive rich info (HUMAN vs AI + model name).
         for existing_pid, existing_info in connection_manager.player_info.items():
             if existing_pid != player_id and existing_info.player_type != PlayerType.HOST:
                 await connection_manager.send_personal(
@@ -424,6 +457,9 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
                         data={
                             "player_id": existing_pid,
                             "display_name": existing_info.display_name,
+                            "player_type": existing_info.player_type.value,
+                            "model_name": existing_info.model_name,
+                            "real_name": existing_info.real_name,
                             "player_count": connection_manager.get_game_player_count(),
                             "connected": connection_manager.get_game_players(),
                         },
@@ -432,7 +468,8 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
         # Do NOT broadcast player_joined for the host.
     else:
         # Send existing game players to the newly connected game player
-        # (skip hosts — they are invisible).
+        # (skip hosts — they are invisible). Non-host peers do NOT see
+        # player_type/model_name — that would spoil the social deduction.
         for existing_pid, existing_info in connection_manager.player_info.items():
             if existing_pid != player_id and existing_info.player_type != PlayerType.HOST:
                 await connection_manager.send_personal(
@@ -448,15 +485,26 @@ async def websocket_endpoint(websocket: WebSocket, player_id: str):
                     ),
                 )
 
-        # Announce to all players (including hosts) that a game player joined.
+        base_payload = {
+            "player_id": player_id,
+            "display_name": display_name,
+            "player_count": connection_manager.get_game_player_count(),
+            "connected": connection_manager.get_game_players(),
+        }
+        # Announce to non-host players with the plain payload (no type/model leak).
         await connection_manager.broadcast(
+            ServerMessage(event="player_joined", data=base_payload),
+            exclude=set(connection_manager.get_host_ids()),
+        )
+        # Announce to hosts with the rich payload (type + model_name + real_name).
+        await connection_manager.send_to_hosts(
             ServerMessage(
                 event="player_joined",
                 data={
-                    "player_id": player_id,
-                    "display_name": display_name,
-                    "player_count": connection_manager.get_game_player_count(),
-                    "connected": connection_manager.get_game_players(),
+                    **base_payload,
+                    "player_type": player_type.value,
+                    "model_name": model_name,
+                    "real_name": real_name,
                 },
             )
         )
