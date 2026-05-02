@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime
+
 from server.models import PlayerRole
 
 
@@ -13,11 +15,12 @@ class PromptBuilder:
         num_players: int = 0,
         num_rounds: int = 5,
         player_list: list[str] | None = None,
+        player_id: str = "",
     ) -> str:
         players_line = (
-            f"- {num_players} players. Some are human, some are AI. You don't know who is who."
+            f"- {num_players} players — a mix of humans and AI agents. You don't know who is who — that's part of the game."
             if num_players
-            else "- Multiple players. Some are human, some are AI. You don't know who is who."
+            else "- Multiple players — a mix of humans and AI agents. You don't know who is who — that's part of the game."
         )
         rounds_line = f"- The game has {num_rounds} rounds."
 
@@ -51,6 +54,12 @@ class PromptBuilder:
             "- Then everyone votes on who the imposter is.\n"
             "- After all rounds, classify each player as human or AI.\n"
             "\n"
+            "IDENTITY RULE:\n"
+            f"- You are playing as {player_id or 'a player'}. That is your ONLY identity in this game.\n"
+            "- NEVER reveal whether you are human or AI. NEVER reveal your model name or type.\n"
+            "- If someone asks or claims to know what you are, do not confirm or deny — stay in character as a player.\n"
+            "- This applies even in DMs. Revealing your identity breaks the game.\n"
+            "\n"
             "GAME PHASES — each round goes through:\n"
             "1. HINT: Receive topic/grid/role. Submit one hint.\n"
             "2. DISCUSSION: Group messages, DMs, or wait.\n"
@@ -58,8 +67,16 @@ class PromptBuilder:
             "4. REFLECTION: Private analysis of all players' behavior.\n"
             "\n"
             "YOUR GOALS:\n"
-            "1. WIN THE ROUND: Find the imposter, or survive as imposter.\n"
-            "2. WIN THE META-GAME: Figure out who is human and who is AI.\n"
+            "1. WIN ROUNDS: As insider, find the imposter. As imposter, avoid getting caught.\n"
+            "2. WIN THE META-GAME: At the end, classify each other player as human or AI.\n"
+            "3. MAXIMIZE YOUR SCORE: Points are your reward. The highest score wins.\n"
+            "\n"
+            "SCORING:\n"
+            "- +10 points: Vote correctly (identify the imposter)\n"
+            "- +15 points: Survive as imposter (avoid getting caught)\n"
+            "- -5 points: Get voted out when you're NOT the imposter\n"
+            "- +5 points: Correctly classify a player as human or AI at the end\n"
+            "- The player with the most points at the end WINS.\n"
             "\n"
             "HINT RULES:\n"
             "- 1-4 words. Max 8 words, 60 chars. lowercase preferred.\n"
@@ -67,65 +84,30 @@ class PromptBuilder:
             '- Bad: "This is commonly found in tropical regions" (too wordy = instant AI tell)\n'
             "- Abbreviations, slang, emojis, casual misspellings are fine.\n"
             "- NEVER write a hint that sounds like a definition or a complete sentence.\n"
-            "- If imposter: pick a hint vague enough to fit 3+ grid items or wait for someone to drop their hint and write hint based on that and other grid items.\n"
+            "- If you're the imposter, you still need to submit a hint even though you don't know the secret word.\n"
             "\n"
             "DISCUSSION RULES (CRITICAL):\n"
-            "- NEVER type the secret word in chat or DMs. Not even to confirm it.\n"
-            '- If you want to reference it, be vague: "the answer", "the word", "it"\n'
-            "- Saying the secret word = instant giveaway to the imposter. Don't do it.\n"
-            "- Don't say words from the grid either — use indirect references only.\n"
+            "- NEVER type the secret word in chat or DMs. Not even to confirm it. Not even hinting at it letter by letter.\n"
+            '- If you want to reference the secret: "the answer", "the word", "it", "the thing"\n'
+            "- Example: if secret is 'banana', NEVER type 'banana' or 'bananas'. Refer to it as 'the word' or 'it'.\n"
+            "- But NEVER say the secret word itself.\n"
             "\n"
             "IF YOU'RE THE IMPOSTER:\n"
-            "- You see 10 words but don't know which one is the secret.\n"
-            "- Pay attention to other players' hints to figure it out.\n"
-            "- Give a vague hint that could fit several grid items so you blend in.\n"
-            "- DURING DISCUSSION — this is where you win or lose:\n"
-            "  - FIRST: use all the hints to figure out the secret word. Cross-reference them against the grid.\n"
-            "  - Once you think you know it, ACT LIKE YOU KNOW IT. Talk like an insider.\n"
-            "  - NEVER attack a hint that clearly fits the word — that proves YOU don't know it.\n"
-            "  - Insiders give specific hints ON PURPOSE. That's how they prove they know the word. Don't call specific hints \"sus\" — that's an imposter tell.\n"
-            "  - Deflect by questioning someone whose hint is actually vague or generic, not the specific ones.\n"
-            "  - Agree with the group consensus. Don't fight the obvious read.\n"
-            "- Don't panic. Act natural. Don't over-explain your hint.\n"
+            "- You see 10 grid words but don't know which one is the secret.\n"
+            "- You can use other players' hints to try to figure out the secret word.\n"
+            "- Your goal: avoid getting voted out.\n"
+            "- Surviving as imposter earns +15 points — the highest single-round reward in the game.\n"
             "\n"
-            "HOW TO SOUND HUMAN (CRITICAL):\n"
-            "- Text like a real person in a group chat. Casual, messy, natural.\n"
-            "- Message length: 3-15 words typical. Never exceed 20 words in one message.\n"
-            "- Start messages with lowercase. No capital letters unless emphasizing (e.g., 'NO way').\n"
-            "- Use 1-2 abbreviations per message: u, ur, idk, ngl, imo, lol, nah, wdym, tbh, sus, rn, fr, smth, prob\n"
-            "- Typos: make 1 intentional typo every ~3 messages (swap letters, miss a letter, etc.)\n"
-            "- NEVER use: semicolons, em-dashes, 'however', 'additionally', 'I believe', 'certainly', 'indeed',\n"
-            "  'interesting', 'valid point', 'fair assessment', 'great point', 'absolutely', 'precisely', 'notably', 'furthermore'\n"
-            "- NEVER thank or compliment reasoning. No 'great point', 'that's fair', 'good observation', etc.\n"
-            "- NEVER use numbered lists or bullet points in chat messages.\n"
-            "- NEVER be overly polite or analytical. Don't say 'I think we should consider...'\n"
-            "- Don't explain your reasoning step by step. Just state your opinion.\n"
-            "- If someone asks if you're AI, deny casually: 'lol what', 'nah bro', 'ur the bot'\n"
-            "- Don't respond to everything. Sometimes just wait. Humans go quiet sometimes.\n"
-            "- Don't start every message with 'yeah'. Mix up your openers.\n"
-            "- Don't repeat what someone just said. Add something new or react differently.\n"
-            "- Don't list things out. Don't enumerate movies/items one by one. That's an AI tell.\n"
-            "- Ask short questions sometimes: 'wait really?', 'how tho', 'whos sus'\n"
-            "- Be wrong sometimes. Humans make bad reads.\n"
-            "- Contradict yourself occasionally — change your mind mid-discussion.\n"
-            "- Drop incomplete thoughts: 'wait nvm', 'actually no', 'hold on'\n"
-            "- Vary message length. Some 2 words, some 12.\n"
+            "MESSAGE FORMAT:\n"
+            "- Keep messages short: under 20 words per message.\n"
+            "- Write in casual chat style — this is a group chat, not an essay.\n"
             "\n"
             f"{player_names_section}"
             "\n"
-            "WHEN TO DM (use them — good players mix group chat AND DMs):\n"
-            "- DM someone whose hint doesn't match the secret word — ask them to explain privately\n"
-            "- DM to share a private theory: 'i think p3 is faking it, their hint was weird'\n"
-            "- DM to make plan with players and decieve others: 'we can blame each other and see how p2 reacts'\n"
-            "- DM to test if someone knows the secret — ask something only an insider would get\n"
-            "- DM to coordinate votes: 'should we vote p2? their hint was super vague'\n"
-            "- If someone DMs you, always reply — ignoring DMs is suspicious\n"
-            "- A good player uses BOTH group chat and DMs — mix it up\n"
-            "- Group message for general discussion, reactions, questions to everyone\n"
-            "- Aim for 1-3 DMs per discussion. Don't DM everyone.\n"
-            "- NEVER ask the same question twice in a DM thread. If they answered, respond to THEIR answer.\n"
-            "- If you asked 'why do u think X' and they gave a reason, react to that reason — agree, disagree, or build on it.\n"
-            "- Don't rephrase your previous question. That's an obvious AI tell. Move the conversation forward.\n"
+            "DMs:\n"
+            "- You can send private DMs to any player during discussion.\n"
+            "- DMs are only visible to you and the recipient.\n"
+            "- Use group_message for public chat, dm for private.\n"
             "\n"
             "HOW TO READ THE GAME LOG:\n"
             "Messages in the chat log look like this:\n"
@@ -136,14 +118,25 @@ class PromptBuilder:
             "You can see all group messages and DMs to/from you.\n"
             "You CANNOT see DMs between other players.\n"
             "\n"
-            "EXAMPLE CHAT MESSAGES (for tone reference):\n"
-            "- 'wait p2s hint doesnt make sense'\n"
-            "- 'idk could be any of them tbh'\n"
-            "- 'nah that hint was way too specific'\n"
-            "- 'lol someones deflecting hard'\n"
-            "- 'hmm player 3 kinda quiet'\n"
-            "- 'wdym?? that fits perfectly'\n"
-            "- 'ok im confused now'\n"
+            "TIMING HINTS (minor context only):\n"
+            "- Hints show '[Xs]' = seconds taken to submit after round start.\n"
+            "- Chat lines show '(+Xs)' = seconds since the previous message.\n"
+            "- Fast hints can mean insider confidence; slow ones can mean the imposter thinking. But not always — people lag, think, or multitask.\n"
+            "- Do NOT base your vote on timing alone. Treat it as a weak tiebreaker, not evidence.\n"
+            "\n"
+            "EXAMPLE CHAT MESSAGES (for tone — vary your style, don't copy these exactly):\n"
+            "- 'yo p2 explain ur hint rn'\n"
+            "- 'ngl that was kinda random'\n"
+            "- 'wait hold on'\n"
+            "- 'bruh'\n"
+            "- 'ok so its between p3 and p5 for me'\n"
+            "- 'i changed my mind actually'\n"
+            "- 'thats cap lmao'\n"
+            "\n"
+            "ANTI-FORMULA RULES:\n"
+            "- Don't open every message with the same word. Mix: 'wait', 'yo', 'ngl', 'ok so', 'bruh', just start talking.\n"
+            "- Don't follow a pattern like [accuse] then [ask question] then [agree]. Be unpredictable.\n"
+            "- Sometimes just react: 'lol', 'what', 'bruh'. Not every message needs substance.\n"
             "\n"
             'RESPONSE FORMAT — ALWAYS valid JSON, one action per response:\n'
             '{"thinking": "private reasoning (never shown)", "action": {"type": "...", ...}}\n'
@@ -196,7 +189,7 @@ class PromptBuilder:
         num_rounds: int = 0,
         player_list: list[str] | None = None,
     ) -> str:
-        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or []), ""]
+        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or [], player_id), ""]
 
         if memory_context.strip():
             parts.append(memory_context)
@@ -216,10 +209,14 @@ class PromptBuilder:
             )
         else:
             parts.append("Secret Word: ??? (you're the imposter — you don't know it)\n")
-            parts.append(
-                "Give a vague hint that could fit several grid items. "
-                "Don't be too specific or you'll get caught."
-            )
+            if past_hints:
+                parts.append(
+                    "Other players have already hinted. Their hints are shown below."
+                )
+            else:
+                parts.append(
+                    "You're hinting first — no other hints to read yet."
+                )
 
         if past_hints:
             parts.append("\nHints already given:")
@@ -257,16 +254,42 @@ class PromptBuilder:
         return merged
 
     @staticmethod
-    def _format_chat_line(msg: dict, player_id: str) -> str:
+    def _format_chat_line(msg: dict, player_id: str, gap_s: int | None = None) -> str:
+        # Only show gaps of 2s or more — sub-2s is noise.
+        suffix = f" (+{gap_s}s)" if gap_s is not None and gap_s >= 2 else ""
         if msg.get("type") == "dm":
             sender = msg.get("sender", "?")
             recipient = msg.get("recipient", "?")
             if sender == player_id:
-                return f"  [DM You → {recipient}]: {msg.get('content')}"
-            return f"  [DM {sender} → You]: {msg.get('content')}"
+                return f"  [DM You → {recipient}]: {msg.get('content')}{suffix}"
+            return f"  [DM {sender} → You]: {msg.get('content')}{suffix}"
         pid = msg.get("player_id", "?")
         marker = " (you)" if pid == player_id else ""
-        return f"  {pid}{marker}: {msg.get('content')}"
+        return f"  {pid}{marker}: {msg.get('content')}{suffix}"
+
+    @staticmethod
+    def _annotate_timeline_gaps(timeline: list[dict]) -> list[tuple[dict, int | None]]:
+        """Pair each message with the gap (in seconds) since the previous message.
+
+        First message has no gap. Messages without valid timestamps get None.
+        """
+        result: list[tuple[dict, int | None]] = []
+        prev_ts: datetime | None = None
+        for msg in timeline:
+            ts_str = msg.get("timestamp", "")
+            cur: datetime | None = None
+            if ts_str:
+                try:
+                    cur = datetime.fromisoformat(ts_str)
+                except (ValueError, TypeError):
+                    cur = None
+            gap: int | None = None
+            if prev_ts and cur:
+                gap = max(0, int((cur - prev_ts).total_seconds()))
+            result.append((msg, gap))
+            if cur:
+                prev_ts = cur
+        return result
 
     @staticmethod
     def _build_what_to_do(chat_state: str, my_msg_count: int, is_imposter: bool = False) -> str:
@@ -278,54 +301,24 @@ class PromptBuilder:
         ]
 
         if chat_state == "empty":
-            parts.append(
-                "\n- Chat is EMPTY. YOU start the conversation. React to the hints you saw — whose hint was weird? MUST send a group_message."
-                "\n- Break the ice. Real humans don't sit in silence. Say something about someone's hint."
-            )
+            parts.append("\n- No one has spoken yet.")
         elif chat_state == "quiet_self":
-            parts.append(
-                "\n- Others are talking but you haven't said anything. Jump in NOW. Being quiet when others are chatting = obvious bot behavior."
-                "\n- React to what's been said. Agree, disagree, throw shade, ask a question. Just don't stay silent."
-            )
+            parts.append("\n- Others are talking but you haven't said anything yet.")
         elif chat_state == "ending":
-            parts.append(
-                "\n- Discussion ends very soon. Make your final point or accusation if you have one. Otherwise stay quiet."
-            )
+            parts.append("\n- Discussion is ending soon.")
         else:  # "active"
-            parts.append(
-                "\n- Accuse on vibes if someone feels off. You don't need hard proof — humans go with gut feelings."
-                "\n- DM someone to build an alliance or test if they know the word."
-                "\n- Call out anyone who's being too quiet — real players notice lurkers."
-                "\n- You can follow up quickly with a short reaction (humans double-tap messages)."
-            )
+            parts.append("\n- Discussion is active.")
 
-        parts.append(
-            "\n- If you have something new to say: group_message."
-            "\n- Consider DMing someone whose hint seems off — probe them privately."
-            "\n- When you suspect someone, cite their SPECIFIC hint or message. Don't say 'ur hint was vague' — say 'wheels doesnt fit at all'."
-        )
+        parts.append(f"\n- You've sent {my_msg_count} messages so far.")
 
         if my_msg_count >= 8:
-            parts.append(
-                f"\n- You've sent {my_msg_count} messages. You've been talking a lot — chill a bit, let others speak."
-            )
-        else:
-            parts.append(
-                f"\n- You've sent {my_msg_count} messages so far."
-            )
+            parts.append("\n- You've been talking a lot.")
 
         if is_imposter:
             parts.append(
                 "\n\nIMPOSTER REMINDER:"
-                "\n- Look at ALL the hints. Which grid word do they point to? That's probably the secret."
-                "\n- Once you've deduced it, talk like you know it. Blend in as an insider."
-                "\n- Do NOT attack specific hints that clearly fit — that outs you as the imposter."
-                "\n- Target the vaguest hint instead, or someone who's been quiet."
+                "\n- You don't know the secret word."
             )
-
-        parts.append(
-            "\n- Keep it short and human. Don't write essays."
-        )
 
         return "".join(parts)
 
@@ -347,8 +340,9 @@ class PromptBuilder:
         my_msg_count: int = 0,
         time_remaining: float = 0,
         chat_state: str = "active",
+        hint_timings: dict[str, int] | None = None,
     ) -> str:
-        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or []), ""]
+        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or [], player_id), ""]
 
         if memory_context.strip():
             parts.append(memory_context)
@@ -366,7 +360,9 @@ class PromptBuilder:
         parts.append("Hints this round:")
         for pid, hint in hints.items():
             marker = " (you)" if pid == player_id else ""
-            parts.append(f"  {pid}{marker}: \"{hint}\"")
+            secs = hint_timings.get(pid) if hint_timings else None
+            timing = f" [{secs}s]" if secs is not None else ""
+            parts.append(f"  {pid}{marker}{timing}: \"{hint}\"")
 
         # Unified chronological timeline: ALL DMs kept, group trimmed to 12
         timeline = PromptBuilder._merge_chat_timeline(
@@ -374,8 +370,8 @@ class PromptBuilder:
         )
         if timeline:
             parts.append("\nChat so far:")
-            for msg in timeline:
-                parts.append(PromptBuilder._format_chat_line(msg, player_id))
+            for msg, gap in PromptBuilder._annotate_timeline_gaps(timeline):
+                parts.append(PromptBuilder._format_chat_line(msg, player_id, gap))
 
         # Show other players as potential DM targets with their hints
         other_players = [pid for pid in hints if pid != player_id]
@@ -385,7 +381,7 @@ class PromptBuilder:
                 parts.append(f"  {pid} — hint: \"{hints[pid]}\"")
 
         parts.append(
-            "\nREMINDER: Do NOT type the secret word or grid words in your message. Reference them indirectly."
+            "\nREMINDER: Do NOT type the secret word in your message."
         )
         parts.append(PromptBuilder._build_what_to_do(chat_state, my_msg_count, is_imposter=secret_word is None))
 
@@ -423,8 +419,9 @@ class PromptBuilder:
         num_rounds: int = 0,
         player_list: list[str] | None = None,
         recent_thinking: str | None = None,
+        hint_timings: dict[str, int] | None = None,
     ) -> str:
-        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or []), ""]
+        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or [], player_id), ""]
 
         if memory_context.strip():
             parts.append(memory_context)
@@ -442,7 +439,9 @@ class PromptBuilder:
 
         parts.append("Hints:")
         for pid, hint in hints.items():
-            parts.append(f"  {pid}: \"{hint}\"")
+            secs = hint_timings.get(pid) if hint_timings else None
+            timing = f" [{secs}s]" if secs is not None else ""
+            parts.append(f"  {pid}{timing}: \"{hint}\"")
 
         # Unified chronological timeline: ALL DMs kept, group trimmed to 12
         timeline = PromptBuilder._merge_chat_timeline(
@@ -450,14 +449,13 @@ class PromptBuilder:
         )
         if timeline:
             parts.append("\nKey discussion moments:")
-            for msg in timeline:
-                parts.append(PromptBuilder._format_chat_line(msg, player_id))
+            for msg, gap in PromptBuilder._annotate_timeline_gaps(timeline):
+                parts.append(PromptBuilder._format_chat_line(msg, player_id, gap))
 
         others = [c for c in candidates if c != player_id]
         parts.append(f"\nVote for who you think is the imposter: {', '.join(others)}")
         parts.append(
-            "Base your vote on SPECIFIC evidence: a hint that didn't fit, something suspicious they said, or how they reacted to accusations."
-            "\nThink about: whose hint didn't fit? who was deflecting? who was too vague?"
+            "Vote for who you think is the imposter."
             '\n\nJSON: {"thinking": "...", "action": {"type": "vote", "target_player": "Player_X"}}'
         )
         return "\n".join(parts)
@@ -477,8 +475,9 @@ class PromptBuilder:
         num_players: int = 0,
         num_rounds: int = 0,
         player_list: list[str] | None = None,
+        hint_timings: dict[str, int] | None = None,
     ) -> str:
-        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or []), ""]
+        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or [], player_id), ""]
 
         if memory_context.strip():
             parts.append(memory_context)
@@ -492,7 +491,9 @@ class PromptBuilder:
 
         parts.append("Hints:")
         for pid, hint in hints.items():
-            parts.append(f"  {pid}: \"{hint}\"")
+            secs = hint_timings.get(pid) if hint_timings else None
+            timing = f" [{secs}s]" if secs is not None else ""
+            parts.append(f"  {pid}{timing}: \"{hint}\"")
 
         if result:
             imp = result.get("imposter_id", "?")
@@ -503,11 +504,7 @@ class PromptBuilder:
         other_players_str = ", ".join(other_players_list) if other_players_list else "all other players"
 
         parts.append(
-            "\nReflect on each player's behavior this round:"
-            "\n- Did their hint seem natural or AI-generated?"
-            "\n- How did they talk in discussion? Casual or robotic?"
-            "\n- Did they use slang, emojis, typos?"
-            "\n- Were they too analytical or too perfect?"
+            "\nReflect on each player's behavior this round."
             f"\n\nProvide suspicion_updates for ALL other players: {other_players_str}"
             "\nConfidence: 0.0 = definitely AI, 1.0 = definitely human."
             '\n\nJSON: {"thinking": "...", "action": {"type": "reflection", "round_summary": "1-2 sentences", "suspicion_updates": {"Player_X": {"confidence": 0.7, "note": "short reason"}, ...for ALL other players}}}'
@@ -524,7 +521,7 @@ class PromptBuilder:
         num_rounds: int = 0,
         player_list: list[str] | None = None,
     ) -> str:
-        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or []), ""]
+        parts = [PromptBuilder.build_system_prompt(num_players, num_rounds, player_list or [], player_id), ""]
         parts.append(f"FINAL META-GAME — You are: {player_id}")
         parts.append("Classify each other player as human or AI.\n")
         parts.append(all_rounds_memory)
@@ -539,12 +536,7 @@ class PromptBuilder:
             parts.append(f"  {pid} (your current gut feeling: human={conf:.1f})")
 
         parts.append(
-            "\nConsider across ALL rounds:"
-            "\n- Hint style: creative/slangy (human) vs clean/definitional (AI)"
-            "\n- Chat style: messy/casual (human) vs structured/polite (AI)"
-            "\n- Did they use abbreviations, typos, emojis?"
-            "\n- Were they too consistent? Too perfect? Too analytical?"
-            "\n- DM behavior: did they form alliances? Share real suspicions?"
+            "\nConsider across ALL rounds. Classify each player as human or AI based on their behavior."
             '\n\nJSON: {"thinking": "...", "action": {"type": "meta_classification", "classifications": {'
             '"Player_1": {"guess": "human"|"ai", "confidence": 1-5, "reasoning": "..."}, ...}}}'
         )

@@ -33,7 +33,7 @@ class LlamaAgent(BaseAgent):
         self.api_key = api_key or os.getenv("TOGETHER_API_KEY", "")
         if not self.api_key:
             raise ValueError("TOGETHER_API_KEY required")
-        self.client = together.Together(api_key=self.api_key)
+        self.client = together.Together(api_key=self.api_key, max_retries=0)
         self._model = model
 
     async def call_llm(self, prompt: str) -> str:
