@@ -751,6 +751,21 @@ input, textarea, select {
   justify-content: center;
   padding: 8px;
   min-height: 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-inner:has(.card-image) {
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  display: block;
 }
 
 .card-emoji {
@@ -1836,6 +1851,39 @@ input, textarea, select {
   box-shadow: 0 4px 20px rgba(255, 107, 157, 0.4);
 }
 
+.survey-timer {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted, #98a2b3);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.survey-error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: #fecaca;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.survey-field-error {
+  outline: 2px solid rgba(239, 68, 68, 0.55);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.survey-thanks {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.survey-thanks h2 {
+  color: var(--accent, #7aa2f7);
+  margin-bottom: 0.5rem;
+}
+
 /* --------------------------------------------------------------------------
    19. Grand Reveal Screen
    -------------------------------------------------------------------------- */
@@ -1913,6 +1961,84 @@ input, textarea, select {
 .identity-card[data-player-type="AI"] {
   border-color: var(--ai-color);
   box-shadow: 0 4px 16px rgba(168, 85, 247, 0.2);
+}
+
+/* Interactive reveal: current card (large, centered) */
+.identity-card-reveal {
+  min-width: 260px;
+  padding: 2rem 2.5rem;
+  font-size: 1.1rem;
+  animation: popIn 0.4s ease-out;
+}
+
+.identity-card-reveal h3 {
+  font-size: 1.5rem;
+}
+
+/* Interactive reveal: previously revealed (compact row) */
+.identity-cards-small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.identity-card-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  gap: 4px;
+  opacity: 0.85;
+  animation: none;
+}
+
+.identity-card-small h3 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Reveal navigation bar */
+.reveal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.reveal-step-indicator {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: center;
+}
+
+.btn-reveal-nav {
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reveal-nav:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: var(--primary);
+}
+
+.btn-reveal-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-reveal-primary:hover {
+  filter: brightness(1.1);
 }
 
 .type-badge {
@@ -2858,6 +2984,833 @@ input, textarea, select {
 
 .host-chat-text {
   color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   23. UI Polish — Player Header, Chat Tabs, Host DM View
+   -------------------------------------------------------------------------- */
+
+/* ===== Player GameHeader ===== */
+
+.game-header {
+  padding: 12px 20px;
+  gap: 16px;
+}
+
+.game-header-left,
+.game-header-right {
+  gap: 14px;
+}
+
+.header-round-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.1;
+}
+
+.you-are-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.you-are-avatar {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.you-are-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.you-are-label {
+  font-family: 'Bangers', cursive;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-secondary);
+}
+
+.you-are-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-chip {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+
+.topic-chip-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.topic-chip-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.secret-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 18px;
+  border-radius: 10px;
+  line-height: 1.1;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.secret-card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.secret-card-value {
+  font-family: 'Bangers', cursive;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+
+.secret-card-insider {
+  background: linear-gradient(135deg, #ffd166 0%, #f0b840 100%);
+  color: #2d1b69;
+  border: 1px solid rgba(255, 209, 102, 0.6);
+  box-shadow: 0 0 18px rgba(255, 209, 102, 0.35);
+}
+
+.secret-card-imposter {
+  background: rgba(255, 107, 107, 0.12);
+  color: #ffb3b3;
+  border: 1px dashed rgba(255, 107, 107, 0.5);
+}
+
+.role-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  line-height: 1.15;
+  min-width: 180px;
+}
+
+.role-card-badge {
+  font-family: 'Bangers', cursive;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.role-card-subtitle {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.role-card-insider {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.35) 0%, rgba(78, 205, 196, 0.15) 100%);
+  border-color: var(--insider-color);
+  box-shadow: 0 0 14px rgba(78, 205, 196, 0.3);
+}
+
+.role-card-imposter {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.35) 0%, rgba(255, 107, 107, 0.15) 100%);
+  border-color: var(--imposter-color);
+  box-shadow: 0 0 14px rgba(255, 107, 107, 0.3);
+}
+
+/* ===== Player ChatPanel tabs with avatars ===== */
+
+.chat-tabs .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+}
+
+.tab-icon {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  opacity: 0.8;
+}
+
+.tab-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.chat-tabs .tab.active .tab-avatar {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90px;
+}
+
+/* ===== Host — shared avatar sizes ===== */
+
+.host-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.host-avatar-xs { width: 20px; height: 20px; font-size: 0.6rem; }
+.host-avatar-sm { width: 28px; height: 28px; font-size: 0.7rem; }
+.host-avatar-md { width: 40px; height: 40px; font-size: 0.85rem; }
+
+/* ===== Host — activity feed refinements ===== */
+
+.host-activity-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.host-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  line-height: 1.4;
+}
+
+.host-activity-text {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.host-activity-results { opacity: 0.75; }
+
+.host-arrow {
+  color: var(--text-muted);
+  font-weight: 700;
+  padding: 0 2px;
+}
+
+.host-arrow-bi {
+  color: var(--text-muted);
+  font-weight: 700;
+  padding: 0 4px;
+  opacity: 0.7;
+}
+
+.host-muted { color: var(--text-muted); }
+.host-muted-note { color: var(--text-secondary); margin: 12px 0; font-size: 0.85rem; }
+.host-italic { font-style: italic; color: var(--text-muted); }
+
+.host-empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 16px;
+  text-align: center;
+}
+
+/* ===== Host — Group chat feed ===== */
+
+.host-group-feed {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 4px;
+}
+
+.host-group-message {
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.host-group-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.host-group-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.host-group-sender {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--insider-color);
+}
+
+.host-group-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.host-group-text {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ===== Host — Tab count badges ===== */
+
+.host-tab-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.host-comm-tab.active .host-tab-count {
+  background: var(--accent);
+  color: #000;
+}
+
+/* ===== Host — DM panel (sub-tabs per pair) ===== */
+
+.host-dm-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Horizontal sub-tab row: one tab per player pair */
+.host-dm-subtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.host-dm-subtabs-empty {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 4px 8px;
+}
+
+.host-dm-subtab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.host-dm-subtab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.host-dm-subtab.active {
+  background: rgba(255, 107, 157, 0.22);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+
+.host-dm-subtab.is-empty {
+  opacity: 0.62;
+}
+
+.host-dm-subtab.is-empty.active {
+  opacity: 1;
+}
+
+.host-dm-subtab-names {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.host-dm-subtab-sep {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.host-dm-subtab-count {
+  min-width: 20px;
+  padding: 1px 6px;
+  background: var(--accent);
+  color: #000;
+  border-radius: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: center;
+  margin-left: 2px;
+}
+
+.host-dm-subtab.active .host-dm-subtab-count {
+  background: #fff;
+}
+
+/* Conversation view below the sub-tabs */
+
+.host-dm-convo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.host-dm-convo-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  margin-left: auto;
+}
+
+.host-dm-convo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.host-dm-convo-person {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.host-dm-convo-right { justify-content: flex-end; }
+
+.host-dm-convo-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.host-dm-convo-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.host-dm-convo-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* DM bubble rows */
+
+.host-dm-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.host-dm-row.from-left {
+  align-self: flex-start;
+}
+
+.host-dm-row.from-right {
+  align-self: flex-end;
+  flex-direction: row;
+}
+
+.host-dm-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.host-dm-row.from-right .host-dm-bubble-wrap {
+  align-items: flex-end;
+}
+
+.host-dm-bubble-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 3px;
+  padding: 0 4px;
+}
+
+.host-dm-bubble-sender {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.host-dm-bubble-time {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.host-dm-bubble {
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.host-dm-row.from-left .host-dm-bubble {
+  background: rgba(78, 205, 196, 0.18);
+  border: 1px solid rgba(78, 205, 196, 0.35);
+  border-bottom-left-radius: 4px;
+}
+
+.host-dm-row.from-right .host-dm-bubble {
+  background: rgba(255, 107, 157, 0.2);
+  border: 1px solid rgba(255, 107, 157, 0.4);
+  border-bottom-right-radius: 4px;
+}
+
+/* ===== Host — Player sidebar cards ===== */
+
+.host-player-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  margin-bottom: 6px;
+  transition: background 0.15s;
+}
+
+.host-player-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.host-player-card.host-player-imposter {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: rgba(255, 107, 107, 0.4);
+}
+
+.host-player-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.host-player-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.host-player-card-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.host-imposter-tag {
+  padding: 1px 6px;
+  background: var(--imposter-color);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.host-player-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.host-player-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Player type badges (HUMAN / AI · model) — host-only */
+.host-type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.host-type-human {
+  background: rgba(46, 213, 115, 0.15);
+  color: #2ed573;
+  border: 1px solid rgba(46, 213, 115, 0.4);
+}
+
+.host-type-ai {
+  background: rgba(78, 205, 196, 0.15);
+  color: #4ecdc4;
+  border: 1px solid rgba(78, 205, 196, 0.4);
+  text-transform: none; /* keep model name case-sensitive */
+  letter-spacing: 0.02em;
+}
+
+/* Lobby player item row — align name + badge */
+.host-player-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.host-player-item-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ===== Host — Hint summary block ===== */
+
+.host-hint-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.host-hint-name {
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.host-hint-text {
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== Host — Info panel cards ===== */
+
+.host-info-card {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.host-info-card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.host-info-card-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-wrap: break-word;
+}
+
+.host-info-topic .host-info-card-value {
+  font-size: 1.1rem;
+  color: var(--accent-secondary);
+}
+
+.host-info-secret {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.12) 0%, rgba(255, 209, 102, 0.04) 100%);
+  border-color: rgba(255, 209, 102, 0.3);
+}
+
+.host-info-secret .host-info-card-value {
+  font-family: 'Bangers', cursive;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--accent-secondary);
+}
+
+.host-info-imposter {
+  background: rgba(255, 107, 107, 0.08);
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.host-info-imposter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.host-info-imposter .host-info-card-value {
+  color: var(--imposter-color);
+}
+
+/* ===== Host — Score rows with rank + avatar ===== */
+
+.host-score-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-radius: 6px;
+}
+
+.host-score-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.host-score-rank {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 22px;
+}
+
+.host-score-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.host-score-value {
+  font-weight: 700;
+  color: var(--accent-secondary);
+}
+
+/* Widen host body columns slightly since we added richer content */
+.host-body {
+  grid-template-columns: 260px 1fr 280px;
 }
 
 /* --------------------------------------------------------------------------
