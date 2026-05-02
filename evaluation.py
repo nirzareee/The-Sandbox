@@ -199,6 +199,9 @@ class SessionData:
         self.precomputed_confusion: Optional[dict] = None
         self._load_classifications()
 
+        # ---- post-game survey responses ----
+        self._load_surveys()
+
         # ---- derived properties ----
         self.num_rounds_played: int = len(self.round_results_events)
         self.num_rounds_configured: int = self.config.get("num_rounds", 5)
@@ -227,9 +230,13 @@ class SessionData:
             if not ptype:
                 ptype = "HUMAN" if pid.startswith("human_") else "AI"
                 self.warnings.append(f"Inferred player_type={ptype} for {pid}")
+            # real_name: the human's actual chosen name, or the agent seat ID.
+            # Falls back to player_id so labels are never blank.
+            real_name = info.get("real_name") or pid
             normalized = {
                 "player_id": pid,
                 "display_name": info.get("display_name", pid),
+                "real_name": real_name,
                 "player_type": ptype,
                 "model_name": info.get("model_name"),
             }
@@ -313,6 +320,44 @@ class SessionData:
         elif isinstance(data, dict):
             self.word_bank = [data]
 
+    def _load_surveys(self) -> None:
+        """Load every per-human post_game_survey.json into self.surveys.
+
+        Tolerates both the old shape (raw response dict at top level) and
+        the new shape (wrapped: {responses, is_partial, real_name, ...}).
+        """
+        self.surveys: dict[str, dict] = {}
+        human_dir = self.session_dir / "human_data"
+        if not human_dir.exists():
+            return
+        for player_dir in human_dir.iterdir():
+            if not player_dir.is_dir():
+                continue
+            survey_path = player_dir / "post_game_survey.json"
+            if not survey_path.exists():
+                continue
+            data = _load_json(str(survey_path))
+            if not data:
+                continue
+            if isinstance(data, dict) and "responses" in data and isinstance(data["responses"], dict):
+                # New wrapped shape.
+                wrapped = dict(data)
+            else:
+                # Legacy raw shape — wrap so downstream code has a single shape.
+                # Backfill identity from manifest when possible so old sessions
+                # look as informative as ones saved with the new logger.
+                pid = player_dir.name
+                manifest_entry = self.all_players.get(pid, {})
+                wrapped = {
+                    "submitted_at": None,
+                    "is_partial": False,
+                    "player_id": pid,
+                    "real_name": manifest_entry.get("real_name") or pid,
+                    "player_type": manifest_entry.get("player_type") or "HUMAN",
+                    "responses": data,
+                }
+            self.surveys[player_dir.name] = wrapped
+
     def _load_classifications(self) -> None:
         meta_dir = self.session_dir / "meta_game_results"
         if not meta_dir.exists():
@@ -333,6 +378,54 @@ class SessionData:
 
     def player_model(self, pid: str) -> Optional[str]:
         return self.game_players.get(pid, {}).get("model_name")
+
+    def player_real_name(self, pid: str) -> str:
+        info = self.game_players.get(pid) or self.all_players.get(pid) or {}
+        return info.get("real_name") or pid
+
+    def player_display_name(self, pid: str) -> str:
+        info = self.game_players.get(pid) or self.all_players.get(pid) or {}
+        return info.get("display_name") or pid
+
+    def player_identity(self, pid: str) -> dict:
+        """Canonical identity tuple used everywhere in analysis output.
+
+        Always returns the same shape:
+          {player_id, real_name, display_name, player_type, model_name, label}
+        `label` is a one-line human-readable identifier safe for tables and
+        chart legends — e.g. `agent_1 · "agent_1" (AI · DeepSeek-R1)`.
+        """
+        info = self.game_players.get(pid) or self.all_players.get(pid) or {}
+        ptype = info.get("player_type", "UNKNOWN")
+        model = info.get("model_name")
+        real = info.get("real_name") or pid
+        display = info.get("display_name") or pid
+        # Short model name for compact labels (drop org prefix)
+        short_model = model.split("/")[-1] if model else None
+        if ptype == "AI":
+            type_part = f"AI · {short_model}" if short_model else "AI"
+        elif ptype == "HUMAN":
+            type_part = "HUMAN"
+        else:
+            type_part = ptype
+        label = f'{pid} · "{real}" ({type_part})'
+        return {
+            "player_id": pid,
+            "real_name": real,
+            "display_name": display,
+            "player_type": ptype,
+            "model_name": model,
+            "label": label,
+        }
+
+    def players_directory(self) -> dict:
+        """Identity directory included in every analysis JSON.
+
+        Maps player_id -> identity dict. HOST excluded. Single source of
+        truth so consumers (dashboard, reports, JSON readers) never have to
+        cross-reference manifest fields themselves.
+        """
+        return {pid: self.player_identity(pid) for pid in self.game_players}
 
     def round_info(self, round_number: int) -> Optional[dict]:
         for ev in self.round_start_events:
@@ -488,11 +581,30 @@ def compute_game_metrics(session: SessionData) -> dict:
     if rounds:
         final_scores = rounds[-1].get("cumulative_scores", {})
 
+    # Enrich each round with imposter identity + per-vote identity tuples
+    for r in rounds:
+        imp_id = r["imposter_id"]
+        if imp_id:
+            r["imposter_identity"] = session.player_identity(imp_id)
+        votes_with_identity = {}
+        for voter_id, target_id in (r.get("votes") or {}).items():
+            votes_with_identity[voter_id] = {
+                "voter": session.player_identity(voter_id),
+                "target": session.player_identity(target_id) if target_id else None,
+                "correct": (target_id == imp_id) if (target_id and imp_id) else None,
+            }
+        r["votes_detailed"] = votes_with_identity
+
+    # Attach identity to per-player vote accuracy
+    for pid, stats in vote_accuracy.items():
+        stats["identity"] = session.player_identity(pid)
+
     return {
         "session_id": session.session_id,
         "num_rounds_configured": session.num_rounds_configured,
         "num_rounds_played": session.num_rounds_played,
         "is_complete": session.is_complete,
+        "players_directory": session.players_directory(),
         "rounds": rounds,
         "overall_detection_rate": overall_rate,
         "detection_by_imposter_type": detection_by_imposter_type,
@@ -583,7 +695,9 @@ def compute_linguistic_features(session: SessionData) -> dict:
 
         if not all_msgs:
             features[pid] = _empty_linguistic_features(
-                session.player_type(pid), session.player_model(pid)
+                session.player_type(pid),
+                session.player_model(pid),
+                session.player_identity(pid),
             )
             continue
 
@@ -647,8 +761,10 @@ def compute_linguistic_features(session: SessionData) -> dict:
 
         features[pid] = {
             "player_id": pid,
+            "real_name": session.player_real_name(pid),
             "player_type": session.player_type(pid),
             "model_name": session.player_model(pid),
+            "identity": session.player_identity(pid),
             "msg_count": msg_count,
             "group_msg_count": group_msg_count,
             "dm_msg_count": dm_msg_count,
@@ -694,6 +810,7 @@ def compute_linguistic_features(session: SessionData) -> dict:
         model_summaries[model] = {k: _group_avg(plist, k) for k in numeric_keys}
 
     return {
+        "players_directory": session.players_directory(),
         "players": features,
         "group_summary": {
             "HUMAN": human_summary,
@@ -703,10 +820,13 @@ def compute_linguistic_features(session: SessionData) -> dict:
     }
 
 
-def _empty_linguistic_features(player_type: str, model_name: Optional[str]) -> dict:
+def _empty_linguistic_features(
+    player_type: str, model_name: Optional[str], identity: Optional[dict] = None
+) -> dict:
     return {
         "player_type": player_type,
         "model_name": model_name,
+        "identity": identity,
         "msg_count": 0,
         "group_msg_count": 0,
         "dm_msg_count": 0,
@@ -751,8 +871,10 @@ def compute_hint_analysis(session: SessionData) -> dict:
 
         record = {
             "player_id": pid,
+            "real_name": session.player_real_name(pid),
             "player_type": session.player_type(pid),
             "model_name": session.player_model(pid),
+            "identity": session.player_identity(pid),
             "round_number": rn,
             "hint": hint_text,
             "hint_length_words": len(words),
@@ -770,12 +892,14 @@ def compute_hint_analysis(session: SessionData) -> dict:
         hints = per_player_hints[pid]
         if not hints:
             player_hint_stats[pid] = {
+                "identity": session.player_identity(pid),
                 "player_type": session.player_type(pid),
                 "model_name": session.player_model(pid),
                 "hint_count": 0,
             }
             continue
         player_hint_stats[pid] = {
+            "identity": session.player_identity(pid),
             "player_type": session.player_type(pid),
             "model_name": session.player_model(pid),
             "hint_count": len(hints),
@@ -822,6 +946,7 @@ def compute_hint_analysis(session: SessionData) -> dict:
         model_hint_summary[model] = {k: _hint_group_avg(model, k, by_model=True) for k in summary_keys}
 
     return {
+        "players_directory": session.players_directory(),
         "per_hint": per_hint_records,
         "per_player": player_hint_stats,
         "group_summary": group_summary,
@@ -899,8 +1024,10 @@ def compute_social_network(session: SessionData) -> dict:
 
         player_dm_stats[pid] = {
             "player_id": pid,
+            "real_name": session.player_real_name(pid),
             "player_type": session.player_type(pid),
             "model_name": session.player_model(pid),
+            "identity": session.player_identity(pid),
             "dm_threads_initiated": threads_initiated,
             "dm_threads_received": threads_received,
             "dm_reply_rate": reply_rate,
@@ -969,6 +1096,7 @@ def compute_social_network(session: SessionData) -> dict:
     }
 
     return {
+        "players_directory": session.players_directory(),
         "dm_network": {
             "per_player": player_dm_stats,
             "pairs": dm_pair_details,
@@ -1028,6 +1156,10 @@ def compute_voting_blocs(session: SessionData) -> dict:
             pair_key = f"{pa}__{pb}"
             pair_agreement[pair_key] = {
                 "players": [pa, pb],
+                "identities": [
+                    session.player_identity(pa),
+                    session.player_identity(pb),
+                ],
                 "player_types": [ta, tb],
                 "models": [ma, mb],
                 "category": category,
@@ -1056,6 +1188,7 @@ def compute_voting_blocs(session: SessionData) -> dict:
     ]
 
     return {
+        "players_directory": session.players_directory(),
         "pairs": pair_agreement,
         "category_averages": category_averages,
         "strong_voting_pairs": strong_pairs,
@@ -1073,20 +1206,35 @@ def compute_voting_blocs(session: SessionData) -> dict:
 # Layer 5: Model Fingerprinting
 # ---------------------------------------------------------------------------
 
-FINGERPRINT_FEATURES = [
-    "msg_count",
+# Features the AI system prompt directly prescribes (lowercase openings, use
+# specific slang tokens, keep messages 3-15 words, drop into emojis, vary
+# openers). Because all AI agents receive the same styling instructions, these
+# reflect instruction-following, not model identity — so they must NOT be used
+# for fingerprinting. Reported separately as "prompt compliance" descriptors.
+COMPLIANCE_FEATURES = [
     "avg_msg_length_chars",
     "avg_msg_length_words",
-    "vocab_diversity",
-    "first_word_diversity",
     "slang_rate",
+    "capitalization_rate",
+    "emoji_rate",
+    "first_word_diversity",
+]
+
+# Features the system prompt does not directly coach. These are safer as
+# model-identity signals because they emerge from the model's own distribution
+# rather than from prompt compliance.
+NATURAL_FEATURES = [
+    "msg_count",
+    "vocab_diversity",
     "question_rate",
     "exclamation_rate",
-    "capitalization_rate",
     "period_rate",
     "comma_rate",
-    "emoji_rate",
 ]
+
+# Fingerprinting uses only natural (non-prompted) features. See
+# research_integrity_backlog.md for the rationale behind this split.
+FINGERPRINT_FEATURES = NATURAL_FEATURES
 
 
 def compute_model_fingerprints(
@@ -1105,6 +1253,7 @@ def compute_model_fingerprints(
 
     if len(player_ids) < 2:
         return {
+            "players_directory": session.players_directory(),
             "note": "Too few players with messages for fingerprinting analysis",
             "feature_matrix": {},
         }
@@ -1121,14 +1270,25 @@ def compute_model_fingerprints(
 
     # Include hint features if available
     result: dict = {
+        "players_directory": session.players_directory(),
         "players": player_ids,
         "feature_names": FINGERPRINT_FEATURES,
+        "compliance_features_excluded": COMPLIANCE_FEATURES,
+        "methodology_note": (
+            "Fingerprint uses only NATURAL_FEATURES (features the AI system "
+            "prompt does not directly prescribe). COMPLIANCE_FEATURES such as "
+            "slang_rate, msg length, capitalization, and emoji_rate are "
+            "excluded because all AI agents receive identical style "
+            "instructions — those features measure instruction-following, "
+            "not model identity."
+        ),
         "feature_matrix": {
             pid: {k: v for k, v in zip(FINGERPRINT_FEATURES, vec)}
             for pid, vec in feature_matrix_raw.items()
         },
         "labels": {
             pid: {
+                "identity": session.player_identity(pid),
                 "player_type": session.player_type(pid),
                 "model_name": session.player_model(pid),
             }
@@ -1178,6 +1338,7 @@ def compute_model_fingerprints(
                 pid: {
                     "x": float(coords_2d[i, 0]),
                     "y": float(coords_2d[i, 1]),
+                    "identity": session.player_identity(pid),
                     "player_type": session.player_type(pid),
                     "model_name": session.player_model(pid),
                 }
@@ -1309,6 +1470,12 @@ def write_summary_report(
     def p(text: str) -> None:
         lines.append(text)
 
+    def label(pid: Optional[str]) -> str:
+        """Canonical inline label: `pid · "real_name" (TYPE · model)`."""
+        if not pid:
+            return "?"
+        return session.player_identity(pid)["label"]
+
     # Header
     lines.append("THE SANDBOX — POST-GAME ANALYSIS REPORT")
     lines.append("=" * 60)
@@ -1328,6 +1495,18 @@ def write_summary_report(
         ))
         p(f"AI Models  : {', '.join(models)}")
 
+    # Identity directory — definitive who-is-who, surfaced first so every
+    # downstream label in this report can be cross-referenced unambiguously.
+    s("IDENTITY DIRECTORY")
+    p(f"  {'Player ID':<14}  {'Real Name':<20}  {'Type':<6}  Model")
+    p("  " + "-" * 70)
+    for pid in sorted(session.game_players):
+        ident = session.player_identity(pid)
+        real = ident["real_name"]
+        ptype = ident["player_type"]
+        model = ident["model_name"] or ""
+        p(f"  {pid:<14}  {real:<20}  {ptype:<6}  {model}")
+
     # Game results
     h("GAME RESULTS")
     total = game_metrics["num_rounds_played"]
@@ -1342,24 +1521,18 @@ def write_summary_report(
     s("PER-ROUND BREAKDOWN")
     for r in game_metrics["rounds"]:
         imp_id = r["imposter_id"]
-        imp_type = r["imposter_player_type"] or "?"
-        imp_model = r.get("imposter_model") or ""
-        label = f"{imp_id} ({imp_type}" + (f", {imp_model}" if imp_model else "") + ")"
         result_str = "CAUGHT" if r["imposter_caught"] else "ESCAPED"
         p(f"  Round {r['round_number']}: [{r.get('topic','?')}] "
-          f"Imposter={label} → {result_str}")
+          f"Imposter = {label(imp_id)} → {result_str}")
         correct = r.get("correct_voters", [])
         if correct:
-            p(f"    Correct voters: {', '.join(correct)}")
+            p(f"    Correct voters: {', '.join(label(v) for v in correct)}")
 
     s("VOTE ACCURACY PER PLAYER")
     vap = game_metrics["vote_accuracy_per_player"]
     for pid, stats in sorted(vap.items(), key=lambda x: (x[1].get("accuracy") or -1), reverse=True):
         acc = stats.get("accuracy")
-        ptype = stats.get("player_type", "?")
-        model = stats.get("model_name", "")
-        label = f"{pid} ({ptype}" + (f", {model}" if model else "") + ")"
-        p(f"  {label}: {stats['correct_votes']}/{stats['total_votes']} correct ({_pct(acc)})")
+        p(f"  {label(pid)}: {stats['correct_votes']}/{stats['total_votes']} correct ({_pct(acc)})")
 
     by_type_acc = game_metrics["accuracy_by_player_type"]
     p(f"\nHuman avg vote accuracy : {_pct(by_type_acc.get('HUMAN'))}")
@@ -1385,22 +1558,19 @@ def write_summary_report(
     col_w = 32
     p(f"{'Metric':<{col_w}}  {'HUMAN':>10}  {'AI':>10}")
     p("-" * (col_w + 24))
-    for key, label in keys_labels:
+    for key, lbl in keys_labels:
         hv = human_ling.get(key)
         av = ai_ling.get(key)
-        p(f"  {label:<{col_w - 2}}  {_fmt(hv):>10}  {_fmt(av):>10}")
+        p(f"  {lbl:<{col_w - 2}}  {_fmt(hv):>10}  {_fmt(av):>10}")
 
     s("PER-PLAYER MESSAGES")
     players_ling = ling_features.get("players", {})
     for pid, pdata in sorted(players_ling.items(),
                              key=lambda x: x[1].get("msg_count", 0), reverse=True):
-        ptype = pdata.get("player_type", "?")
-        model = pdata.get("model_name") or ""
         count = pdata.get("msg_count", 0)
         vd = pdata.get("vocab_diversity")
         sr = pdata.get("slang_rate")
-        label = f"{pid} ({ptype}" + (f", {model}" if model else "") + ")"
-        p(f"  {label}: {count} msgs, "
+        p(f"  {label(pid)}: {count} msgs, "
           f"vocab_div={_fmt(vd)}, slang={_fmt(sr)}")
 
     # Hint insights
@@ -1416,10 +1586,10 @@ def write_summary_report(
         ("slang_hint_rate",       "Slang in hints rate"),
         ("definition_like_rate",  "Definition-like hint rate"),
     ]
-    for key, label in hint_keys:
+    for key, lbl in hint_keys:
         hv = hh.get(key)
         av = ah.get(key)
-        p(f"  {label:<{col_w - 2}}  {_fmt(hv):>10}  {_fmt(av):>10}")
+        p(f"  {lbl:<{col_w - 2}}  {_fmt(hv):>10}  {_fmt(av):>10}")
 
     # Social network
     h("SOCIAL NETWORK")
@@ -1433,17 +1603,16 @@ def write_summary_report(
         reverse=True,
     )
     for pid, stats in dm_sorted:
-        ptype = stats.get("player_type", "?")
         sent = stats.get("total_dms_sent", 0)
         recv = stats.get("total_dms_received", 0)
         init = stats.get("dm_threads_initiated", 0)
-        p(f"  {pid} ({ptype}): {sent} sent, {recv} received, {init} threads initiated")
+        p(f"  {label(pid)}: {sent} sent, {recv} received, {init} threads initiated")
 
     if accusation_graph:
         s("ACCUSATION NETWORK")
         for accuser, targets in sorted(accusation_graph.items()):
             for target, count in sorted(targets.items(), key=lambda x: x[1], reverse=True):
-                p(f"  {accuser} → {target}: {count} accusation(s)")
+                p(f"  {label(accuser)} → {label(target)}: {count} accusation(s)")
 
     # Voting blocs
     h("VOTING BLOCS")
@@ -1464,7 +1633,7 @@ def write_summary_report(
             rate = pair_data["agreement_rate"]
             rounds_n = pair_data["rounds_both_voted"]
             cat = pair_data["category"]
-            p(f"  {a} ↔ {b}: {_pct(rate)} agreement over {rounds_n} rounds [{cat}]")
+            p(f"  {label(a)} ↔ {label(b)}: {_pct(rate)} agreement over {rounds_n} rounds [{cat}]")
 
     # Model fingerprinting
     h("MODEL FINGERPRINTS")
@@ -1482,7 +1651,7 @@ def write_summary_report(
             for pair_key, sim_data in sorted_sims[:10]:
                 a, b = sim_data["players"]
                 sim = sim_data.get("cosine_similarity")
-                p(f"  {a} ↔ {b}: cosine = {_fmt(sim)}")
+                p(f"  {label(a)} ↔ {label(b)}: cosine = {_fmt(sim)}")
 
         rf = model_fingerprints.get("random_forest")
         if rf and isinstance(rf, dict):
@@ -1498,6 +1667,23 @@ def write_summary_report(
         tsne = model_fingerprints.get("tsne_coordinates")
         if tsne and "error" not in tsne:
             p(f"\nt-SNE 2D coordinates computed for {len(tsne)} players (see model_fingerprints.json)")
+
+    # Pointer to richer outputs
+    h("MORE IN THE OTHER OUTPUTS")
+    p("  This text report covers the original layered metrics. The richer")
+    p("  research outputs sit alongside it in the same analysis directory:")
+    p("    conversational_dynamics.json   — latency / burstiness / replies")
+    p("    deep_stylometry.json           — function-words, hedges, self-refs")
+    p("    topic_adherence.json           — hint relevance to topic + grid")
+    p("    imposter_signals.json          — per-round imposter behavior delta")
+    p("    suspicion_received.json        — votes / mentions / accusations in")
+    p("    per_round_evolution.json       — feature time series per player")
+    p("    hint_similarity.json           — pairwise hint Jaccard per round")
+    p("    classification_breakdown.json  — meta-game per-target detail")
+    p("    message_clustering.json        — TF-IDF clusters + similarity")
+    p("    information_theoretic.json     — entropy + vocabulary growth")
+    p("    communication_graph.json       — D3-ready nodes + multi-typed edges")
+    p("    dashboard.html                 — open in a browser to visualize")
 
     # Warnings
     if session.warnings:
@@ -1528,6 +1714,12 @@ def _fmt(val: Optional[float]) -> str:
 # ---------------------------------------------------------------------------
 # Main orchestration
 # ---------------------------------------------------------------------------
+
+# Set by main() before run_evaluation reads them. Module-level rather than
+# function args so a long signature doesn't propagate through every helper.
+_SKIP_DASHBOARD = False
+_OPEN_DASHBOARD = False
+
 
 def run_evaluation(session_dir: str, output_dir: Optional[str] = None) -> None:
     session_path = Path(session_dir)
@@ -1612,6 +1804,36 @@ def run_evaluation(session_dir: str, output_dir: Optional[str] = None) -> None:
         _write_json(out_dir / "voting_blocs.json", results["voting_blocs"])
         print(f"[evaluation] ERROR in Layer 3 (voting blocs): {e}")
 
+    # ---- Extended research metrics (Phase 2 additions) ----
+    try:
+        import evaluation_metrics as _em
+        extra_specs = [
+            ("conversational_dynamics",   _em.compute_conversational_dynamics),
+            ("deep_stylometry",           _em.compute_deep_stylometry),
+            ("topic_adherence",           _em.compute_topic_adherence),
+            ("imposter_signals",          _em.compute_imposter_signals),
+            ("suspicion_received",        _em.compute_suspicion_received),
+            ("per_round_evolution",       _em.compute_per_round_evolution),
+            ("hint_similarity",           _em.compute_hint_similarity),
+            ("classification_breakdown",  _em.compute_classification_breakdown),
+            ("message_clustering",        _em.compute_message_clustering),
+            ("information_theoretic",     _em.compute_information_theoretic),
+            ("communication_graph",       _em.compute_communication_graph),
+            ("survey_responses",          _em.compute_survey_responses),
+        ]
+        for key, fn in extra_specs:
+            print(f"[evaluation] Computing {key}...")
+            try:
+                results[key] = fn(session)
+                _write_json(out_dir / f"{key}.json", results[key])
+                print(f"[evaluation] Wrote {out_dir / (key + '.json')}")
+            except Exception as e:
+                results[key] = {"error": str(e), "traceback": traceback.format_exc()}
+                _write_json(out_dir / f"{key}.json", results[key])
+                print(f"[evaluation] ERROR in {key}: {e}")
+    except ImportError as e:
+        print(f"[evaluation] WARNING: evaluation_metrics module not loaded: {e}")
+
     # Layer 5 — model fingerprints
     print("[evaluation] Computing model fingerprints (Layer 5)...")
     if not HAS_NUMPY:
@@ -1647,6 +1869,21 @@ def run_evaluation(session_dir: str, output_dir: Optional[str] = None) -> None:
     except Exception as e:
         print(f"[evaluation] ERROR writing summary report: {e}")
 
+    # ---- HTML dashboard ----
+    if not _SKIP_DASHBOARD:
+        print("[evaluation] Rendering HTML dashboard...")
+        try:
+            import evaluation_dashboard as _ed
+            dash_path = out_dir / "dashboard.html"
+            _ed.write_dashboard(session, results, dash_path)
+            print(f"[evaluation] Wrote {dash_path}")
+            if _OPEN_DASHBOARD:
+                import webbrowser
+                webbrowser.open(dash_path.resolve().as_uri())
+        except Exception as e:
+            print(f"[evaluation] ERROR rendering dashboard: {e}")
+            traceback.print_exc()
+
     # Done
     files_written = len(list(out_dir.glob("*")))
     print(f"\n[evaluation] Done! {files_written} file(s) in {out_dir}")
@@ -1656,6 +1893,10 @@ def run_evaluation(session_dir: str, output_dir: Optional[str] = None) -> None:
         print("[evaluation] Game was complete.")
     else:
         print("[evaluation] Game was incomplete (session ended early).")
+    if not _SKIP_DASHBOARD:
+        dash = (out_dir / "dashboard.html").resolve()
+        if dash.exists():
+            print(f"[evaluation] Open the dashboard: {dash.as_uri()}")
 
 
 def _write_json(path: Path, data: Any) -> None:
@@ -1682,7 +1923,20 @@ Examples:
         default=None,
         help="Custom output directory (default: {session_dir}/analysis/)",
     )
+    parser.add_argument(
+        "--no-dashboard",
+        action="store_true",
+        help="Skip generating dashboard.html",
+    )
+    parser.add_argument(
+        "--open",
+        action="store_true",
+        help="Open dashboard.html in the default browser when done",
+    )
     args = parser.parse_args()
+    global _SKIP_DASHBOARD, _OPEN_DASHBOARD
+    _SKIP_DASHBOARD = args.no_dashboard
+    _OPEN_DASHBOARD = args.open
     run_evaluation(args.session_dir, args.output)
 
 
