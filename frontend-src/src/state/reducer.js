@@ -15,14 +15,21 @@ export function gameReducer(state, action) {
 
     case SERVER.PLAYER_JOINED: {
       const p = data;
+      const existing = state.players[p.player_id] ?? {};
       return {
         ...state,
         players: {
           ...state.players,
           [p.player_id]: {
+            ...existing,
             player_id: p.player_id,
             display_name: p.display_name,
             connected: true,
+            // Hosts receive player_type + model_name; players don't — only
+            // overwrite if present so we never clobber existing host info.
+            ...(p.player_type !== undefined ? { player_type: p.player_type } : {}),
+            ...(p.model_name !== undefined ? { model_name: p.model_name } : {}),
+            ...(p.real_name !== undefined ? { real_name: p.real_name } : {}),
           },
         },
       };
@@ -54,18 +61,40 @@ export function gameReducer(state, action) {
       return { ...state, players: updatedPlayers };
     }
 
+    case SERVER.HOST_ROSTER: {
+      // Host-only event: overlays player_type + model_name on top of existing
+      // player objects. Players never receive this event.
+      const roster = data.roster || {};
+      const updatedPlayers = { ...state.players };
+      for (const [pid, info] of Object.entries(roster)) {
+        updatedPlayers[pid] = {
+          ...(updatedPlayers[pid] ?? { player_id: pid }),
+          display_name: info.display_name,
+          player_type: info.player_type,
+          model_name: info.model_name,
+          real_name: info.real_name,
+          connected: info.connected,
+        };
+      }
+      return { ...state, players: updatedPlayers };
+    }
+
     case SERVER.GAME_CREATED:
       return { ...state, sessionId: data.session_id, numRounds: data.num_rounds || 5 };
 
     case SERVER.ROUND_START: {
       const isHostRound = data.role === 'HOST';
+      // Prefer grid_items (objects with label+image_path); fall back to image_grid (strings)
+      const gridItems = data.grid_items?.length
+        ? data.grid_items
+        : (data.image_grid ?? []).map((label) => ({ label, image_path: '' }));
       return {
         ...state,
         currentRound: data.round_number,
         role: data.role,
         topic: data.topic,
         secretWord: data.secret_word ?? null,
-        grid: data.image_grid ?? [],
+        grid: gridItems,
         hintOrder: data.hint_order ?? [],
         hints: {},
         votes: {},

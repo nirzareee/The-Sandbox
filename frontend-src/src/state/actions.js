@@ -3,6 +3,7 @@ export const SERVER = {
   PLAYER_JOINED: 'player_joined',
   PLAYER_LEFT: 'player_left',
   PLAYER_ROSTER: 'player_roster',
+  HOST_ROSTER: 'host_roster',
   GAME_CREATED: 'game_created',
   ROUND_START: 'round_start',
   HINT_PHASE_START: 'hint_phase_start',

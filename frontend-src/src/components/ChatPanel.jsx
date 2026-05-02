@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getPlayerName } from '../utils';
+import { getPlayerName, getAvatarColor, getInitials } from '../utils';
 import { UI } from '../state/actions';
 
 export default function ChatPanel({ players, playerId, chatMessages, dmMessages, unreadDMs, activeTab, dispatch, send, phase }) {
@@ -57,21 +57,30 @@ export default function ChatPanel({ players, playerId, chatMessages, dmMessages,
     <div className="chat-panel">
       <div className="chat-tabs">
         <button
-          className={`tab${activeTab === 'group' ? ' active' : ''}`}
+          className={`tab tab-group${activeTab === 'group' ? ' active' : ''}`}
           onClick={() => handleTabClick('group')}
         >
-          Group
+          <span className="tab-icon" aria-hidden>#</span>
+          <span className="tab-label">Group</span>
         </button>
         {otherPlayers.map((pid) => {
           const tabId = `dm-${pid}`;
           const unread = unreadDMs[pid] || 0;
+          const name = getPlayerName(players, pid);
           return (
             <button
               key={pid}
-              className={`tab${activeTab === tabId ? ' active' : ''}`}
+              className={`tab tab-dm${activeTab === tabId ? ' active' : ''}`}
               onClick={() => handleTabClick(tabId)}
+              title={`DM ${name}`}
             >
-              {getPlayerName(players, pid)}
+              <span
+                className="tab-avatar"
+                style={{ backgroundColor: getAvatarColor(pid) }}
+              >
+                {getInitials(name)}
+              </span>
+              <span className="tab-label">{name}</span>
               {unread > 0 && <span className="unread-badge">{unread}</span>}
             </button>
           );
