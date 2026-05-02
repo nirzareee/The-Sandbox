@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SURVEY_QUESTIONS = [
   { id: 'q1', text: 'How enjoyable was the game?', type: 'likert', required: true },
@@ -6,7 +6,7 @@ const SURVEY_QUESTIONS = [
   { id: 'q3', text: 'How difficult was it to distinguish humans from AI?', type: 'likert', required: true },
   { id: 'q4', text: "How natural did the AI players' conversation feel?", type: 'likert', required: true },
   { id: 'q5', text: 'Did you change your strategy after identifying potential AI players?', type: 'yesno', required: true },
-  { id: 'q6', text: 'What strategies did you use to identify AI players?', type: 'checkbox', options: [
+  { id: 'q6', text: 'What strategies did you use to identify AI players?', type: 'checkbox', dependsOnYes: 'q5', options: [
     { value: 'language_patterns', label: 'Language patterns' },
     { value: 'response_timing', label: 'Response timing' },
     { value: 'hint_quality', label: 'Hint quality' },
@@ -29,9 +29,42 @@ const LIKERT_OPTIONS = [
   { value: '5', label: '5', desc: 'Strongly agree' },
 ];
 
+// Build a payload that always carries every question_id so research analysis
+// can tell "actively skipped" apart from "didn't see this question". Empty
+// answer becomes "" for free-text or yesno/likert, [] for checkbox, null when
+// the question was hidden by a dependency that wasn't satisfied.
+function buildPayload(responses) {
+  const out = {};
+  for (const q of SURVEY_QUESTIONS) {
+    if (q.dependsOnYes && responses[q.dependsOnYes] !== 'yes') {
+      out[q.id] = null; // not applicable
+      continue;
+    }
+    const v = responses[q.id];
+    if (q.type === 'checkbox') {
+      out[q.id] = Array.isArray(v) ? v : [];
+    } else {
+      out[q.id] = v == null ? '' : v;
+    }
+  }
+  return out;
+}
+
+function isAnswered(q, value) {
+  if (q.type === 'checkbox') return Array.isArray(value) && value.length > 0;
+  return value != null && value !== '';
+}
+
 export default function Survey({ send, timerSeconds, timerActive, surveySubmitted }) {
   const [responses, setResponses] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+  // Refs for the latest values, so the auto-submit-on-unmount path uses
+  // current state without re-creating the effect on every keystroke.
+  const responsesRef = useRef(responses);
+  const submittedRef = useRef(false);
+  responsesRef.current = responses;
+  submittedRef.current = submitted || surveySubmitted;
 
   function setResponse(id, value) {
     setResponses(prev => ({ ...prev, [id]: value }));
@@ -47,25 +80,70 @@ export default function Survey({ send, timerSeconds, timerActive, surveySubmitte
     });
   }
 
-  function handleSubmit() {
-    const missing = SURVEY_QUESTIONS.filter(q => {
-      if (!q.required) return false;
-      const val = responses[q.id];
-      return val == null || val === '';
-    });
-    if (missing.length > 0) return;
+  function visibleQuestions() {
+    return SURVEY_QUESTIONS.filter(
+      q => !q.dependsOnYes || responses[q.dependsOnYes] === 'yes'
+    );
+  }
 
-    send({ action: 'SURVEY', content: JSON.stringify(responses) });
+  function missingRequired() {
+    return visibleQuestions().filter(
+      q => q.required && !isAnswered(q, responses[q.id])
+    );
+  }
+
+  function submit({ partial = false } = {}) {
+    if (submittedRef.current) return;
+    if (!partial) {
+      const missing = missingRequired();
+      if (missing.length > 0) {
+        setShowErrors(true);
+        // Scroll to the first missing question for visibility.
+        const first = document.getElementById('survey-' + missing[0].id);
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+    const payload = buildPayload(responsesRef.current);
+    if (partial) payload._partial = true;
+    send({ action: 'SURVEY', content: JSON.stringify(payload) });
     setSubmitted(true);
   }
 
+  // Best-effort partial save when the page is closing. The backend treats
+  // any payload with `_partial: true` as a snapshot rather than a final
+  // submission — at minimum we get whatever the user had typed.
+  useEffect(() => {
+    function handleUnload() {
+      if (submittedRef.current) return;
+      const payload = buildPayload(responsesRef.current);
+      payload._partial = true;
+      try {
+        send({ action: 'SURVEY', content: JSON.stringify(payload) });
+      } catch (_) { /* best effort */ }
+    }
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, [send]);
+
+  // Auto-submit when the survey timer hits zero. Saves whatever's there.
+  useEffect(() => {
+    if (timerActive && timerSeconds === 0 && !submittedRef.current) {
+      submit({ partial: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timerSeconds, timerActive]);
+
   const isDisabled = submitted || surveySubmitted;
+  const missing = missingRequired();
+  const visible = visibleQuestions();
 
   function renderQuestion(q) {
+    const fieldErrored = showErrors && q.required && !isAnswered(q, responses[q.id]);
     switch (q.type) {
       case 'likert':
         return (
-          <div className="likert-scale">
+          <div className={"likert-scale" + (fieldErrored ? " survey-field-error" : "")}>
             {LIKERT_OPTIONS.map(opt => (
               <label key={opt.value} className="likert-option">
                 <input
@@ -85,7 +163,7 @@ export default function Survey({ send, timerSeconds, timerActive, surveySubmitte
         );
       case 'yesno':
         return (
-          <div className="yes-no-group">
+          <div className={"yes-no-group" + (fieldErrored ? " survey-field-error" : "")}>
             <label className="yes-no-option">
               <input
                 type="radio"
@@ -142,26 +220,59 @@ export default function Survey({ send, timerSeconds, timerActive, surveySubmitte
     }
   }
 
+  if (isDisabled) {
+    return (
+      <div className="survey-screen">
+        <div className="survey-content">
+          <h1>Post-Game Survey</h1>
+          <div className="survey-thanks">
+            <h2>Thanks — your responses were recorded.</h2>
+            <p className="survey-instructions">
+              Sit tight; the grand reveal is coming up next.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="survey-screen">
       <div className="survey-content">
         <h1>Post-Game Survey</h1>
         <p className="survey-instructions">
-          Help us improve the game by answering a few questions about your experience.
+          Help our research by answering a few questions about your experience.
+          Open-ended answers are <strong>especially valuable</strong> — even a sentence helps.
         </p>
+        {timerActive && timerSeconds != null && (
+          <p className="survey-timer">
+            Time remaining: <strong>{Math.max(0, Math.floor(timerSeconds))}s</strong>
+            {' '}— responses auto-save when time runs out.
+          </p>
+        )}
 
-        {SURVEY_QUESTIONS.map(q => (
-          <fieldset key={q.id} className="survey-question">
+        {visible.map(q => (
+          <fieldset key={q.id} id={'survey-' + q.id} className="survey-question">
             <legend>
               {q.text}
-              {q.required && <span style={{ color: 'var(--danger)' }}> *</span>}
+              {q.required && <span style={{ color: 'var(--danger, #ef4444)' }}> *</span>}
+              {!q.required && <span style={{ color: 'var(--muted, #98a2b3)', fontWeight: 'normal' }}> (optional)</span>}
             </legend>
             {renderQuestion(q)}
           </fieldset>
         ))}
 
+        {showErrors && missing.length > 0 && (
+          <div className="survey-error-banner" role="alert">
+            <strong>{missing.length} required question{missing.length === 1 ? '' : 's'} still need an answer:</strong>
+            <ul style={{ margin: '6px 0 0 0', paddingLeft: '20px' }}>
+              {missing.map(q => <li key={q.id}>{q.text}</li>)}
+            </ul>
+          </div>
+        )}
+
         <div className="survey-footer">
-          <button onClick={handleSubmit} disabled={isDisabled}>
+          <button onClick={() => submit()}>
             Submit Survey
           </button>
         </div>

@@ -269,10 +269,56 @@ class GameLogger:
         existing[player_id] = classification_data
         await self._write_json(agg_path, existing)
 
-    async def save_survey(self, player_id: str, survey_data: dict) -> None:
-        """Save a human player's post-game survey."""
+    async def save_survey(
+        self,
+        player_id: str,
+        survey_data: dict,
+        *,
+        identity: dict | None = None,
+    ) -> None:
+        """Save a human player's post-game survey with full research context.
+
+        Output shape:
+          {
+            "submitted_at": "...iso...",
+            "is_partial": bool,        # auto-saved on timer expiry / unload
+            "player_id": ...,
+            "real_name": ...,
+            "player_type": "HUMAN",
+            "responses": { qN: value, ... },
+          }
+
+        We strip the protocol-only `_partial` marker from the responses and
+        promote it to a top-level `is_partial` flag. Multiple submissions
+        from the same player are tolerated — the latest non-partial wins,
+        but partial saves never overwrite a final submission.
+        """
         human_dir = self._get_human_dir(player_id)
-        await self._write_json(human_dir / "post_game_survey.json", survey_data)
+        out_path = human_dir / "post_game_survey.json"
+
+        responses = dict(survey_data or {})
+        is_partial = bool(responses.pop("_partial", False))
+
+        # If a final submission already exists, don't let a late partial
+        # autosave clobber it.
+        if is_partial and out_path.exists():
+            try:
+                async with aiofiles.open(out_path, mode="r", encoding="utf-8") as f:
+                    existing = json.loads(await f.read())
+                if not existing.get("is_partial", False):
+                    return
+            except (OSError, json.JSONDecodeError):
+                pass  # fall through and overwrite
+
+        record = {
+            "submitted_at": self._ts(),
+            "is_partial": is_partial,
+            "player_id": player_id,
+            "real_name": (identity or {}).get("real_name", player_id),
+            "player_type": (identity or {}).get("player_type", "HUMAN"),
+            "responses": responses,
+        }
+        await self._write_json(out_path, record)
 
     async def save_ground_truth(self, ground_truth: dict) -> None:
         """Write the ground-truth roles for the session."""
