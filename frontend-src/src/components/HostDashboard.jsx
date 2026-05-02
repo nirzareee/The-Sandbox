@@ -122,6 +122,8 @@ function ChatMessage({ msg, players }) {
 function LobbySetup({ playerList, connectedCount }) {
   const [availableAgents, setAvailableAgents] = useState([]);
   const [addingAgent, setAddingAgent] = useState(null);
+  // counts how many times each agent type has been added
+  const [addedCounts, setAddedCounts] = useState({});
   const [gameStarted, setGameStarted] = useState(false);
   const [startLoading, setStartLoading] = useState(false);
 
@@ -130,7 +132,6 @@ function LobbySetup({ playerList, connectedCount }) {
     fetch('/agents')
       .then(res => res.json())
       .then(data => {
-        // Deduplicate: only show primary keys (skip groq-* aliases)
         const seen = new Set();
         const unique = (data.agents ?? []).filter(a => {
           if (seen.has(a.name)) return false;
@@ -150,11 +151,28 @@ function LobbySetup({ playerList, connectedCount }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agents: [{ type: agentType }] }),
       });
+      setAddedCounts(prev => ({ ...prev, [agentType]: (prev[agentType] ?? 0) + 1 }));
     } catch (e) {
       console.error('Failed to add agent:', e);
     }
     setAddingAgent(null);
   }, []);
+
+  const handleRemoveAgent = useCallback(async (agentType) => {
+    const count = addedCounts[agentType] ?? 0;
+    if (count === 0) return;
+    // Ask server to remove one instance of this agent type from pending
+    try {
+      await fetch('/setup/remove', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: agentType }),
+      });
+      setAddedCounts(prev => ({ ...prev, [agentType]: Math.max(0, (prev[agentType] ?? 0) - 1) }));
+    } catch (e) {
+      console.error('Failed to remove agent:', e);
+    }
+  }, [addedCounts]);
 
   const handleStartGame = useCallback(async () => {
     setStartLoading(true);
@@ -166,6 +184,8 @@ function LobbySetup({ playerList, connectedCount }) {
     }
     setStartLoading(false);
   }, []);
+
+  const totalAgentsQueued = Object.values(addedCounts).reduce((a, b) => a + b, 0);
 
   return (
     <div className="host-lobby">
@@ -184,28 +204,70 @@ function LobbySetup({ playerList, connectedCount }) {
             ))}
           </ul>
           <p style={{ color: 'var(--text-secondary)', margin: '12px 0', fontSize: '0.85rem' }}>
-            {connectedCount} player(s) connected
+            {connectedCount} human(s) + {totalAgentsQueued} agent(s) queued
           </p>
         </div>
 
         {/* Right: Available Agents */}
         <div className="host-setup-section">
-          <h3>Available Agents</h3>
+          <h3>Add AI Agents</h3>
 
           <div className="host-agent-grid">
-            {availableAgents.map(agent => (
-              <div key={agent.type} className="host-agent-slot" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="host-agent-slot-label">{agent.name}</span>
-                <button
-                  className="btn-host-action"
-                  onClick={() => handleAddAgent(agent.type)}
-                  disabled={!agent.available || addingAgent !== null || gameStarted}
-                  style={{ minWidth: '110px' }}
-                >
-                  {addingAgent === agent.type ? 'Adding...' : agent.available ? 'Add to Game' : 'Unavailable'}
-                </button>
-              </div>
-            ))}
+            {availableAgents.map(agent => {
+              const count = addedCounts[agent.type] ?? 0;
+              const isAdding = addingAgent === agent.type;
+              return (
+                <div key={agent.type} className="host-agent-slot" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                  <span className="host-agent-slot-label">{agent.name}</span>
+
+                  {count > 0 ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <button
+                        onClick={() => handleRemoveAgent(agent.type)}
+                        disabled={gameStarted}
+                        style={{
+                          background: 'transparent',
+                          border: '1px solid var(--border)',
+                          color: 'var(--text-secondary)',
+                          borderRadius: '4px',
+                          width: '26px', height: '26px',
+                          cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
+                        }}
+                      >−</button>
+                      <span style={{
+                        minWidth: '22px', textAlign: 'center',
+                        fontWeight: 700, color: 'var(--accent)',
+                      }}>{count}</span>
+                      <button
+                        onClick={() => handleAddAgent(agent.type)}
+                        disabled={isAdding || gameStarted}
+                        style={{
+                          background: 'transparent',
+                          border: '1px solid var(--border)',
+                          color: 'var(--text-secondary)',
+                          borderRadius: '4px',
+                          width: '26px', height: '26px',
+                          cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
+                        }}
+                      >+</button>
+                      <span style={{
+                        color: '#2ed573', fontSize: '0.78rem',
+                        fontWeight: 600, minWidth: '52px',
+                      }}>✓ Added</span>
+                    </div>
+                  ) : (
+                    <button
+                      className="btn-host-action"
+                      onClick={() => handleAddAgent(agent.type)}
+                      disabled={!agent.available || isAdding || gameStarted}
+                      style={{ minWidth: '110px' }}
+                    >
+                      {isAdding ? 'Adding...' : agent.available ? 'Add to Game' : 'Unavailable'}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
             {availableAgents.length === 0 && (
               <p style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>Loading agents...</p>
             )}
@@ -216,10 +278,15 @@ function LobbySetup({ playerList, connectedCount }) {
             <button
               className="btn-start"
               onClick={handleStartGame}
-              disabled={startLoading || gameStarted || connectedCount < 2}
+              disabled={startLoading || gameStarted || connectedCount < 1}
             >
               {gameStarted ? 'Game Started!' : 'Start Game'}
             </button>
+            {connectedCount < 1 && !gameStarted && (
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '6px' }}>
+                Waiting for at least 1 human player...
+              </p>
+            )}
           </div>
         </div>
       </div>

@@ -22,6 +22,14 @@ from .game_state import GameSession, Player, Phase
 from .assignment import run_assignment_phase, load_word_bank
 from .logger import GameLogger
 
+try:
+    from agents import get_provider, AVAILABLE_AGENTS
+    from agents.game_agent import LLMGameAgent
+    _AGENTS_AVAILABLE = True
+except ImportError:
+    _AGENTS_AVAILABLE = False
+    AVAILABLE_AGENTS = [{"type": "mock", "name": "Mock Bot", "available": True, "requires": None}]
+
 app = FastAPI()
 
 app.add_middleware(
@@ -46,14 +54,35 @@ MAX_HINT_CHARS = 60
 MAX_HINT_WORDS = 8
 MAX_MESSAGE_LENGTH = 200
 
+# ── Configuration from environment (set by launcher) ────────────────
+
+import os as _os
+
+TIMER_MULTIPLIER = float(_os.environ.get("SANDBOX_TIMER_MUL", TIMER_MULTIPLIER))
+_server_port: int = int(_os.environ.get("SANDBOX_PORT", 8000))
+
+# Pre-populate agents from env: "mock,claude,openai" etc.
+def _parse_env_agents() -> list[dict]:
+    raw = _os.environ.get("SANDBOX_AGENTS", "")
+    if not raw:
+        return []
+    agents = []
+    for i, entry in enumerate(raw.split(",")):
+        parts = entry.strip().split(":")
+        atype = parts[0]
+        name_suffix = parts[1] if len(parts) > 1 else f"{atype.title()} {i + 1}"
+        agents.append({"type": atype, "name": name_suffix})
+    return agents
+
 # ── Module-level state ───────────────────────────────────────────────
 
 _session: GameSession | None = None
 _logger: GameLogger | None = None
 _word_bank = load_word_bank()
-_pending_agents: list[dict] = []     # agents to spawn on game start
+_pending_agents: list[dict] = _parse_env_agents()  # pre-populated from env
 _game_task: asyncio.Task | None = None
 _dedup_cache: dict[str, float] = {}  # "pid:hash" -> timestamp
+_agent_counter: int = 0              # monotonic agent ID counter
 
 # Phase → allowed client actions
 PHASE_ACTIONS = {
@@ -73,12 +102,13 @@ def _scaled(seconds: float) -> float:
 # ── Session management ───────────────────────────────────────────────
 
 def _reset_session() -> tuple[GameSession, GameLogger]:
-    global _session, _logger, _pending_agents, _dedup_cache
+    global _session, _logger, _pending_agents, _dedup_cache, _agent_counter
     session_id = str(uuid.uuid4())[:8]
     _session = GameSession(session_id)
     _logger = GameLogger(session_id)
-    _pending_agents = []
+    _pending_agents = _parse_env_agents()   # re-read bootstrap agents from env
     _dedup_cache = {}
+    _agent_counter = 0
     return _session, _logger
 
 
@@ -155,11 +185,7 @@ async def state():
 @app.get("/agents")
 async def agents():
     """Return available agent types for the host dashboard."""
-    return {
-        "agents": [
-            {"type": "mock", "name": "Mock Bot", "available": True},
-        ]
-    }
+    return {"agents": AVAILABLE_AGENTS}
 
 
 @app.post("/setup")
@@ -173,6 +199,19 @@ async def setup(request: Request):
     return {"status": "ok", "pending_agents": len(_pending_agents)}
 
 
+@app.post("/setup/remove")
+async def setup_remove(request: Request):
+    """Remove one pending agent of a given type."""
+    global _pending_agents
+    body = await request.json()
+    atype = body.get("type", "")
+    for i in range(len(_pending_agents) - 1, -1, -1):
+        if _pending_agents[i].get("type") == atype:
+            _pending_agents.pop(i)
+            break
+    return {"status": "ok", "pending_agents": len(_pending_agents)}
+
+
 @app.post("/start")
 async def start_game():
     """Launch the game."""
@@ -182,16 +221,24 @@ async def start_game():
     if _game_task and not _game_task.done():
         return {"status": "already_running"}
 
-    # Spawn pending mock agents
+    # Spawn pending agents (mock or LLM-backed)
     for agent_cfg in _pending_agents:
         agent_type = agent_cfg.get("type", "mock")
         if agent_type == "mock":
             asyncio.create_task(_spawn_mock_agent(_session))
-            await asyncio.sleep(0.1)  # stagger
+        elif _AGENTS_AVAILABLE:
+            asyncio.create_task(_spawn_llm_agent(_session, agent_cfg))
+        else:
+            # Fallback to mock if agents module not available
+            asyncio.create_task(_spawn_mock_agent(_session))
+        await asyncio.sleep(0.15)  # stagger connections
 
-    # Wait a moment for agents to connect
+    # Wait for agents to connect (give them time to complete WebSocket handshake)
     if _pending_agents:
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(1.5)
+
+    if not _session.game_players():
+        return {"status": "error", "message": "No players connected"}
 
     _game_task = asyncio.create_task(_run_game(_session, _logger))
     return {"status": "started"}
@@ -713,6 +760,35 @@ async def _run_game(session: GameSession, logger: GameLogger):
     )
 
 
+# ── LLM agent spawner ────────────────────────────────────────────────
+
+async def _spawn_llm_agent(session: GameSession, agent_cfg: dict):
+    """Spawn a real LLM-backed agent that connects via WebSocket."""
+    global _agent_counter
+    _agent_counter += 1
+    agent_num = _agent_counter
+    agent_id  = f"agent_{agent_num}"
+
+    display_name = agent_cfg.get("name") or f"{agent_cfg.get('type', 'AI').title()} {agent_num}"
+
+    try:
+        provider = get_provider(agent_cfg)
+    except Exception as exc:
+        print(f"[LLMAgent] Failed to create provider for {agent_cfg}: {exc} — falling back to mock")
+        asyncio.create_task(_spawn_mock_agent(session))
+        return
+
+    agent = LLMGameAgent(
+        server_url=f"ws://127.0.0.1:{_server_port}",
+        agent_id=agent_id,
+        provider=provider,
+        name=display_name,
+        timer_multiplier=TIMER_MULTIPLIER,
+    )
+    asyncio.create_task(agent.run())
+    print(f"[LLMAgent] Spawned {display_name} ({agent_cfg.get('type')}) as {agent_id}")
+
+
 # ── Mock agent ───────────────────────────────────────────────────────
 
 MOCK_HINTS_INSIDER = [
@@ -738,19 +814,26 @@ MOCK_HINTS_IMPOSTER = [
 
 async def _spawn_mock_agent(session: GameSession):
     """Spawn a mock AI agent that connects via internal WebSocket."""
+    global _agent_counter
     import websockets
+    from urllib.parse import quote
 
-    existing = [pid for pid in session.players if pid.startswith("agent_")]
-    agent_num = len(existing) + 1
+    _agent_counter += 1
+    agent_num = _agent_counter
     agent_id = f"agent_{agent_num}"
     agent_name = f"Agent {agent_num}"
 
-    try:
-        uri = f"ws://127.0.0.1:8000/ws/{agent_id}?name={agent_name}&type=AI"
-        ws = await websockets.connect(uri)
-        asyncio.create_task(_mock_agent_loop(ws, agent_id, session))
-    except Exception as e:
-        print(f"[MockAgent] Failed to spawn {agent_id}: {e}")
+    uri = f"ws://127.0.0.1:{_server_port}/ws/{agent_id}?name={quote(agent_name)}&type=AI"
+
+    async def _run():
+        try:
+            async with websockets.connect(uri) as ws:
+                await _mock_agent_loop(ws, agent_id, session)
+        except Exception as e:
+            if "ConnectionClosed" not in type(e).__name__:
+                print(f"[MockAgent] {agent_id} error: {type(e).__name__}: {e}")
+
+    asyncio.create_task(_run())
 
 
 async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
@@ -1110,10 +1193,9 @@ async def _mock_agent_loop(ws, agent_id: str, session: GameSession):
             elif event == "game_finished":
                 break
 
-    except websockets.ConnectionClosed:
-        pass
     except Exception as e:
-        print(f"[MockAgent {agent_id}] Error: {e}")
+        if "ConnectionClosed" not in type(e).__name__:
+            print(f"[MockAgent {agent_id}] Error: {e}")
     finally:
         if discussion_task and not discussion_task.done():
             discussion_task.cancel()
