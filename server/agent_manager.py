@@ -40,17 +40,17 @@ AGENT_REGISTRY: dict[str, dict] = {
         "env_key": "TOGETHER_API_KEY",
         "name": "Llama",
     },
-    "kimi": {
+    "qwen": {
         "module": "agents.kimi_agent",
-        "class": "KimiAgent",
-        "env_key": "KIMI_API_KEY",
-        "name": "Kimi K2.5",
+        "class": "QwenAgent",
+        "env_key": "TOGETHER_API_KEY",
+        "name": "Qwen 3.5",
     },
     "deepseek": {
         "module": "agents.deepseek_agent",
         "class": "DeepSeekAgent",
-        "env_key": "DEEPSEEK_API_KEY",
-        "name": "DeepSeek",
+        "env_key": "TOGETHER_API_KEY",
+        "name": "DeepSeek R1",
     },
     "grok": {
         "module": "agents.grok_agent",
@@ -77,7 +77,7 @@ AGENT_REGISTRY: dict[str, dict] = {
         "class": "GroqAgent",
         "env_key": "GROQ_API_KEY",
         "name": "Kimi K2",
-        "model": "llama-3.1-8b-instant",
+        "model": "moonshotai/kimi-k2-instruct",
     },
     "qwen3": {
         "module": "agents.groq_agent",
@@ -97,21 +97,21 @@ AGENT_REGISTRY: dict[str, dict] = {
     "groq-llama": {
         "module": "agents.groq_agent",
         "class": "GroqAgent",
-        "env_key": "GROQ_API_KEY_2",
+        "env_key": "GROQ_API_KEY",
         "name": "Llama 3.3 70B",
         "model": "llama-3.3-70b-versatile",
     },
     "groq-kimi": {
         "module": "agents.groq_agent",
         "class": "GroqAgent",
-        "env_key": "GROQ_API_KEY_3",
-        "name": "Llama 3.1 8B",
-        "model": "llama-3.1-8b-instant",
+        "env_key": "GROQ_API_KEY",
+        "name": "Kimi K2",
+        "model": "moonshotai/kimi-k2-instruct",
     },
     "groq-qwen": {
         "module": "agents.groq_agent",
         "class": "GroqAgent",
-        "env_key": "GROQ_API_KEY_3",
+        "env_key": "GROQ_API_KEY",
         "name": "Qwen 3 32B",
         "model": "qwen/qwen3-32b",
     },
@@ -164,8 +164,6 @@ class AgentManager:
                 kwargs = {"player_id": pid, "display_name": pid, "server_url": ws_url}
                 if "model" in reg:
                     kwargs["model"] = reg["model"]
-                if reg.get("env_key"):
-                    kwargs["api_key"] = os.getenv(reg["env_key"], "")
                 agent = cls(**kwargs)
             except (ImportError, AttributeError) as exc:
                 log.error("Failed to create %s agent: %s", agent_type, exc)

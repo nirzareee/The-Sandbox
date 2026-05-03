@@ -1,0 +1,9 @@
+{
+  "session_id": "485ffefa",
+  "max_players": 6,
+  "max_rounds": 5,
+  "discussion_duration": 180,
+  "hint_time_limit": 90,
+  "voting_time_limit": 60,
+  "timer_multiplier": 1.0
+}

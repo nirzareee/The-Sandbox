@@ -59,7 +59,7 @@ export default function App() {
           )}
 
           {state.phase === 'REVEAL' && (
-            <GrandReveal revealData={state.revealData} players={state.players} />
+            <GrandReveal revealData={state.revealData} players={state.players} send={send} />
           )}
 
           {state.phase === 'FINISHED' && (

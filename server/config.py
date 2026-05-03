@@ -4,14 +4,14 @@
 PHASE_DURATIONS: dict[str, int] = {
     "LOBBY": 0,
     "ASSIGNMENT": 10,
-    "HINT": 60,
-    "DISCUSSION": 180,
-    "VOTING": 45,
+    "HINT": 30,
+    "DISCUSSION": 90,
+    "VOTING": 25,
     "RESULTS": 10,
-    "REFLECTION": 90,
-    "META_GAME": 120,
-    "SURVEY": 240,
-    "REVEAL": 30,
+    "REFLECTION": 20,
+    "META_GAME": 60,
+    "SURVEY": 180,
+    "REVEAL": 15,
 }
 
 # Scoring values

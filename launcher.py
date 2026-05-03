@@ -149,8 +149,8 @@ async def run_session(args: argparse.Namespace) -> None:
     # --- Apply fast mode ---
     if args.fast:
         import server.config as cfg
-        cfg.TIMER_MULTIPLIER = 0.3
-        log.info("Fast mode: TIMER_MULTIPLIER = 0.3")
+        cfg.TIMER_MULTIPLIER = 0.05
+        log.info("Fast mode: TIMER_MULTIPLIER = 0.05")
 
     # --- Start uvicorn server ---
     config = uvicorn.Config(

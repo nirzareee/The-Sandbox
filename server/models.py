@@ -56,6 +56,7 @@ class ActionType(StrEnum):
     VOTE = "VOTE"
     CLASSIFICATION = "CLASSIFICATION"
     SURVEY = "SURVEY"
+    ADVANCE_PHASE = "ADVANCE_PHASE"
     WAIT = "WAIT"
 
 
@@ -68,6 +69,10 @@ class PlayerInfo(BaseModel):
     display_name: str
     player_type: PlayerType
     model_name: Optional[str] = None
+    # real_name is the name a human typed at join time (e.g. "Alice"). It is
+    # preserved even after display_name is shuffled to "Player_N". Visible to
+    # hosts only — players never see it (anonymity is part of the game).
+    real_name: Optional[str] = None
     is_connected: bool = True
 
     @model_validator(mode="after")
@@ -210,7 +215,10 @@ class ClassificationSubmission(BaseModel):
 
 class SurveyResponse(BaseModel):
     player_id: str
-    responses: dict[str, str | int | list[str]]
+    # Values may be null for questions hidden by a dependency or actively
+    # skipped, and bool for protocol markers like `_partial: true`. Lists are
+    # used for multi-select (checkbox) questions.
+    responses: dict[str, str | int | list[str] | bool | None]
 
 
 # ---------------------------------------------------------------------------

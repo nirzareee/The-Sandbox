@@ -91,6 +91,9 @@ export default function GameScreen({ state, dispatch, send }) {
         role={state.role}
         topic={state.topic}
         secretWord={state.secretWord}
+        playerId={state.playerId}
+        playerName={state.playerName}
+        players={state.players}
       />
       <div className="game-body">
         <div className="grid-area">

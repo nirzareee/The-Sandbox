@@ -1,0 +1,32 @@
+{
+  "round": 3,
+  "topic": "Desserts",
+  "secret_word": "Churros",
+  "imposter_id": "human_bw8d",
+  "hints": [
+    {
+      "player_id": "human_bw8d",
+      "display_name": "Player 1",
+      "hint": "...",
+      "is_imposter": true
+    },
+    {
+      "player_id": "human_j9qp",
+      "display_name": "Player 2",
+      "hint": "...",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_ltdl",
+      "display_name": "Player 3",
+      "hint": "...",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_ucte",
+      "display_name": "Player 4",
+      "hint": "...",
+      "is_imposter": false
+    }
+  ]
+}

@@ -5,16 +5,9 @@ from __future__ import annotations
 import logging
 from datetime import datetime, timezone
 
-from sumy.nlp.tokenizers import Tokenizer
-from sumy.parsers.plaintext import PlaintextParser
-from sumy.summarizers.lex_rank import LexRankSummarizer
-
 from server.models import PlayerRole
 
 log = logging.getLogger(__name__)
-
-_summarizer = LexRankSummarizer()
-_SUMMARY_SENTENCES = 2
 
 
 class AgentMemory:
@@ -43,11 +36,18 @@ class AgentMemory:
         self.round_results: dict[int, dict] = {}
         self.round_reflections: dict[int, str] = {}
 
+        # Timing tracking (for response-time awareness in prompts)
+        self.round_start_times: dict[int, datetime] = {}
+        self.round_hint_timestamps: dict[int, dict[str, datetime]] = {}
+
         # Meta-game tracker
         self.meta_game_tracker: dict[str, dict] = {}
 
         # Game start context (prepended to every prompt)
         self._game_start_context: str = ""
+
+        # Relationship tracker: {player_id: {"trust": float, "events": [str]}}
+        self.relationship_tracker: dict[str, dict] = {}
 
         # Player ID → display name mapping
         self._name_mapping: dict[str, str] = {}  # player_id → display_name
@@ -71,6 +71,8 @@ class AgentMemory:
         self.round_votes.clear()
         self.round_results.clear()
         self.round_reflections.clear()
+        self.round_start_times.clear()
+        self.round_hint_timestamps.clear()
         self.meta_game_tracker.clear()
         self._game_start_context = ""
         self._round_thinking.clear()
@@ -120,10 +122,13 @@ class AgentMemory:
         self.round_messages[round_number] = []
         self.round_dms[round_number] = []
         self.round_votes[round_number] = {}
+        self.round_start_times[round_number] = datetime.now(timezone.utc)
+        self.round_hint_timestamps[round_number] = {}
 
     def record_hint(self, player_id: str, hint: str) -> None:
         rn = self.current_round_state.get("round_number", 0)
         self.round_hints.setdefault(rn, {})[player_id] = hint
+        self.round_hint_timestamps.setdefault(rn, {})[player_id] = datetime.now(timezone.utc)
 
     def record_group_message(self, player_id: str, content: str) -> None:
         rn = self.current_round_state.get("round_number", 0)
@@ -150,12 +155,83 @@ class AgentMemory:
         rn = self.current_round_state.get("round_number", 0)
         self.round_votes.setdefault(rn, {})[voter_id] = target_id
 
+    def record_relationship_event(self, player_id: str, event: str, trust_delta: float = 0.0) -> None:
+        """Record a social event (alliance, betrayal, cooperation) with another player."""
+        if player_id not in self.relationship_tracker:
+            self.relationship_tracker[player_id] = {"trust": 0.5, "events": []}
+        entry = self.relationship_tracker[player_id]
+        entry["trust"] = max(0.0, min(1.0, entry["trust"] + trust_delta))
+        entry["events"].append(event)
+        # Keep only last 5 events per player
+        if len(entry["events"]) > 5:
+            entry["events"] = entry["events"][-5:]
+
     # ------------------------------------------------------------------
     # Memory compression
     # ------------------------------------------------------------------
 
-    def compress_round(self, round_number: int) -> None:
-        """Compress a round's data into a rich summary (~300 tokens)."""
+    async def compress_round(self, round_number: int) -> None:
+        """Compress a round's data into a summary.
+
+        Tries LLM-based summarization first (if GROQ_API_KEY_SUMMARY is set).
+        Falls back to structured extraction otherwise.
+        """
+        # Always extract relationship signals regardless of summary method
+        self._extract_relationship_signals(round_number)
+
+        # Try LLM-based summary first
+        llm_summary = await self._try_llm_summary(round_number)
+        if llm_summary:
+            self.round_summaries[round_number] = llm_summary
+            return
+
+        # Fallback: structured extraction
+        self.round_summaries[round_number] = self._structured_summary(round_number)
+
+    async def _try_llm_summary(self, round_number: int) -> str | None:
+        """Attempt LLM-based round summarization. Returns None on failure."""
+        from agents.summary_client import get_summary_client
+
+        client = get_summary_client()
+        if client is None:
+            return None
+
+        hints = self.round_hints.get(round_number, {})
+        result = self.round_results.get(round_number, {})
+        role = self.current_round_state.get("role", "?")
+        topic = self.current_round_state.get("topic", "?")
+        secret = self.current_round_state.get("secret_word", "UNKNOWN")
+        messages = self.round_messages.get(round_number, [])
+        dms = self.round_dms.get(round_number, [])
+        votes = self.round_votes.get(round_number, {})
+
+        # Translate player IDs to display names for readability
+        round_data = {
+            "round_number": round_number,
+            "topic": topic,
+            "secret_word": secret,
+            "role": str(role),
+            "hints": {self._display(pid): h for pid, h in hints.items()},
+            "messages": [
+                {"player_id": self._display(m.get("player_id", "?")), "content": m.get("content", "")}
+                for m in messages
+            ],
+            "dms": [
+                {
+                    "sender": self._display(dm.get("sender", "?")),
+                    "recipient": self._display(dm.get("recipient", "?")),
+                    "content": dm.get("content", ""),
+                }
+                for dm in dms
+            ],
+            "votes": {self._display(v): self._display(t) for v, t in votes.items()},
+            "result": result,
+        }
+
+        return await client.summarize_round(round_data)
+
+    def _structured_summary(self, round_number: int) -> str:
+        """Structured extraction fallback (original compress_round logic)."""
         hints = self.round_hints.get(round_number, {})
         result = self.round_results.get(round_number, {})
         role = self.current_round_state.get("role", "?")
@@ -194,7 +270,7 @@ class AgentMemory:
         if dm_summary:
             lines.append(f"  DMs: {dm_summary}")
 
-        self.round_summaries[round_number] = "\n".join(lines)
+        return "\n".join(lines)
 
     def _extract_discussion_highlights(self, round_number: int) -> list[dict]:
         """Extract notable messages from discussion (accusations, questions, sus calls)."""
@@ -223,6 +299,32 @@ class AgentMemory:
                 partners.add(self._display(dm["sender"]))
         return f"{len(dms)} DMs with {', '.join(sorted(partners))}"
 
+    def _extract_relationship_signals(self, round_number: int) -> None:
+        """Detect alliances, betrayals, and trust events from round data."""
+        votes = self.round_votes.get(round_number, {})
+        dms = self.round_dms.get(round_number, [])
+
+        # Detect vote coordination from DMs
+        dm_partners: set[str] = set()
+        for dm in dms:
+            partner = dm["recipient"] if dm["sender"] == self.player_id else dm["sender"]
+            dm_partners.add(partner)
+
+        # Check if DM partners voted the same target as us
+        my_vote = votes.get(self.player_id)
+        if my_vote:
+            for partner in dm_partners:
+                partner_vote = votes.get(partner)
+                if partner_vote == my_vote:
+                    self.record_relationship_event(partner, f"R{round_number}: voted together", +0.1)
+                elif partner_vote and partner_vote != my_vote:
+                    self.record_relationship_event(partner, f"R{round_number}: voted differently after DM", -0.15)
+
+        # Track who voted for us (betrayal signal)
+        for voter, target in votes.items():
+            if target == self.player_id and voter != self.player_id:
+                self.record_relationship_event(voter, f"R{round_number}: voted against me", -0.2)
+
     # ------------------------------------------------------------------
     # Context retrieval for prompts
     # ------------------------------------------------------------------
@@ -244,6 +346,15 @@ class AgentMemory:
                 if refl:
                     parts.append(f"  My reflection: {refl[:200]}")
 
+        # Show current standings from most recent round results
+        if self.round_results:
+            latest_rn = max(self.round_results.keys())
+            cumul = self.round_results[latest_rn].get("cumulative_scores", {})
+            if cumul:
+                parts.append("\nCURRENT STANDINGS:")
+                for pid, score in sorted(cumul.items(), key=lambda x: -x[1]):
+                    parts.append(f"  {self._display(pid)}: {score} pts")
+
         if self.meta_game_tracker:
             parts.append("\nMETA-GAME OBSERVATIONS:")
             for pid, obs in self.meta_game_tracker.items():
@@ -254,6 +365,15 @@ class AgentMemory:
                 notes = ", ".join(obs.get("notes", [])[-5:])
                 parts.append(f"  {self._display(pid)}: human_conf={conf:.1f} ({notes})")
 
+        if self.relationship_tracker:
+            parts.append("\nRELATIONSHIP MEMORY:")
+            for pid, rel in self.relationship_tracker.items():
+                trust = rel.get("trust", 0.5)
+                events = rel.get("events", [])
+                label = "ally" if trust >= 0.65 else "rival" if trust <= 0.35 else "neutral"
+                recent = events[-2:] if events else []
+                parts.append(f"  {self._display(pid)}: {label} (trust={trust:.1f}) — {'; '.join(recent)}")
+
         context = "\n".join(parts)
         if len(context) > max_chars:
             cut = context.rfind('\n', 0, max_chars)
@@ -263,6 +383,19 @@ class AgentMemory:
     def get_all_hints_this_round(self) -> dict[str, str]:
         rn = self.current_round_state.get("round_number", 0)
         return self.round_hints.get(rn, {})
+
+    def get_hint_timings_this_round(self) -> dict[str, int]:
+        """Return elapsed seconds from round start to each hint submission.
+
+        Returns a dict of {player_id: elapsed_seconds}. Used so agents can
+        see how long each player took to hint (fast vs. slow = minor signal).
+        """
+        rn = self.current_round_state.get("round_number", 0)
+        start = self.round_start_times.get(rn)
+        stamps = self.round_hint_timestamps.get(rn, {})
+        if not start:
+            return {}
+        return {pid: max(0, int((ts - start).total_seconds())) for pid, ts in stamps.items()}
 
     def get_past_hints_this_round(self) -> list[tuple[str, str]]:
         """All hints received so far this round (no ordering constraint)."""
@@ -325,15 +458,11 @@ class AgentMemory:
 
     @staticmethod
     def _summarize(text: str) -> str:
-        """Extractive summary via LexRank. Falls back to truncation."""
-        try:
-            parser = PlaintextParser.from_string(text, Tokenizer("english"))
-            sentences = _summarizer(parser.document, _SUMMARY_SENTENCES)
-            if sentences:
-                return " ".join(str(s) for s in sentences)
-        except Exception as exc:  # noqa: BLE001
-            log.debug("Sumy summarization failed, falling back to truncation: %s", exc)
-        return text[:200]
+        """Truncate earlier thinking traces to keep context window tight."""
+        if len(text) <= 200:
+            return text
+        cut = text.rfind(".", 0, 200)
+        return text[: cut + 1] if cut > 50 else text[:200] + "..."
 
     def get_recent_thinking(self) -> str:
         """Return all thinking this round: older traces summarized, latest in full."""
