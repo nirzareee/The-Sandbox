@@ -552,7 +552,7 @@ class BaseAgent(ABC):
                                 await asyncio.sleep(random.uniform(2.0, 4.0))
                             # DMs feel a touch faster than group chat
                             target_delay = DelaySimulator.typing_time(
-                                content, base_pause=0.5, chars_per_sec=10.0, cap=6.0,
+                                content, base_pause=0.8, chars_per_sec=6.5, cap=10.0,
                             )
                             remaining = max(0, target_delay - (loop.time() - t0))
                             await asyncio.sleep(remaining)
@@ -978,9 +978,52 @@ class BaseAgent(ABC):
             start = text.find("{")
             end = text.rfind("}") + 1
             if start >= 0 and end > start:
+                candidate = text[start:end]
                 try:
-                    return json.loads(text[start:end])
+                    return json.loads(candidate)
                 except json.JSONDecodeError:
-                    pass
+                    # Some models occasionally drop a trailing closing brace
+                    # (observed on Grok meta-classification with nested
+                    # objects). If brace counts mismatch and the gap is
+                    # small, try patching closes onto the end.
+                    repaired = self._repair_truncated_json(candidate)
+                    if repaired is not None:
+                        log.info("%s: repaired truncated JSON (added %d brace(s))",
+                                 self.display_name, repaired[1])
+                        return repaired[0]
             log.warning("Failed to parse LLM response: %.200s", text)
             return {"thinking": text, "action": {"type": "wait"}}
+
+    @staticmethod
+    def _repair_truncated_json(candidate: str) -> tuple[dict, int] | None:
+        """Try to recover a model response missing trailing closing braces.
+
+        Counts unbalanced { vs } outside of string literals and appends up
+        to 4 closing braces. Returns (parsed_dict, num_added) on success.
+        """
+        in_str = False
+        escape = False
+        opens = closes = 0
+        for ch in candidate:
+            if escape:
+                escape = False
+                continue
+            if ch == "\\" and in_str:
+                escape = True
+                continue
+            if ch == '"':
+                in_str = not in_str
+                continue
+            if in_str:
+                continue
+            if ch == "{":
+                opens += 1
+            elif ch == "}":
+                closes += 1
+        gap = opens - closes
+        if not (1 <= gap <= 4):
+            return None
+        try:
+            return json.loads(candidate + ("}" * gap)), gap
+        except json.JSONDecodeError:
+            return None

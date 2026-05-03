@@ -28,12 +28,13 @@ class DelaySimulator:
         "vote": (4, 12),
         "classification": (3, 18),
         # Discussion timings — pure "deciding-to-speak" gap. typing_time(content)
-        # handles per-message typing separately. Tuned so a short message
-        # (~12 chars) lands ~5-8s after the gap starts, matching real chat.
-        "discussion_turn": (3, 8),
-        "first_discussion_turn": (2, 5),
-        "burst_turn": (1.5, 3.5),
-        "reactive_turn": (1.5, 3),
+        # handles per-message typing separately. 2026-05-03: scaled ~1.6× from
+        # the original (3, 8) range — observed agents averaging 13s gaps vs
+        # humans averaging 27s in real games, so closing the realism gap.
+        "discussion_turn": (5, 13),
+        "first_discussion_turn": (3, 8),
+        "burst_turn": (2.5, 6),
+        "reactive_turn": (2.5, 5),
     }
 
     JITTER_PERCENT = 30  # ±30% randomness
@@ -89,19 +90,19 @@ class DelaySimulator:
         return DelaySimulator._compute("reactive_turn")
 
     @staticmethod
-    def typing_time(text: str, base_pause: float = 1.0, chars_per_sec: float = 8.0,
-                    cap: float = 8.0) -> float:
+    def typing_time(text: str, base_pause: float = 1.6, chars_per_sec: float = 5.0,
+                    cap: float = 13.0) -> float:
         """Per-message typing delay scaled to message length.
 
-        Models a fast-but-natural typist: short pre-typing pause + chars /
-        typing speed. Capped to keep messages from going stale by the time
-        they land — beyond ~8s the conversation moves on and the message
-        becomes irrelevant.
+        Models a natural typist: short pre-typing pause + chars / typing
+        speed. Capped to keep messages from going stale by the time they
+        land. 2026-05-03: slowed ~1.6× (chars_per_sec 8→5, pause 1→1.6,
+        cap 8→13) to better match observed human typing pace.
 
-        Defaults: ~8 chars/sec (~95 wpm), 1.0s pause, 8s hard cap.
-        12-char  → ~2.5s   ("hmm not sure")
-        30-char  → ~4.7s   ("p3 acting weird tbh i guess")
-        60-char  → ~8s cap (would be 8.5s uncapped)
+        Defaults: ~5 chars/sec (~60 wpm), 1.6s pause, 13s hard cap.
+        12-char  → ~4.0s   ("hmm not sure")
+        30-char  → ~7.6s   ("p3 acting weird tbh i guess")
+        60-char  → ~13s cap (would be 13.6s uncapped)
         """
         length = len(text or "")
         base = base_pause + (length / chars_per_sec)
