@@ -513,11 +513,18 @@ def compute_game_metrics(session: SessionData) -> dict:
     }
 
     # ---- Vote accuracy per player ----
+    # Rounds where the player WAS the imposter are skipped — the imposter
+    # cannot vote for themselves, so any vote they cast is structurally
+    # never "correct," and counting them dilutes the metric.
     vote_accuracy: dict[str, dict] = {}
     for pid in session.game_players:
         correct = 0
         total = 0
+        rounds_as_imposter = 0
         for r in rounds:
+            if r.get("imposter_id") == pid:
+                rounds_as_imposter += 1
+                continue
             voted_for = r["votes"].get(pid)
             if voted_for is not None:
                 total += 1
@@ -526,6 +533,7 @@ def compute_game_metrics(session: SessionData) -> dict:
         vote_accuracy[pid] = {
             "correct_votes": correct,
             "total_votes": total,
+            "rounds_as_imposter": rounds_as_imposter,
             "accuracy": _safe_div(correct, total),
             "player_type": session.player_type(pid),
             "model_name": session.player_model(pid),
@@ -552,6 +560,11 @@ def compute_game_metrics(session: SessionData) -> dict:
         rn = r["round_number"]
         imp_id = r["imposter_id"]
         for pid, voted_for in r["votes"].items():
+            # Skip the imposter's own vote — structurally never "correct"
+            # since they cannot vote for themselves. Including it drags
+            # the cumulative detection rate down by ~1/N every round.
+            if pid == imp_id:
+                continue
             ptype = session.player_type(pid)
             correct = 1 if voted_for == imp_id else 0
             if ptype == "HUMAN":
@@ -1529,10 +1542,13 @@ def write_summary_report(
             p(f"    Correct voters: {', '.join(label(v) for v in correct)}")
 
     s("VOTE ACCURACY PER PLAYER")
+    p("  (rounds where the player was imposter are excluded — they cannot self-vote)")
     vap = game_metrics["vote_accuracy_per_player"]
     for pid, stats in sorted(vap.items(), key=lambda x: (x[1].get("accuracy") or -1), reverse=True):
         acc = stats.get("accuracy")
-        p(f"  {label(pid)}: {stats['correct_votes']}/{stats['total_votes']} correct ({_pct(acc)})")
+        imp_n = stats.get("rounds_as_imposter", 0)
+        suffix = f"  [imposter {imp_n}r]" if imp_n else ""
+        p(f"  {label(pid)}: {stats['correct_votes']}/{stats['total_votes']} correct ({_pct(acc)}){suffix}")
 
     by_type_acc = game_metrics["accuracy_by_player_type"]
     p(f"\nHuman avg vote accuracy : {_pct(by_type_acc.get('HUMAN'))}")

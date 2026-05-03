@@ -11,7 +11,7 @@ Sections rendered:
   3. Linguistic          — HUMAN vs AI radar, per-player feature table
   4. Communication Graph — D3 force-directed network (DM/mention/accusation/vote)
   5. Voting Patterns     — voting-agreement heatmap, strong pairs
-  6. Clustering          — TF-IDF cosine heatmap, dendrogram, cluster summary
+  6. Clustering          — TF-IDF cosine heatmap, 2D MDS scatter, cluster summary
   7. Hints               — per-round hints with imposter highlighted
   8. Classification      — meta-game confusion matrix + per-voter detail
   9. Per-Player          — message timeline + feature vector for any player
@@ -166,7 +166,7 @@ _HTML_TEMPLATE = r"""<!doctype html>
   .msg-meta { color: var(--muted); font-size: 11px; margin-bottom: 2px; }
   svg.network { width: 100%; height: 560px; background: var(--panel-2);
     border: 1px solid var(--border); border-radius: 8px; display: block; }
-  svg.dendrogram { width: 100%; height: 320px; background: var(--panel-2);
+  svg.cluster-scatter { width: 100%; height: 480px; background: var(--panel-2);
     border: 1px solid var(--border); border-radius: 8px; display: block; }
   .badge-num { font-weight: 600; color: var(--text); }
   .kpi { display: flex; flex-direction: column; align-items: center;
@@ -268,7 +268,7 @@ const SECTION_DRAWERS = {
   linguistic: drawLinguisticCharts,
   network:    drawNetwork,
   voting:     drawVotingHeatmap,
-  clustering: () => { drawClusterHeatmap(); drawDendrogram(); drawTSNE(); },
+  clustering: () => { drawClusterHeatmap(); drawClusterScatter(); drawTSNE(); },
   hints:      () => {},
   classify:   () => {},
   survey:     () => {},
@@ -380,6 +380,7 @@ function renderGame() {
       <td>${labelInline(pid)}</td>
       <td>${s.correct_votes}/${s.total_votes}</td>
       <td>${fmtPct(s.accuracy)}</td>
+      <td class="muted small">${s.rounds_as_imposter ? `imposter ${s.rounds_as_imposter}r (excluded)` : "—"}</td>
     </tr>`).join("");
 
   return `
@@ -403,7 +404,8 @@ function renderGame() {
       </div>
 
       <h3>Vote Accuracy per Player</h3>
-      <table><thead><tr><th>Player</th><th>Correct/Total</th><th>Accuracy</th></tr></thead><tbody>${voteRows}</tbody></table>
+      <div class="muted small" style="margin-bottom:6px">Rounds where the player was the imposter are excluded — they cannot vote for themselves.</div>
+      <table><thead><tr><th>Player</th><th>Correct/Total</th><th>Accuracy</th><th>Notes</th></tr></thead><tbody>${voteRows}</tbody></table>
 
       <h3>Cumulative Detection Accuracy Over Rounds</h3>
       <div class="canvas-wrap"><canvas id="chart-detection-curve" height="220"></canvas></div>
@@ -748,10 +750,12 @@ function renderClustering() {
       <h2>Clustering — message-corpus similarity</h2>
       <div class="muted small">Per-player TF-IDF over ${mc.n_docs || 0} corpora and ${mc.vocabulary_size || 0}-token vocabulary. Method: ${escapeHtml(mc.method || "?")}.</div>
 
+      <h3>Speaking-style map — who behaves near who</h3>
+      <div class="muted small">2D projection of TF-IDF cosine distance: nearer dots = more similar message corpora. Color = ${mc.cluster_assignments && mc.cluster_assignments['k=2'] ? "k=2 cluster" : "player type"}; shape = human (●) vs AI (▲); 🔴 outline = imposter at least once.</div>
+      ${mc.scatter_2d ? `<svg class="cluster-scatter" id="svg-cluster-scatter" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid meet"></svg>` : `<div class="muted">Not enough players to project.</div>`}
+
       <h3>Pairwise cosine similarity heatmap</h3>
       <div id="cluster-heatmap"></div>
-
-      ${mc.dendrogram ? `<h3>Dendrogram</h3><svg class="dendrogram" id="svg-dendro" viewBox="0 0 1000 320" preserveAspectRatio="xMidYMid meet"></svg>` : ""}
 
       ${sumHtml}
 
@@ -781,44 +785,97 @@ function drawClusterHeatmap() {
   document.getElementById("cluster-heatmap").innerHTML = html;
 }
 
-function drawDendrogram() {
-  const dg = R.message_clustering && R.message_clustering.dendrogram;
-  if (!dg) return;
-  const svg = d3.select("#svg-dendro");
-  // Same fix as the network: use viewBox dims, not clientWidth.
-  const vb = (svg.attr("viewBox") || "0 0 1000 320").split(/\s+/).map(Number);
+function drawClusterScatter() {
+  const mc = R.message_clustering || {};
+  const sc = mc.scatter_2d;
+  if (!sc || !sc.coords) return;
+  const svg = d3.select("#svg-cluster-scatter");
+  const vb = (svg.attr("viewBox") || "0 0 720 480").split(/\s+/).map(Number);
   const W = vb[2], H = vb[3];
   svg.selectAll("*").remove();
-  const margin = { top: 16, right: 16, bottom: 60, left: 16 };
+  const margin = { top: 24, right: 120, bottom: 24, left: 24 };
   const innerW = W - margin.left - margin.right;
   const innerH = H - margin.top - margin.bottom;
-  const g = svg.append("g").attr("transform", `translate(${margin.left}, ${margin.top})`);
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-  const leaves = dg.leaf_player_ids;
-  const n = leaves.length;
-  const Z = dg.linkage_matrix; // each row: [a, b, dist, n]
+  const pids = Object.keys(sc.coords);
+  const xs = pids.map(p => sc.coords[p][0]);
+  const ys = pids.map(p => sc.coords[p][1]);
+  const xPad = (d3.max(xs) - d3.min(xs)) * 0.10 || 0.1;
+  const yPad = (d3.max(ys) - d3.min(ys)) * 0.10 || 0.1;
+  const x = d3.scaleLinear().domain([d3.min(xs) - xPad, d3.max(xs) + xPad]).range([0, innerW]);
+  const y = d3.scaleLinear().domain([d3.min(ys) - yPad, d3.max(ys) + yPad]).range([innerH, 0]);
 
-  const x = d3.scaleBand().domain(d3.range(n)).range([0, innerW]).padding(0.2);
-  const maxDist = d3.max(Z, d => d[2]) || 1;
-  const y = d3.scaleLinear().domain([0, maxDist]).range([innerH, 0]);
+  // Cluster coloring: prefer k=2 from clustering, else player type.
+  const k2 = (mc.cluster_assignments && mc.cluster_assignments["k=2"]) || null;
+  const palette = ["#7aa2f7", "#e0af68", "#9ece6a"];
+  const clusterColor = (pid) => {
+    if (k2 && k2[pid] != null) return palette[(k2[pid] - 1) % palette.length];
+    return ident(pid).player_type === "AI" ? getCSS("--ai") : getCSS("--human");
+  };
 
-  // Compute coords for each cluster id (0..n-1 are leaves; n..n+k-1 are merges)
-  const cx = {}, cy = {};
-  for (let i = 0; i < n; i++) { cx[i] = x(i) + x.bandwidth() / 2; cy[i] = innerH; }
-  Z.forEach((row, i) => {
-    const a = Math.round(row[0]), b = Math.round(row[1]), d = row[2];
-    const ax = cx[a], bx = cx[b], ay = cy[a], by = cy[b];
-    const my = y(d);
-    g.append("path")
-      .attr("d", `M${ax},${ay} L${ax},${my} L${bx},${my} L${bx},${by}`)
-      .attr("fill", "none").attr("stroke", "#7aa2f7").attr("stroke-width", 1.5);
-    cx[n + i] = (ax + bx) / 2; cy[n + i] = my;
+  // Imposter overlay — anyone who was imposter at least once
+  const imposterPids = new Set();
+  ((R.game_metrics && R.game_metrics.rounds) || []).forEach(r => {
+    if (r.imposter_id) imposterPids.add(r.imposter_id);
   });
-  g.append("g").attr("transform", `translate(0,${innerH})`)
-    .selectAll("text").data(leaves).enter().append("text")
-    .attr("x", (_, i) => x(i) + x.bandwidth() / 2).attr("y", 14)
-    .attr("text-anchor", "middle").attr("fill", "#e6e9ef").attr("font-size", 11)
-    .text(pid => ident(pid).real_name);
+
+  // Light grid lines through origin
+  g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", y(0)).attr("y2", y(0))
+    .attr("stroke", "#3b3f4a").attr("stroke-dasharray", "2,3");
+  g.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", 0).attr("y2", innerH)
+    .attr("stroke", "#3b3f4a").attr("stroke-dasharray", "2,3");
+
+  // One <g> per player so the marker (circle or triangle) and label move together.
+  const node = g.selectAll("g.player").data(pids).enter()
+    .append("g").attr("class", "player")
+    .attr("transform", pid => `translate(${x(sc.coords[pid][0])}, ${y(sc.coords[pid][1])})`);
+
+  node.each(function (pid) {
+    const sel = d3.select(this);
+    const isAI = ident(pid).player_type === "AI";
+    const fill = clusterColor(pid);
+    const stroke = imposterPids.has(pid) ? "#f7768e" : "#0f1115";
+    const sw = imposterPids.has(pid) ? 2.5 : 1;
+    if (isAI) {
+      // Triangle for AI
+      sel.append("path")
+        .attr("d", "M0,-9 L8,7 L-8,7 Z")
+        .attr("fill", fill).attr("stroke", stroke).attr("stroke-width", sw);
+    } else {
+      sel.append("circle").attr("r", 8)
+        .attr("fill", fill).attr("stroke", stroke).attr("stroke-width", sw);
+    }
+    sel.append("text").attr("x", 12).attr("y", 4)
+      .attr("fill", "#e6e9ef").attr("font-size", 12)
+      .text(ident(pid).real_name);
+    // Tooltip via <title>
+    const id = ident(pid);
+    const detail = `${id.real_name} — ${id.player_type}${id.model_name ? " (" + id.model_name + ")" : ""}`
+      + (imposterPids.has(pid) ? "\nWas imposter at least once" : "");
+    sel.append("title").text(detail);
+  });
+
+  // Legend
+  const lg = svg.append("g").attr("transform", `translate(${W - margin.right + 14}, ${margin.top + 4})`);
+  let lY = 0;
+  lg.append("text").attr("x", 0).attr("y", lY).attr("fill", "#e6e9ef")
+    .attr("font-size", 11).attr("font-weight", 600).text("Legend"); lY += 18;
+  lg.append("circle").attr("cx", 8).attr("cy", lY - 3).attr("r", 6).attr("fill", "#7aa2f7");
+  lg.append("text").attr("x", 22).attr("y", lY).attr("fill", "#98a2b3").attr("font-size", 11).text("Human"); lY += 18;
+  lg.append("path").attr("transform", `translate(8,${lY - 3})`).attr("d", "M0,-7 L6,5 L-6,5 Z").attr("fill", "#7aa2f7");
+  lg.append("text").attr("x", 22).attr("y", lY).attr("fill", "#98a2b3").attr("font-size", 11).text("AI agent"); lY += 18;
+  lg.append("circle").attr("cx", 8).attr("cy", lY - 3).attr("r", 6)
+    .attr("fill", "#3b3f4a").attr("stroke", "#f7768e").attr("stroke-width", 2.5);
+  lg.append("text").attr("x", 22).attr("y", lY).attr("fill", "#98a2b3").attr("font-size", 11).text("Imposter ≥1×"); lY += 22;
+  if (sc.method) {
+    lg.append("text").attr("x", 0).attr("y", lY).attr("fill", "#98a2b3").attr("font-size", 10)
+      .text(`method: ${sc.method.replace("_", " ")}`); lY += 14;
+  }
+  if (sc.stress != null) {
+    lg.append("text").attr("x", 0).attr("y", lY).attr("fill", "#98a2b3").attr("font-size", 10)
+      .text(`stress: ${(+sc.stress).toFixed(3)}`);
+  }
 }
 
 function drawTSNE() {

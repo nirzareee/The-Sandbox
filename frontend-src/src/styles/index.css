@@ -1530,6 +1530,17 @@ input, textarea, select {
   padding: 1rem 0;
 }
 
+.meta-game-waiting-notice {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent, #6c8aff);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
 .classification-form {
   display: flex;
   flex-direction: column;

@@ -993,13 +993,12 @@ def compute_message_clustering(session) -> dict:
             else:
                 similarity_matrix[pa][pb] = _cos(tfidf[pa], tfidf[pb])
 
-    # Hierarchical clustering
+    # Hierarchical clustering (used only for k=2/k=3 group assignments —
+    # the dashboard renders a 2D scatter via `scatter_2d` below).
     cluster_assignments: dict[str, dict] = {}
-    dendrogram = None
 
+    n = len(player_ids)
     if HAS_SCIPY and HAS_NUMPY:
-        # Build distance matrix in condensed form
-        n = len(player_ids)
         condensed = []
         for i in range(n):
             for j in range(i + 1, n):
@@ -1007,11 +1006,6 @@ def compute_message_clustering(session) -> dict:
                 condensed.append(max(0.0, 1.0 - sim))
         try:
             Z = _linkage(condensed, method="average")
-            dendrogram = {
-                "linkage_matrix": Z.tolist(),
-                "leaf_order": list(range(n)),
-                "leaf_player_ids": player_ids,
-            }
             for k in (2, 3):
                 if n >= k:
                     labels = _fcluster(Z, t=k, criterion="maxclust")
@@ -1021,13 +1015,18 @@ def compute_message_clustering(session) -> dict:
         except Exception as e:  # pragma: no cover
             cluster_assignments["error"] = str(e)
     else:
-        # Greedy single-linkage hierarchical clustering, pure Python.
         for k in (2, 3):
-            if len(player_ids) < k:
+            if n < k:
                 continue
             cluster_assignments[f"k={k}"] = _greedy_cluster(
                 player_ids, similarity_matrix, k
             )
+
+    # 2D layout via classical MDS on the cosine-distance matrix. Pure
+    # numpy when available; falls back to a deterministic spring layout
+    # otherwise. Each point's (x, y) means: closer ≈ more similar
+    # speaking style.
+    scatter_2d = _embed_2d(player_ids, similarity_matrix)
 
     # Group by cluster (k=2 typically separates HUMAN-style from AI-style)
     cluster_summaries = {}
@@ -1058,11 +1057,11 @@ def compute_message_clustering(session) -> dict:
         "similarity_matrix": similarity_matrix,
         "cluster_assignments": cluster_assignments,
         "cluster_summaries": cluster_summaries,
-        "dendrogram": dendrogram,
+        "scatter_2d": scatter_2d,
         "method": (
-            "scipy.cluster.hierarchy.linkage(method='average')"
+            "scipy.cluster.hierarchy.linkage(method='average') + classical MDS"
             if HAS_SCIPY and HAS_NUMPY
-            else "pure-Python greedy single-linkage"
+            else "pure-Python greedy single-linkage + spring layout"
         ),
     }
 
@@ -1093,6 +1092,108 @@ def _greedy_cluster(
         for pid in members:
             out[pid] = cluster_idx
     return out
+
+
+def _embed_2d(
+    player_ids: list[str], sim_matrix: dict[str, dict[str, float]]
+) -> dict | None:
+    """Project players into a 2D plane where Euclidean distance ≈ cosine
+    distance from `sim_matrix`. Uses classical MDS via numpy SVD when
+    available, otherwise a deterministic Fruchterman-Reingold-style
+    spring layout.
+
+    Returns:
+        {"coords": {pid: [x, y]}, "method": "mds"|"spring", "stress": ?}
+        or None if there are <2 players.
+    """
+    n = len(player_ids)
+    if n < 2:
+        return None
+
+    # Build distance matrix in player_ids order
+    D = [[0.0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                D[i][j] = 0.0
+            else:
+                sim = sim_matrix.get(player_ids[i], {}).get(player_ids[j], 0.0)
+                D[i][j] = max(0.0, 1.0 - sim)
+
+    if HAS_NUMPY:
+        try:
+            import numpy as np
+            Dm = np.asarray(D, dtype=float)
+            # Classical MDS: B = -1/2 J D^2 J ; coords = U[:, :2] * sqrt(eig[:2])
+            D2 = Dm ** 2
+            J = np.eye(n) - np.ones((n, n)) / n
+            B = -0.5 * J @ D2 @ J
+            # Symmetrize to mitigate float drift
+            B = (B + B.T) / 2.0
+            evals, evecs = np.linalg.eigh(B)
+            # eigh returns ascending; flip to descending
+            order = np.argsort(-evals)
+            evals = evals[order]
+            evecs = evecs[:, order]
+            top = max(0, int((evals[:2] > 1e-12).sum()))
+            if top == 0:
+                # All players speak too uniformly to separate — fall through
+                raise ValueError("degenerate distance matrix")
+            coords = np.zeros((n, 2))
+            for k in range(min(2, top)):
+                coords[:, k] = evecs[:, k] * np.sqrt(max(evals[k], 0.0))
+            # Stress: sqrt(sum (d_ij - ||x_i - x_j||)^2 / sum d_ij^2)
+            num = 0.0
+            den = 0.0
+            for i in range(n):
+                for j in range(i + 1, n):
+                    fitted = float(np.linalg.norm(coords[i] - coords[j]))
+                    num += (D[i][j] - fitted) ** 2
+                    den += D[i][j] ** 2
+            stress = (num / den) ** 0.5 if den > 0 else None
+            return {
+                "coords": {
+                    player_ids[i]: [float(coords[i, 0]), float(coords[i, 1])]
+                    for i in range(n)
+                },
+                "method": "classical_mds",
+                "stress": stress,
+            }
+        except Exception:
+            pass  # fall back to spring
+
+    # Pure-Python deterministic spring layout. Stable seed → stable plot.
+    import math
+    import random
+    rng = random.Random(0xC0FFEE)
+    pos = [[rng.uniform(-1, 1), rng.uniform(-1, 1)] for _ in range(n)]
+    k_const = 1.0
+    for _ in range(120):
+        disp = [[0.0, 0.0] for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                if i == j:
+                    continue
+                dx = pos[i][0] - pos[j][0]
+                dy = pos[i][1] - pos[j][1]
+                dist = math.hypot(dx, dy) or 1e-6
+                # Repulsive
+                f_rep = k_const * k_const / dist
+                # Attractive towards target distance (cosine distance)
+                f_att = (dist - D[i][j]) * 0.5
+                f = f_rep / dist - f_att / dist
+                disp[i][0] += dx * f
+                disp[i][1] += dy * f
+        for i in range(n):
+            mag = math.hypot(disp[i][0], disp[i][1]) or 1.0
+            step = min(mag, 0.1)
+            pos[i][0] += disp[i][0] / mag * step
+            pos[i][1] += disp[i][1] / mag * step
+    return {
+        "coords": {player_ids[i]: [pos[i][0], pos[i][1]] for i in range(n)},
+        "method": "spring_layout",
+        "stress": None,
+    }
 
 
 # ---------------------------------------------------------------------------
