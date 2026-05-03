@@ -32,6 +32,8 @@ MODEL_PRICING: dict[str, tuple[float, float]] = {
     "grok-4.3": (1.25, 2.50),
     "grok-4-latest": (1.25, 2.50),
     "grok-4": (1.25, 2.50),
+    "grok-4.20-0309-non-reasoning": (1.25, 2.50),
+    "grok-4.20-0309-reasoning": (1.25, 2.50),
 
     # ---- DeepSeek ----
     "deepseek-v4-pro": (0.435, 0.87),    # promo through 2026-05-31

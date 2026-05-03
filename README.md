@@ -154,7 +154,7 @@ Once the server is running:
 | `gemini` | Google | `gemini-3.1-pro-preview` |
 | `kimi` | Moonshot AI | `kimi-k2.5` |
 | `kimi-k2.6` | Moonshot AI | `kimi-k2.6` |
-| `grok` | xAI | `grok-4.3` |
+| `grok` | xAI | `grok-4.20-0309-non-reasoning` (default) / `grok-4.20-0309-reasoning` (native reasoning) |
 | `deepseek` | DeepSeek | `deepseek-v4-pro` |
 | `deepseek-flash` | DeepSeek | `deepseek-v4-flash` |
 | `llama` | Together AI | `meta-llama/Llama-3.3-70B-Instruct-Turbo` |

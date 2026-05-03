@@ -1,8 +1,14 @@
 """Grok (xAI) agent for The Sandbox.
 
-OpenAI-compatible API at https://api.x.ai/v1. When use_native_reasoning=True,
-captures `reasoning_content` from the response. When False (default),
-ignores reasoning if present and runs fast.
+OpenAI-compatible API at https://api.x.ai/v1. xAI ships separate model variants
+for reasoning vs non-reasoning play, so we pick the variant from
+`use_native_reasoning` rather than trying to disable thinking on a single model:
+
+- default (use_native_reasoning=False) → `grok-4.20-0309-non-reasoning`
+- native reasoning ON                  → `grok-4.20-0309-reasoning`,
+  `reasoning_content` captured into LLMResponse.reasoning
+
+Callers can override the model explicitly (e.g. for pinning to grok-4.3).
 """
 
 from __future__ import annotations
@@ -19,6 +25,9 @@ log = logging.getLogger(__name__)
 
 XAI_BASE_URL = "https://api.x.ai/v1"
 
+DEFAULT_MODEL_NON_REASONING = "grok-4.20-0309-non-reasoning"
+DEFAULT_MODEL_REASONING = "grok-4.20-0309-reasoning"
+
 
 class GrokAgent(BaseAgent):
     """AI agent backed by xAI Grok."""
@@ -26,18 +35,24 @@ class GrokAgent(BaseAgent):
     def __init__(
         self,
         player_id: str = "grok_agent",
-        display_name: str = "Grok 4.3",
+        display_name: str = "Grok 4.20",
         server_url: str = "ws://localhost:8000",
         api_key: str | None = None,
-        model: str = "grok-4.3",
+        model: str | None = None,
         use_native_reasoning: bool = False,
     ) -> None:
+        if model is None:
+            model = (
+                DEFAULT_MODEL_REASONING
+                if use_native_reasoning
+                else DEFAULT_MODEL_NON_REASONING
+            )
         super().__init__(
             player_id=player_id,
             display_name=display_name,
             model_name=model,
             server_url=server_url,
-            api_timeout=30,
+            api_timeout=60 if use_native_reasoning else 30,
             use_native_reasoning=use_native_reasoning,
         )
         self.api_key = api_key or os.getenv("XAI_API_KEY", "")

@@ -91,8 +91,7 @@ AGENT_REGISTRY: dict[str, dict] = {
         "module": "agents.grok_agent",
         "class": "GrokAgent",
         "env_key": "XAI_API_KEY",
-        "name": "Grok 4.3",
-        "model": "grok-4.3",
+        "name": "Grok 4.20",
     },
     "deepseek": {
         "module": "agents.deepseek_agent",
