@@ -1,0 +1,439 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_hint": [
+    {
+      "round_number": 1,
+      "topic": "Dog Breeds",
+      "secret_word": "German Shepherd",
+      "player_id": "human_t0y1",
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "is_imposter": false,
+      "hint": "k9",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 1,
+      "topic": "Dog Breeds",
+      "secret_word": "German Shepherd",
+      "player_id": "agent_2",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "is_imposter": false,
+      "hint": "police k9",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 1,
+      "topic": "Dog Breeds",
+      "secret_word": "German Shepherd",
+      "player_id": "agent_1",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "is_imposter": true,
+      "hint": "family favorite",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 1,
+      "topic": "Dog Breeds",
+      "secret_word": "German Shepherd",
+      "player_id": "agent_3",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "is_imposter": false,
+      "hint": "police k9",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 2,
+      "topic": "Spices & Herbs",
+      "secret_word": "Oregano",
+      "player_id": "human_t0y1",
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "is_imposter": false,
+      "hint": "my fav on pizza",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 2,
+      "topic": "Spices & Herbs",
+      "secret_word": "Oregano",
+      "player_id": "agent_2",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "is_imposter": false,
+      "hint": "pizza shaker",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 2,
+      "topic": "Spices & Herbs",
+      "secret_word": "Oregano",
+      "player_id": "agent_3",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "is_imposter": true,
+      "hint": "warm & earthy",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 2,
+      "topic": "Spices & Herbs",
+      "secret_word": "Oregano",
+      "player_id": "agent_1",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "is_imposter": false,
+      "hint": "pizza flakes",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 3,
+      "topic": "Movies",
+      "secret_word": "Joker",
+      "player_id": "human_t0y1",
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "is_imposter": true,
+      "hint": "mentally insane villan",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 3,
+      "topic": "Movies",
+      "secret_word": "Joker",
+      "player_id": "agent_1",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "is_imposter": false,
+      "hint": "stairs dance",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 3,
+      "topic": "Movies",
+      "secret_word": "Joker",
+      "player_id": "agent_2",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "is_imposter": false,
+      "hint": "arthur fleck",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 3,
+      "topic": "Movies",
+      "secret_word": "Joker",
+      "player_id": "agent_3",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "is_imposter": false,
+      "hint": "stair dance",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 4,
+      "topic": "Disney Animated Films",
+      "secret_word": "The Lion King",
+      "player_id": "human_t0y1",
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "is_imposter": false,
+      "hint": "simba",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 4,
+      "topic": "Disney Animated Films",
+      "secret_word": "The Lion King",
+      "player_id": "agent_3",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "is_imposter": false,
+      "hint": "pride rock",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 4,
+      "topic": "Disney Animated Films",
+      "secret_word": "The Lion King",
+      "player_id": "agent_1",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "is_imposter": false,
+      "hint": "hamlet vibes",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 4,
+      "topic": "Disney Animated Films",
+      "secret_word": "The Lion King",
+      "player_id": "agent_2",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "is_imposter": true,
+      "hint": "sidekick chaos",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 5,
+      "topic": "Sports",
+      "secret_word": "Boxing",
+      "player_id": "human_t0y1",
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "is_imposter": false,
+      "hint": "muhammed",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 5,
+      "topic": "Sports",
+      "secret_word": "Boxing",
+      "player_id": "agent_1",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "is_imposter": false,
+      "hint": "heavyweight champ",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 5,
+      "topic": "Sports",
+      "secret_word": "Boxing",
+      "player_id": "agent_2",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "is_imposter": false,
+      "hint": "corner stool",
+      "adherence_score": 0.0
+    },
+    {
+      "round_number": 5,
+      "topic": "Sports",
+      "secret_word": "Boxing",
+      "player_id": "agent_3",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "is_imposter": true,
+      "hint": "olympic sport",
+      "adherence_score": 0.0
+    }
+  ],
+  "per_player_summary": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "mean_adherence": 0.0,
+      "median_adherence": 0.0,
+      "n_hints": 5
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "mean_adherence": 0.0,
+      "median_adherence": 0.0,
+      "n_hints": 5
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "mean_adherence": 0.0,
+      "median_adherence": 0.0,
+      "n_hints": 5
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "mean_adherence": 0.0,
+      "median_adherence": 0.0,
+      "n_hints": 5
+    }
+  },
+  "imposter_vs_insider": {
+    "imposter_mean_adherence": 0.0,
+    "insider_mean_adherence": 0.0,
+    "n_imposter_hints": 5,
+    "n_insider_hints": 15
+  },
+  "notes": "Adherence = fraction of hint tokens that literally match a topic / grid-item / secret-word token. Players intentionally give oblique hints ('hoops' for Basketball, 'flips' for Gymnastics), so scores are usually low even for valid hints. Use this as a relative comparison signal, not an absolute one."
+}

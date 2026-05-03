@@ -1,0 +1,817 @@
+{
+  "session_id": "session_20260503_020736",
+  "num_rounds_configured": 5,
+  "num_rounds_played": 5,
+  "is_complete": true,
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "rounds": [
+    {
+      "round_number": 1,
+      "topic": "Dog Breeds",
+      "secret_word": "German Shepherd",
+      "imposter_id": "agent_1",
+      "imposter_player_type": "AI",
+      "imposter_model": "claude-opus-4-6",
+      "imposter_caught": true,
+      "votes": {
+        "human_t0y1": "agent_1",
+        "agent_2": "agent_1",
+        "agent_3": "agent_1",
+        "agent_1": "human_t0y1"
+      },
+      "correct_voters": [
+        "agent_2",
+        "agent_3",
+        "human_t0y1"
+      ],
+      "scores_this_round": {
+        "human_t0y1": 10,
+        "agent_2": 10,
+        "agent_3": 10
+      },
+      "cumulative_scores": {
+        "human_t0y1": 10,
+        "agent_3": 10,
+        "agent_1": 0,
+        "agent_2": 10
+      },
+      "imposter_identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "votes_detailed": {
+        "human_t0y1": {
+          "voter": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "target": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "correct": true
+        },
+        "agent_2": {
+          "voter": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "target": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "correct": true
+        },
+        "agent_3": {
+          "voter": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "target": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "correct": true
+        },
+        "agent_1": {
+          "voter": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "target": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "correct": false
+        }
+      }
+    },
+    {
+      "round_number": 2,
+      "topic": "Spices & Herbs",
+      "secret_word": "Oregano",
+      "imposter_id": "agent_3",
+      "imposter_player_type": "AI",
+      "imposter_model": "deepseek-v4-pro",
+      "imposter_caught": true,
+      "votes": {
+        "agent_2": "agent_3",
+        "agent_1": "agent_3",
+        "human_t0y1": "agent_3",
+        "agent_3": "agent_2"
+      },
+      "correct_voters": [
+        "agent_1",
+        "agent_2",
+        "human_t0y1"
+      ],
+      "scores_this_round": {
+        "agent_2": 10,
+        "agent_1": 10,
+        "human_t0y1": 10
+      },
+      "cumulative_scores": {
+        "human_t0y1": 20,
+        "agent_3": 10,
+        "agent_1": 10,
+        "agent_2": 20
+      },
+      "imposter_identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "votes_detailed": {
+        "agent_2": {
+          "voter": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        },
+        "agent_1": {
+          "voter": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        },
+        "human_t0y1": {
+          "voter": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        },
+        "agent_3": {
+          "voter": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": false
+        }
+      }
+    },
+    {
+      "round_number": 3,
+      "topic": "Movies",
+      "secret_word": "Joker",
+      "imposter_id": "human_t0y1",
+      "imposter_player_type": "HUMAN",
+      "imposter_model": null,
+      "imposter_caught": true,
+      "votes": {
+        "human_t0y1": "agent_2",
+        "agent_1": "human_t0y1",
+        "agent_3": "human_t0y1",
+        "agent_2": "human_t0y1"
+      },
+      "correct_voters": [
+        "agent_1",
+        "agent_2",
+        "agent_3"
+      ],
+      "scores_this_round": {
+        "agent_1": 10,
+        "agent_3": 10,
+        "agent_2": 10
+      },
+      "cumulative_scores": {
+        "human_t0y1": 20,
+        "agent_3": 20,
+        "agent_1": 20,
+        "agent_2": 30
+      },
+      "imposter_identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "votes_detailed": {
+        "human_t0y1": {
+          "voter": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": false
+        },
+        "agent_1": {
+          "voter": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "target": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "correct": true
+        },
+        "agent_3": {
+          "voter": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "target": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "correct": true
+        },
+        "agent_2": {
+          "voter": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "target": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "correct": true
+        }
+      }
+    },
+    {
+      "round_number": 4,
+      "topic": "Disney Animated Films",
+      "secret_word": "The Lion King",
+      "imposter_id": "agent_2",
+      "imposter_player_type": "AI",
+      "imposter_model": "gpt-5.5",
+      "imposter_caught": true,
+      "votes": {
+        "human_t0y1": "agent_2",
+        "agent_2": "agent_1",
+        "agent_1": "agent_2",
+        "agent_3": "agent_2"
+      },
+      "correct_voters": [
+        "agent_1",
+        "agent_3",
+        "human_t0y1"
+      ],
+      "scores_this_round": {
+        "human_t0y1": 10,
+        "agent_1": 10,
+        "agent_3": 10
+      },
+      "cumulative_scores": {
+        "human_t0y1": 30,
+        "agent_3": 30,
+        "agent_1": 30,
+        "agent_2": 30
+      },
+      "imposter_identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "votes_detailed": {
+        "human_t0y1": {
+          "voter": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": true
+        },
+        "agent_2": {
+          "voter": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "target": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "correct": false
+        },
+        "agent_1": {
+          "voter": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": true
+        },
+        "agent_3": {
+          "voter": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": true
+        }
+      }
+    },
+    {
+      "round_number": 5,
+      "topic": "Sports",
+      "secret_word": "Boxing",
+      "imposter_id": "agent_3",
+      "imposter_player_type": "AI",
+      "imposter_model": "deepseek-v4-pro",
+      "imposter_caught": true,
+      "votes": {
+        "human_t0y1": "agent_3",
+        "agent_3": "agent_2",
+        "agent_2": "agent_3",
+        "agent_1": "agent_3"
+      },
+      "correct_voters": [
+        "agent_1",
+        "agent_2",
+        "human_t0y1"
+      ],
+      "scores_this_round": {
+        "human_t0y1": 10,
+        "agent_2": 10,
+        "agent_1": 10
+      },
+      "cumulative_scores": {
+        "human_t0y1": 40,
+        "agent_3": 30,
+        "agent_1": 40,
+        "agent_2": 40
+      },
+      "imposter_identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "votes_detailed": {
+        "human_t0y1": {
+          "voter": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        },
+        "agent_3": {
+          "voter": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "target": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "correct": false
+        },
+        "agent_2": {
+          "voter": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        },
+        "agent_1": {
+          "voter": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "target": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "correct": true
+        }
+      }
+    }
+  ],
+  "overall_detection_rate": 1.0,
+  "detection_by_imposter_type": {
+    "HUMAN": 1.0,
+    "AI": 1.0
+  },
+  "detection_by_model": {
+    "claude-opus-4-6": 1.0,
+    "deepseek-v4-pro": 1.0,
+    "HUMAN": 1.0,
+    "gpt-5.5": 1.0
+  },
+  "vote_accuracy_per_player": {
+    "human_t0y1": {
+      "correct_votes": 4,
+      "total_votes": 5,
+      "accuracy": 0.8,
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      }
+    },
+    "agent_1": {
+      "correct_votes": 4,
+      "total_votes": 5,
+      "accuracy": 0.8,
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      }
+    },
+    "agent_2": {
+      "correct_votes": 4,
+      "total_votes": 5,
+      "accuracy": 0.8,
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      }
+    },
+    "agent_3": {
+      "correct_votes": 3,
+      "total_votes": 5,
+      "accuracy": 0.6,
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      }
+    }
+  },
+  "accuracy_by_player_type": {
+    "HUMAN": 0.8,
+    "AI": 0.7333333333333334
+  },
+  "detection_over_rounds": [
+    {
+      "round_number": 1,
+      "imposter_caught": true,
+      "human_cumul_accuracy": 1.0,
+      "ai_cumul_accuracy": 0.6666666666666666
+    },
+    {
+      "round_number": 2,
+      "imposter_caught": true,
+      "human_cumul_accuracy": 1.0,
+      "ai_cumul_accuracy": 0.6666666666666666
+    },
+    {
+      "round_number": 3,
+      "imposter_caught": true,
+      "human_cumul_accuracy": 0.6666666666666666,
+      "ai_cumul_accuracy": 0.7777777777777778
+    },
+    {
+      "round_number": 4,
+      "imposter_caught": true,
+      "human_cumul_accuracy": 0.75,
+      "ai_cumul_accuracy": 0.75
+    },
+    {
+      "round_number": 5,
+      "imposter_caught": true,
+      "human_cumul_accuracy": 0.8,
+      "ai_cumul_accuracy": 0.7333333333333333
+    }
+  ],
+  "confusion_matrix": {
+    "confusion_matrix": {
+      "per_player": {
+        "agent_2": {
+          "tp": 0,
+          "tn": 1,
+          "fp": 0,
+          "fn": 2,
+          "accuracy": 0.3333333333333333
+        },
+        "human_t0y1": {
+          "tp": 3,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0,
+          "accuracy": 1.0
+        },
+        "agent_3": {
+          "tp": 0,
+          "tn": 1,
+          "fp": 0,
+          "fn": 2,
+          "accuracy": 0.3333333333333333
+        },
+        "agent_1": {
+          "tp": 0,
+          "tn": 1,
+          "fp": 0,
+          "fn": 2,
+          "accuracy": 0.3333333333333333
+        }
+      },
+      "aggregate": {
+        "tp": 3,
+        "tn": 3,
+        "fp": 0,
+        "fn": 6,
+        "accuracy": 0.5
+      }
+    },
+    "classification_scores": {
+      "agent_2": 5,
+      "human_t0y1": 15,
+      "agent_3": 5,
+      "agent_1": 5
+    },
+    "final_scores": {
+      "agent_3": 35,
+      "human_t0y1": 55,
+      "agent_1": 45,
+      "agent_2": 45
+    },
+    "leaderboard": [
+      {
+        "player_id": "human_t0y1",
+        "score": 55,
+        "rank": 1
+      },
+      {
+        "player_id": "agent_1",
+        "score": 45,
+        "rank": 2
+      },
+      {
+        "player_id": "agent_2",
+        "score": 45,
+        "rank": 2
+      },
+      {
+        "player_id": "agent_3",
+        "score": 35,
+        "rank": 4
+      }
+    ]
+  },
+  "final_scores": {
+    "human_t0y1": 40,
+    "agent_3": 30,
+    "agent_1": 40,
+    "agent_2": 40
+  }
+}

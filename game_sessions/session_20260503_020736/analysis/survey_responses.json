@@ -1,0 +1,370 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "schema": [
+    {
+      "id": "q1",
+      "text": "How enjoyable was the game?",
+      "type": "likert",
+      "required": true
+    },
+    {
+      "id": "q2",
+      "text": "How difficult was it to identify the imposter?",
+      "type": "likert",
+      "required": true
+    },
+    {
+      "id": "q3",
+      "text": "How difficult was it to distinguish humans from AI?",
+      "type": "likert",
+      "required": true
+    },
+    {
+      "id": "q4",
+      "text": "How natural did the AI players' conversation feel?",
+      "type": "likert",
+      "required": true
+    },
+    {
+      "id": "q5",
+      "text": "Did you change your strategy after identifying potential AI players?",
+      "type": "yesno",
+      "required": true
+    },
+    {
+      "id": "q6",
+      "text": "What strategies did you use to identify AI players?",
+      "type": "checkbox",
+      "depends_on_yes": "q5",
+      "options": [
+        "language_patterns",
+        "response_timing",
+        "hint_quality",
+        "conversation_style",
+        "voting_behavior",
+        "other"
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "Which AI player was most convincing? Why?",
+      "type": "textarea"
+    },
+    {
+      "id": "q8",
+      "text": "Which AI player was least convincing? Why?",
+      "type": "textarea"
+    },
+    {
+      "id": "q9",
+      "text": "What gave away that a player was AI?",
+      "type": "textarea"
+    },
+    {
+      "id": "q10",
+      "text": "Would you play again?",
+      "type": "likert",
+      "required": true
+    },
+    {
+      "id": "q11",
+      "text": "Any additional feedback?",
+      "type": "textarea"
+    }
+  ],
+  "per_respondent": [
+    {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "submitted_at": "2026-05-03T06:23:12.371960+00:00",
+      "is_partial": false,
+      "questions": [
+        {
+          "id": "q1",
+          "text": "How enjoyable was the game?",
+          "type": "likert",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "5",
+          "options": null
+        },
+        {
+          "id": "q2",
+          "text": "How difficult was it to identify the imposter?",
+          "type": "likert",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "4",
+          "options": null
+        },
+        {
+          "id": "q3",
+          "text": "How difficult was it to distinguish humans from AI?",
+          "type": "likert",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "4",
+          "options": null
+        },
+        {
+          "id": "q4",
+          "text": "How natural did the AI players' conversation feel?",
+          "type": "likert",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "5",
+          "options": null
+        },
+        {
+          "id": "q5",
+          "text": "Did you change your strategy after identifying potential AI players?",
+          "type": "yesno",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "yes",
+          "options": null
+        },
+        {
+          "id": "q6",
+          "text": "What strategies did you use to identify AI players?",
+          "type": "checkbox",
+          "required": false,
+          "applicable": true,
+          "answered": true,
+          "answer": [
+            "language_patterns",
+            "response_timing",
+            "hint_quality",
+            "conversation_style",
+            "voting_behavior",
+            "other"
+          ],
+          "options": [
+            "language_patterns",
+            "response_timing",
+            "hint_quality",
+            "conversation_style",
+            "voting_behavior",
+            "other"
+          ]
+        },
+        {
+          "id": "q7",
+          "text": "Which AI player was most convincing? Why?",
+          "type": "textarea",
+          "required": false,
+          "applicable": true,
+          "answered": false,
+          "answer": "",
+          "options": null
+        },
+        {
+          "id": "q8",
+          "text": "Which AI player was least convincing? Why?",
+          "type": "textarea",
+          "required": false,
+          "applicable": true,
+          "answered": false,
+          "answer": "",
+          "options": null
+        },
+        {
+          "id": "q9",
+          "text": "What gave away that a player was AI?",
+          "type": "textarea",
+          "required": false,
+          "applicable": true,
+          "answered": false,
+          "answer": "",
+          "options": null
+        },
+        {
+          "id": "q10",
+          "text": "Would you play again?",
+          "type": "likert",
+          "required": true,
+          "applicable": true,
+          "answered": true,
+          "answer": "5",
+          "options": null
+        },
+        {
+          "id": "q11",
+          "text": "Any additional feedback?",
+          "type": "textarea",
+          "required": false,
+          "applicable": true,
+          "answered": false,
+          "answer": "",
+          "options": null
+        }
+      ]
+    }
+  ],
+  "aggregate_per_question": {
+    "q1": {
+      "text": "How enjoyable was the game?",
+      "type": "likert",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "5": 1
+      },
+      "open_ended_responses": null
+    },
+    "q2": {
+      "text": "How difficult was it to identify the imposter?",
+      "type": "likert",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "4": 1
+      },
+      "open_ended_responses": null
+    },
+    "q3": {
+      "text": "How difficult was it to distinguish humans from AI?",
+      "type": "likert",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "4": 1
+      },
+      "open_ended_responses": null
+    },
+    "q4": {
+      "text": "How natural did the AI players' conversation feel?",
+      "type": "likert",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "5": 1
+      },
+      "open_ended_responses": null
+    },
+    "q5": {
+      "text": "Did you change your strategy after identifying potential AI players?",
+      "type": "yesno",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "yes": 1
+      },
+      "open_ended_responses": null
+    },
+    "q6": {
+      "text": "What strategies did you use to identify AI players?",
+      "type": "checkbox",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "language_patterns": 1,
+        "response_timing": 1,
+        "hint_quality": 1,
+        "conversation_style": 1,
+        "voting_behavior": 1,
+        "other": 1
+      },
+      "open_ended_responses": null
+    },
+    "q7": {
+      "text": "Which AI player was most convincing? Why?",
+      "type": "textarea",
+      "n_applicable": 1,
+      "n_answered": 0,
+      "completion_rate": 0.0,
+      "distribution": null,
+      "open_ended_responses": []
+    },
+    "q8": {
+      "text": "Which AI player was least convincing? Why?",
+      "type": "textarea",
+      "n_applicable": 1,
+      "n_answered": 0,
+      "completion_rate": 0.0,
+      "distribution": null,
+      "open_ended_responses": []
+    },
+    "q9": {
+      "text": "What gave away that a player was AI?",
+      "type": "textarea",
+      "n_applicable": 1,
+      "n_answered": 0,
+      "completion_rate": 0.0,
+      "distribution": null,
+      "open_ended_responses": []
+    },
+    "q10": {
+      "text": "Would you play again?",
+      "type": "likert",
+      "n_applicable": 1,
+      "n_answered": 1,
+      "completion_rate": 1.0,
+      "distribution": {
+        "5": 1
+      },
+      "open_ended_responses": null
+    },
+    "q11": {
+      "text": "Any additional feedback?",
+      "type": "textarea",
+      "n_applicable": 1,
+      "n_answered": 0,
+      "completion_rate": 0.0,
+      "distribution": null,
+      "open_ended_responses": []
+    }
+  },
+  "n_respondents": 1,
+  "n_partial": 0
+}

@@ -1,0 +1,39 @@
+{
+  "model": "gpt-5.5",
+  "total_cost_usd": 1.268415,
+  "total_prompt_tokens": 196803,
+  "total_completion_tokens": 9480,
+  "total_calls": 61,
+  "by_round": {
+    "1": {
+      "prompt_tokens": 30227,
+      "completion_tokens": 1472,
+      "cost_usd": 0.195295,
+      "calls": 13
+    },
+    "2": {
+      "prompt_tokens": 34421,
+      "completion_tokens": 1618,
+      "cost_usd": 0.220645,
+      "calls": 12
+    },
+    "3": {
+      "prompt_tokens": 44542,
+      "completion_tokens": 2156,
+      "cost_usd": 0.28739,
+      "calls": 13
+    },
+    "4": {
+      "prompt_tokens": 42261,
+      "completion_tokens": 2545,
+      "cost_usd": 0.287655,
+      "calls": 11
+    },
+    "5": {
+      "prompt_tokens": 45352,
+      "completion_tokens": 1689,
+      "cost_usd": 0.27743,
+      "calls": 12
+    }
+  }
+}

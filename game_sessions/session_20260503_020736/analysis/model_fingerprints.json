@@ -1,0 +1,248 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "players": [
+    "human_t0y1",
+    "agent_1",
+    "agent_2",
+    "agent_3"
+  ],
+  "feature_names": [
+    "msg_count",
+    "vocab_diversity",
+    "question_rate",
+    "exclamation_rate",
+    "period_rate",
+    "comma_rate"
+  ],
+  "compliance_features_excluded": [
+    "avg_msg_length_chars",
+    "avg_msg_length_words",
+    "slang_rate",
+    "capitalization_rate",
+    "emoji_rate",
+    "first_word_diversity"
+  ],
+  "methodology_note": "Fingerprint uses only NATURAL_FEATURES (features the AI system prompt does not directly prescribe). COMPLIANCE_FEATURES such as slang_rate, msg length, capitalization, and emoji_rate are excluded because all AI agents receive identical style instructions \u2014 those features measure instruction-following, not model identity.",
+  "feature_matrix": {
+    "human_t0y1": {
+      "msg_count": 34.0,
+      "vocab_diversity": 0.4279661016949153,
+      "question_rate": 0.17647058823529413,
+      "exclamation_rate": 0.0,
+      "period_rate": 0.058823529411764705,
+      "comma_rate": 0.5588235294117647
+    },
+    "agent_1": {
+      "msg_count": 33.0,
+      "vocab_diversity": 0.4540337711069418,
+      "question_rate": 0.21212121212121213,
+      "exclamation_rate": 0.0,
+      "period_rate": 0.6666666666666666,
+      "comma_rate": 0.12121212121212122
+    },
+    "agent_2": {
+      "msg_count": 42.0,
+      "vocab_diversity": 0.5311355311355311,
+      "question_rate": 0.047619047619047616,
+      "exclamation_rate": 0.0,
+      "period_rate": 0.0,
+      "comma_rate": 0.16666666666666666
+    },
+    "agent_3": {
+      "msg_count": 30.0,
+      "vocab_diversity": 0.5584795321637427,
+      "question_rate": 0.1,
+      "exclamation_rate": 0.0,
+      "period_rate": 0.3333333333333333,
+      "comma_rate": 0.23333333333333334
+    }
+  },
+  "labels": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "player_type": "HUMAN",
+      "model_name": null
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6"
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "player_type": "AI",
+      "model_name": "gpt-5.5"
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro"
+    }
+  },
+  "pairwise_similarity": {
+    "human_t0y1__agent_1": {
+      "players": [
+        "human_t0y1",
+        "agent_1"
+      ],
+      "cosine_similarity": 0.9997466419714427
+    },
+    "human_t0y1__agent_2": {
+      "players": [
+        "human_t0y1",
+        "agent_2"
+      ],
+      "cosine_similarity": 0.9999125894488142
+    },
+    "human_t0y1__agent_3": {
+      "players": [
+        "human_t0y1",
+        "agent_3"
+      ],
+      "cosine_similarity": 0.9998986705251439
+    },
+    "agent_1__agent_2": {
+      "players": [
+        "agent_1",
+        "agent_2"
+      ],
+      "cosine_similarity": 0.9997813817417776
+    },
+    "agent_1__agent_3": {
+      "players": [
+        "agent_1",
+        "agent_3"
+      ],
+      "cosine_similarity": 0.9999337092574613
+    },
+    "agent_2__agent_3": {
+      "players": [
+        "agent_2",
+        "agent_3"
+      ],
+      "cosine_similarity": 0.999910825165777
+    }
+  },
+  "tsne_coordinates": {
+    "human_t0y1": {
+      "x": -35.23461151123047,
+      "y": 39.04828643798828,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "player_type": "HUMAN",
+      "model_name": null
+    },
+    "agent_1": {
+      "x": -8.769030570983887,
+      "y": 1.2260605096817017,
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6"
+    },
+    "agent_2": {
+      "x": -40.90083312988281,
+      "y": 6.928884506225586,
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "player_type": "AI",
+      "model_name": "gpt-5.5"
+    },
+    "agent_3": {
+      "x": -3.168707847595215,
+      "y": 33.26786422729492,
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro"
+    }
+  },
+  "random_forest": {
+    "note": "Only 4 players with messages; need \u22655 for classifier"
+  }
+}

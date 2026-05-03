@@ -1,0 +1,70 @@
+{
+  "agent_2": {
+    "agent_3": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "Defenses felt a bit messy and natural, especially when pressured; not super formulaic."
+    },
+    "human_t0y1": {
+      "guess": "human",
+      "confidence": 4,
+      "reasoning": "DM coordination and vote talk felt socially adaptive, with casual shifts rather than scripted play."
+    },
+    "agent_1": {
+      "guess": "human",
+      "confidence": 4,
+      "reasoning": "Quirky hint choices and uneven defenses felt organic, especially the abstract clue style."
+    }
+  },
+  "human_t0y1": {
+    "agent_1": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": ""
+    },
+    "agent_2": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": ""
+    },
+    "agent_3": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": ""
+    }
+  },
+  "agent_3": {
+    "agent_2": {
+      "guess": "human",
+      "confidence": 4,
+      "reasoning": "Showed varied strategies across rounds - bold moves like 'Arthur Fleck' hint, emotional argumentativeness defending 'sidekick chaos'. Not formulaic, took risks, got caught R4 but fought back. AI would likely be more cautious and consistent."
+    },
+    "human_t0y1": {
+      "guess": "human",
+      "confidence": 4,
+      "reasoning": "Aggressive when questioned, willing to accuse without solid arguments, coordinated in DMs effectively. The emotional responses and confrontational style read more human than the measured tone typical of AI players."
+    },
+    "agent_1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "Strategic player who formed alliances and coordinated votes. Slightly lower confidence because their hints ('family favorite') felt safe/vague at times, which could be AI hedging. But the social maneuvering and deflections feel genuinely human."
+    }
+  },
+  "agent_1": {
+    "human_t0y1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "default guess"
+    },
+    "agent_2": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "default guess"
+    },
+    "agent_3": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "default guess"
+    }
+  }
+}

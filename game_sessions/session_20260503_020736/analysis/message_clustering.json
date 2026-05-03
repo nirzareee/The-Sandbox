@@ -1,0 +1,233 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "players": [
+    "human_t0y1",
+    "agent_1",
+    "agent_2",
+    "agent_3"
+  ],
+  "vocabulary_size": 423,
+  "n_docs": 4,
+  "similarity_matrix": {
+    "human_t0y1": {
+      "human_t0y1": 1.0,
+      "agent_1": 0.3625723460438337,
+      "agent_2": 0.32877284228565445,
+      "agent_3": 0.357010064546958
+    },
+    "agent_1": {
+      "human_t0y1": 0.3625723460438337,
+      "agent_1": 1.0,
+      "agent_2": 0.5717134397796458,
+      "agent_3": 0.6486811459556661
+    },
+    "agent_2": {
+      "human_t0y1": 0.32877284228565445,
+      "agent_1": 0.5717134397796458,
+      "agent_2": 1.0,
+      "agent_3": 0.5376037445723043
+    },
+    "agent_3": {
+      "human_t0y1": 0.357010064546958,
+      "agent_1": 0.6486811459556661,
+      "agent_2": 0.5376037445723043,
+      "agent_3": 1.0
+    }
+  },
+  "cluster_assignments": {
+    "k=2": {
+      "human_t0y1": 2,
+      "agent_1": 1,
+      "agent_2": 1,
+      "agent_3": 1
+    },
+    "k=3": {
+      "human_t0y1": 3,
+      "agent_1": 1,
+      "agent_2": 2,
+      "agent_3": 1
+    }
+  },
+  "cluster_summaries": {
+    "k=2": {
+      "2": {
+        "members": [
+          {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          }
+        ],
+        "n_humans": 1,
+        "n_ais": 0,
+        "models": []
+      },
+      "1": {
+        "members": [
+          {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          }
+        ],
+        "n_humans": 0,
+        "n_ais": 3,
+        "models": [
+          "claude-opus-4-6",
+          "deepseek-v4-pro",
+          "gpt-5.5"
+        ]
+      }
+    },
+    "k=3": {
+      "3": {
+        "members": [
+          {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          }
+        ],
+        "n_humans": 1,
+        "n_ais": 0,
+        "models": []
+      },
+      "1": {
+        "members": [
+          {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          }
+        ],
+        "n_humans": 0,
+        "n_ais": 2,
+        "models": [
+          "claude-opus-4-6",
+          "deepseek-v4-pro"
+        ]
+      },
+      "2": {
+        "members": [
+          {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          }
+        ],
+        "n_humans": 0,
+        "n_ais": 1,
+        "models": [
+          "gpt-5.5"
+        ]
+      }
+    }
+  },
+  "dendrogram": {
+    "linkage_matrix": [
+      [
+        1.0,
+        3.0,
+        0.35131885404433394,
+        2.0
+      ],
+      [
+        2.0,
+        4.0,
+        0.4453414078240249,
+        3.0
+      ],
+      [
+        0.0,
+        5.0,
+        0.6505482490411846,
+        4.0
+      ]
+    ],
+    "leaf_order": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "leaf_player_ids": [
+      "human_t0y1",
+      "agent_1",
+      "agent_2",
+      "agent_3"
+    ]
+  },
+  "method": "scipy.cluster.hierarchy.linkage(method='average')"
+}

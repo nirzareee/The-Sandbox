@@ -1,0 +1,793 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_round": {
+    "1": {
+      "pairs": [
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "k9",
+          "hint_b": "police k9",
+          "jaccard_similarity": 0.5,
+          "shared_tokens": [
+            "k"
+          ]
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "k9",
+          "hint_b": "family favorite",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "k9",
+          "hint_b": "police k9",
+          "jaccard_similarity": 0.5,
+          "shared_tokens": [
+            "k"
+          ]
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "police k9",
+          "hint_b": "family favorite",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "police k9",
+          "hint_b": "police k9",
+          "jaccard_similarity": 1.0,
+          "shared_tokens": [
+            "k",
+            "police"
+          ]
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "family favorite",
+          "hint_b": "police k9",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        }
+      ]
+    },
+    "2": {
+      "pairs": [
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "my fav on pizza",
+          "hint_b": "pizza shaker",
+          "jaccard_similarity": 0.2,
+          "shared_tokens": [
+            "pizza"
+          ]
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "my fav on pizza",
+          "hint_b": "warm & earthy",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "my fav on pizza",
+          "hint_b": "pizza flakes",
+          "jaccard_similarity": 0.2,
+          "shared_tokens": [
+            "pizza"
+          ]
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "pizza shaker",
+          "hint_b": "warm & earthy",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "pizza shaker",
+          "hint_b": "pizza flakes",
+          "jaccard_similarity": 0.3333333333333333,
+          "shared_tokens": [
+            "pizza"
+          ]
+        },
+        {
+          "player_a": "agent_3",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "warm & earthy",
+          "hint_b": "pizza flakes",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        }
+      ]
+    },
+    "3": {
+      "pairs": [
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "mentally insane villan",
+          "hint_b": "stairs dance",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "mentally insane villan",
+          "hint_b": "arthur fleck",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "mentally insane villan",
+          "hint_b": "stair dance",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "stairs dance",
+          "hint_b": "arthur fleck",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "stairs dance",
+          "hint_b": "stair dance",
+          "jaccard_similarity": 0.3333333333333333,
+          "shared_tokens": [
+            "dance"
+          ]
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "arthur fleck",
+          "hint_b": "stair dance",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        }
+      ]
+    },
+    "4": {
+      "pairs": [
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "simba",
+          "hint_b": "pride rock",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "simba",
+          "hint_b": "hamlet vibes",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "simba",
+          "hint_b": "sidekick chaos",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_3",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "pride rock",
+          "hint_b": "hamlet vibes",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_3",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "pride rock",
+          "hint_b": "sidekick chaos",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "hamlet vibes",
+          "hint_b": "sidekick chaos",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        }
+      ]
+    },
+    "5": {
+      "pairs": [
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_1",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "hint_a": "muhammed",
+          "hint_b": "heavyweight champ",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "muhammed",
+          "hint_b": "corner stool",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "human_t0y1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "muhammed",
+          "hint_b": "olympic sport",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_2",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "hint_a": "heavyweight champ",
+          "hint_b": "corner stool",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_1",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "heavyweight champ",
+          "hint_b": "olympic sport",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        },
+        {
+          "player_a": "agent_2",
+          "player_b": "agent_3",
+          "identity_a": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "identity_b": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "hint_a": "corner stool",
+          "hint_b": "olympic sport",
+          "jaccard_similarity": 0.0,
+          "shared_tokens": []
+        }
+      ]
+    }
+  }
+}

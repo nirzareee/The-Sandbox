@@ -1,0 +1,39 @@
+{
+  "model": "deepseek-v4-pro",
+  "total_cost_usd": 0.084895,
+  "total_prompt_tokens": 171180,
+  "total_completion_tokens": 11991,
+  "total_calls": 47,
+  "by_round": {
+    "1": {
+      "prompt_tokens": 28313,
+      "completion_tokens": 1798,
+      "cost_usd": 0.01388,
+      "calls": 11
+    },
+    "2": {
+      "prompt_tokens": 27662,
+      "completion_tokens": 2134,
+      "cost_usd": 0.01389,
+      "calls": 9
+    },
+    "3": {
+      "prompt_tokens": 35109,
+      "completion_tokens": 2775,
+      "cost_usd": 0.017687,
+      "calls": 9
+    },
+    "4": {
+      "prompt_tokens": 33608,
+      "completion_tokens": 2467,
+      "cost_usd": 0.016766,
+      "calls": 8
+    },
+    "5": {
+      "prompt_tokens": 46488,
+      "completion_tokens": 2817,
+      "cost_usd": 0.022673,
+      "calls": 10
+    }
+  }
+}
