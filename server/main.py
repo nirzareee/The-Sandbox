@@ -261,6 +261,48 @@ async def setup_agents(request: Request):
     return JSONResponse({"status": "ok", "spawned": spawned})
 
 
+@app.post("/unsetup")
+async def unsetup_agent(request: Request):
+    """Remove a spawned agent before the game starts.
+
+    Body: {"player_id": "agent_3"}
+    Rejects once a game is active.
+    """
+    if game_state is not None and not game_state.is_game_over():
+        return JSONResponse(
+            {"error": "Game already active — cannot remove agents"},
+            status_code=409,
+        )
+    body = await request.json()
+    pid = body.get("player_id")
+    if not pid:
+        return JSONResponse({"error": "player_id required"}, status_code=400)
+    found = await agent_manager.cancel_agent(pid)
+    if not found:
+        return JSONResponse({"error": f"agent {pid} not found"}, status_code=404)
+    return JSONResponse({"status": "ok", "removed": pid})
+
+
+@app.get("/costs")
+async def list_costs():
+    """Return cost summary for the current/last game session."""
+    if game_state is None or not game_state.session_id:
+        return JSONResponse({"costs": [], "session_id": None})
+    session_dir = os.path.join("game_sessions", game_state.session_id, "ai_internals")
+    out: list[dict] = []
+    if os.path.isdir(session_dir):
+        import json as _json
+        for agent_dir in os.listdir(session_dir):
+            cost_file = os.path.join(session_dir, agent_dir, "cost_summary.json")
+            if os.path.isfile(cost_file):
+                try:
+                    with open(cost_file) as f:
+                        out.append({"agent": agent_dir, **_json.load(f)})
+                except Exception:  # noqa: BLE001
+                    pass
+    return JSONResponse({"costs": out, "session_id": game_state.session_id})
+
+
 @app.post("/start")
 async def start_game(request: Request):
     """Create a new game session and launch the game loop.

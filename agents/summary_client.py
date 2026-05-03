@@ -42,8 +42,64 @@ RESULT: {result}
 Write a concise strategic summary. No bullet points — flowing prose. Max 150 words."""
 
 
-class SummaryClient:
-    """Async Groq client dedicated to round summarization."""
+_THINKING_SUMMARY_PROMPT_TEMPLATE = """\
+You are summarizing an AI agent's INTERNAL REASONING from one round of a social deduction game. \
+The agent will read this summary in FUTURE rounds to recall what it was thinking. \
+Write in first-person past tense ("I noticed", "I thought", "I suspected") so the agent recognizes it as their own reasoning.
+
+Capture (in flowing prose, 100-150 words):
+- Key suspicions formed about other players (and why)
+- Theories that evolved or were abandoned mid-round
+- Strategic decisions made and the reasoning behind them
+- Any contradictions or shifts in thinking — moments where you accepted then doubted, or doubted then accepted
+- Subtle signals you picked up on (timing, tone, deflection, vote patterns)
+
+Round {round_number}. My role: {role}.
+
+THINKING TRACES (in chronological order, one per phase):
+{traces}
+
+Write the first-person summary now. Max 150 words. Flowing prose, no bullets."""
+
+
+class _ThinkingSummaryMixin:
+    """Adds thinking-trace summarization to SummaryClient (mixed in below)."""
+
+    async def summarize_thinking(
+        self, round_number: int, role: str, thinking_traces: list[str],
+    ) -> str | None:
+        """Summarize a list of thinking traces from one round.
+
+        Returns the summary string, or None on error / empty traces.
+        """
+        if not thinking_traces:
+            return None
+        traces_str = "\n".join(
+            f"  [phase {i + 1}] {t}" for i, t in enumerate(thinking_traces) if t
+        ) or "(none)"
+
+        prompt = _THINKING_SUMMARY_PROMPT_TEMPLATE.format(
+            round_number=round_number,
+            role=role,
+            traces=traces_str,
+        )
+
+        try:
+            resp = await self.client.chat.completions.create(
+                model=self._model,
+                max_tokens=300,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            summary = resp.choices[0].message.content.strip()
+            log.info("LLM thinking summary R%d (%d chars)", round_number, len(summary))
+            return summary
+        except Exception as exc:  # noqa: BLE001
+            log.warning("Thinking summary LLM call failed: %s", exc)
+            return None
+
+
+class SummaryClient(_ThinkingSummaryMixin):
+    """Async Groq client dedicated to round and thinking summarization."""
 
     def __init__(self, api_key: str) -> None:
         self.client = groq.AsyncGroq(api_key=api_key)

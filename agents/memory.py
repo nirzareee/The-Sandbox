@@ -52,8 +52,15 @@ class AgentMemory:
         # Player ID → display name mapping
         self._name_mapping: dict[str, str] = {}  # player_id → display_name
 
-        # Per-round thinking accumulator (fed back into prompts)
+        # Per-round thinking accumulator (fed back into prompts).
+        # Cleared at the start of each round; the previous round's traces
+        # are summarized via Groq into self.round_thinking_summaries before
+        # the clear so the model retains long-arc reasoning continuity.
         self._round_thinking: list[str] = []
+        # Groq-summarized thinking from each completed round, keyed by round number.
+        # Fed back into prompts in subsequent rounds so the model recalls its
+        # own evolving reasoning across the game.
+        self.round_thinking_summaries: dict[int, str] = {}
 
         # Research logging
         self._thinking_traces: list[dict] = []
@@ -76,6 +83,7 @@ class AgentMemory:
         self.meta_game_tracker.clear()
         self._game_start_context = ""
         self._round_thinking.clear()
+        self.round_thinking_summaries.clear()
         self._thinking_traces.clear()
         self._reflections.clear()
         self._api_calls.clear()
@@ -346,6 +354,12 @@ class AgentMemory:
                 if refl:
                     parts.append(f"  My reflection: {refl[:200]}")
 
+        # Cross-round thinking continuity — Groq-summarized reasoning from prior rounds.
+        if self.round_thinking_summaries:
+            parts.append("\nMY REASONING FROM EARLIER ROUNDS:")
+            for rn in sorted(self.round_thinking_summaries):
+                parts.append(f"  Round {rn}: {self.round_thinking_summaries[rn]}")
+
         # Show current standings from most recent round results
         if self.round_results:
             latest_rn = max(self.round_results.keys())
@@ -465,17 +479,52 @@ class AgentMemory:
         return text[: cut + 1] if cut > 50 else text[:200] + "..."
 
     def get_recent_thinking(self) -> str:
-        """Return all thinking this round: older traces summarized, latest in full."""
+        """Return all thinking traces from the current round in full.
+
+        No truncation — earlier traces are passed verbatim alongside the
+        latest one so the model has its complete within-round reasoning
+        history. Cross-round reasoning is fed back separately via the
+        Groq-summarized round_thinking_summaries.
+        """
         if not self._round_thinking:
             return ""
         lines = ["YOUR EARLIER REASONING THIS ROUND:"]
-        if len(self._round_thinking) == 1:
-            lines.append(f"- {self._round_thinking[0]}")
-        else:
-            for trace in self._round_thinking[:-1]:
-                lines.append(f"- Earlier: {self._summarize(trace)}")
-            lines.append(f"- Latest: {self._round_thinking[-1]}")
+        for i, trace in enumerate(self._round_thinking, 1):
+            lines.append(f"- Turn {i}: {trace}")
         return "\n".join(lines)
+
+    async def compress_round_thinking(
+        self, round_number: int, role: str = "?",
+    ) -> None:
+        """Summarize this round's thinking traces via Groq for cross-round recall.
+
+        Called at the end of a round (after reflection). Uses the in-memory
+        ``_round_thinking`` list before the next round clears it. Falls back
+        to a simple concatenation of the first sentence of each trace if the
+        Groq summary client is not available.
+        """
+        if not self._round_thinking:
+            return
+        from agents.summary_client import get_summary_client
+        client = get_summary_client()
+        summary: str | None = None
+        if client is not None:
+            try:
+                summary = await client.summarize_thinking(
+                    round_number=round_number,
+                    role=str(role),
+                    thinking_traces=list(self._round_thinking),
+                )
+            except Exception:  # noqa: BLE001 — fall through to fallback
+                summary = None
+        if not summary:
+            # Fallback: keep first sentence of each trace, prefixed by phase index
+            parts: list[str] = []
+            for i, trace in enumerate(self._round_thinking, 1):
+                first = trace.strip().split(". ", 1)[0]
+                parts.append(f"[{i}] {first[:200]}")
+            summary = " ".join(parts)
+        self.round_thinking_summaries[round_number] = summary
 
     def log_reflection(self, round_num: int, reflection: str) -> None:
         self._reflections.append({
@@ -491,18 +540,78 @@ class AgentMemory:
         model: str,
         prompt_tokens: int,
         completion_tokens: int,
+        round_number: int | None = None,
+        phase: str | None = None,
     ) -> None:
-        self._api_calls.append({
+        from agents.pricing import cost_for
+        rn = round_number if round_number is not None else self.current_round_state.get("round_number")
+        cost = cost_for(model, prompt_tokens, completion_tokens)
+        entry = {
             "model": model,
+            "round": rn,
+            "phase": phase,
             "prompt_tokens": prompt_tokens,
             "completion_tokens": completion_tokens,
+            "cost_usd": cost,
             "timestamp": datetime.now(timezone.utc).isoformat(),
-        })
+        }
+        self._api_calls.append(entry)
         self._token_counts.append({
-            "round": self.current_round_state.get("round_number"),
+            "round": rn,
             "prompt_tokens": prompt_tokens,
             "completion_tokens": completion_tokens,
         })
+
+    def get_cost_summary(self) -> dict:
+        """Aggregate API cost by round and total.
+
+        Returns:
+            {
+              "model": "<last seen model>",
+              "total_cost_usd": float,
+              "total_prompt_tokens": int,
+              "total_completion_tokens": int,
+              "total_calls": int,
+              "by_round": {round_number: {prompt_tokens, completion_tokens, cost_usd, calls}, ...},
+            }
+        """
+        by_round: dict = {}
+        total_cost = 0.0
+        total_in = 0
+        total_out = 0
+        last_model = ""
+        for c in self._api_calls:
+            rn = c.get("round") or 0
+            r = by_round.setdefault(rn, {
+                "prompt_tokens": 0,
+                "completion_tokens": 0,
+                "cost_usd": 0.0,
+                "calls": 0,
+            })
+            r["prompt_tokens"] += c["prompt_tokens"]
+            r["completion_tokens"] += c["completion_tokens"]
+            r["cost_usd"] += c.get("cost_usd", 0.0)
+            r["calls"] += 1
+            total_cost += c.get("cost_usd", 0.0)
+            total_in += c["prompt_tokens"]
+            total_out += c["completion_tokens"]
+            last_model = c.get("model", last_model)
+        return {
+            "model": last_model,
+            "total_cost_usd": round(total_cost, 6),
+            "total_prompt_tokens": total_in,
+            "total_completion_tokens": total_out,
+            "total_calls": len(self._api_calls),
+            "by_round": {
+                rn: {
+                    "prompt_tokens": r["prompt_tokens"],
+                    "completion_tokens": r["completion_tokens"],
+                    "cost_usd": round(r["cost_usd"], 6),
+                    "calls": r["calls"],
+                }
+                for rn, r in sorted(by_round.items())
+            },
+        }
 
     def update_meta_tracker(self, player_id: str, human_confidence: float, note: str) -> None:
         """Update meta-game observation for a player."""

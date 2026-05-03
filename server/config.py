@@ -8,7 +8,7 @@ PHASE_DURATIONS: dict[str, int] = {
     "DISCUSSION": 90,
     "VOTING": 25,
     "RESULTS": 10,
-    "REFLECTION": 20,
+    "REFLECTION": 45,
     "META_GAME": 60,
     "SURVEY": 180,
     "REVEAL": 15,

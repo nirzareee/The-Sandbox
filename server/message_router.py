@@ -35,7 +35,7 @@ PHASE_ALLOWED_ACTIONS: dict[GamePhase, set[ActionType]] = {
     GamePhase.DISCUSSION: {ActionType.GROUP_MESSAGE, ActionType.DM},
     GamePhase.VOTING: {ActionType.VOTE},
     GamePhase.RESULTS: set(),
-    GamePhase.REFLECTION: {ActionType.GROUP_MESSAGE, ActionType.DM},
+    GamePhase.REFLECTION: set(),  # private reflection — no chat allowed
     GamePhase.META_GAME: {ActionType.CLASSIFICATION},
     GamePhase.SURVEY: {ActionType.SURVEY},
     GamePhase.REVEAL: {ActionType.ADVANCE_PHASE},

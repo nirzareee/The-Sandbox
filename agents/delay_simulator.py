@@ -22,15 +22,18 @@ class DelaySimulator:
     """
 
     DELAY_RANGES: dict[str, tuple[float, float]] = {
-        "hint": (2, 8),
-        "group_message": (1, 4),
-        "dm": (1, 3),
-        "vote": (3, 10),
-        "classification": (2, 15),
-        "discussion_turn": (4, 12),
-        "first_discussion_turn": (1.5, 4),
-        "burst_turn": (1, 3),
-        "reactive_turn": (1, 2.5),
+        "hint": (3, 10),
+        "group_message": (2, 6),
+        "dm": (2, 5),
+        "vote": (4, 12),
+        "classification": (3, 18),
+        # Discussion timings — pure "deciding-to-speak" gap. typing_time(content)
+        # handles per-message typing separately. Tuned so a short message
+        # (~12 chars) lands ~5-8s after the gap starts, matching real chat.
+        "discussion_turn": (3, 8),
+        "first_discussion_turn": (2, 5),
+        "burst_turn": (1.5, 3.5),
+        "reactive_turn": (1.5, 3),
     }
 
     JITTER_PERCENT = 30  # ±30% randomness
@@ -84,3 +87,27 @@ class DelaySimulator:
     @staticmethod
     def reactive_turn() -> float:
         return DelaySimulator._compute("reactive_turn")
+
+    @staticmethod
+    def typing_time(text: str, base_pause: float = 1.0, chars_per_sec: float = 8.0,
+                    cap: float = 8.0) -> float:
+        """Per-message typing delay scaled to message length.
+
+        Models a fast-but-natural typist: short pre-typing pause + chars /
+        typing speed. Capped to keep messages from going stale by the time
+        they land — beyond ~8s the conversation moves on and the message
+        becomes irrelevant.
+
+        Defaults: ~8 chars/sec (~95 wpm), 1.0s pause, 8s hard cap.
+        12-char  → ~2.5s   ("hmm not sure")
+        30-char  → ~4.7s   ("p3 acting weird tbh i guess")
+        60-char  → ~8s cap (would be 8.5s uncapped)
+        """
+        length = len(text or "")
+        base = base_pause + (length / chars_per_sec)
+        capped = min(base, cap)
+        jitter = random.uniform(
+            1 - DelaySimulator.JITTER_PERCENT / 100,
+            1 + DelaySimulator.JITTER_PERCENT / 100,
+        )
+        return max(0.5, capped * jitter) * _cfg.TIMER_MULTIPLIER

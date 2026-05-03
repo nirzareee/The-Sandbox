@@ -192,6 +192,10 @@ function LobbySetup({ playerList, connectedCount }) {
   const [addingAgent, setAddingAgent] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [startLoading, setStartLoading] = useState(false);
+  // Per-agent-type "use native reasoning" toggle. The state of the checkbox
+  // when "Add to Game" is clicked is what gets sent for that spawn.
+  // Resets when the host page reloads — not persisted across sessions.
+  const [reasoningEnabled, setReasoningEnabled] = useState({});
 
   useEffect(() => {
     fetch('/agents')
@@ -208,18 +212,43 @@ function LobbySetup({ playerList, connectedCount }) {
       .catch((e) => console.error('Failed to fetch agents:', e));
   }, []);
 
+  const toggleReasoning = useCallback((agentType) => {
+    setReasoningEnabled(prev => ({ ...prev, [agentType]: !prev[agentType] }));
+  }, []);
+
   const handleAddAgent = useCallback(async (agentType) => {
     setAddingAgent(agentType);
+    const useNative = !!reasoningEnabled[agentType];
     try {
       await fetch('/setup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ agents: [{ type: agentType }] }),
+        body: JSON.stringify({
+          agents: [{ type: agentType, use_native_reasoning: useNative }],
+        }),
       });
     } catch (e) {
       console.error('Failed to add agent:', e);
     }
     setAddingAgent(null);
+  }, [reasoningEnabled]);
+
+  const handleRemoveAgent = useCallback(async (playerId) => {
+    if (!playerId) return;
+    if (!window.confirm(`Remove ${playerId}?`)) return;
+    try {
+      const r = await fetch('/unsetup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ player_id: playerId }),
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        console.error('Failed to remove agent:', err.error || r.status);
+      }
+    } catch (e) {
+      console.error('Failed to remove agent:', e);
+    }
   }, []);
 
   const handleStartGame = useCallback(async () => {
@@ -246,6 +275,15 @@ function LobbySetup({ playerList, connectedCount }) {
                 <span className={`indicator ${p.connected ? 'online' : 'offline'}`} />
                 <span className="host-player-item-name">{p.display_name}</span>
                 <PlayerTypeBadge player={p} />
+                {p.player_type === 'AI' && !gameStarted && (
+                  <button
+                    className="host-player-remove"
+                    onClick={() => handleRemoveAgent(p.player_id)}
+                    title={`Remove ${p.player_id}`}
+                  >
+                    ×
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -258,6 +296,18 @@ function LobbySetup({ playerList, connectedCount }) {
             {availableAgents.map(agent => (
               <div key={agent.type} className="host-agent-slot">
                 <span className="host-agent-slot-label">{agent.name}</span>
+                <label
+                  className="host-agent-reasoning-toggle"
+                  title="Native reasoning: capture provider-side thinking trace. Slower (5–25s/call) and more expensive — recommended only for all-AI research runs, NOT live human play."
+                >
+                  <input
+                    type="checkbox"
+                    checked={!!reasoningEnabled[agent.type]}
+                    onChange={() => toggleReasoning(agent.type)}
+                    disabled={!agent.available || gameStarted}
+                  />
+                  <span>Native reasoning</span>
+                </label>
                 <button
                   className="btn-host-action"
                   onClick={() => handleAddAgent(agent.type)}

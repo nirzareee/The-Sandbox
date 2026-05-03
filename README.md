@@ -6,7 +6,7 @@
 
 > **Who is the human? Who is the model? Spot the impostor.**
 >
-> A multiplayer social-deduction game purpose-built for human–AI interaction research. Real humans play alongside LLM agents (Claude, GPT-4o, Gemini, Llama, Groq-hosted models) in a single competitive session — without knowing in advance which players are AI.
+> A multiplayer social-deduction game purpose-built for human–AI interaction research. Real humans play alongside frontier LLM agents (Claude Opus, GPT, Gemini, Kimi, Grok, DeepSeek, Llama, Groq-hosted models) in a single competitive session — without knowing in advance which players are AI.
 
 The Sandbox is a controlled environment for studying how well current LLMs can pass as human players, how humans detect them, and how different models compare behaviorally under the same constraints.
 
@@ -54,7 +54,7 @@ The Sandbox is a research instrument for measuring:
 - **Human detection accuracy** — can humans tell AI from human over 5 rounds of constrained interaction?
 - **AI Turing success** — which LLMs best pass as human players?
 - **Behavioral fingerprints** — linguistic, temporal, and strategic signals that distinguish human from AI play.
-- **Cross-model comparison** — how do Claude, GPT-4o, Gemini, Llama, and Groq-hosted models differ behaviorally under identical game rules?
+- **Cross-model comparison** — how do Claude, GPT, Gemini, Kimi, Grok, DeepSeek, Llama, and Groq-hosted models differ behaviorally under identical game rules?
 
 Every action — hints, chat messages, DMs, votes, reflections, internal thinking traces — is logged to disk in a structured format ready for downstream analysis.
 
@@ -77,7 +77,7 @@ Every action — hints, chat messages, DMs, votes, reflections, internal thinkin
 └──────┬───────┬───────┬───────┬───────┬───────┬──────────────────────┘
        │ WS    │ WS    │ WS    │ WS    │ WS    │ WS
   ┌────┴──┐ ┌──┴───┐ ┌─┴────┐ ┌┴─────┐ ┌┴────┐ ┌┴──────────┐
-  │Human  │ │Claude│ │GPT-4o│ │Gemini│ │Llama│ │Host (read)│
+  │Human  │ │Claude│ │OpenAI│ │Gemini│ │Llama│ │Host (read)│
   │Browser│ │Agent │ │Agent │ │Agent │ │Agent│ │  Browser  │
   └───────┘ └──┬───┘ └──┬───┘ └──┬───┘ └──┬──┘ └───────────┘
                │         │        │         │
@@ -132,7 +132,7 @@ python launcher.py --mock --fast
 python launcher.py --humans 1 --mock
 
 # 2 humans + 4 real LLM agents
-python launcher.py --humans 2 --agents claude,gpt4o,gemini,llama
+python launcher.py --humans 2 --agents claude,gpt,gemini,kimi
 
 # Groq models: 1 human + 2 Groq-hosted agents
 python launcher.py --humans 1 --agents groq-scout,groq-llama --players 3
@@ -148,13 +148,19 @@ Once the server is running:
 
 | Agent flag | Provider | Model |
 |---|---|---|
-| `claude` | Anthropic | `claude-sonnet-4-5` |
-| `gpt4o` | OpenAI | `gpt-4o` |
-| `gemini` | Google | `gemini-2.0-flash` |
-| `llama` | Together AI | Llama 3.1 70B |
+| `claude` | Anthropic | `claude-opus-4-6` |
+| `gpt` / `openai` | OpenAI | `gpt-5.5` |
+| `gpt-codex` | OpenAI | `gpt-5.3-codex` |
+| `gemini` | Google | `gemini-3.1-pro-preview` |
+| `kimi` | Moonshot AI | `kimi-k2.5` |
+| `kimi-k2.6` | Moonshot AI | `kimi-k2.6` |
+| `grok` | xAI | `grok-4.3` |
+| `deepseek` | DeepSeek | `deepseek-v4-pro` |
+| `deepseek-flash` | DeepSeek | `deepseek-v4-flash` |
+| `llama` | Together AI | `meta-llama/Llama-3.3-70B-Instruct-Turbo` |
 | `groq-scout` | Groq | `meta-llama/llama-4-scout-17b-16e-instruct` |
-| `groq-llama` | Groq | `meta-llama/llama-4-maverick-17b-128e-instruct` |
-| `groq-kimi` | Groq | `moonshotai/kimi-k1.5-32k-preview` |
+| `groq-llama` | Groq | `llama-3.3-70b-versatile` |
+| `groq-llama8b` | Groq | `llama-3.1-8b-instant` |
 | `groq-qwen` | Groq | `qwen/qwen3-32b` |
 | `mock` | — | Scripted, no API key |
 
@@ -185,8 +191,11 @@ the_sandbox/
 ├── agents/                  # AI agent implementations
 │   ├── base_agent.py        #   Strategy base class — shared lifecycle
 │   ├── claude_agent.py
-│   ├── gpt4o_agent.py
+│   ├── openai_agent.py
 │   ├── gemini_agent.py
+│   ├── kimi_agent.py
+│   ├── grok_agent.py
+│   ├── deepseek_agent.py
 │   ├── llama_agent.py
 │   ├── groq_agent.py
 │   ├── mock_agent.py        #   Scripted agent (no API)
