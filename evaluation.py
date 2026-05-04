@@ -207,7 +207,44 @@ class SessionData:
         self.num_rounds_configured: int = self.config.get("num_rounds", 5)
         self.is_complete: bool = self.game_finished_event is not None
 
+        # ---- backfill display_names from recovered roster ----
+        # Legacy sessions persisted display_name as "Player" before the
+        # shuffle ran. Use the post-shuffle pN map (from manifest, or
+        # recovered from thinking traces) to set player labels properly.
+        self._backfill_display_names_from_recovered_roster()
+
     # ---- loaders ----
+
+    def _backfill_display_names_from_recovered_roster(self) -> None:
+        """If display_names are placeholders ('Player'), recover the real
+        post-shuffle Player_N mapping from agent thinking traces and
+        update game_players + all_players entries in place."""
+        # Heuristic: a roster has been recovered if every game player's
+        # current display_name is a placeholder like 'Player' (no suffix).
+        needs_backfill = all(
+            (info.get("display_name") in (None, "", "Player"))
+            for info in self.game_players.values()
+        )
+        if not needs_backfill:
+            return
+        # Lazy import to avoid circular module-load order.
+        try:
+            from evaluation_metrics import _build_global_pn_map
+        except ImportError:
+            return
+        pn_map = _build_global_pn_map(self)
+        if not pn_map:
+            return
+        for pos, pid in pn_map.items():
+            label = f"Player_{pos}"
+            if pid in self.game_players:
+                self.game_players[pid]["display_name"] = label
+            if pid in self.all_players:
+                self.all_players[pid]["display_name"] = label
+        self.warnings.append(
+            f"Recovered Player_N display names from thinking traces "
+            f"({len(pn_map)}/{len(self.game_players)} agents)"
+        )
 
     def _load_manifest(self) -> None:
         """Load session_manifest.json. Falls back on prefix-based inference."""
@@ -221,6 +258,11 @@ class SessionData:
         self.session_id: str = data.get("session_id", self.session_dir.name)
         self.started_at: str = data.get("started_at", "")
 
+        # Post-shuffle Player_1..N roster (added 2026-05-04). Older sessions
+        # don't have this; fall back to inferring from agent thinking traces
+        # in _recover_shuffled_roster_from_traces.
+        self.shuffled_roster: dict[str, str] = data.get("shuffled_roster") or {}
+
         self.all_players: dict[str, dict] = {}
         self.game_players: dict[str, dict] = {}  # excludes HOST
 
@@ -233,9 +275,14 @@ class SessionData:
             # real_name: the human's actual chosen name, or the agent seat ID.
             # Falls back to player_id so labels are never blank.
             real_name = info.get("real_name") or pid
+            # Prefer the shuffled-roster name when available (current sessions).
+            # Older sessions persisted display_name as a literal "Player"
+            # placeholder before the shuffle ran.
+            shuffled = self.shuffled_roster.get(pid)
+            display = shuffled or info.get("display_name") or pid
             normalized = {
                 "player_id": pid,
-                "display_name": info.get("display_name", pid),
+                "display_name": display,
                 "real_name": real_name,
                 "player_type": ptype,
                 "model_name": info.get("model_name"),

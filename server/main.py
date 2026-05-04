@@ -365,7 +365,14 @@ async def start_game(request: Request):
             })
         )
 
-        # Save session manifest with player roster and config.
+        # Shuffle display names to anonymize connection order. Run BEFORE
+        # save_manifest so the persisted player_info has the post-shuffle
+        # display_names — without this, the manifest stores all display
+        # names as "Player" and evaluation can't recover the P1-P5 ↔ pid
+        # mapping that agents reference in chat ("p3 family dog is sus").
+        roster = connection_manager.shuffle_display_names()
+
+        # Save session manifest with post-shuffle roster + config.
         await game_logger.save_manifest({
             "session_id": session_id,
             "started_at": datetime.now(timezone.utc).isoformat(),
@@ -373,11 +380,10 @@ async def start_game(request: Request):
                 pid: info.model_dump()
                 for pid, info in connection_manager.player_info.items()
             },
+            "shuffled_roster": roster,
             "config": game_config.model_dump(),
         })
 
-        # Shuffle display names to anonymize connection order
-        roster = connection_manager.shuffle_display_names()
         # Non-hosts: plain roster (just display names — AI vs human must stay hidden)
         await connection_manager.broadcast(
             ServerMessage(event="player_roster", data={"roster": roster}),

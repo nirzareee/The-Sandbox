@@ -25,6 +25,7 @@ are missing — pure-Python fallbacks always exist.
 
 from __future__ import annotations
 
+import json
 import math
 import re
 from collections import Counter, defaultdict
@@ -137,17 +138,182 @@ def _build_round_pn_map(session) -> dict[int, dict[int, str]]:
     """Build per-round positional name map: round_number -> {1: pid, 2: pid, ...}.
 
     Players reference each other in chat as `p1`, `p2`, `p3`, etc. The
-    mapping is per-round, derived from each round's `hint_order` field
-    (the order players submit hints in). Without this map, mention and
-    accusation detection misses every shorthand reference.
+    mapping is GLOBAL (one shuffle per game), not per-round — hint_order
+    is just speaking order and bears no relation to display names.
+
+    Resolution order:
+      1. session.shuffled_roster (post-shuffle Player_N → pid, persisted
+         in manifest for sessions started after 2026-05-04)
+      2. Recover from agent thinking traces ("Player_X (me)" patterns)
+         in `ai_internals/` for legacy sessions
+      3. Last resort: hint_order (KNOWN-WRONG; emits a warning)
     """
+    pn_map = _build_global_pn_map(session)
     out: dict[int, dict[int, str]] = {}
     for ev in session.round_start_events:
         rn = ev.get("round_number")
-        order = ev.get("hint_order") or []
-        if rn:
+        if not rn:
+            continue
+        if pn_map:
+            # Same global map for every round — that's the whole point.
+            out[rn] = dict(pn_map)
+        else:
+            # Fallback: hint_order. Wrong, but better than no mention
+            # detection at all.
+            order = ev.get("hint_order") or []
             out[rn] = {i + 1: pid for i, pid in enumerate(order)}
     return out
+
+
+def _build_global_pn_map(session) -> dict[int, str]:
+    """Return {position_int: player_id} for the post-shuffle roster.
+
+    Empty dict if neither manifest roster nor thinking-trace recovery
+    works; caller should warn or fall back.
+    """
+    # Source 1: persisted roster from manifest (current sessions)
+    roster = getattr(session, "shuffled_roster", {}) or {}
+    if roster:
+        out = {}
+        for pid, name in roster.items():
+            m = re.match(r"^Player_(\d+)$", str(name))
+            if m:
+                out[int(m.group(1))] = pid
+        if out:
+            return out
+
+    # Source 2: scan agent thinking traces for "Player_N (me)" patterns
+    recovered = _recover_pn_map_from_traces(session)
+    if recovered:
+        return recovered
+
+    return {}
+
+
+def _recover_pn_map_from_traces(session) -> dict[int, str]:
+    """Scan ai_internals/<agent_dir>/thinking_traces.jsonl for self-refs.
+
+    Tries multiple patterns each agent uses to identify itself, then
+    fills in any remaining player by elimination if exactly one slot
+    is unaccounted for. Returns {pos: pid}.
+    """
+    import os
+    pn_map: dict[int, str] = {}
+    ai_dir = os.path.join(str(session.session_dir), "ai_internals")
+    if not os.path.isdir(ai_dir):
+        return pn_map
+
+    self_patterns = [
+        re.compile(r"Player_(\d+)\s*\(me\)"),
+        re.compile(r"\bp(\d+)\s*\(me\)", re.IGNORECASE),
+        re.compile(r"I(?:'?m| am)\s+(?:Player_?|P)(\d+)\b", re.IGNORECASE),
+        re.compile(r"\bMe\s*=\s*(?:Player_?|P)(\d+)", re.IGNORECASE),
+        re.compile(r"my (?:label|seat|spot)(?: is)?\s+(?:Player_?|P)(\d+)", re.IGNORECASE),
+    ]
+    pids_in_dir: list[str] = []
+    for entry in os.listdir(ai_dir):
+        m = re.match(r"^(agent_\d+|human_\w+)_", entry)
+        if not m:
+            continue
+        pid = m.group(1)
+        if pid not in session.game_players:
+            continue
+        pids_in_dir.append(pid)
+        path = os.path.join(ai_dir, entry, "thinking_traces.jsonl")
+        if not os.path.isfile(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                done = False
+                for line in fh:
+                    if done:
+                        break
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        rec = json.loads(line)
+                    except Exception:
+                        continue
+                    text = rec.get("thinking", "") or ""
+                    for pat in self_patterns:
+                        found = pat.search(text)
+                        if found:
+                            pn_map[int(found.group(1))] = pid
+                            done = True
+                            break
+        except OSError:
+            continue
+
+    # Cross-reference: scan any agent's thinking for "Player_X: '<hint>'"
+    # patterns, then look up which agent owns that hint via the round
+    # hint records. Each match resolves another (position, pid) pair.
+    n_players = len(session.game_players)
+    if len(pn_map) < n_players:
+        # Build a hint -> pid lookup from R1 hints (using R1 keeps it simple
+        # and the mapping is the same across all rounds).
+        hint_to_pid: dict[str, str] = {}
+        for ev in session.hint_events:
+            if ev.get("round_number") != 1:
+                continue
+            hint = ev.get("hint", "")
+            pid = ev.get("player_id")
+            if hint and pid and isinstance(hint, str):
+                hint_to_pid[hint.strip().lower()] = pid
+
+        ref_re = re.compile(
+            r"(?:Player_|p|P)(\d+)\s*[:\-]?\s*['\"]([^'\"]{2,40})['\"]",
+            re.IGNORECASE,
+        )
+        for entry in pids_in_dir:
+            # Look in any thinking entry for hint references
+            # (deliberately not just self; cross-references work too)
+            agent_dir = next(
+                (d for d in os.listdir(ai_dir) if d.startswith(entry + "_")),
+                None,
+            )
+            if not agent_dir:
+                continue
+            path = os.path.join(ai_dir, agent_dir, "thinking_traces.jsonl")
+            if not os.path.isfile(path):
+                continue
+            try:
+                with open(path, "r", encoding="utf-8") as fh:
+                    for line in fh:
+                        line = line.strip()
+                        if not line:
+                            continue
+                        try:
+                            rec = json.loads(line)
+                        except Exception:
+                            continue
+                        if rec.get("round_number") != 1:
+                            continue
+                        text = rec.get("thinking", "") or ""
+                        for m in ref_re.finditer(text):
+                            pos = int(m.group(1))
+                            quoted = m.group(2).strip().lower()
+                            pid = hint_to_pid.get(quoted)
+                            if pid and pos not in pn_map:
+                                pn_map[pos] = pid
+            except OSError:
+                continue
+            if len(pn_map) == n_players:
+                break
+
+    # Final elimination: if exactly one position+pid still unresolved,
+    # fill it deterministically.
+    if 0 < len(pn_map) == n_players - 1 and len(pids_in_dir) == n_players:
+        mapped_pids = set(pn_map.values())
+        mapped_positions = set(pn_map.keys())
+        missing_pids = [p for p in pids_in_dir if p not in mapped_pids]
+        missing_positions = [
+            n for n in range(1, n_players + 1) if n not in mapped_positions
+        ]
+        if len(missing_pids) == 1 and len(missing_positions) == 1:
+            pn_map[missing_positions[0]] = missing_pids[0]
+
+    return pn_map
 
 
 _PN_RE = re.compile(r"\bp(\d+)\b", re.IGNORECASE)
