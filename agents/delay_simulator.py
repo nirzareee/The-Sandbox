@@ -22,15 +22,19 @@ class DelaySimulator:
     """
 
     DELAY_RANGES: dict[str, tuple[float, float]] = {
-        "hint": (2, 8),
-        "group_message": (1, 4),
-        "dm": (1, 3),
-        "vote": (3, 10),
-        "classification": (2, 15),
-        "discussion_turn": (4, 12),
-        "first_discussion_turn": (1.5, 4),
-        "burst_turn": (1, 3),
-        "reactive_turn": (1, 2.5),
+        "hint": (3, 10),
+        "group_message": (2, 6),
+        "dm": (2, 5),
+        "vote": (4, 12),
+        "classification": (3, 18),
+        # Discussion timings — pure "deciding-to-speak" gap. typing_time(content)
+        # handles per-message typing separately. 2026-05-03: scaled ~1.6× from
+        # the original (3, 8) range — observed agents averaging 13s gaps vs
+        # humans averaging 27s in real games, so closing the realism gap.
+        "discussion_turn": (5, 13),
+        "first_discussion_turn": (3, 8),
+        "burst_turn": (2.5, 6),
+        "reactive_turn": (2.5, 5),
     }
 
     JITTER_PERCENT = 30  # ±30% randomness
@@ -84,3 +88,27 @@ class DelaySimulator:
     @staticmethod
     def reactive_turn() -> float:
         return DelaySimulator._compute("reactive_turn")
+
+    @staticmethod
+    def typing_time(text: str, base_pause: float = 1.6, chars_per_sec: float = 5.0,
+                    cap: float = 13.0) -> float:
+        """Per-message typing delay scaled to message length.
+
+        Models a natural typist: short pre-typing pause + chars / typing
+        speed. Capped to keep messages from going stale by the time they
+        land. 2026-05-03: slowed ~1.6× (chars_per_sec 8→5, pause 1→1.6,
+        cap 8→13) to better match observed human typing pace.
+
+        Defaults: ~5 chars/sec (~60 wpm), 1.6s pause, 13s hard cap.
+        12-char  → ~4.0s   ("hmm not sure")
+        30-char  → ~7.6s   ("p3 acting weird tbh i guess")
+        60-char  → ~13s cap (would be 13.6s uncapped)
+        """
+        length = len(text or "")
+        base = base_pause + (length / chars_per_sec)
+        capped = min(base, cap)
+        jitter = random.uniform(
+            1 - DelaySimulator.JITTER_PERCENT / 100,
+            1 + DelaySimulator.JITTER_PERCENT / 100,
+        )
+        return max(0.5, capped * jitter) * _cfg.TIMER_MULTIPLIER

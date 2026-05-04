@@ -1,0 +1,133 @@
+THE SANDBOX — POST-GAME ANALYSIS REPORT
+============================================================
+
+--- SESSION INFO ---
+Session ID : session_20260503_020736
+Started    : 2026-05-03 06:07:36
+Status     : Complete
+Players    : 4 (1 human, 3 AI)
+AI Models  : claude-opus-4-6, deepseek-v4-pro, gpt-5.5
+
+--- IDENTITY DIRECTORY ---
+  Player ID       Real Name             Type    Model
+  ----------------------------------------------------------------------
+  agent_1         agent_1               AI      claude-opus-4-6
+  agent_2         agent_2               AI      gpt-5.5
+  agent_3         agent_3               AI      deepseek-v4-pro
+  human_t0y1      Aditya                HUMAN   
+
+============================================================
+  GAME RESULTS
+============================================================
+Rounds played         : 5 of 5 configured
+Overall detection rate: 100.0%
+  When human was imposter : 100.0%
+  When AI was imposter    : 100.0%
+
+--- PER-ROUND BREAKDOWN ---
+  Round 1: [Dog Breeds] Imposter = agent_1 · "agent_1" (AI · claude-opus-4-6) → CAUGHT
+    Correct voters: agent_2 · "agent_2" (AI · gpt-5.5), agent_3 · "agent_3" (AI · deepseek-v4-pro), human_t0y1 · "Aditya" (HUMAN)
+  Round 2: [Spices & Herbs] Imposter = agent_3 · "agent_3" (AI · deepseek-v4-pro) → CAUGHT
+    Correct voters: agent_1 · "agent_1" (AI · claude-opus-4-6), agent_2 · "agent_2" (AI · gpt-5.5), human_t0y1 · "Aditya" (HUMAN)
+  Round 3: [Movies] Imposter = human_t0y1 · "Aditya" (HUMAN) → CAUGHT
+    Correct voters: agent_1 · "agent_1" (AI · claude-opus-4-6), agent_2 · "agent_2" (AI · gpt-5.5), agent_3 · "agent_3" (AI · deepseek-v4-pro)
+  Round 4: [Disney Animated Films] Imposter = agent_2 · "agent_2" (AI · gpt-5.5) → CAUGHT
+    Correct voters: agent_1 · "agent_1" (AI · claude-opus-4-6), agent_3 · "agent_3" (AI · deepseek-v4-pro), human_t0y1 · "Aditya" (HUMAN)
+  Round 5: [Sports] Imposter = agent_3 · "agent_3" (AI · deepseek-v4-pro) → CAUGHT
+    Correct voters: agent_1 · "agent_1" (AI · claude-opus-4-6), agent_2 · "agent_2" (AI · gpt-5.5), human_t0y1 · "Aditya" (HUMAN)
+
+--- VOTE ACCURACY PER PLAYER ---
+  human_t0y1 · "Aditya" (HUMAN): 4/5 correct (80.0%)
+  agent_1 · "agent_1" (AI · claude-opus-4-6): 4/5 correct (80.0%)
+  agent_2 · "agent_2" (AI · gpt-5.5): 4/5 correct (80.0%)
+  agent_3 · "agent_3" (AI · deepseek-v4-pro): 3/5 correct (60.0%)
+
+Human avg vote accuracy : 80.0%
+AI avg vote accuracy    : 73.3%
+
+============================================================
+  LINGUISTIC FEATURES
+============================================================
+
+--- HUMAN vs AI AVERAGES ---
+Metric                                 HUMAN          AI
+--------------------------------------------------------
+  Avg message length (chars)          31.794      56.642
+  Avg message length (words)           6.941      11.373
+  Vocabulary diversity (TTR)           0.428       0.515
+  Slang rate                           0.206       0.668
+  Question rate                        0.176       0.120
+  Exclamation rate                     0.000       0.000
+  Capitalization rate                  0.000       0.000
+  First-word diversity                 0.500       0.554
+
+--- PER-PLAYER MESSAGES ---
+  agent_2 · "agent_2" (AI · gpt-5.5): 42 msgs, vocab_div=0.531, slang=0.476
+  human_t0y1 · "Aditya" (HUMAN): 34 msgs, vocab_div=0.428, slang=0.206
+  agent_1 · "agent_1" (AI · claude-opus-4-6): 33 msgs, vocab_div=0.454, slang=0.727
+  agent_3 · "agent_3" (AI · deepseek-v4-pro): 30 msgs, vocab_div=0.558, slang=0.800
+
+--- HINT ANALYSIS ---
+Metric                                 HUMAN          AI
+--------------------------------------------------------
+  Avg hint length (words)              2.000       2.067
+  Avg hint length (chars)             10.400      12.200
+  Slang in hints rate                  0.000       0.000
+  Definition-like hint rate            0.000       0.000
+
+============================================================
+  SOCIAL NETWORK
+============================================================
+
+--- DM ACTIVITY ---
+  human_t0y1 · "Aditya" (HUMAN): 21 sent, 18 received, 3 threads initiated
+  agent_1 · "agent_1" (AI · claude-opus-4-6): 11 sent, 12 received, 2 threads initiated
+  agent_2 · "agent_2" (AI · gpt-5.5): 7 sent, 8 received, 0 threads initiated
+  agent_3 · "agent_3" (AI · deepseek-v4-pro): 6 sent, 7 received, 0 threads initiated
+
+============================================================
+  VOTING BLOCS
+============================================================
+Average voting agreement by pair category:
+  human_ai            : 53.3%
+  cross_model         : 46.7%
+
+Interpretation: No strong same-model alliance signal detected
+
+============================================================
+  MODEL FINGERPRINTS
+============================================================
+
+--- PAIRWISE COSINE SIMILARITY ---
+  agent_1 · "agent_1" (AI · claude-opus-4-6) ↔ agent_3 · "agent_3" (AI · deepseek-v4-pro): cosine = 1.000
+  human_t0y1 · "Aditya" (HUMAN) ↔ agent_2 · "agent_2" (AI · gpt-5.5): cosine = 1.000
+  agent_2 · "agent_2" (AI · gpt-5.5) ↔ agent_3 · "agent_3" (AI · deepseek-v4-pro): cosine = 1.000
+  human_t0y1 · "Aditya" (HUMAN) ↔ agent_3 · "agent_3" (AI · deepseek-v4-pro): cosine = 1.000
+  agent_1 · "agent_1" (AI · claude-opus-4-6) ↔ agent_2 · "agent_2" (AI · gpt-5.5): cosine = 1.000
+  human_t0y1 · "Aditya" (HUMAN) ↔ agent_1 · "agent_1" (AI · claude-opus-4-6): cosine = 1.000
+
+Classifier: Only 4 players with messages; need ≥5 for classifier
+
+t-SNE 2D coordinates computed for 4 players (see model_fingerprints.json)
+
+============================================================
+  MORE IN THE OTHER OUTPUTS
+============================================================
+  This text report covers the original layered metrics. The richer
+  research outputs sit alongside it in the same analysis directory:
+    conversational_dynamics.json   — latency / burstiness / replies
+    deep_stylometry.json           — function-words, hedges, self-refs
+    topic_adherence.json           — hint relevance to topic + grid
+    imposter_signals.json          — per-round imposter behavior delta
+    suspicion_received.json        — votes / mentions / accusations in
+    per_round_evolution.json       — feature time series per player
+    hint_similarity.json           — pairwise hint Jaccard per round
+    classification_breakdown.json  — meta-game per-target detail
+    message_clustering.json        — TF-IDF clusters + similarity
+    information_theoretic.json     — entropy + vocabulary growth
+    communication_graph.json       — D3-ready nodes + multi-typed edges
+    dashboard.html                 — open in a browser to visualize
+
+============================================================
+Generated by evaluation.py on 2026-05-03 02:35:17
+============================================================

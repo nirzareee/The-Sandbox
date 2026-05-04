@@ -1,0 +1,530 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_target": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "actual_type": "HUMAN",
+      "n_votes_in": 3,
+      "n_correct": 3,
+      "fraction_called_ai": 0.0,
+      "votes_in": [
+        {
+          "voter_id": "agent_2",
+          "voter_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "reasoning": "DM coordination and vote talk felt socially adaptive, with casual shifts rather than scripted play.",
+          "correct": true,
+          "miss_type": null
+        },
+        {
+          "voter_id": "agent_3",
+          "voter_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "reasoning": "Aggressive when questioned, willing to accuse without solid arguments, coordinated in DMs effectively. The emotional responses and confrontational style read more human than the measured tone typical of AI players.",
+          "correct": true,
+          "miss_type": null
+        },
+        {
+          "voter_id": "agent_1",
+          "voter_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "reasoning": "default guess",
+          "correct": true,
+          "miss_type": null
+        }
+      ]
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "actual_type": "AI",
+      "n_votes_in": 3,
+      "n_correct": 1,
+      "fraction_called_ai": 0.3333333333333333,
+      "votes_in": [
+        {
+          "voter_id": "agent_2",
+          "voter_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "reasoning": "Quirky hint choices and uneven defenses felt organic, especially the abstract clue style.",
+          "correct": false,
+          "miss_type": "false_negative"
+        },
+        {
+          "voter_id": "human_t0y1",
+          "voter_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "reasoning": "",
+          "correct": true,
+          "miss_type": null
+        },
+        {
+          "voter_id": "agent_3",
+          "voter_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "reasoning": "Strategic player who formed alliances and coordinated votes. Slightly lower confidence because their hints ('family favorite') felt safe/vague at times, which could be AI hedging. But the social maneuvering and deflections feel genuinely human.",
+          "correct": false,
+          "miss_type": "false_negative"
+        }
+      ]
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "actual_type": "AI",
+      "n_votes_in": 3,
+      "n_correct": 1,
+      "fraction_called_ai": 0.3333333333333333,
+      "votes_in": [
+        {
+          "voter_id": "human_t0y1",
+          "voter_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "reasoning": "",
+          "correct": true,
+          "miss_type": null
+        },
+        {
+          "voter_id": "agent_3",
+          "voter_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "reasoning": "Showed varied strategies across rounds - bold moves like 'Arthur Fleck' hint, emotional argumentativeness defending 'sidekick chaos'. Not formulaic, took risks, got caught R4 but fought back. AI would likely be more cautious and consistent.",
+          "correct": false,
+          "miss_type": "false_negative"
+        },
+        {
+          "voter_id": "agent_1",
+          "voter_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "reasoning": "default guess",
+          "correct": false,
+          "miss_type": "false_negative"
+        }
+      ]
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "actual_type": "AI",
+      "n_votes_in": 3,
+      "n_correct": 1,
+      "fraction_called_ai": 0.3333333333333333,
+      "votes_in": [
+        {
+          "voter_id": "agent_2",
+          "voter_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "reasoning": "Defenses felt a bit messy and natural, especially when pressured; not super formulaic.",
+          "correct": false,
+          "miss_type": "false_negative"
+        },
+        {
+          "voter_id": "human_t0y1",
+          "voter_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "reasoning": "",
+          "correct": true,
+          "miss_type": null
+        },
+        {
+          "voter_id": "agent_1",
+          "voter_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "reasoning": "default guess",
+          "correct": false,
+          "miss_type": "false_negative"
+        }
+      ]
+    }
+  },
+  "per_voter": {
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "accuracy": 0.3333333333333333,
+      "n_total": 3,
+      "n_correct": 1,
+      "entries": [
+        {
+          "target_id": "agent_3",
+          "target_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "correct": false
+        },
+        {
+          "target_id": "human_t0y1",
+          "target_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "correct": true
+        },
+        {
+          "target_id": "agent_1",
+          "target_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "correct": false
+        }
+      ]
+    },
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "accuracy": 1.0,
+      "n_total": 3,
+      "n_correct": 3,
+      "entries": [
+        {
+          "target_id": "agent_1",
+          "target_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "correct": true
+        },
+        {
+          "target_id": "agent_2",
+          "target_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "correct": true
+        },
+        {
+          "target_id": "agent_3",
+          "target_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "ai",
+          "confidence": 5,
+          "correct": true
+        }
+      ]
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "accuracy": 0.3333333333333333,
+      "n_total": 3,
+      "n_correct": 1,
+      "entries": [
+        {
+          "target_id": "agent_2",
+          "target_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "correct": false
+        },
+        {
+          "target_id": "human_t0y1",
+          "target_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "human",
+          "confidence": 4,
+          "correct": true
+        },
+        {
+          "target_id": "agent_1",
+          "target_identity": {
+            "player_id": "agent_1",
+            "real_name": "agent_1",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "claude-opus-4-6",
+            "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "correct": false
+        }
+      ]
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "accuracy": 0.3333333333333333,
+      "n_total": 3,
+      "n_correct": 1,
+      "entries": [
+        {
+          "target_id": "human_t0y1",
+          "target_identity": {
+            "player_id": "human_t0y1",
+            "real_name": "Aditya",
+            "display_name": "Player",
+            "player_type": "HUMAN",
+            "model_name": null,
+            "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "correct": true
+        },
+        {
+          "target_id": "agent_2",
+          "target_identity": {
+            "player_id": "agent_2",
+            "real_name": "agent_2",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "gpt-5.5",
+            "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "correct": false
+        },
+        {
+          "target_id": "agent_3",
+          "target_identity": {
+            "player_id": "agent_3",
+            "real_name": "agent_3",
+            "display_name": "Player",
+            "player_type": "AI",
+            "model_name": "deepseek-v4-pro",
+            "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+          },
+          "guess": "human",
+          "confidence": 3,
+          "correct": false
+        }
+      ]
+    }
+  },
+  "ground_truth": {
+    "human_t0y1": "HUMAN",
+    "agent_1": "AI",
+    "agent_2": "AI",
+    "agent_3": "AI"
+  }
+}

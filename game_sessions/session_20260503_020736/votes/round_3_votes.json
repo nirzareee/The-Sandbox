@@ -1,0 +1,9 @@
+{
+  "round_number": 3,
+  "votes": {
+    "human_t0y1": "agent_2",
+    "agent_1": "human_t0y1",
+    "agent_3": "human_t0y1",
+    "agent_2": "human_t0y1"
+  }
+}

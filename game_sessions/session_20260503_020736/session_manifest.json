@@ -1,0 +1,79 @@
+{
+  "session_id": "session_20260503_020736",
+  "started_at": "2026-05-03T06:07:36.425433+00:00",
+  "players": {
+    "host_vi0q": {
+      "player_id": "host_vi0q",
+      "display_name": "Host",
+      "player_type": "HOST",
+      "model_name": null,
+      "real_name": "Host",
+      "is_connected": false
+    },
+    "host_jjzk": {
+      "player_id": "host_jjzk",
+      "display_name": "Host",
+      "player_type": "HOST",
+      "model_name": null,
+      "real_name": "Host",
+      "is_connected": true
+    },
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "real_name": "Aditya",
+      "is_connected": true
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "real_name": "agent_1",
+      "is_connected": true
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "real_name": "agent_2",
+      "is_connected": true
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "real_name": "agent_3",
+      "is_connected": true
+    }
+  },
+  "config": {
+    "session_id": "session_20260503_020736",
+    "max_players": 6,
+    "num_rounds": 5,
+    "phase_durations": {
+      "LOBBY": 0,
+      "ASSIGNMENT": 10,
+      "HINT": 30,
+      "DISCUSSION": 90,
+      "VOTING": 25,
+      "RESULTS": 10,
+      "REFLECTION": 20,
+      "META_GAME": 60,
+      "SURVEY": 180,
+      "REVEAL": 15
+    },
+    "scoring": {
+      "correct_vote": 10,
+      "imposter_survives": 15,
+      "wrongly_accused": -5,
+      "correct_classification": 5
+    },
+    "timer_multiplier": 1.0,
+    "player_assignments": {}
+  }
+}

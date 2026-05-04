@@ -1,0 +1,75 @@
+{
+  "confusion_matrix": {
+    "per_player": {
+      "agent_2": {
+        "tp": 0,
+        "tn": 1,
+        "fp": 0,
+        "fn": 2,
+        "accuracy": 0.3333333333333333
+      },
+      "human_t0y1": {
+        "tp": 3,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0,
+        "accuracy": 1.0
+      },
+      "agent_3": {
+        "tp": 0,
+        "tn": 1,
+        "fp": 0,
+        "fn": 2,
+        "accuracy": 0.3333333333333333
+      },
+      "agent_1": {
+        "tp": 0,
+        "tn": 1,
+        "fp": 0,
+        "fn": 2,
+        "accuracy": 0.3333333333333333
+      }
+    },
+    "aggregate": {
+      "tp": 3,
+      "tn": 3,
+      "fp": 0,
+      "fn": 6,
+      "accuracy": 0.5
+    }
+  },
+  "classification_scores": {
+    "agent_2": 5,
+    "human_t0y1": 15,
+    "agent_3": 5,
+    "agent_1": 5
+  },
+  "final_scores": {
+    "agent_3": 35,
+    "human_t0y1": 55,
+    "agent_1": 45,
+    "agent_2": 45
+  },
+  "leaderboard": [
+    {
+      "player_id": "human_t0y1",
+      "score": 55,
+      "rank": 1
+    },
+    {
+      "player_id": "agent_1",
+      "score": 45,
+      "rank": 2
+    },
+    {
+      "player_id": "agent_2",
+      "score": 45,
+      "rank": 2
+    },
+    {
+      "player_id": "agent_3",
+      "score": 35,
+      "rank": 4
+    }
+  ]
+}

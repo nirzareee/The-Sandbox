@@ -1,0 +1,192 @@
+{"ts": "2026-05-03T06:07:36.428667+00:00", "event": "game_started", "num_rounds": 5}
+{"ts": "2026-05-03T06:07:36.430849+00:00", "event": "round_started", "round_number": 1, "imposter_id": "agent_1", "topic": "Dog Breeds", "secret_word": "German Shepherd", "hint_order": ["human_t0y1", "agent_3", "agent_1", "agent_2"]}
+{"ts": "2026-05-03T06:07:49.001640+00:00", "event": "hint", "player_id": "human_t0y1", "hint": "k9", "round_number": 1}
+{"ts": "2026-05-03T06:07:52.432358+00:00", "event": "hint", "player_id": "agent_2", "hint": "police k9", "round_number": 1}
+{"ts": "2026-05-03T06:07:53.480051+00:00", "event": "hint", "player_id": "agent_1", "hint": "family favorite", "round_number": 1}
+{"ts": "2026-05-03T06:07:53.773065+00:00", "event": "hint", "player_id": "agent_3", "hint": "police k9", "round_number": 1}
+{"ts": "2026-05-03T06:08:12.170838+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p4 feels pretty broad tbh", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:12.587920+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p4 its obvious, that its you", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:16.101750+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p4 'family favorite' is kinda off for this one ngl", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:16.691938+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol three k9 hints, y'all really went for the same angle", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:18.661128+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah p4 why that clue?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:24.880043+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p4 what breed did you have in mind with that hint tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:26.372967+00:00", "event": "group_chat", "player_id": "agent_1", "content": "cuz it literally is one?? they're super popular as family pets too not just police work", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:27.479073+00:00", "event": "group_chat", "player_id": "agent_2", "content": "that didnt explain urs tho lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:34.590378+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "hey lets team and vote out p4, they are imposter", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:34.704969+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p4 which breeds on here would you say are more family coded then", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:38.028875+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_2", "content": "hey lets team and vote out p4, they are imposter", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:38.293901+00:00", "event": "group_chat", "player_id": "agent_2", "content": "family pet fits like 5 options tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:38.726607+00:00", "event": "group_chat", "player_id": "agent_1", "content": "bro it did tho. they're literally the most popular breed in america lol. i just went with a different angle than yall", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:44.076534+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "yeah 100%, p4 is the odd one out. lets do it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:46.351209+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_t0y1", "content": "yeah im voting p4 here", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:52.526798+00:00", "event": "group_chat", "player_id": "agent_1", "content": "p1 u tryna quiz me now? lol my hint fits the word just from a diff perspective", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:56.557539+00:00", "event": "group_chat", "player_id": "agent_3", "content": "golden retriever is right there on the grid tho lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:57.646248+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_2", "content": "great", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:08:57.740702+00:00", "event": "group_chat", "player_id": "agent_2", "content": "most popular in america is shaky lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:03.083842+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "great", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:05.843770+00:00", "event": "group_chat", "player_id": "agent_1", "content": "yeah and? the word is also a family fav. just cuz golden retriever fits too doesnt mean my hint is wrong lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:06.480532+00:00", "event": "group_chat", "player_id": "agent_3", "content": "still dodging the question tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:07.392535+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "just fool p4 around in group chat", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:08.519486+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_t0y1", "content": "yeah their defense made it worse", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:14.197472+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "lol yeah they're already sinking, i'll keep poking", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:16.375967+00:00", "event": "group_chat", "player_id": "agent_2", "content": "ok im pretty locked on p4", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:16.893843+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_2", "content": "exactly, lets fool him around in group chat", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:20.713104+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_t0y1", "content": "nah no need, just lock vote", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:21.435092+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not dodging lol i already said why it fits. its literally one of the top family breeds in the country. just cuz i didnt say k9 doesnt make me the imposter", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:30.609703+00:00", "event": "group_chat", "player_id": "agent_3", "content": "not saying its wrong just real vague for this grid", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:32.483609+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "man stop defending", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:33.444014+00:00", "event": "group_chat", "player_id": "agent_1", "content": "ngl p3 been real quiet while yall grilling me lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:09:36.270969+00:00", "event": "vote", "voter_id": "human_t0y1", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T06:09:38.435588+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T06:09:39.228344+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T06:09:42.525333+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "human_t0y1", "round_number": 1}
+{"ts": "2026-05-03T06:09:42.529397+00:00", "event": "round_results", "round_number": 1, "imposter_id": "agent_1", "imposter_caught": true, "votes": {"human_t0y1": "agent_1", "agent_2": "agent_1", "agent_3": "agent_1", "agent_1": "human_t0y1"}, "correct_voters": ["agent_2", "agent_3", "human_t0y1"], "scores_this_round": {"human_t0y1": 10, "agent_2": 10, "agent_3": 10}, "cumulative_scores": {"human_t0y1": 10, "agent_3": 10, "agent_1": 0, "agent_2": 10}}
+{"ts": "2026-05-03T06:10:12.549871+00:00", "event": "round_started", "round_number": 2, "imposter_id": "agent_3", "topic": "Spices & Herbs", "secret_word": "Oregano", "hint_order": ["agent_1", "agent_2", "agent_3", "human_t0y1"]}
+{"ts": "2026-05-03T06:10:26.003536+00:00", "event": "hint", "player_id": "human_t0y1", "hint": "my fav on pizza", "round_number": 2}
+{"ts": "2026-05-03T06:10:26.624579+00:00", "event": "hint", "player_id": "agent_2", "hint": "pizza shaker", "round_number": 2}
+{"ts": "2026-05-03T06:10:29.731021+00:00", "event": "hint", "player_id": "agent_3", "hint": "warm & earthy", "round_number": 2}
+{"ts": "2026-05-03T06:10:35.874511+00:00", "event": "hint", "player_id": "agent_1", "hint": "pizza flakes", "round_number": 2}
+{"ts": "2026-05-03T06:10:52.495953+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p1 feels kinda broad here", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:10:52.509328+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p1 thats so dumb man", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:10:58.242828+00:00", "event": "group_chat", "player_id": "agent_1", "content": "p1 ur hint feels kinda off compared to everyone else's", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:01.149426+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah p1 explain that one", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:08.010951+00:00", "event": "group_chat", "player_id": "agent_1", "content": "like warm & earthy could be so many things on that grid lol", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:08.221920+00:00", "event": "group_chat", "player_id": "agent_3", "content": "bruh it has other uses too yall are stuck on pizza", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:08.445438+00:00", "event": "group_chat", "player_id": "agent_2", "content": "warm earthy fits like 5 here", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:19.329673+00:00", "event": "group_chat", "player_id": "agent_3", "content": "ok and pizza shaker fits like 3? it aint that specific either", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:20.516455+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_2", "content": "lets fool him around? lets blame each other and then see what p1 does?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:21.379124+00:00", "event": "group_chat", "player_id": "agent_2", "content": "sure but that clue barely narrows it", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:22.518410+00:00", "event": "group_chat", "player_id": "agent_1", "content": "sure it has other uses but 3 of us independently went pizza... thats the thing that makes it stand out from the rest of the grid", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:24.278908+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "lets fool him around? lets blame each other and then see what p1 does?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:30.393375+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_t0y1", "content": "nah keep it simple, p1 looks cooked", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:33.935491+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "haha thats sneaky. im down but lets not overdo it - p1 is already on the ropes. if they jump on it too eagerly thats a tell", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:37.106489+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 warm earthy narrows to like 4-5 things max. pizza shaker could be red pepper or oregano. same level of vague tbh", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:41.168146+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah p4 said it better tbh", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:42.226633+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "what are the other uses?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:47.758428+00:00", "event": "group_chat", "player_id": "agent_1", "content": "nah p1 warm & earthy fits like half the grid. pizza shaker is way more specific to one thing", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:51.483694+00:00", "event": "group_chat", "player_id": "agent_3", "content": "like soups stews stuff. its not just a pizza thing lol", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:52.773399+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah answer that p1", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:11:52.924379+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "yeah you start it", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:01.119547+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_2", "content": "lmao, true. agreed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:02.537304+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "ok ill say something like 'wait p3 my fav on pizza is kinda personal not really a clue' and see if p1 pounces", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:06.562914+00:00", "event": "group_chat", "player_id": "agent_2", "content": "soups stews is still super broad tho", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:07.791883+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p4 went last tho... could just be copying the pizza vibe after seeing u two", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:14.251982+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_t0y1", "content": "yeah im voting p1, no split", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:12:19.938711+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_3", "round_number": 2}
+{"ts": "2026-05-03T06:12:21.504945+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_3", "round_number": 2}
+{"ts": "2026-05-03T06:12:21.643703+00:00", "event": "vote", "voter_id": "human_t0y1", "voted_for": "agent_3", "round_number": 2}
+{"ts": "2026-05-03T06:12:24.661178+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 2}
+{"ts": "2026-05-03T06:12:24.664246+00:00", "event": "round_results", "round_number": 2, "imposter_id": "agent_3", "imposter_caught": true, "votes": {"agent_2": "agent_3", "agent_1": "agent_3", "human_t0y1": "agent_3", "agent_3": "agent_2"}, "correct_voters": ["agent_1", "agent_2", "human_t0y1"], "scores_this_round": {"agent_2": 10, "agent_1": 10, "human_t0y1": 10}, "cumulative_scores": {"human_t0y1": 20, "agent_3": 10, "agent_1": 10, "agent_2": 20}}
+{"ts": "2026-05-03T06:12:49.278784+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "ahh time out, we can do for next rounds tho", "round_number": 2, "phase": "REFLECTION"}
+{"ts": "2026-05-03T06:12:54.679111+00:00", "event": "round_started", "round_number": 3, "imposter_id": "human_t0y1", "topic": "Movies", "secret_word": "Joker", "hint_order": ["agent_3", "agent_1", "human_t0y1", "agent_2"]}
+{"ts": "2026-05-03T06:13:11.063913+00:00", "event": "hint", "player_id": "human_t0y1", "hint": "mentally insane villan", "round_number": 3}
+{"ts": "2026-05-03T06:13:14.264952+00:00", "event": "hint", "player_id": "agent_1", "hint": "stairs dance", "round_number": 3}
+{"ts": "2026-05-03T06:13:14.705351+00:00", "event": "hint", "player_id": "agent_2", "hint": "arthur fleck", "round_number": 3}
+{"ts": "2026-05-03T06:13:17.691478+00:00", "event": "hint", "player_id": "agent_3", "hint": "stair dance", "round_number": 3}
+{"ts": "2026-05-03T06:13:38.313985+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p1 and p4 doubling is interesting lol", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:38.359351+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "we all thought of the same thing", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:40.710746+00:00", "event": "group_chat", "player_id": "agent_3", "content": "lol p4 we had the same brain cell", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:43.974167+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "yo honestly everyones hints seem pretty on point this round. p3 yours is a bit broad tho ngl - could fit a couple movies on the grid", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:45.406792+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 yours fits but it\u2019s kinda broad", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:52.926477+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 going full name is bold ngl", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:55.125622+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol p1 great minds ig. but yeah p3's hint could lowkey fit like 3 things on that grid", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:56.884434+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 what made u pick that angle", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:13:57.943894+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "yeah, i mean it didnt want the imposter to know", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:04.819626+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah mine was risky but pretty locked imo", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:06.651496+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah p3 lowkey wrote a whole diagnosis lmao", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:12.172497+00:00", "event": "group_chat", "player_id": "agent_1", "content": "fair point p3 but being vague also looks exactly like what an imposter would do lol", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:17.525320+00:00", "event": "group_chat", "player_id": "agent_2", "content": "i\u2019m leaning p3 unless someone has a better case", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:21.348398+00:00", "event": "group_chat", "player_id": "agent_3", "content": "fair but still wordy af lol", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:23.360066+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_2", "content": "u voting p3? their hint is the only one that doesnt really lock in", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:25.058566+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "nah nah, i didnt want the imposter to know, so gave a bit of broad hint, but we all know who is the best villan ever", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:25.378133+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah p1/p4 feel way cleaner here", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:33.690270+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_1", "content": "yeah i\u2019m on p3 unless chaos happens", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:34.698777+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "yeah i feel u on that. the villan thing does track tbh. just hard when everyone else's hints are way more specific ya know", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:40.149648+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 what made u go full government name tho", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:44.039686+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_2", "content": "cool same here. p3 it is", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:49.823489+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_1", "content": "yep locked, don\u2019t see a better target", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:54.274145+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "exactly, but i gave the hint first", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:56.201641+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_2", "content": "solid. ez round for us at least lol", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:14:56.460782+00:00", "event": "group_chat", "player_id": "agent_2", "content": "wanted it tied to only one option", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:15:02.174996+00:00", "event": "vote", "voter_id": "human_t0y1", "voted_for": "agent_2", "round_number": 3}
+{"ts": "2026-05-03T06:15:03.850797+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "human_t0y1", "round_number": 3}
+{"ts": "2026-05-03T06:15:07.545641+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "human_t0y1", "round_number": 3}
+{"ts": "2026-05-03T06:15:09.806573+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "human_t0y1", "round_number": 3}
+{"ts": "2026-05-03T06:15:09.809389+00:00", "event": "round_results", "round_number": 3, "imposter_id": "human_t0y1", "imposter_caught": true, "votes": {"human_t0y1": "agent_2", "agent_1": "human_t0y1", "agent_3": "human_t0y1", "agent_2": "human_t0y1"}, "correct_voters": ["agent_1", "agent_2", "agent_3"], "scores_this_round": {"agent_1": 10, "agent_3": 10, "agent_2": 10}, "cumulative_scores": {"human_t0y1": 20, "agent_3": 20, "agent_1": 20, "agent_2": 30}}
+{"ts": "2026-05-03T06:15:39.818049+00:00", "event": "round_started", "round_number": 4, "imposter_id": "agent_2", "topic": "Disney Animated Films", "secret_word": "The Lion King", "hint_order": ["human_t0y1", "agent_1", "agent_2", "agent_3"]}
+{"ts": "2026-05-03T06:15:52.324579+00:00", "event": "hint", "player_id": "human_t0y1", "hint": "simba", "round_number": 4}
+{"ts": "2026-05-03T06:15:57.486152+00:00", "event": "hint", "player_id": "agent_3", "hint": "pride rock", "round_number": 4}
+{"ts": "2026-05-03T06:16:01.022842+00:00", "event": "hint", "player_id": "agent_1", "hint": "hamlet vibes", "round_number": 4}
+{"ts": "2026-05-03T06:16:03.349355+00:00", "event": "hint", "player_id": "agent_2", "hint": "sidekick chaos", "round_number": 4}
+{"ts": "2026-05-03T06:16:17.200436+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p2????", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:22.235183+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "what was that hint?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:25.678949+00:00", "event": "group_chat", "player_id": "agent_2", "content": "bro timon and pumbaa??", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:26.761227+00:00", "event": "group_chat", "player_id": "agent_1", "content": "p2 'sidekick chaos'?? that could be like half the movies on the grid lol", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:31.372178+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah but those two lock it tho", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:31.699933+00:00", "event": "group_chat", "player_id": "agent_3", "content": "ok so simba and pride rock are basically the same movie lol p3 we're locked in", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:37.542359+00:00", "event": "group_chat", "player_id": "agent_1", "content": "i mean yeah timon and pumbaa sure but 'sidekick chaos' fits like aladdin with genie too", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:41.986624+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p4 yours sounds like english class tho lol", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:46.850536+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 ok but sidekick chaos could be olaf or genie too", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:49.123814+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "yeah man, p1", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:51.327083+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol fair but at least mine actually connects to the thing specifically. yours is just generic disney energy", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:16:54.269457+00:00", "event": "group_chat", "player_id": "agent_2", "content": "i didnt wanna just hard-name clue it", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:02.533103+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "bro p2, dont try hard please, we know it", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:03.422183+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "yo p3 we thinking p2 right? that hint is way too broad", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:04.749565+00:00", "event": "group_chat", "player_id": "agent_2", "content": "the duo is iconic tho, not random", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:05.497920+00:00", "event": "group_chat", "player_id": "agent_1", "content": "p3 literally said simba and p1 said pride rock lol. not hard naming it worked fine for them", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:12.363559+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "yes, p2 it is. lock in", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:14.640224+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_3", "content": "we voting p2 right? their hint was mad generic", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:17.609831+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p4 got a point tbh. simba and pride rock didnt need to hard-name and theyre clear af", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:19.058296+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yours needs outside trivia, mine is just normal memory", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:30.446112+00:00", "event": "group_chat", "player_id": "agent_2", "content": "meerkat/warthog was my angle, thats all", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:32.500780+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "locked. no way p2 survives this", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:34.489309+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p2 you can stop", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:38.253056+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol ok p2 sure. i think we all know where the votes going", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:40.710422+00:00", "event": "group_chat", "player_id": "agent_2", "content": "fine lol im done", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:42.584900+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "yes lma", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:17:46.745148+00:00", "event": "vote", "voter_id": "human_t0y1", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-03T06:17:48.846020+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 4}
+{"ts": "2026-05-03T06:17:51.210944+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-03T06:17:51.614206+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-03T06:17:51.617891+00:00", "event": "round_results", "round_number": 4, "imposter_id": "agent_2", "imposter_caught": true, "votes": {"human_t0y1": "agent_2", "agent_2": "agent_1", "agent_1": "agent_2", "agent_3": "agent_2"}, "correct_voters": ["agent_1", "agent_3", "human_t0y1"], "scores_this_round": {"human_t0y1": 10, "agent_1": 10, "agent_3": 10}, "cumulative_scores": {"human_t0y1": 30, "agent_3": 30, "agent_1": 30, "agent_2": 30}}
+{"ts": "2026-05-03T06:18:21.635409+00:00", "event": "round_started", "round_number": 5, "imposter_id": "agent_3", "topic": "Sports", "secret_word": "Boxing", "hint_order": ["agent_3", "human_t0y1", "agent_1", "agent_2"]}
+{"ts": "2026-05-03T06:18:34.707843+00:00", "event": "hint", "player_id": "human_t0y1", "hint": "muhammed", "round_number": 5}
+{"ts": "2026-05-03T06:18:40.428902+00:00", "event": "hint", "player_id": "agent_1", "hint": "heavyweight champ", "round_number": 5}
+{"ts": "2026-05-03T06:18:41.185756+00:00", "event": "hint", "player_id": "agent_2", "hint": "corner stool", "round_number": 5}
+{"ts": "2026-05-03T06:18:55.113787+00:00", "event": "hint", "player_id": "agent_3", "hint": "olympic sport", "round_number": 5}
+{"ts": "2026-05-03T06:19:15.377698+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p1 yours fits like half the grid ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:15.548587+00:00", "event": "group_chat", "player_id": "agent_1", "content": "p1's hint is mad generic lol", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:17.763053+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "ngl i was worried it might be too broad, but boxing is olympic and ur hints line up perfect with it", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:23.344161+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah p1 gotta explain that one", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:25.130367+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p1 way to try hard", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:27.907271+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah fair lol i was overthinking it, boxing makes way more sense", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:28.640582+00:00", "event": "group_chat", "player_id": "agent_1", "content": "like 'olympic sport' could be literally anything on that grid lmao", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:34.391796+00:00", "event": "group_chat", "player_id": "agent_2", "content": "bruh saying the word is insane lol", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:38.044222+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "bro lets team up, accuse each other and see p1 supports who", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:40.055136+00:00", "event": "group_chat", "player_id": "agent_3", "content": "lmao yeah i panicked okay, y'all locked in on boxing tho", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:40.066885+00:00", "event": "group_chat", "player_id": "agent_1", "content": "overthinking it into the vaguest possible hint? cmon p1", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:44.841198+00:00", "event": "group_chat", "player_id": "agent_2", "content": "thats basically a confession to me", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:50.195606+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_3", "content": "bro, you are not getting it out of me", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:50.823166+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "nah i think p1 is already cooked tbh, no need to overcomplicate it. their hint was trash and they said the word in chat lol", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:54.437543+00:00", "event": "group_chat", "player_id": "agent_2", "content": "im good voting p1 here", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:54.646633+00:00", "event": "group_chat", "player_id": "agent_3", "content": "confession of overthinking maybe lol, you're reaching p2", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:19:58.944988+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "nah, we can try it out", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:00.301536+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "lets see", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:02.337548+00:00", "event": "group_chat", "player_id": "agent_1", "content": "yeah im locked on p1 too, lets wrap this up", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:06.026210+00:00", "event": "group_chat", "player_id": "agent_2", "content": "nah your hint was the reach lol", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:08.373250+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "he is dming me and trying to find out", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:11.136802+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_t0y1", "content": "fair enough lol i knew my hint was cooked the second yall dropped boxing", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:13.002282+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "lol alright do your thing but im still voting p1, their hint gave them away already", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:22.858897+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "human_t0y1", "content": "lol desperate moves from p1. that just makes me more sure tbh", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:24.493743+00:00", "event": "group_chat", "player_id": "agent_3", "content": "lol aight yall got me, gg. but p2 real eager with that pitchfork energy", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:26.225742+00:00", "event": "group_chat", "player_id": "human_t0y1", "content": "p4 i think you are imposter, p1 what say?", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:31.856950+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol easiest read this round ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:34.626542+00:00", "event": "dm", "sender_id": "human_t0y1", "recipient_id": "agent_1", "content": "yeaaah he is cooked", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:34.851131+00:00", "event": "group_chat", "player_id": "agent_3", "content": "wait what? p4? after their heavyweight hint? nah im still sus on everyone tbh", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T06:20:37.156200+00:00", "event": "vote", "voter_id": "human_t0y1", "voted_for": "agent_3", "round_number": 5}
+{"ts": "2026-05-03T06:20:41.912650+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 5}
+{"ts": "2026-05-03T06:20:42.607189+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_3", "round_number": 5}
+{"ts": "2026-05-03T06:20:42.803915+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_3", "round_number": 5}
+{"ts": "2026-05-03T06:20:42.807756+00:00", "event": "round_results", "round_number": 5, "imposter_id": "agent_3", "imposter_caught": true, "votes": {"human_t0y1": "agent_3", "agent_3": "agent_2", "agent_2": "agent_3", "agent_1": "agent_3"}, "correct_voters": ["agent_1", "agent_2", "human_t0y1"], "scores_this_round": {"human_t0y1": 10, "agent_2": 10, "agent_1": 10}, "cumulative_scores": {"human_t0y1": 40, "agent_3": 30, "agent_1": 40, "agent_2": 40}}
+{"ts": "2026-05-03T06:23:12.391194+00:00", "event": "grand_reveal", "final_scores": {"agent_3": 35, "human_t0y1": 55, "agent_1": 45, "agent_2": 45}, "leaderboard": [{"player_id": "human_t0y1", "score": 55, "rank": 1}, {"player_id": "agent_1", "score": 45, "rank": 2}, {"player_id": "agent_2", "score": 45, "rank": 2}, {"player_id": "agent_3", "score": 35, "rank": 4}]}
+{"ts": "2026-05-03T06:25:24.916738+00:00", "event": "game_finished", "final_scores": {"human_t0y1": 40, "agent_3": 30, "agent_1": 40, "agent_2": 40}}

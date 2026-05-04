@@ -194,6 +194,10 @@ function LobbySetup({ playerList, connectedCount }) {
   const [addedCounts, setAddedCounts] = useState({});
   const [gameStarted, setGameStarted] = useState(false);
   const [startLoading, setStartLoading] = useState(false);
+  // Per-agent-type "use native reasoning" toggle. The state of the checkbox
+  // when "Add to Game" is clicked is what gets sent for that spawn.
+  // Resets when the host page reloads — not persisted across sessions.
+  const [reasoningEnabled, setReasoningEnabled] = useState({});
 
   useEffect(() => {
     fetch('/agents')
@@ -210,19 +214,44 @@ function LobbySetup({ playerList, connectedCount }) {
       .catch((e) => console.error('Failed to fetch agents:', e));
   }, []);
 
+  const toggleReasoning = useCallback((agentType) => {
+    setReasoningEnabled(prev => ({ ...prev, [agentType]: !prev[agentType] }));
+  }, []);
+
   const handleAddAgent = useCallback(async (agentType) => {
     setAddingAgent(agentType);
+    const useNative = !!reasoningEnabled[agentType];
     try {
       await fetch('/setup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ agents: [{ type: agentType }] }),
+        body: JSON.stringify({
+          agents: [{ type: agentType, use_native_reasoning: useNative }],
+        }),
       });
       setAddedCounts(prev => ({ ...prev, [agentType]: (prev[agentType] ?? 0) + 1 }));
     } catch (e) {
       console.error('Failed to add agent:', e);
     }
     setAddingAgent(null);
+  }, [reasoningEnabled]);
+
+  const handleRemoveAgent = useCallback(async (playerId) => {
+    if (!playerId) return;
+    if (!window.confirm(`Remove ${playerId}?`)) return;
+    try {
+      const r = await fetch('/unsetup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ player_id: playerId }),
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        console.error('Failed to remove agent:', err.error || r.status);
+      }
+    } catch (e) {
+      console.error('Failed to remove agent:', e);
+    }
   }, []);
 
   const handleRemoveAgent = useCallback(async (agentType) => {
@@ -267,6 +296,15 @@ function LobbySetup({ playerList, connectedCount }) {
                 <span className={`indicator ${p.connected ? 'online' : 'offline'}`} />
                 <span className="host-player-item-name">{p.display_name}</span>
                 <PlayerTypeBadge player={p} />
+                {p.player_type === 'AI' && !gameStarted && (
+                  <button
+                    className="host-player-remove"
+                    onClick={() => handleRemoveAgent(p.player_id)}
+                    title={`Remove ${p.player_id}`}
+                  >
+                    ×
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -279,61 +317,30 @@ function LobbySetup({ playerList, connectedCount }) {
           <h3>Add AI Agents</h3>
 
           <div className="host-agent-grid">
-            {availableAgents.map(agent => {
-              const count = addedCounts[agent.type] ?? 0;
-              const isAdding = addingAgent === agent.type;
-              return (
-                <div key={agent.type} className="host-agent-slot" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-                  <span className="host-agent-slot-label">{agent.name}</span>
-
-                  {count > 0 ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <button
-                        onClick={() => handleRemoveAgent(agent.type)}
-                        disabled={gameStarted}
-                        style={{
-                          background: 'transparent',
-                          border: '1px solid var(--border)',
-                          color: 'var(--text-secondary)',
-                          borderRadius: '4px',
-                          width: '26px', height: '26px',
-                          cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
-                        }}
-                      >−</button>
-                      <span style={{
-                        minWidth: '22px', textAlign: 'center',
-                        fontWeight: 700, color: 'var(--accent)',
-                      }}>{count}</span>
-                      <button
-                        onClick={() => handleAddAgent(agent.type)}
-                        disabled={isAdding || gameStarted}
-                        style={{
-                          background: 'transparent',
-                          border: '1px solid var(--border)',
-                          color: 'var(--text-secondary)',
-                          borderRadius: '4px',
-                          width: '26px', height: '26px',
-                          cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
-                        }}
-                      >+</button>
-                      <span style={{
-                        color: '#2ed573', fontSize: '0.78rem',
-                        fontWeight: 600, minWidth: '52px',
-                      }}>✓ Added</span>
-                    </div>
-                  ) : (
-                    <button
-                      className="btn-host-action"
-                      onClick={() => handleAddAgent(agent.type)}
-                      disabled={!agent.available || isAdding || gameStarted}
-                      style={{ minWidth: '110px' }}
-                    >
-                      {isAdding ? 'Adding...' : agent.available ? 'Add to Game' : 'Unavailable'}
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+            {availableAgents.map(agent => (
+              <div key={agent.type} className="host-agent-slot">
+                <span className="host-agent-slot-label">{agent.name}</span>
+                <label
+                  className="host-agent-reasoning-toggle"
+                  title="Native reasoning: capture provider-side thinking trace. Slower (5–25s/call) and more expensive — recommended only for all-AI research runs, NOT live human play."
+                >
+                  <input
+                    type="checkbox"
+                    checked={!!reasoningEnabled[agent.type]}
+                    onChange={() => toggleReasoning(agent.type)}
+                    disabled={!agent.available || gameStarted}
+                  />
+                  <span>Native reasoning</span>
+                </label>
+                <button
+                  className="btn-host-action"
+                  onClick={() => handleAddAgent(agent.type)}
+                  disabled={!agent.available || addingAgent !== null || gameStarted}
+                >
+                  {addingAgent === agent.type ? 'Adding...' : agent.available ? 'Add to Game' : 'Unavailable'}
+                </button>
+              </div>
+            ))}
             {availableAgents.length === 0 && (
               <p className="host-muted-note host-italic">Loading agents...</p>
             )}

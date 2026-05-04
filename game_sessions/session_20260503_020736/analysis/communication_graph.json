@@ -1,0 +1,368 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "nodes": [
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)",
+      "msg_count": 34
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)",
+      "msg_count": 33
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)",
+      "msg_count": 42
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)",
+      "msg_count": 30
+    }
+  ],
+  "edges": [
+    {
+      "source": "agent_1",
+      "target": "agent_2",
+      "type": "dm",
+      "weight": 3
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_1",
+      "type": "dm",
+      "weight": 2
+    },
+    {
+      "source": "agent_1",
+      "target": "agent_3",
+      "type": "dm",
+      "weight": 1
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_1",
+      "type": "dm",
+      "weight": 10
+    },
+    {
+      "source": "agent_1",
+      "target": "human_t0y1",
+      "type": "dm",
+      "weight": 7
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_2",
+      "type": "dm",
+      "weight": 5
+    },
+    {
+      "source": "agent_2",
+      "target": "human_t0y1",
+      "type": "dm",
+      "weight": 5
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_3",
+      "type": "dm",
+      "weight": 6
+    },
+    {
+      "source": "agent_3",
+      "target": "human_t0y1",
+      "type": "dm",
+      "weight": 6
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_2",
+      "type": "mention",
+      "weight": 2
+    },
+    {
+      "source": "agent_3",
+      "target": "agent_2",
+      "type": "mention",
+      "weight": 7
+    },
+    {
+      "source": "agent_1",
+      "target": "human_t0y1",
+      "type": "mention",
+      "weight": 4
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_1",
+      "type": "mention",
+      "weight": 3
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_1",
+      "type": "mention",
+      "weight": 4
+    },
+    {
+      "source": "agent_2",
+      "target": "human_t0y1",
+      "type": "mention",
+      "weight": 4
+    },
+    {
+      "source": "agent_3",
+      "target": "human_t0y1",
+      "type": "mention",
+      "weight": 4
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_3",
+      "type": "mention",
+      "weight": 6
+    },
+    {
+      "source": "agent_3",
+      "target": "agent_1",
+      "type": "mention",
+      "weight": 3
+    },
+    {
+      "source": "agent_1",
+      "target": "agent_3",
+      "type": "mention",
+      "weight": 4
+    },
+    {
+      "source": "agent_1",
+      "target": "agent_2",
+      "type": "mention",
+      "weight": 1
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_3",
+      "type": "mention",
+      "weight": 2
+    },
+    {
+      "source": "agent_3",
+      "target": "agent_2",
+      "type": "accusation",
+      "weight": 2
+    },
+    {
+      "source": "agent_1",
+      "target": "human_t0y1",
+      "type": "accusation",
+      "weight": 1
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_3",
+      "type": "accusation",
+      "weight": 1
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_2",
+      "type": "accusation",
+      "weight": 1
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_3",
+      "type": "accusation",
+      "weight": 1
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_1",
+      "type": "vote",
+      "weight": 1
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_1",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "agent_3",
+      "target": "agent_1",
+      "type": "vote",
+      "weight": 1
+    },
+    {
+      "source": "agent_1",
+      "target": "human_t0y1",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "agent_2",
+      "target": "agent_3",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "agent_1",
+      "target": "agent_3",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_3",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "agent_3",
+      "target": "agent_2",
+      "type": "vote",
+      "weight": 3
+    },
+    {
+      "source": "human_t0y1",
+      "target": "agent_2",
+      "type": "vote",
+      "weight": 2
+    },
+    {
+      "source": "agent_3",
+      "target": "human_t0y1",
+      "type": "vote",
+      "weight": 1
+    },
+    {
+      "source": "agent_2",
+      "target": "human_t0y1",
+      "type": "vote",
+      "weight": 1
+    },
+    {
+      "source": "agent_1",
+      "target": "agent_2",
+      "type": "vote",
+      "weight": 1
+    }
+  ],
+  "centrality": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "in_degree": 10,
+      "out_degree": 11,
+      "weighted_in": 35,
+      "weighted_out": 36
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "in_degree": 8,
+      "out_degree": 10,
+      "weighted_in": 26,
+      "weighted_out": 26
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "in_degree": 10,
+      "out_degree": 9,
+      "weighted_in": 27,
+      "weighted_out": 26
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "in_degree": 10,
+      "out_degree": 8,
+      "weighted_in": 27,
+      "weighted_out": 27
+    }
+  },
+  "edge_types": [
+    "dm",
+    "mention",
+    "accusation",
+    "vote"
+  ]
+}

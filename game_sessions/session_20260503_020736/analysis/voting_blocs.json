@@ -1,0 +1,287 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "pairs": {
+    "human_t0y1__agent_1": {
+      "players": [
+        "human_t0y1",
+        "agent_1"
+      ],
+      "identities": [
+        {
+          "player_id": "human_t0y1",
+          "real_name": "Aditya",
+          "display_name": "Player",
+          "player_type": "HUMAN",
+          "model_name": null,
+          "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+        },
+        {
+          "player_id": "agent_1",
+          "real_name": "agent_1",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "claude-opus-4-6",
+          "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+        }
+      ],
+      "player_types": [
+        "HUMAN",
+        "AI"
+      ],
+      "models": [
+        null,
+        "claude-opus-4-6"
+      ],
+      "category": "human_ai",
+      "rounds_both_voted": 5,
+      "agreed_count": 3,
+      "agreement_rate": 0.6,
+      "agreed_rounds": [
+        2,
+        4,
+        5
+      ]
+    },
+    "human_t0y1__agent_2": {
+      "players": [
+        "human_t0y1",
+        "agent_2"
+      ],
+      "identities": [
+        {
+          "player_id": "human_t0y1",
+          "real_name": "Aditya",
+          "display_name": "Player",
+          "player_type": "HUMAN",
+          "model_name": null,
+          "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+        },
+        {
+          "player_id": "agent_2",
+          "real_name": "agent_2",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "gpt-5.5",
+          "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+        }
+      ],
+      "player_types": [
+        "HUMAN",
+        "AI"
+      ],
+      "models": [
+        null,
+        "gpt-5.5"
+      ],
+      "category": "human_ai",
+      "rounds_both_voted": 5,
+      "agreed_count": 3,
+      "agreement_rate": 0.6,
+      "agreed_rounds": [
+        1,
+        2,
+        5
+      ]
+    },
+    "human_t0y1__agent_3": {
+      "players": [
+        "human_t0y1",
+        "agent_3"
+      ],
+      "identities": [
+        {
+          "player_id": "human_t0y1",
+          "real_name": "Aditya",
+          "display_name": "Player",
+          "player_type": "HUMAN",
+          "model_name": null,
+          "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+        },
+        {
+          "player_id": "agent_3",
+          "real_name": "agent_3",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "deepseek-v4-pro",
+          "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+        }
+      ],
+      "player_types": [
+        "HUMAN",
+        "AI"
+      ],
+      "models": [
+        null,
+        "deepseek-v4-pro"
+      ],
+      "category": "human_ai",
+      "rounds_both_voted": 5,
+      "agreed_count": 2,
+      "agreement_rate": 0.4,
+      "agreed_rounds": [
+        1,
+        4
+      ]
+    },
+    "agent_1__agent_2": {
+      "players": [
+        "agent_1",
+        "agent_2"
+      ],
+      "identities": [
+        {
+          "player_id": "agent_1",
+          "real_name": "agent_1",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "claude-opus-4-6",
+          "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+        },
+        {
+          "player_id": "agent_2",
+          "real_name": "agent_2",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "gpt-5.5",
+          "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+        }
+      ],
+      "player_types": [
+        "AI",
+        "AI"
+      ],
+      "models": [
+        "claude-opus-4-6",
+        "gpt-5.5"
+      ],
+      "category": "cross_model",
+      "rounds_both_voted": 5,
+      "agreed_count": 3,
+      "agreement_rate": 0.6,
+      "agreed_rounds": [
+        2,
+        3,
+        5
+      ]
+    },
+    "agent_1__agent_3": {
+      "players": [
+        "agent_1",
+        "agent_3"
+      ],
+      "identities": [
+        {
+          "player_id": "agent_1",
+          "real_name": "agent_1",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "claude-opus-4-6",
+          "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+        },
+        {
+          "player_id": "agent_3",
+          "real_name": "agent_3",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "deepseek-v4-pro",
+          "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+        }
+      ],
+      "player_types": [
+        "AI",
+        "AI"
+      ],
+      "models": [
+        "claude-opus-4-6",
+        "deepseek-v4-pro"
+      ],
+      "category": "cross_model",
+      "rounds_both_voted": 5,
+      "agreed_count": 2,
+      "agreement_rate": 0.4,
+      "agreed_rounds": [
+        3,
+        4
+      ]
+    },
+    "agent_2__agent_3": {
+      "players": [
+        "agent_2",
+        "agent_3"
+      ],
+      "identities": [
+        {
+          "player_id": "agent_2",
+          "real_name": "agent_2",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "gpt-5.5",
+          "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+        },
+        {
+          "player_id": "agent_3",
+          "real_name": "agent_3",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "deepseek-v4-pro",
+          "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+        }
+      ],
+      "player_types": [
+        "AI",
+        "AI"
+      ],
+      "models": [
+        "gpt-5.5",
+        "deepseek-v4-pro"
+      ],
+      "category": "cross_model",
+      "rounds_both_voted": 5,
+      "agreed_count": 2,
+      "agreement_rate": 0.4,
+      "agreed_rounds": [
+        1,
+        3
+      ]
+    }
+  },
+  "category_averages": {
+    "human_ai": 0.5333333333333333,
+    "cross_model": 0.4666666666666666
+  },
+  "strong_voting_pairs": [],
+  "interpretation": "No strong same-model alliance signal detected"
+}

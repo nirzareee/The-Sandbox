@@ -1,0 +1,293 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "per_player": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "series": [
+        {
+          "round_number": 1,
+          "msg_count": 8,
+          "total_tokens": 46,
+          "avg_msg_words": 5.75,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 2,
+          "msg_count": 7,
+          "total_tokens": 55,
+          "avg_msg_words": 7.857142857142857,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.42857142857142855
+        },
+        {
+          "round_number": 3,
+          "msg_count": 4,
+          "total_tokens": 50,
+          "avg_msg_words": 12.5,
+          "hedge_rate": 0.02,
+          "self_ref_rate": 0.06,
+          "vague_rate": 0.02,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 4,
+          "msg_count": 7,
+          "total_tokens": 29,
+          "avg_msg_words": 4.142857142857143,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.2857142857142857
+        },
+        {
+          "round_number": 5,
+          "msg_count": 8,
+          "total_tokens": 56,
+          "avg_msg_words": 7.0,
+          "hedge_rate": 0.017857142857142856,
+          "self_ref_rate": 0.05357142857142857,
+          "vague_rate": 0.0,
+          "question_rate": 0.125
+        }
+      ]
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "series": [
+        {
+          "round_number": 1,
+          "msg_count": 7,
+          "total_tokens": 129,
+          "avg_msg_words": 18.428571428571427,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.06201550387596899,
+          "vague_rate": 0.015503875968992248,
+          "question_rate": 0.42857142857142855
+        },
+        {
+          "round_number": 2,
+          "msg_count": 6,
+          "total_tokens": 114,
+          "avg_msg_words": 19.0,
+          "hedge_rate": 0.03508771929824561,
+          "self_ref_rate": 0.02631578947368421,
+          "vague_rate": 0.02631578947368421,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 3,
+          "msg_count": 7,
+          "total_tokens": 112,
+          "avg_msg_words": 16.0,
+          "hedge_rate": 0.05357142857142857,
+          "self_ref_rate": 0.008928571428571428,
+          "vague_rate": 0.008928571428571428,
+          "question_rate": 0.14285714285714285
+        },
+        {
+          "round_number": 4,
+          "msg_count": 6,
+          "total_tokens": 88,
+          "avg_msg_words": 14.666666666666666,
+          "hedge_rate": 0.022727272727272728,
+          "self_ref_rate": 0.03409090909090909,
+          "vague_rate": 0.011363636363636364,
+          "question_rate": 0.3333333333333333
+        },
+        {
+          "round_number": 5,
+          "msg_count": 7,
+          "total_tokens": 90,
+          "avg_msg_words": 12.857142857142858,
+          "hedge_rate": 0.044444444444444446,
+          "self_ref_rate": 0.044444444444444446,
+          "vague_rate": 0.022222222222222223,
+          "question_rate": 0.14285714285714285
+        }
+      ]
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "series": [
+        {
+          "round_number": 1,
+          "msg_count": 9,
+          "total_tokens": 52,
+          "avg_msg_words": 5.777777777777778,
+          "hedge_rate": 0.038461538461538464,
+          "self_ref_rate": 0.038461538461538464,
+          "vague_rate": 0.019230769230769232,
+          "question_rate": 0.1111111111111111
+        },
+        {
+          "round_number": 2,
+          "msg_count": 9,
+          "total_tokens": 52,
+          "avg_msg_words": 5.777777777777778,
+          "hedge_rate": 0.057692307692307696,
+          "self_ref_rate": 0.019230769230769232,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 3,
+          "msg_count": 9,
+          "total_tokens": 70,
+          "avg_msg_words": 7.777777777777778,
+          "hedge_rate": 0.014285714285714285,
+          "self_ref_rate": 0.04285714285714286,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 4,
+          "msg_count": 8,
+          "total_tokens": 54,
+          "avg_msg_words": 6.75,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.07407407407407407,
+          "vague_rate": 0.018518518518518517,
+          "question_rate": 0.125
+        },
+        {
+          "round_number": 5,
+          "msg_count": 7,
+          "total_tokens": 45,
+          "avg_msg_words": 6.428571428571429,
+          "hedge_rate": 0.0,
+          "self_ref_rate": 0.044444444444444446,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        }
+      ]
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "series": [
+        {
+          "round_number": 1,
+          "msg_count": 8,
+          "total_tokens": 78,
+          "avg_msg_words": 9.75,
+          "hedge_rate": 0.01282051282051282,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 2,
+          "msg_count": 5,
+          "total_tokens": 69,
+          "avg_msg_words": 13.8,
+          "hedge_rate": 0.043478260869565216,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.028985507246376812,
+          "question_rate": 0.2
+        },
+        {
+          "round_number": 3,
+          "msg_count": 5,
+          "total_tokens": 38,
+          "avg_msg_words": 7.6,
+          "hedge_rate": 0.02631578947368421,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.0
+        },
+        {
+          "round_number": 4,
+          "msg_count": 5,
+          "total_tokens": 63,
+          "avg_msg_words": 12.6,
+          "hedge_rate": 0.047619047619047616,
+          "self_ref_rate": 0.0,
+          "vague_rate": 0.0,
+          "question_rate": 0.2
+        },
+        {
+          "round_number": 5,
+          "msg_count": 7,
+          "total_tokens": 94,
+          "avg_msg_words": 13.428571428571429,
+          "hedge_rate": 0.031914893617021274,
+          "self_ref_rate": 0.07446808510638298,
+          "vague_rate": 0.0,
+          "question_rate": 0.14285714285714285
+        }
+      ]
+    }
+  }
+}

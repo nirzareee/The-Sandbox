@@ -1,0 +1,566 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_hint": [
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "round_number": 1,
+      "hint": "k9",
+      "hint_length_words": 1,
+      "hint_length_chars": 2,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "round_number": 1,
+      "hint": "police k9",
+      "hint_length_words": 2,
+      "hint_length_chars": 9,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "round_number": 1,
+      "hint": "family favorite",
+      "hint_length_words": 2,
+      "hint_length_chars": 15,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": true
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "round_number": 1,
+      "hint": "police k9",
+      "hint_length_words": 2,
+      "hint_length_chars": 9,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "round_number": 2,
+      "hint": "my fav on pizza",
+      "hint_length_words": 4,
+      "hint_length_chars": 15,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "round_number": 2,
+      "hint": "pizza shaker",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "round_number": 2,
+      "hint": "warm & earthy",
+      "hint_length_words": 3,
+      "hint_length_chars": 13,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": true
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "round_number": 2,
+      "hint": "pizza flakes",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "round_number": 3,
+      "hint": "mentally insane villan",
+      "hint_length_words": 3,
+      "hint_length_chars": 22,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": true
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "round_number": 3,
+      "hint": "stairs dance",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "round_number": 3,
+      "hint": "arthur fleck",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "round_number": 3,
+      "hint": "stair dance",
+      "hint_length_words": 2,
+      "hint_length_chars": 11,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "round_number": 4,
+      "hint": "simba",
+      "hint_length_words": 1,
+      "hint_length_chars": 5,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "round_number": 4,
+      "hint": "pride rock",
+      "hint_length_words": 2,
+      "hint_length_chars": 10,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "round_number": 4,
+      "hint": "hamlet vibes",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "round_number": 4,
+      "hint": "sidekick chaos",
+      "hint_length_words": 2,
+      "hint_length_chars": 14,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": true
+    },
+    {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "round_number": 5,
+      "hint": "muhammed",
+      "hint_length_words": 1,
+      "hint_length_chars": 8,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "round_number": 5,
+      "hint": "heavyweight champ",
+      "hint_length_words": 2,
+      "hint_length_chars": 17,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "round_number": 5,
+      "hint": "corner stool",
+      "hint_length_words": 2,
+      "hint_length_chars": 12,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "round_number": 5,
+      "hint": "olympic sport",
+      "hint_length_words": 2,
+      "hint_length_chars": 13,
+      "has_slang": false,
+      "is_definition_like": false,
+      "hint_was_imposter": true
+    }
+  ],
+  "per_player": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "player_type": "HUMAN",
+      "model_name": null,
+      "hint_count": 5,
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 10.4,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0,
+      "hints_as_imposter": 1
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "hint_count": 5,
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 13.6,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0,
+      "hints_as_imposter": 1
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "hint_count": 5,
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 11.8,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0,
+      "hints_as_imposter": 1
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "hint_count": 5,
+      "avg_hint_length_words": 2.2,
+      "avg_hint_length_chars": 11.2,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0,
+      "hints_as_imposter": 2
+    }
+  },
+  "group_summary": {
+    "HUMAN": {
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 10.4,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0
+    },
+    "AI": {
+      "avg_hint_length_words": 2.066666666666667,
+      "avg_hint_length_chars": 12.200000000000001,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0
+    }
+  },
+  "per_model_summary": {
+    "deepseek-v4-pro": {
+      "avg_hint_length_words": 2.2,
+      "avg_hint_length_chars": 11.2,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0
+    },
+    "gpt-5.5": {
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 11.8,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0
+    },
+    "claude-opus-4-6": {
+      "avg_hint_length_words": 2.0,
+      "avg_hint_length_chars": 13.6,
+      "slang_hint_rate": 0.0,
+      "definition_like_rate": 0.0
+    }
+  }
+}

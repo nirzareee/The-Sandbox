@@ -1,0 +1,39 @@
+{
+  "model": "claude-opus-4-6",
+  "total_cost_usd": 1.1891,
+  "total_prompt_tokens": 183210,
+  "total_completion_tokens": 10922,
+  "total_calls": 45,
+  "by_round": {
+    "1": {
+      "prompt_tokens": 31330,
+      "completion_tokens": 2728,
+      "cost_usd": 0.22485,
+      "calls": 10
+    },
+    "2": {
+      "prompt_tokens": 31787,
+      "completion_tokens": 1911,
+      "cost_usd": 0.20671,
+      "calls": 8
+    },
+    "3": {
+      "prompt_tokens": 41115,
+      "completion_tokens": 2453,
+      "cost_usd": 0.2669,
+      "calls": 9
+    },
+    "4": {
+      "prompt_tokens": 39096,
+      "completion_tokens": 1918,
+      "cost_usd": 0.24343,
+      "calls": 9
+    },
+    "5": {
+      "prompt_tokens": 39882,
+      "completion_tokens": 1912,
+      "cost_usd": 0.24721,
+      "calls": 9
+    }
+  }
+}

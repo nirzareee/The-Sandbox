@@ -1,0 +1,142 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_player": {
+    "human_t0y1": {
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "group_msg_count": 13,
+      "median_latency_after_others_sec": 1.786205,
+      "mean_latency_after_others_sec": 8.333903153846155,
+      "median_self_interval_sec": 55.4064415,
+      "burstiness": 0.7247091367940126,
+      "median_dm_reply_latency_sec": 18.997934,
+      "mean_dm_reply_latency_sec": 27.64069657142857,
+      "dm_replies_made": 14,
+      "replies_to_others": {
+        "agent_2": 9,
+        "agent_3": 3
+      }
+    },
+    "agent_1": {
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "group_msg_count": 22,
+      "median_latency_after_others_sec": 2.2012255,
+      "mean_latency_after_others_sec": 3.6214700000000004,
+      "median_self_interval_sec": 14.171348,
+      "burstiness": 1.1884514001997193,
+      "median_dm_reply_latency_sec": 9.648469,
+      "mean_dm_reply_latency_sec": 14.715986375,
+      "dm_replies_made": 8,
+      "replies_to_others": {
+        "agent_3": 8,
+        "agent_2": 8,
+        "human_t0y1": 5
+      }
+    },
+    "agent_2": {
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "group_msg_count": 35,
+      "median_latency_after_others_sec": 4.252865,
+      "mean_latency_after_others_sec": 12.220732205882353,
+      "median_self_interval_sec": 11.4326605,
+      "burstiness": 1.2377648076876755,
+      "median_dm_reply_latency_sec": 9.876866,
+      "mean_dm_reply_latency_sec": 8.876812428571428,
+      "dm_replies_made": 7,
+      "replies_to_others": {
+        "agent_1": 14,
+        "agent_3": 12,
+        "human_t0y1": 4
+      }
+    },
+    "agent_3": {
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "group_msg_count": 24,
+      "median_latency_after_others_sec": 3.9269965000000004,
+      "mean_latency_after_others_sec": 5.798468541666666,
+      "median_self_interval_sec": 15.150636,
+      "burstiness": 1.140841146799202,
+      "median_dm_reply_latency_sec": 20.137417,
+      "mean_dm_reply_latency_sec": 30.5126198,
+      "dm_replies_made": 5,
+      "replies_to_others": {
+        "human_t0y1": 3,
+        "agent_2": 14,
+        "agent_1": 7
+      }
+    }
+  },
+  "group_summary": {
+    "HUMAN": {
+      "median_latency_after_others_sec": 1.786205,
+      "burstiness": 0.7247091367940126,
+      "median_dm_reply_latency_sec": 18.997934
+    },
+    "AI": {
+      "median_latency_after_others_sec": 3.4603623333333338,
+      "burstiness": 1.1890191182288656,
+      "median_dm_reply_latency_sec": 13.220917333333333
+    }
+  },
+  "notes": "Latency = seconds between this player's message and the previous message in the same channel (group or DM thread). Bursty values (>1.0) indicate clusters of fast messages followed by silence."
+}

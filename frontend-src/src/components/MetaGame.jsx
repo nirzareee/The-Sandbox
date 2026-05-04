@@ -47,6 +47,13 @@ export default function MetaGame({ metaGamePlayers, playerId, send, timerSeconds
           Classify each player as Human or AI. Rate your confidence and explain your reasoning.
         </p>
 
+        {isDisabled && (
+          <div className="meta-game-waiting-notice">
+            Classifications submitted. Please wait until every player has submitted &mdash;
+            the reveal will appear automatically.
+          </div>
+        )}
+
         <div className="classification-form">
           {otherPlayers.map(pid => (
             <div key={pid} className="classification-card">

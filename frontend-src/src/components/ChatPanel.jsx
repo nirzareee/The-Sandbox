@@ -5,7 +5,10 @@ import { UI } from '../state/actions';
 export default function ChatPanel({ players, playerId, chatMessages, dmMessages, unreadDMs, activeTab, dispatch, send, phase }) {
   const [text, setText] = useState('');
   const messagesEndRef = useRef(null);
-  const inputDisabled = phase !== 'DISCUSSION' && phase !== 'REFLECTION';
+  // Chat is only allowed during DISCUSSION. REFLECTION is a private,
+  // no-chat phase where each player (and AI) reflects on the round in
+  // isolation — server enforces the same rule.
+  const inputDisabled = phase !== 'DISCUSSION';
 
   const otherPlayers = Object.keys(players).filter((pid) => pid !== playerId);
 
@@ -117,7 +120,13 @@ export default function ChatPanel({ players, playerId, chatMessages, dmMessages,
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={inputDisabled ? 'Chat disabled' : 'Type a message...'}
+          placeholder={
+            inputDisabled
+              ? (phase === 'REFLECTION'
+                  ? 'Reflection phase — chat is closed'
+                  : 'Chat disabled')
+              : 'Type a message...'
+          }
           disabled={inputDisabled}
         />
         <button className="send-btn" onClick={handleSend} disabled={inputDisabled || !text.trim()}>

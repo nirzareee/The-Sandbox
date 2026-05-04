@@ -17,6 +17,7 @@ import websockets
 from server.models import ActionType, GamePhase, PlayerRole
 
 from agents.delay_simulator import DelaySimulator
+from agents.llm_response import LLMResponse
 from agents.memory import AgentMemory
 from agents.prompt_builder import PromptBuilder
 
@@ -34,12 +35,15 @@ class BaseAgent(ABC):
         server_url: str = "ws://localhost:8000",
         api_timeout: int = 15,
         max_retries: int = 2,
+        use_native_reasoning: bool = False,
     ) -> None:
         self.player_id = player_id
         self.display_name = display_name
         self.model_name = model_name
         self.server_url = server_url
-        self.api_timeout = api_timeout
+        self.use_native_reasoning = use_native_reasoning
+        # Native reasoning is much slower per call — bump timeout when enabled
+        self.api_timeout = max(api_timeout, 60) if use_native_reasoning else api_timeout
         self.max_retries = max_retries
 
         self.ws: websockets.WebSocketClientProtocol | None = None
@@ -342,14 +346,15 @@ class BaseAgent(ABC):
             num_players=np,
             num_rounds=nr,
             player_list=pl,
+            use_native_reasoning=self.use_native_reasoning,
         )
 
         t0 = asyncio.get_event_loop().time()
         try:
-            raw = await self._call_llm_with_retry(prompt)
-            parsed = self._parse_response(raw)
+            resp = await self._call_llm_with_retry(prompt)
+            parsed = self._parse_response(resp.content)
             hint = parsed.get("action", {}).get("content", "...")
-            thinking = parsed.get("thinking", "")
+            thinking = resp.reasoning or parsed.get("thinking", "")
             self.memory.log_thinking(self.current_round, "hint", thinking)
             self._flush_thinking(self.current_round, "hint", thinking)
         except (asyncio.TimeoutError, Exception) as exc:
@@ -425,6 +430,10 @@ class BaseAgent(ABC):
         is_first_turn = True
         last_spoke = False
         burst_used = False
+        # Track which channel the agent last spoke on so we can add a cooldown
+        # when crossing channels (DM ↔ group). Real humans don't simultaneously
+        # type a DM and a group message — context-switching takes a beat.
+        last_send_channel: str | None = None  # "group" or "dm" or None
         try:
             while True:
                 wall_elapsed = loop.time() - start_time
@@ -501,28 +510,36 @@ class BaseAgent(ABC):
                     time_remaining=time_remaining,
                     chat_state=chat_state,
                     hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
+                    use_native_reasoning=self.use_native_reasoning,
                 )
 
                 t0 = loop.time()
                 spoke_this_turn = False
                 try:
-                    raw = await self._call_llm_with_retry(prompt)
-                    parsed = self._parse_response(raw)
+                    resp = await self._call_llm_with_retry(prompt)
+                    parsed = self._parse_response(resp.content)
                     action = parsed.get("action", {})
                     atype = action.get("type", "wait")
                     content = action.get("content", "")
                     target = self._resolve_target(action.get("target_player"))
-                    thinking = parsed.get("thinking", "")
+                    thinking = resp.reasoning or parsed.get("thinking", "")
                     self.memory.log_thinking(self.current_round, "discussion", thinking)
                     self._flush_thinking(self.current_round, "discussion", thinking)
 
                     if atype == "group_message" and content:
-                        target_delay = DelaySimulator.group_message()
+                        # Channel-switch cooldown: pivoting from a DM to public
+                        # chat takes a beat in real life — agents shouldn't
+                        # appear to be typing in two places at once.
+                        if last_send_channel == "dm":
+                            await asyncio.sleep(random.uniform(2.5, 5.0))
+                        # Typing delay scales with message length — natural pacing.
+                        target_delay = DelaySimulator.typing_time(content)
                         remaining = max(0, target_delay - (loop.time() - t0))
                         await asyncio.sleep(remaining)
                         await self._send("GROUP_MESSAGE", content)
                         my_msg_count += 1
                         spoke_this_turn = True
+                        last_send_channel = "group"
                     elif atype == "dm" and content and target:
                         if target == self.player_id:
                             log.warning("%s tried to DM itself, skipping", self.display_name)
@@ -530,12 +547,19 @@ class BaseAgent(ABC):
                             log.info("%s blocked repetitive DM to %s", self.display_name, self._dn(target))
                         else:
                             self._record_dm_sent(target, content)
-                            target_delay = DelaySimulator.dm()
+                            # Pivoting from group to DM also costs context-switch time.
+                            if last_send_channel == "group":
+                                await asyncio.sleep(random.uniform(2.0, 4.0))
+                            # DMs feel a touch faster than group chat
+                            target_delay = DelaySimulator.typing_time(
+                                content, base_pause=0.8, chars_per_sec=6.5, cap=10.0,
+                            )
                             remaining = max(0, target_delay - (loop.time() - t0))
                             await asyncio.sleep(remaining)
                             await self._send("DM", content, target)
                             my_msg_count += 1
                             spoke_this_turn = True
+                            last_send_channel = "dm"
                     # else: wait — do nothing
                 except Exception as exc:
                     log.warning("%s discussion LLM error: %s", self.display_name, exc)
@@ -616,16 +640,17 @@ class BaseAgent(ABC):
             player_list=pl,
             recent_thinking=recent_thinking,
             hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
+            use_native_reasoning=self.use_native_reasoning,
         )
 
         target = None
         t0 = asyncio.get_event_loop().time()
         try:
-            raw = await self._call_llm_with_retry(prompt)
-            parsed = self._parse_response(raw)
+            resp = await self._call_llm_with_retry(prompt)
+            parsed = self._parse_response(resp.content)
             raw_target = parsed.get("action", {}).get("target_player")
             target = self._resolve_target(raw_target)
-            thinking = parsed.get("thinking", "")
+            thinking = resp.reasoning or parsed.get("thinking", "")
             self.memory.log_thinking(self.current_round, "voting", thinking)
             self._flush_thinking(self.current_round, "voting", thinking)
         except asyncio.CancelledError:
@@ -693,13 +718,18 @@ class BaseAgent(ABC):
             num_rounds=nr,
             player_list=pl,
             hint_timings=self._translate_hint_timings(self.memory.get_hint_timings_this_round()),
+            use_native_reasoning=self.use_native_reasoning,
         )
 
         try:
-            raw = await self._call_llm_with_retry(prompt)
-            parsed = self._parse_response(raw)
-            thinking = parsed.get("thinking", "")
+            # Shield the LLM call so a phase-end cancel doesn't kill an
+            # in-flight reflection mid-write. Heavy models (Opus, GPT-5.x
+            # reasoning) regularly take 20-40s on later rounds; without
+            # the shield the reflection trace silently disappears.
+            resp = await asyncio.shield(self._call_llm_with_retry(prompt))
+            parsed = self._parse_response(resp.content)
             action = parsed.get("action", {})
+            thinking = resp.reasoning or parsed.get("thinking", "")
             self.memory.log_reflection(self.current_round, thinking)
             self._flush_reflection(self.current_round, thinking)
 
@@ -715,14 +745,22 @@ class BaseAgent(ABC):
                     )
         except asyncio.CancelledError:
             log.info("%s reflection cancelled (phase moved on)", self.display_name)
-            # Still compress what we have so memory doesn't grow unbounded
+            # Still compress what we have so memory doesn't grow unbounded.
+            # Both the game-event summary and the thinking summary are
+            # captured before the next round wipes _round_thinking.
+            role = (rs.get("role").value if rs and rs.get("role") else "?")
             await asyncio.shield(self.memory.compress_round(self.current_round))
+            await asyncio.shield(self.memory.compress_round_thinking(self.current_round, role))
             return
         except Exception as exc:
             log.warning("%s reflection error: %s", self.display_name, exc)
 
-        # Compress AFTER reflection so the summary includes the reflection text
+        # Compress AFTER reflection so the summary includes the reflection text.
+        # Then compress this round's thinking traces into a Groq-summarized
+        # narrative the model will see in subsequent rounds.
+        role = (rs.get("role").value if rs and rs.get("role") else "?")
         await self.memory.compress_round(self.current_round)
+        await self.memory.compress_round_thinking(self.current_round, role)
 
     async def _on_reflection_end(self, data: dict) -> None:
         pass
@@ -754,18 +792,19 @@ class BaseAgent(ABC):
             num_players=np,
             num_rounds=nr,
             player_list=pl,
+            use_native_reasoning=self.use_native_reasoning,
         )
 
         t0 = asyncio.get_event_loop().time()
         try:
-            raw = await self._call_llm_with_retry(prompt)
-            parsed = self._parse_response(raw)
+            resp = await self._call_llm_with_retry(prompt)
+            parsed = self._parse_response(resp.content)
             # Unified format: action.classifications, with top-level fallback
             action = parsed.get("action", {})
             raw_classifications = action.get("classifications", {})
             if not raw_classifications:
                 raw_classifications = parsed.get("classifications", {})  # fallback
-            thinking = parsed.get("thinking", "")
+            thinking = resp.reasoning or parsed.get("thinking", "")
             self.memory.log_thinking(self.current_round, "classification", thinking)
             self._flush_thinking(self.current_round, "classification", thinking)
             # Translate display names back to player_ids
@@ -821,9 +860,28 @@ class BaseAgent(ABC):
 
     async def _on_game_finished(self, data: dict) -> None:
         log.info("%s: game finished", self.display_name)
+        self._flush_cost_summary()
         self.connected = False
         if self.ws:
             await self.ws.close()
+
+    def _flush_cost_summary(self) -> None:
+        """Write per-agent cost summary (per round + total) to disk."""
+        if not self._session_id:
+            return
+        try:
+            summary = self.memory.get_cost_summary()
+        except Exception:  # noqa: BLE001
+            return
+        ai_dir = Path("game_sessions") / self._session_id / "ai_internals" / f"{self.player_id}_{self.model_name}"
+        ai_dir.mkdir(parents=True, exist_ok=True)
+        with open(ai_dir / "cost_summary.json", "w", encoding="utf-8") as f:
+            json.dump(summary, f, indent=2)
+        log.info(
+            "%s: total cost $%.4f over %d calls (%d rounds tracked)",
+            self.display_name, summary["total_cost_usd"], summary["total_calls"],
+            len(summary["by_round"]),
+        )
 
     async def _on_error(self, data: dict) -> None:
         log.error("%s server error: %s", self.display_name, data.get("message"))
@@ -865,10 +923,19 @@ class BaseAgent(ABC):
     # LLM interface
     # ------------------------------------------------------------------
 
-    async def _call_llm_with_retry(self, prompt: str) -> str:
+    async def _call_llm_with_retry(self, prompt: str) -> LLMResponse:
         for attempt in range(self.max_retries + 1):
             try:
-                return await asyncio.wait_for(self.call_llm(prompt), timeout=self.api_timeout)
+                resp = await asyncio.wait_for(self.call_llm(prompt), timeout=self.api_timeout)
+                # Centralized cost accounting — every successful LLM call lands here.
+                self.memory.log_api_call(
+                    model=self.model_name,
+                    prompt_tokens=resp.prompt_tokens,
+                    completion_tokens=resp.completion_tokens,
+                    round_number=self.current_round,
+                    phase=(self.current_phase.value if self.current_phase else None),
+                )
+                return resp
             except (asyncio.TimeoutError, Exception) as exc:
                 if attempt == self.max_retries:
                     raise
@@ -878,8 +945,14 @@ class BaseAgent(ABC):
         raise RuntimeError("unreachable")  # satisfy type checker
 
     @abstractmethod
-    async def call_llm(self, prompt: str) -> str:
-        """Call the underlying LLM. Subclasses must implement."""
+    async def call_llm(self, prompt: str) -> LLMResponse:
+        """Call the underlying LLM. Subclasses must implement.
+
+        Must return an LLMResponse with the response `content` (the JSON
+        action) and any native `reasoning` trace exposed by the provider's
+        API. `reasoning` should be empty string when the provider does not
+        expose one.
+        """
         ...
 
     # ------------------------------------------------------------------
@@ -889,25 +962,180 @@ class BaseAgent(ABC):
     def _parse_response(self, raw: str) -> dict:
         """Parse JSON response from LLM. Tries to extract JSON from markdown fences."""
         text = raw.strip()
-        # Strip <think>...</think> reasoning blocks (DeepSeek R1, Kimi K2.5, etc.)
+        # Strip any inline <think>...</think> reasoning blocks the model may
+        # still emit (older DeepSeek R1, some self-prompted reasoners). Native
+        # reasoning is captured via the API's reasoning fields, not from text.
         text = re.sub(r"<think>[\s\S]*?</think>\s*", "", text, flags=re.DOTALL).strip()
         # Strip markdown code fences if present
         if text.startswith("```"):
             lines = text.split("\n")
-            # Remove first and last fence lines
             lines = [l for l in lines if not l.strip().startswith("```")]
             text = "\n".join(lines).strip()
 
         try:
             return json.loads(text)
         except json.JSONDecodeError:
-            # Try to find JSON object in the text
             start = text.find("{")
             end = text.rfind("}") + 1
             if start >= 0 and end > start:
+                candidate = text[start:end]
                 try:
-                    return json.loads(text[start:end])
+                    return json.loads(candidate)
                 except json.JSONDecodeError:
                     pass
-            log.warning("Failed to parse LLM response: %.200s", text)
+                # Some models emit raw newlines/tabs inside JSON strings
+                # instead of \n/\t. Try escaping unescaped control chars
+                # inside strings. (No-op if no raw control chars present.)
+                escaped = self._escape_unescaped_controls(candidate)
+                if escaped != candidate:
+                    try:
+                        return json.loads(escaped)
+                    except json.JSONDecodeError:
+                        pass
+                # Observed on DeepSeek V4 Pro voting responses: a key's
+                # value gets its closing " emitted prematurely, followed
+                # by literal "\n\n<more text>" before the rest of the
+                # object. Try stitching the orphaned segment back into
+                # the previous string. (No-op if the response is not
+                # shaped this way.)
+                stitched = self._stitch_orphan_escape_segments(escaped)
+                if stitched != escaped:
+                    try:
+                        return json.loads(stitched)
+                    except json.JSONDecodeError:
+                        pass
+                # Some models drop trailing closing braces (Grok
+                # meta-classification). Patch up to 4 closes onto the end.
+                repaired = self._repair_truncated_json(stitched)
+                if repaired is not None:
+                    log.info("%s: repaired JSON (added %d brace(s))",
+                             self.display_name, repaired[1])
+                    return repaired[0]
+            # Fallback: action defaults to "wait" so any caller that asks for
+            # action.target_player/content/etc. gets None. The voting code
+            # then picks a random target — log loudly so this doesn't go
+            # silent. If you see this in a real game, fix the model output
+            # (e.g. response_format=json_object) instead of accepting noise.
+            log.warning(
+                "%s: LLM response failed to parse — falling back to "
+                "{action:wait}, downstream phase will random-pick. "
+                "First 200 chars: %.200s",
+                self.display_name, text,
+            )
             return {"thinking": text, "action": {"type": "wait"}}
+
+    @staticmethod
+    def _stitch_orphan_escape_segments(candidate: str) -> str:
+        """Heal a specific malformation: `..."\n\n<text>","next_key":`.
+
+        Replaces the spurious closing-quote+escapes+text+comma sequence
+        with the escapes and text moved INSIDE the string, ending at the
+        next valid `","key":` boundary.
+
+        Pattern signature: a `"` followed by `\\` (literal backslash) or a
+        whitespace escape, then text, then `","<word>":`.
+        """
+        # Look for: "  \n  TEXT  "  ,  "key":
+        # group 1 = the orphan escape+text segment that should be re-merged
+        # group 2 = the comma + next key opening
+        pattern = re.compile(
+            r'"((?:\\[nrt\\]|[^"\n\r])*?)",("\w+":)',
+            re.DOTALL,
+        )
+        # The plain regex above also matches valid JSON, so we only repair
+        # if the standard parse already failed for this text. Walk through
+        # candidate matches and try parsing each variant.
+        def repair_at(idx: int) -> str | None:
+            # find a `"` that's followed by `\` and figure out where the
+            # broken segment ends
+            close_q = candidate.find('"', idx)
+            if close_q < 0:
+                return None
+            # require the immediately-next chars to be a backslash escape
+            if close_q + 2 > len(candidate) or candidate[close_q + 1] != "\\":
+                return None
+            # find the next `","<key>":` boundary
+            m = re.search(r'","\w+":', candidate[close_q + 1:])
+            if not m:
+                return None
+            seg_end = close_q + 1 + m.start()
+            seg = candidate[close_q + 1:seg_end]
+            # Stitch: drop the premature `"` at close_q, append the
+            # segment inside the string, then emit a real `"` and the
+            # rest from m.start() onward.
+            return candidate[:close_q] + seg + candidate[seg_end:]
+        # Walk through candidate `"` followed by `\` positions
+        i = 0
+        while True:
+            j = candidate.find('"\\', i)
+            if j < 0:
+                break
+            patched = repair_at(j)
+            if patched and patched != candidate:
+                return patched
+            i = j + 1
+        return candidate
+
+    @staticmethod
+    def _escape_unescaped_controls(candidate: str) -> str:
+        """Replace literal newlines/tabs inside JSON strings with \\n/\\t.
+
+        Walks the text tracking string state and escape state. Outside of
+        strings, control chars are left alone. Inside an unescaped string,
+        replaces \\n -> \\\\n, \\r -> \\\\r, \\t -> \\\\t.
+        """
+        out: list[str] = []
+        in_str = False
+        escape = False
+        for ch in candidate:
+            if escape:
+                out.append(ch)
+                escape = False
+                continue
+            if ch == "\\" and in_str:
+                out.append(ch)
+                escape = True
+                continue
+            if ch == '"':
+                in_str = not in_str
+                out.append(ch)
+                continue
+            if in_str and ch in ("\n", "\r", "\t"):
+                out.append({"\n": "\\n", "\r": "\\r", "\t": "\\t"}[ch])
+                continue
+            out.append(ch)
+        return "".join(out)
+
+    @staticmethod
+    def _repair_truncated_json(candidate: str) -> tuple[dict, int] | None:
+        """Try to recover a model response missing trailing closing braces.
+
+        Counts unbalanced { vs } outside of string literals and appends up
+        to 4 closing braces. Returns (parsed_dict, num_added) on success.
+        """
+        in_str = False
+        escape = False
+        opens = closes = 0
+        for ch in candidate:
+            if escape:
+                escape = False
+                continue
+            if ch == "\\" and in_str:
+                escape = True
+                continue
+            if ch == '"':
+                in_str = not in_str
+                continue
+            if in_str:
+                continue
+            if ch == "{":
+                opens += 1
+            elif ch == "}":
+                closes += 1
+        gap = opens - closes
+        if not (1 <= gap <= 4):
+            return None
+        try:
+            return json.loads(candidate + ("}" * gap)), gap
+        except json.JSONDecodeError:
+            return None

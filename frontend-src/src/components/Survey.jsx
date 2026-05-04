@@ -1,10 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
+// Each likert question carries its own scale labels — labels are tailored
+// to the question's actual semantic (enjoyability, difficulty, naturalness,
+// likelihood) instead of a generic agree/disagree axis.
+const LIKERT_SCALES = {
+  enjoyment:    ['Not at all', 'Slightly', 'Moderately', 'Very', 'Extremely'],
+  difficulty:   ['Very easy', 'Easy', 'Neutral', 'Difficult', 'Very difficult'],
+  naturalness:  ['Very robotic', 'Robotic', 'Mixed', 'Natural', 'Very natural'],
+  likelihood:   ['Definitely not', 'Probably not', 'Maybe', 'Probably yes', 'Definitely yes'],
+};
+
 const SURVEY_QUESTIONS = [
-  { id: 'q1', text: 'How enjoyable was the game?', type: 'likert', required: true },
-  { id: 'q2', text: 'How difficult was it to identify the imposter?', type: 'likert', required: true },
-  { id: 'q3', text: 'How difficult was it to distinguish humans from AI?', type: 'likert', required: true },
-  { id: 'q4', text: "How natural did the AI players' conversation feel?", type: 'likert', required: true },
+  { id: 'q1', text: 'How enjoyable was the game?', type: 'likert', scale: 'enjoyment', required: true },
+  { id: 'q2', text: 'How difficult was it to identify the imposter?', type: 'likert', scale: 'difficulty', required: true },
+  { id: 'q3', text: 'How difficult was it to distinguish humans from AI?', type: 'likert', scale: 'difficulty', required: true },
+  { id: 'q4', text: "How natural did the AI players' conversation feel?", type: 'likert', scale: 'naturalness', required: true },
   { id: 'q5', text: 'Did you change your strategy after identifying potential AI players?', type: 'yesno', required: true },
   { id: 'q6', text: 'What strategies did you use to identify AI players?', type: 'checkbox', dependsOnYes: 'q5', options: [
     { value: 'language_patterns', label: 'Language patterns' },
@@ -17,17 +27,14 @@ const SURVEY_QUESTIONS = [
   { id: 'q7', text: 'Which AI player was most convincing? Why?', type: 'textarea' },
   { id: 'q8', text: 'Which AI player was least convincing? Why?', type: 'textarea' },
   { id: 'q9', text: 'What gave away that a player was AI?', type: 'textarea' },
-  { id: 'q10', text: 'Would you play again?', type: 'likert', required: true },
+  { id: 'q10', text: 'Would you play again?', type: 'likert', scale: 'likelihood', required: true },
   { id: 'q11', text: 'Any additional feedback?', type: 'textarea' },
 ];
 
-const LIKERT_OPTIONS = [
-  { value: '1', label: '1', desc: 'Strongly disagree' },
-  { value: '2', label: '2', desc: 'Disagree' },
-  { value: '3', label: '3', desc: 'Neutral' },
-  { value: '4', label: '4', desc: 'Agree' },
-  { value: '5', label: '5', desc: 'Strongly agree' },
-];
+function likertOptions(scaleKey) {
+  const labels = LIKERT_SCALES[scaleKey] || LIKERT_SCALES.enjoyment;
+  return labels.map((desc, i) => ({ value: String(i + 1), label: String(i + 1), desc }));
+}
 
 // Build a payload that always carries every question_id so research analysis
 // can tell "actively skipped" apart from "didn't see this question". Empty
@@ -144,7 +151,7 @@ export default function Survey({ send, timerSeconds, timerActive, surveySubmitte
       case 'likert':
         return (
           <div className={"likert-scale" + (fieldErrored ? " survey-field-error" : "")}>
-            {LIKERT_OPTIONS.map(opt => (
+            {likertOptions(q.scale).map(opt => (
               <label key={opt.value} className="likert-option">
                 <input
                   type="radio"

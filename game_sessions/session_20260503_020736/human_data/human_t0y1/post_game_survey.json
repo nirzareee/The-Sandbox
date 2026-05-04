@@ -1,0 +1,27 @@
+{
+  "submitted_at": "2026-05-03T06:23:12.371960+00:00",
+  "is_partial": false,
+  "player_id": "human_t0y1",
+  "real_name": "Aditya",
+  "player_type": "HUMAN",
+  "responses": {
+    "q1": "5",
+    "q2": "4",
+    "q3": "4",
+    "q4": "5",
+    "q5": "yes",
+    "q6": [
+      "language_patterns",
+      "response_timing",
+      "hint_quality",
+      "conversation_style",
+      "voting_behavior",
+      "other"
+    ],
+    "q7": "",
+    "q8": "",
+    "q9": "",
+    "q10": "5",
+    "q11": ""
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "per_round": [
+    {
+      "round_number": 1,
+      "imposter_identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "imposter_caught": true,
+      "imposter_stats": {
+        "msg_count": 7,
+        "total_tokens": 129,
+        "hedge_rate": 0.0,
+        "vague_rate": 0.015503875968992248,
+        "question_rate": 0.42857142857142855,
+        "avg_msg_words": 18.428571428571427
+      },
+      "insider_means": {
+        "hedge_rate": 0.017094017094017092,
+        "vague_rate": 0.006410256410256411,
+        "question_rate": 0.037037037037037035,
+        "avg_msg_words": 7.092592592592593,
+        "msg_count": 8.333333333333334
+      },
+      "deltas": {
+        "hedge_rate": -0.017094017094017092,
+        "vague_rate": 0.009093619558735836,
+        "question_rate": 0.3915343915343915,
+        "avg_msg_words": 11.335978835978835,
+        "msg_count": -1.333333333333334
+      }
+    },
+    {
+      "round_number": 2,
+      "imposter_identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "imposter_caught": true,
+      "imposter_stats": {
+        "msg_count": 5,
+        "total_tokens": 69,
+        "hedge_rate": 0.043478260869565216,
+        "vague_rate": 0.028985507246376812,
+        "question_rate": 0.2,
+        "avg_msg_words": 13.8
+      },
+      "insider_means": {
+        "hedge_rate": 0.03092667566351777,
+        "vague_rate": 0.008771929824561403,
+        "question_rate": 0.14285714285714285,
+        "avg_msg_words": 10.878306878306878,
+        "msg_count": 7.333333333333333
+      },
+      "deltas": {
+        "hedge_rate": 0.012551585206047447,
+        "vague_rate": 0.02021357742181541,
+        "question_rate": 0.05714285714285716,
+        "avg_msg_words": 2.9216931216931226,
+        "msg_count": -2.333333333333333
+      }
+    },
+    {
+      "round_number": 3,
+      "imposter_identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "imposter_caught": true,
+      "imposter_stats": {
+        "msg_count": 4,
+        "total_tokens": 50,
+        "hedge_rate": 0.02,
+        "vague_rate": 0.02,
+        "question_rate": 0.0,
+        "avg_msg_words": 12.5
+      },
+      "insider_means": {
+        "hedge_rate": 0.03139097744360902,
+        "vague_rate": 0.002976190476190476,
+        "question_rate": 0.047619047619047616,
+        "avg_msg_words": 10.459259259259259,
+        "msg_count": 7.0
+      },
+      "deltas": {
+        "hedge_rate": -0.011390977443609018,
+        "vague_rate": 0.017023809523809524,
+        "question_rate": -0.047619047619047616,
+        "avg_msg_words": 2.040740740740741,
+        "msg_count": -3.0
+      }
+    },
+    {
+      "round_number": 4,
+      "imposter_identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "imposter_caught": true,
+      "imposter_stats": {
+        "msg_count": 8,
+        "total_tokens": 54,
+        "hedge_rate": 0.0,
+        "vague_rate": 0.018518518518518517,
+        "question_rate": 0.125,
+        "avg_msg_words": 6.75
+      },
+      "insider_means": {
+        "hedge_rate": 0.02344877344877345,
+        "vague_rate": 0.003787878787878788,
+        "question_rate": 0.273015873015873,
+        "avg_msg_words": 10.46984126984127,
+        "msg_count": 6.0
+      },
+      "deltas": {
+        "hedge_rate": -0.02344877344877345,
+        "vague_rate": 0.01473063973063973,
+        "question_rate": -0.148015873015873,
+        "avg_msg_words": -3.71984126984127,
+        "msg_count": 2.0
+      }
+    },
+    {
+      "round_number": 5,
+      "imposter_identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "imposter_caught": true,
+      "imposter_stats": {
+        "msg_count": 7,
+        "total_tokens": 94,
+        "hedge_rate": 0.031914893617021274,
+        "vague_rate": 0.0,
+        "question_rate": 0.14285714285714285,
+        "avg_msg_words": 13.428571428571429
+      },
+      "insider_means": {
+        "hedge_rate": 0.020767195767195767,
+        "vague_rate": 0.007407407407407408,
+        "question_rate": 0.08928571428571429,
+        "avg_msg_words": 8.761904761904761,
+        "msg_count": 7.333333333333333
+      },
+      "deltas": {
+        "hedge_rate": 0.011147697849825507,
+        "vague_rate": -0.007407407407407408,
+        "question_rate": 0.05357142857142856,
+        "avg_msg_words": 4.666666666666668,
+        "msg_count": -0.33333333333333304
+      }
+    }
+  ],
+  "notes": "deltas = imposter_stat - mean(insiders_in_same_round). Positive hedge/vague/question deltas suggest the imposter was visibly fishing or stalling. Used as a research signal, not a verdict."
+}

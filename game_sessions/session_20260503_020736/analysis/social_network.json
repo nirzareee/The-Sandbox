@@ -1,0 +1,193 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "dm_network": {
+    "per_player": {
+      "human_t0y1": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "identity": {
+          "player_id": "human_t0y1",
+          "real_name": "Aditya",
+          "display_name": "Player",
+          "player_type": "HUMAN",
+          "model_name": null,
+          "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+        },
+        "dm_threads_initiated": 3,
+        "dm_threads_received": 0,
+        "dm_reply_rate": null,
+        "total_dms_sent": 21,
+        "total_dms_received": 18,
+        "group_to_dm_ratio": 0.38235294117647056
+      },
+      "agent_1": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "identity": {
+          "player_id": "agent_1",
+          "real_name": "agent_1",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "claude-opus-4-6",
+          "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+        },
+        "dm_threads_initiated": 2,
+        "dm_threads_received": 0,
+        "dm_reply_rate": null,
+        "total_dms_sent": 11,
+        "total_dms_received": 12,
+        "group_to_dm_ratio": 0.6666666666666666
+      },
+      "agent_2": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "identity": {
+          "player_id": "agent_2",
+          "real_name": "agent_2",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "gpt-5.5",
+          "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+        },
+        "dm_threads_initiated": 0,
+        "dm_threads_received": 0,
+        "dm_reply_rate": null,
+        "total_dms_sent": 7,
+        "total_dms_received": 8,
+        "group_to_dm_ratio": 0.8333333333333334
+      },
+      "agent_3": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "identity": {
+          "player_id": "agent_3",
+          "real_name": "agent_3",
+          "display_name": "Player",
+          "player_type": "AI",
+          "model_name": "deepseek-v4-pro",
+          "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+        },
+        "dm_threads_initiated": 0,
+        "dm_threads_received": 0,
+        "dm_reply_rate": null,
+        "total_dms_sent": 6,
+        "total_dms_received": 7,
+        "group_to_dm_ratio": 0.8
+      }
+    },
+    "pairs": {
+      "agent_3_human_t0y1": {
+        "players": [
+          "agent_3",
+          "human_t0y1"
+        ],
+        "initiator": "human_t0y1",
+        "total_messages": 12,
+        "agent_3_to_human_t0y1": 6,
+        "human_t0y1_to_agent_3": 6,
+        "rounds_active": [
+          1,
+          4,
+          5
+        ]
+      },
+      "agent_2_human_t0y1": {
+        "players": [
+          "agent_2",
+          "human_t0y1"
+        ],
+        "initiator": "human_t0y1",
+        "total_messages": 10,
+        "agent_2_to_human_t0y1": 5,
+        "human_t0y1_to_agent_2": 5,
+        "rounds_active": [
+          1,
+          2
+        ]
+      },
+      "agent_1_human_t0y1": {
+        "players": [
+          "agent_1",
+          "human_t0y1"
+        ],
+        "initiator": "human_t0y1",
+        "total_messages": 17,
+        "agent_1_to_human_t0y1": 7,
+        "human_t0y1_to_agent_1": 10,
+        "rounds_active": [
+          2,
+          3,
+          5
+        ]
+      },
+      "agent_1_agent_2": {
+        "players": [
+          "agent_1",
+          "agent_2"
+        ],
+        "initiator": "agent_1",
+        "total_messages": 5,
+        "agent_1_to_agent_2": 3,
+        "agent_2_to_agent_1": 2,
+        "rounds_active": [
+          3
+        ]
+      },
+      "agent_1_agent_3": {
+        "players": [
+          "agent_1",
+          "agent_3"
+        ],
+        "initiator": "agent_1",
+        "total_messages": 1,
+        "agent_1_to_agent_3": 1,
+        "agent_3_to_agent_1": 0,
+        "rounds_active": [
+          4
+        ]
+      }
+    }
+  },
+  "accusation_graph": {}
+}

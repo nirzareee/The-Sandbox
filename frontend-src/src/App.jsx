@@ -63,7 +63,12 @@ export default function App() {
           )}
 
           {state.phase === 'FINISHED' && (
-            <GameOver finalScores={state.finalScores} players={state.players} />
+            <GameOver
+              finalScores={state.finalScores}
+              players={state.players}
+              playerId={state.playerId}
+              sessionId={state.sessionId}
+            />
           )}
         </>
       )}

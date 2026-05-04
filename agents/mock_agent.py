@@ -6,6 +6,7 @@ import json
 import random
 
 from agents.base_agent import BaseAgent
+from agents.llm_response import LLMResponse
 
 
 # Canned hint pools
@@ -43,34 +44,36 @@ class MockAgent(BaseAgent):
         player_id: str,
         display_name: str,
         server_url: str = "ws://localhost:8000",
+        use_native_reasoning: bool = False,  # accepted but no-op for mock
     ) -> None:
         super().__init__(
             player_id=player_id,
             display_name=display_name,
             model_name="mock-llm",
+            use_native_reasoning=use_native_reasoning,
             server_url=server_url,
         )
 
-    async def call_llm(self, prompt: str) -> str:
+    async def call_llm(self, prompt: str) -> LLMResponse:
         """Return canned JSON responses based on prompt context."""
         prompt_lower = prompt.lower()
 
         if "give a short hint" in prompt_lower or "give a plausible hint" in prompt_lower:
-            return self._mock_hint()
+            return LLMResponse(content=self._mock_hint())
         elif "discussion phase" in prompt_lower:
-            return self._mock_discussion()
+            return LLMResponse(content=self._mock_discussion())
         elif "voting phase" in prompt_lower:
-            return self._mock_vote()
+            return LLMResponse(content=self._mock_vote())
         elif "final meta-game" in prompt_lower:
-            return self._mock_classification()
+            return LLMResponse(content=self._mock_classification())
         elif "reflection" in prompt_lower:
-            return self._mock_reflection()
+            return LLMResponse(content=self._mock_reflection())
 
         # Fallback — safe no-op
-        return json.dumps({
+        return LLMResponse(content=json.dumps({
             "thinking": "mock fallback",
             "action": {"type": "wait"},
-        })
+        }))
 
     # ------------------------------------------------------------------
     # Response generators
@@ -135,11 +138,11 @@ class MockAgent(BaseAgent):
                 }
         return json.dumps({
             "thinking": "mock classification",
-            "classifications": classifications,
+            "action": {"type": "meta_classification", "classifications": classifications},
         })
 
     def _mock_reflection(self) -> str:
         return json.dumps({
             "thinking": "Everyone played well this round. Need to watch more carefully next time.",
-            "action": {"type": "wait"},
+            "action": {"type": "reflection", "round_summary": "mock reflection", "suspicion_updates": {}},
         })

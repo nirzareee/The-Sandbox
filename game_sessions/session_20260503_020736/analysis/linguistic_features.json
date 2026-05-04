@@ -1,0 +1,227 @@
+{
+  "players_directory": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+    }
+  },
+  "players": {
+    "human_t0y1": {
+      "player_id": "human_t0y1",
+      "real_name": "Aditya",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "identity": {
+        "player_id": "human_t0y1",
+        "real_name": "Aditya",
+        "display_name": "Player",
+        "player_type": "HUMAN",
+        "model_name": null,
+        "label": "human_t0y1 \u00b7 \"Aditya\" (HUMAN)"
+      },
+      "msg_count": 34,
+      "group_msg_count": 13,
+      "dm_msg_count": 21,
+      "avg_msg_length_chars": 31.794117647058822,
+      "std_msg_length_chars": 22.995097516729984,
+      "avg_msg_length_words": 6.9411764705882355,
+      "avg_word_length": 3.5211864406779663,
+      "vocab_diversity": 0.4279661016949153,
+      "first_word_diversity": 0.5,
+      "slang_rate": 0.20588235294117646,
+      "question_rate": 0.17647058823529413,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.058823529411764705,
+      "comma_rate": 0.5588235294117647,
+      "emoji_rate": 0.0
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "real_name": "agent_1",
+      "player_type": "AI",
+      "model_name": "claude-opus-4-6",
+      "identity": {
+        "player_id": "agent_1",
+        "real_name": "agent_1",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "claude-opus-4-6",
+        "label": "agent_1 \u00b7 \"agent_1\" (AI \u00b7 claude-opus-4-6)"
+      },
+      "msg_count": 33,
+      "group_msg_count": 22,
+      "dm_msg_count": 11,
+      "avg_msg_length_chars": 81.21212121212122,
+      "std_msg_length_chars": 33.09338828957906,
+      "avg_msg_length_words": 16.272727272727273,
+      "avg_word_length": 3.9568480300187616,
+      "vocab_diversity": 0.4540337711069418,
+      "first_word_diversity": 0.6060606060606061,
+      "slang_rate": 0.7272727272727273,
+      "question_rate": 0.21212121212121213,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.6666666666666666,
+      "comma_rate": 0.12121212121212122,
+      "emoji_rate": 0.0
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "real_name": "agent_2",
+      "player_type": "AI",
+      "model_name": "gpt-5.5",
+      "identity": {
+        "player_id": "agent_2",
+        "real_name": "agent_2",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "gpt-5.5",
+        "label": "agent_2 \u00b7 \"agent_2\" (AI \u00b7 gpt-5.5)"
+      },
+      "msg_count": 42,
+      "group_msg_count": 35,
+      "dm_msg_count": 7,
+      "avg_msg_length_chars": 31.547619047619047,
+      "std_msg_length_chars": 7.411929675183936,
+      "avg_msg_length_words": 6.380952380952381,
+      "avg_word_length": 3.8754578754578755,
+      "vocab_diversity": 0.5311355311355311,
+      "first_word_diversity": 0.5238095238095238,
+      "slang_rate": 0.47619047619047616,
+      "question_rate": 0.047619047619047616,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.0,
+      "comma_rate": 0.16666666666666666,
+      "emoji_rate": 0.0
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "real_name": "agent_3",
+      "player_type": "AI",
+      "model_name": "deepseek-v4-pro",
+      "identity": {
+        "player_id": "agent_3",
+        "real_name": "agent_3",
+        "display_name": "Player",
+        "player_type": "AI",
+        "model_name": "deepseek-v4-pro",
+        "label": "agent_3 \u00b7 \"agent_3\" (AI \u00b7 deepseek-v4-pro)"
+      },
+      "msg_count": 30,
+      "group_msg_count": 24,
+      "dm_msg_count": 6,
+      "avg_msg_length_chars": 57.166666666666664,
+      "std_msg_length_chars": 20.392837372272503,
+      "avg_msg_length_words": 11.466666666666667,
+      "avg_word_length": 3.9502923976608186,
+      "vocab_diversity": 0.5584795321637427,
+      "first_word_diversity": 0.5333333333333333,
+      "slang_rate": 0.8,
+      "question_rate": 0.1,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.3333333333333333,
+      "comma_rate": 0.23333333333333334,
+      "emoji_rate": 0.0
+    }
+  },
+  "group_summary": {
+    "HUMAN": {
+      "avg_msg_length_chars": 31.794117647058822,
+      "avg_msg_length_words": 6.9411764705882355,
+      "vocab_diversity": 0.4279661016949153,
+      "slang_rate": 0.20588235294117646,
+      "question_rate": 0.17647058823529413,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.058823529411764705,
+      "comma_rate": 0.5588235294117647,
+      "emoji_rate": 0.0,
+      "first_word_diversity": 0.5
+    },
+    "AI": {
+      "avg_msg_length_chars": 56.64213564213565,
+      "avg_msg_length_words": 11.373448773448773,
+      "vocab_diversity": 0.5145496114687386,
+      "slang_rate": 0.6678210678210679,
+      "question_rate": 0.11991341991341992,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.3333333333333333,
+      "comma_rate": 0.17373737373737375,
+      "emoji_rate": 0.0,
+      "first_word_diversity": 0.5544011544011545
+    }
+  },
+  "per_model_summary": {
+    "claude-opus-4-6": {
+      "avg_msg_length_chars": 81.21212121212122,
+      "avg_msg_length_words": 16.272727272727273,
+      "vocab_diversity": 0.4540337711069418,
+      "slang_rate": 0.7272727272727273,
+      "question_rate": 0.21212121212121213,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.6666666666666666,
+      "comma_rate": 0.12121212121212122,
+      "emoji_rate": 0.0,
+      "first_word_diversity": 0.6060606060606061
+    },
+    "gpt-5.5": {
+      "avg_msg_length_chars": 31.547619047619047,
+      "avg_msg_length_words": 6.380952380952381,
+      "vocab_diversity": 0.5311355311355311,
+      "slang_rate": 0.47619047619047616,
+      "question_rate": 0.047619047619047616,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.0,
+      "comma_rate": 0.16666666666666666,
+      "emoji_rate": 0.0,
+      "first_word_diversity": 0.5238095238095238
+    },
+    "deepseek-v4-pro": {
+      "avg_msg_length_chars": 57.166666666666664,
+      "avg_msg_length_words": 11.466666666666667,
+      "vocab_diversity": 0.5584795321637427,
+      "slang_rate": 0.8,
+      "question_rate": 0.1,
+      "exclamation_rate": 0.0,
+      "capitalization_rate": 0.0,
+      "period_rate": 0.3333333333333333,
+      "comma_rate": 0.23333333333333334,
+      "emoji_rate": 0.0,
+      "first_word_diversity": 0.5333333333333333
+    }
+  }
+}
