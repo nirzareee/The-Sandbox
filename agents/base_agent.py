@@ -982,17 +982,129 @@ class BaseAgent(ABC):
                 try:
                     return json.loads(candidate)
                 except json.JSONDecodeError:
-                    # Some models occasionally drop a trailing closing brace
-                    # (observed on Grok meta-classification with nested
-                    # objects). If brace counts mismatch and the gap is
-                    # small, try patching closes onto the end.
-                    repaired = self._repair_truncated_json(candidate)
-                    if repaired is not None:
-                        log.info("%s: repaired truncated JSON (added %d brace(s))",
-                                 self.display_name, repaired[1])
-                        return repaired[0]
-            log.warning("Failed to parse LLM response: %.200s", text)
+                    pass
+                # Some models emit raw newlines/tabs inside JSON strings
+                # instead of \n/\t. Try escaping unescaped control chars
+                # inside strings. (No-op if no raw control chars present.)
+                escaped = self._escape_unescaped_controls(candidate)
+                if escaped != candidate:
+                    try:
+                        return json.loads(escaped)
+                    except json.JSONDecodeError:
+                        pass
+                # Observed on DeepSeek V4 Pro voting responses: a key's
+                # value gets its closing " emitted prematurely, followed
+                # by literal "\n\n<more text>" before the rest of the
+                # object. Try stitching the orphaned segment back into
+                # the previous string. (No-op if the response is not
+                # shaped this way.)
+                stitched = self._stitch_orphan_escape_segments(escaped)
+                if stitched != escaped:
+                    try:
+                        return json.loads(stitched)
+                    except json.JSONDecodeError:
+                        pass
+                # Some models drop trailing closing braces (Grok
+                # meta-classification). Patch up to 4 closes onto the end.
+                repaired = self._repair_truncated_json(stitched)
+                if repaired is not None:
+                    log.info("%s: repaired JSON (added %d brace(s))",
+                             self.display_name, repaired[1])
+                    return repaired[0]
+            # Fallback: action defaults to "wait" so any caller that asks for
+            # action.target_player/content/etc. gets None. The voting code
+            # then picks a random target — log loudly so this doesn't go
+            # silent. If you see this in a real game, fix the model output
+            # (e.g. response_format=json_object) instead of accepting noise.
+            log.warning(
+                "%s: LLM response failed to parse — falling back to "
+                "{action:wait}, downstream phase will random-pick. "
+                "First 200 chars: %.200s",
+                self.display_name, text,
+            )
             return {"thinking": text, "action": {"type": "wait"}}
+
+    @staticmethod
+    def _stitch_orphan_escape_segments(candidate: str) -> str:
+        """Heal a specific malformation: `..."\n\n<text>","next_key":`.
+
+        Replaces the spurious closing-quote+escapes+text+comma sequence
+        with the escapes and text moved INSIDE the string, ending at the
+        next valid `","key":` boundary.
+
+        Pattern signature: a `"` followed by `\\` (literal backslash) or a
+        whitespace escape, then text, then `","<word>":`.
+        """
+        # Look for: "  \n  TEXT  "  ,  "key":
+        # group 1 = the orphan escape+text segment that should be re-merged
+        # group 2 = the comma + next key opening
+        pattern = re.compile(
+            r'"((?:\\[nrt\\]|[^"\n\r])*?)",("\w+":)',
+            re.DOTALL,
+        )
+        # The plain regex above also matches valid JSON, so we only repair
+        # if the standard parse already failed for this text. Walk through
+        # candidate matches and try parsing each variant.
+        def repair_at(idx: int) -> str | None:
+            # find a `"` that's followed by `\` and figure out where the
+            # broken segment ends
+            close_q = candidate.find('"', idx)
+            if close_q < 0:
+                return None
+            # require the immediately-next chars to be a backslash escape
+            if close_q + 2 > len(candidate) or candidate[close_q + 1] != "\\":
+                return None
+            # find the next `","<key>":` boundary
+            m = re.search(r'","\w+":', candidate[close_q + 1:])
+            if not m:
+                return None
+            seg_end = close_q + 1 + m.start()
+            seg = candidate[close_q + 1:seg_end]
+            # Stitch: drop the premature `"` at close_q, append the
+            # segment inside the string, then emit a real `"` and the
+            # rest from m.start() onward.
+            return candidate[:close_q] + seg + candidate[seg_end:]
+        # Walk through candidate `"` followed by `\` positions
+        i = 0
+        while True:
+            j = candidate.find('"\\', i)
+            if j < 0:
+                break
+            patched = repair_at(j)
+            if patched and patched != candidate:
+                return patched
+            i = j + 1
+        return candidate
+
+    @staticmethod
+    def _escape_unescaped_controls(candidate: str) -> str:
+        """Replace literal newlines/tabs inside JSON strings with \\n/\\t.
+
+        Walks the text tracking string state and escape state. Outside of
+        strings, control chars are left alone. Inside an unescaped string,
+        replaces \\n -> \\\\n, \\r -> \\\\r, \\t -> \\\\t.
+        """
+        out: list[str] = []
+        in_str = False
+        escape = False
+        for ch in candidate:
+            if escape:
+                out.append(ch)
+                escape = False
+                continue
+            if ch == "\\" and in_str:
+                out.append(ch)
+                escape = True
+                continue
+            if ch == '"':
+                in_str = not in_str
+                out.append(ch)
+                continue
+            if in_str and ch in ("\n", "\r", "\t"):
+                out.append({"\n": "\\n", "\r": "\\r", "\t": "\\t"}[ch])
+                continue
+            out.append(ch)
+        return "".join(out)
 
     @staticmethod
     def _repair_truncated_json(candidate: str) -> tuple[dict, int] | None:

@@ -55,6 +55,11 @@ class DeepSeekAgent(BaseAgent):
             "model": self._model,
             "max_tokens": 4096 if self.use_native_reasoning else 2000,
             "messages": [{"role": "user", "content": prompt}],
+            # Force strict JSON output. Without this, V4 Pro occasionally
+            # emits malformed JSON (raw escape sequences outside strings,
+            # premature closing quotes) that drops to fallback action and
+            # silently randomizes votes/hints.
+            "response_format": {"type": "json_object"},
         }
         if not self.use_native_reasoning:
             kwargs["extra_body"] = {"thinking": {"type": "disabled"}}
