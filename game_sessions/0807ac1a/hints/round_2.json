@@ -1,0 +1,14 @@
+{
+  "round": 2,
+  "topic": "Celebrities",
+  "secret_word": "Rihanna",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "not bad at all imo",
+      "is_imposter": true
+    }
+  ]
+}

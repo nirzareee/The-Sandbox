@@ -1,0 +1,32 @@
+{
+  "round": 1,
+  "topic": "Desserts",
+  "secret_word": "Baklava",
+  "imposter_id": "agent_2",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "layered pastry",
+      "is_imposter": false
+    },
+    {
+      "player_id": "agent_2",
+      "display_name": "Player 4",
+      "hint": "cold and creamy",
+      "is_imposter": true
+    },
+    {
+      "player_id": "human_lwe2",
+      "display_name": "Player 2",
+      "hint": "pasta",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_d7ss",
+      "display_name": "Player 3",
+      "hint": "Cake",
+      "is_imposter": false
+    }
+  ]
+}

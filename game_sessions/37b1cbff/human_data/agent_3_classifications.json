@@ -1,0 +1,17 @@
+{
+  "player_id": "agent_3",
+  "display_name": "Player 1",
+  "classifications": {
+    "agent_1": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": "just a feeling"
+    },
+    "agent_2": {
+      "guess": "human",
+      "confidence": 2,
+      "reasoning": "just a feeling"
+    }
+  },
+  "ts": "2026-05-02T07:53:09.741639+00:00"
+}

@@ -1,0 +1,164 @@
+{
+  "agent_5": {
+    "agent_1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_4": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_2": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_3": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "human_3vf0": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    }
+  },
+  "agent_1": {
+    "agent_4": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_2": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_3": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "human_3vf0": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_5": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    }
+  },
+  "agent_4": {
+    "agent_1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_2": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_3": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "human_3vf0": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_5": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    }
+  },
+  "agent_3": {
+    "agent_1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_4": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_2": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "human_3vf0": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_5": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    }
+  },
+  "agent_2": {
+    "agent_1": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_4": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_3": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "human_3vf0": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    },
+    "agent_5": {
+      "guess": "human",
+      "confidence": 3,
+      "reasoning": "mock guess"
+    }
+  },
+  "human_3vf0": {
+    "agent_1": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": ""
+    },
+    "agent_2": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": ""
+    },
+    "agent_3": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": ""
+    },
+    "agent_4": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": ""
+    },
+    "agent_5": {
+      "guess": "ai",
+      "confidence": 3,
+      "reasoning": ""
+    }
+  }
+}

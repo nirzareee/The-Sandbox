@@ -1,0 +1,14 @@
+{
+  "round": 2,
+  "topic": "Movies",
+  "secret_word": "La La Land",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "its alright i guess lol",
+      "is_imposter": true
+    }
+  ]
+}

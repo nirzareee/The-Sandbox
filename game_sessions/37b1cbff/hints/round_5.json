@@ -1,0 +1,26 @@
+{
+  "round": 5,
+  "topic": "Street Food",
+  "secret_word": "Gyros",
+  "imposter_id": "agent_3",
+  "hints": [
+    {
+      "player_id": "agent_3",
+      "display_name": "Player 1",
+      "hint": "i think its cool honestly",
+      "is_imposter": true
+    },
+    {
+      "player_id": "agent_2",
+      "display_name": "Player 3",
+      "hint": "used to be my favorite ngl",
+      "is_imposter": false
+    },
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 2",
+      "hint": "kinda underrated honestly",
+      "is_imposter": false
+    }
+  ]
+}

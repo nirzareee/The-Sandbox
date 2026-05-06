@@ -1,0 +1,17 @@
+{
+  "agent_3": {
+    "display_name": "Player 1",
+    "type": "AI",
+    "model_name": "Mock Bot"
+  },
+  "agent_1": {
+    "display_name": "Player 2",
+    "type": "AI",
+    "model_name": "Mock Bot"
+  },
+  "agent_2": {
+    "display_name": "Player 3",
+    "type": "AI",
+    "model_name": "Mock Bot"
+  }
+}

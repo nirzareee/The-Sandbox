@@ -1,0 +1,14 @@
+{
+  "round": 3,
+  "topic": "Sports",
+  "secret_word": "Tennis",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "kinda overrated but ok",
+      "is_imposter": true
+    }
+  ]
+}

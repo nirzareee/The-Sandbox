@@ -1,0 +1,53 @@
+{"ts": "2026-05-04T01:16:36.927182+00:00", "event": "game_started", "num_rounds": 5}
+{"ts": "2026-05-04T01:16:36.932877+00:00", "event": "round_started", "round_number": 1, "imposter_id": "agent_2", "topic": "Fruits", "secret_word": "Watermelon", "hint_order": ["agent_2", "agent_3", "agent_1", "agent_5", "agent_4"]}
+{"ts": "2026-05-04T01:16:41.808432+00:00", "event": "hint", "player_id": "agent_5", "hint": "you know it", "round_number": 1}
+{"ts": "2026-05-04T01:16:41.917785+00:00", "event": "hint", "player_id": "agent_3", "hint": "no brainer", "round_number": 1}
+{"ts": "2026-05-04T01:16:42.135942+00:00", "event": "hint", "player_id": "agent_2", "hint": "...", "round_number": 1}
+{"ts": "2026-05-04T01:16:42.746280+00:00", "event": "hint", "player_id": "agent_4", "hint": "obvious", "round_number": 1}
+{"ts": "2026-05-04T01:16:42.951562+00:00", "event": "hint", "player_id": "agent_1", "hint": "for sure", "round_number": 1}
+{"ts": "2026-05-04T01:16:48.284522+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_5", "content": "lets team up", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:49.453484+00:00", "event": "group_chat", "player_id": "agent_4", "content": "agent_5 is being weird", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:49.577925+00:00", "event": "group_chat", "player_id": "agent_1", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:51.389475+00:00", "event": "group_chat", "player_id": "agent_5", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:51.919323+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "kinda sus ngl", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:53.640293+00:00", "event": "group_chat", "player_id": "agent_4", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:54.033399+00:00", "event": "group_chat", "player_id": "agent_2", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:54.447795+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_5", "content": "lets team up", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:55.729210+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agent_4 is being weird", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:56.856400+00:00", "event": "group_chat", "player_id": "agent_5", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:56.870286+00:00", "event": "group_chat", "player_id": "agent_4", "content": "I think it's agent_3", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:16:59.493194+00:00", "event": "group_chat", "player_id": "agent_5", "content": "agent_3 is being weird", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:00.122006+00:00", "event": "group_chat", "player_id": "agent_2", "content": "hmm suspicious", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:00.213135+00:00", "event": "group_chat", "player_id": "agent_4", "content": "agreed", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:01.405395+00:00", "event": "group_chat", "player_id": "agent_1", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:02.029369+00:00", "event": "group_chat", "player_id": "agent_3", "content": "I think it's agent_1", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:03.397634+00:00", "event": "group_chat", "player_id": "agent_2", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:04.773749+00:00", "event": "group_chat", "player_id": "agent_3", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:04.794938+00:00", "event": "group_chat", "player_id": "agent_5", "content": "lol who even knows", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:05.028073+00:00", "event": "group_chat", "player_id": "agent_4", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:07.638808+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agent_2 is being weird", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:09.298800+00:00", "event": "group_chat", "player_id": "agent_4", "content": "lol who even knows", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:09.905370+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "lets team up", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:10.244399+00:00", "event": "group_chat", "player_id": "agent_3", "content": "agent_2 is being weird", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:10.465870+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:15.229638+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_2", "round_number": 1}
+{"ts": "2026-05-04T01:17:15.338741+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-04T01:17:15.629773+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_4", "round_number": 1}
+{"ts": "2026-05-04T01:17:15.713504+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_3", "round_number": 1}
+{"ts": "2026-05-04T01:17:15.916998+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 1}
+{"ts": "2026-05-04T01:17:15.920826+00:00", "event": "round_results", "round_number": 1, "imposter_id": "agent_2", "imposter_caught": true, "votes": {"agent_1": "agent_2", "agent_5": "agent_1", "agent_2": "agent_4", "agent_4": "agent_3", "agent_3": "agent_2"}, "correct_voters": ["agent_1", "agent_3"], "scores_this_round": {"agent_1": 10, "agent_3": 10}, "cumulative_scores": {"agent_2": 0, "agent_3": 10, "agent_1": 10, "agent_5": 0, "agent_4": 0}}
+{"ts": "2026-05-04T01:17:32.433402+00:00", "event": "round_started", "round_number": 2, "imposter_id": "agent_5", "topic": "Halloween Icons", "secret_word": "Witch", "hint_order": ["agent_2", "agent_4", "agent_5", "agent_1", "agent_3"]}
+{"ts": "2026-05-04T01:17:36.321539+00:00", "event": "hint", "player_id": "agent_1", "hint": "classic", "round_number": 2}
+{"ts": "2026-05-04T01:17:37.370301+00:00", "event": "hint", "player_id": "agent_4", "hint": "nice one", "round_number": 2}
+{"ts": "2026-05-04T01:17:37.494799+00:00", "event": "hint", "player_id": "agent_2", "hint": "you know it", "round_number": 2}
+{"ts": "2026-05-04T01:17:37.574584+00:00", "event": "hint", "player_id": "agent_3", "hint": "easy pick", "round_number": 2}
+{"ts": "2026-05-04T01:17:38.540444+00:00", "event": "hint", "player_id": "agent_5", "hint": "...", "round_number": 2}
+{"ts": "2026-05-04T01:17:43.951770+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "kinda sus ngl", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:44.009824+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_1", "content": "lets team up", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:44.727906+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol who even knows", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:44.999106+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not sure about this", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:46.121272+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_5", "content": "lets team up", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:48.293484+00:00", "event": "group_chat", "player_id": "agent_3", "content": "hmm suspicious", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:48.337142+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agent_3 is being weird", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:48.368911+00:00", "event": "group_chat", "player_id": "agent_1", "content": "idk anyone could be it", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:17:48.887971+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_1", "content": "who are you voting for?", "round_number": 2, "phase": "DISCUSSION"}

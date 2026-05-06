@@ -1,0 +1,12 @@
+{
+  "round": 1,
+  "imposter_id": "agent_1",
+  "imposter_caught": false,
+  "votes": {},
+  "scores_this_round": {
+    "agent_1": 3
+  },
+  "cumulative_scores": {
+    "agent_1": 3
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "round": 1,
+  "topic": "Animals",
+  "secret_word": "Elephant",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "kinda overrated but ok",
+      "is_imposter": true
+    }
+  ]
+}

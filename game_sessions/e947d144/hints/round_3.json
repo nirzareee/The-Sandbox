@@ -1,0 +1,26 @@
+{
+  "round": 3,
+  "topic": "Animals",
+  "secret_word": "Lion",
+  "imposter_id": "human_8fwx",
+  "hints": [
+    {
+      "player_id": "human_8fwx",
+      "display_name": "Player 1",
+      "hint": "...",
+      "is_imposter": true
+    },
+    {
+      "player_id": "human_enih",
+      "display_name": "Player 2",
+      "hint": "...",
+      "is_imposter": false
+    },
+    {
+      "player_id": "human_1fej",
+      "display_name": "Player 3",
+      "hint": "...",
+      "is_imposter": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "round": 1,
+  "imposter_id": "agent_2",
+  "imposter_caught": false,
+  "votes": {
+    "human_lwe2": {
+      "voter_name": "Player 2",
+      "voted_for": "agent_2",
+      "voted_for_name": "Player 4",
+      "correct": true
+    },
+    "human_d7ss": {
+      "voter_name": "Player 3",
+      "voted_for": "human_lwe2",
+      "voted_for_name": "Player 2",
+      "correct": false
+    },
+    "agent_2": {
+      "voter_name": "Player 4",
+      "voted_for": "human_lwe2",
+      "voted_for_name": "Player 2",
+      "correct": false
+    },
+    "agent_1": {
+      "voter_name": "Player 1",
+      "voted_for": "human_lwe2",
+      "voted_for_name": "Player 2",
+      "correct": false
+    }
+  },
+  "scores_this_round": {
+    "human_lwe2": 2,
+    "human_d7ss": 0,
+    "agent_1": 0,
+    "agent_2": 3
+  },
+  "cumulative_scores": {
+    "human_lwe2": 2,
+    "human_d7ss": 0,
+    "agent_1": 0,
+    "agent_2": 3
+  }
+}

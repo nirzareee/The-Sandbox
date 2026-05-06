@@ -1,0 +1,71 @@
+{
+  "session_id": "session_20260503_211636",
+  "started_at": "2026-05-04T01:16:36.919991+00:00",
+  "players": {
+    "agent_1": {
+      "player_id": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "mock-llm",
+      "real_name": "agent_1",
+      "is_connected": true
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "mock-llm",
+      "real_name": "agent_2",
+      "is_connected": true
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "mock-llm",
+      "real_name": "agent_3",
+      "is_connected": true
+    },
+    "agent_4": {
+      "player_id": "agent_4",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "mock-llm",
+      "real_name": "agent_4",
+      "is_connected": true
+    },
+    "agent_5": {
+      "player_id": "agent_5",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "mock-llm",
+      "real_name": "agent_5",
+      "is_connected": true
+    }
+  },
+  "config": {
+    "session_id": "session_20260503_211636",
+    "max_players": 6,
+    "num_rounds": 5,
+    "phase_durations": {
+      "LOBBY": 0,
+      "ASSIGNMENT": 10,
+      "HINT": 30,
+      "DISCUSSION": 90,
+      "VOTING": 25,
+      "RESULTS": 10,
+      "REFLECTION": 45,
+      "META_GAME": 120,
+      "SURVEY": 180,
+      "REVEAL": 15
+    },
+    "scoring": {
+      "correct_vote": 10,
+      "imposter_survives": 15,
+      "wrongly_accused": -5,
+      "correct_classification": 5
+    },
+    "timer_multiplier": 0.3,
+    "player_assignments": {}
+  }
+}

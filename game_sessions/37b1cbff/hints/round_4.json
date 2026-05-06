@@ -1,0 +1,26 @@
+{
+  "round": 4,
+  "topic": "Fruits",
+  "secret_word": "Banana",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 2",
+      "hint": "i think its cool honestly",
+      "is_imposter": true
+    },
+    {
+      "player_id": "agent_2",
+      "display_name": "Player 3",
+      "hint": "reminds me of summer tbh",
+      "is_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "display_name": "Player 1",
+      "hint": "seen this a million times",
+      "is_imposter": false
+    }
+  ]
+}

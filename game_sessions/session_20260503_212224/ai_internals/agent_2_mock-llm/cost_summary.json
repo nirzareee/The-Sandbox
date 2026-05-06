@@ -1,0 +1,39 @@
+{
+  "model": "mock-llm",
+  "total_cost_usd": 0.0,
+  "total_prompt_tokens": 0,
+  "total_completion_tokens": 0,
+  "total_calls": 53,
+  "by_round": {
+    "1": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "calls": 11
+    },
+    "2": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "calls": 13
+    },
+    "3": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "calls": 9
+    },
+    "4": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "calls": 10
+    },
+    "5": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "calls": 10
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "session_id": "session_20260502_043039",
+  "max_players": 6,
+  "num_rounds": 5,
+  "phase_durations": {
+    "LOBBY": 0,
+    "ASSIGNMENT": 10,
+    "HINT": 30,
+    "DISCUSSION": 90,
+    "VOTING": 25,
+    "RESULTS": 10,
+    "REFLECTION": 20,
+    "META_GAME": 60,
+    "SURVEY": 180,
+    "REVEAL": 15
+  },
+  "scoring": {
+    "correct_vote": 10,
+    "imposter_survives": 15,
+    "wrongly_accused": -5,
+    "correct_classification": 5
+  },
+  "timer_multiplier": 1.0,
+  "player_assignments": {}
+}

@@ -1,0 +1,55 @@
+{"ts": "2026-05-03T04:04:33.034826+00:00", "round_number": 1, "phase": "hint", "thinking": "The topic is Musical Instruments and I know the secret word is Harmonica. I need to give a hint that shows I know the word without making it too obvious for the imposter."}
+{"ts": "2026-05-03T04:04:51.254549+00:00", "round_number": 1, "phase": "discussion", "thinking": "{\"thinking\": \"The hints so far are quite interesting. Player_1's hint 'blues' is a good clue, and Player_2's hint 'mouth sounds' is also a nice try. Player_3's hint is empty, which is suspicious. I should ask Player_3 about their hint to see their reaction.\", \"action\": {\"type\": \"group_message\", \"content\": \"hey p3 wut r u doin\"}}}"}
+{"ts": "2026-05-03T04:04:57.699787+00:00", "round_number": 1, "phase": "discussion", "thinking": "I should respond to Player_2's question and also try to engage with others to gather more information. I'll start by responding to Player_1's question."}
+{"ts": "2026-05-03T04:05:01.655008+00:00", "round_number": 1, "phase": "discussion", "thinking": "I should respond to Player_2's question and also try to engage with others to gather more information. I'll start by responding to Player_1's question."}
+{"ts": "2026-05-03T04:05:17.991878+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question and try to gather more information. Since Player_3's hint is suspiciously empty, I might send a DM to them to ask about their hint."}
+{"ts": "2026-05-03T04:05:27.728069+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll send a DM to Player_3 to ask about their hint, as it's suspiciously empty."}
+{"ts": "2026-05-03T04:05:34.833845+00:00", "round_number": 1, "phase": "discussion", "thinking": "I should respond to Player_1's question about Player_3's hint and also try to engage with others to gather more information. I'll start by responding to Player_1's question."}
+{"ts": "2026-05-03T04:05:41.720866+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question about Player_3's hint and also try to engage with others to gather more information. I might send a DM to Player_3 to ask about their hint again."}
+{"ts": "2026-05-03T04:05:50.486335+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question and try to gather more information. Since Player_3's hint is suspiciously empty, I might send a DM to them to ask about their hint."}
+{"ts": "2026-05-03T04:05:57.241869+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question and try to gather more information. Since Player_3's hint is suspiciously empty, I might send a DM to them to ask about their hint."}
+{"ts": "2026-05-03T04:06:06.049375+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question and try to gather more information. Since Player_3's hint is suspiciously empty, I might send a DM to them to ask about their hint."}
+{"ts": "2026-05-03T04:06:13.504121+00:00", "round_number": 1, "phase": "discussion", "thinking": "I'll respond to Player_2's question about whether to vote out Player_3 or try to get more information out of them. I'll suggest we try to get more information."}
+{"ts": "2026-05-03T04:06:18.232624+00:00", "round_number": 1, "phase": "voting", "thinking": "Based on the discussion and hints, Player_3 seems suspicious due to their empty hint and lack of participation in the discussion. I will vote for Player_3 as the imposter."}
+{"ts": "2026-05-03T04:07:07.363988+00:00", "round_number": 2, "phase": "hint", "thinking": "I need to give a hint that shows I know the word without making it too obvious for the imposter. The secret word is Seoul, which is a city in Asia."}
+{"ts": "2026-05-03T04:07:26.169447+00:00", "round_number": 2, "phase": "discussion", "thinking": "observing other players' hints to gauge their knowledge"}
+{"ts": "2026-05-03T04:07:28.891069+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat"}
+{"ts": "2026-05-03T04:07:35.238384+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:07:44.400298+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:07:51.927832+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:00.428354+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:12.878281+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:27.146245+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:34.323507+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:44.569078+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:51.401069+00:00", "round_number": 2, "phase": "discussion", "thinking": "analyzing player hints and chat to gauge their knowledge"}
+{"ts": "2026-05-03T04:08:53.608070+00:00", "round_number": 2, "phase": "voting", "thinking": "analyzing player hints and behavior"}
+{"ts": "2026-05-03T04:09:43.522008+00:00", "round_number": 3, "phase": "hint", "thinking": "as imposter, need to blend in, choose a word that seems related to spices & herbs but not too specific"}
+{"ts": "2026-05-03T04:10:05.349517+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing hints and players' behavior"}
+{"ts": "2026-05-03T04:10:11.585339+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing hints and players' behavior, need to blend in as imposter"}
+{"ts": "2026-05-03T04:10:21.230432+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing hints and players' behavior, need to blend in as imposter"}
+{"ts": "2026-05-03T04:10:29.524297+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing hints and players' behavior, need to blend in as imposter"}
+{"ts": "2026-05-03T04:10:37.510547+00:00", "round_number": 3, "phase": "discussion", "thinking": "considering player 2's hint and their question about my hint"}
+{"ts": "2026-05-03T04:10:49.787692+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:04.253574+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:07.285574+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:16.731180+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:20.005749+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:25.022157+00:00", "round_number": 3, "phase": "discussion", "thinking": "analyzing player 2's hint and their question about my hint, need to respond to player 2's dm and group message"}
+{"ts": "2026-05-03T04:11:31.244262+00:00", "round_number": 3, "phase": "voting", "thinking": "analyzing player behavior and hints"}
+{"ts": "2026-05-03T04:12:18.947170+00:00", "round_number": 4, "phase": "hint", "thinking": "I need to give a hint that shows I know the word without being too obvious. The secret word is Captain America, so I'll try to give a hint that relates to that."}
+{"ts": "2026-05-03T04:12:39.980761+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing hints"}
+{"ts": "2026-05-03T04:12:48.251582+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about player 3's silence"}
+{"ts": "2026-05-03T04:12:55.442606+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about player 3's silence and my previous interactions with player 2"}
+{"ts": "2026-05-03T04:13:06.220917+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat"}
+{"ts": "2026-05-03T04:13:16.346716+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about my thoughts on p1's silence"}
+{"ts": "2026-05-03T04:13:22.450535+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about p1's silence and my thoughts on it"}
+{"ts": "2026-05-03T04:13:26.777333+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat"}
+{"ts": "2026-05-03T04:13:30.524803+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:13:35.480540+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat, considering dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:13:42.107364+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:13:45.378124+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat, considering dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:13:52.024922+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:13:59.649000+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat, considering dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:14:05.997468+00:00", "round_number": 4, "phase": "discussion", "thinking": "analyzing previous hints and chat, considering dm from player 2 about keeping an eye on player 3 and player 1"}
+{"ts": "2026-05-03T04:14:18.278967+00:00", "round_number": 4, "phase": "voting", "thinking": "analyzing previous hints and chat, considering dm from player 2 about keeping an eye on player 3 and player 1. player 3's silence is super sus rn. player 1 also stayed quiet which is suspicious."}

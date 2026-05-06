@@ -1,0 +1,11 @@
+{
+  "round_number": 1,
+  "hints": {
+    "agent_1": "obvious",
+    "agent_2": "simple",
+    "agent_4": "easy pick",
+    "agent_5": "nice one",
+    "agent_3": "...",
+    "human_3vf0": "music"
+  }
+}

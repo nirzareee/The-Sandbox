@@ -1,0 +1,103 @@
+{
+  "confusion_matrix": {
+    "per_player": {
+      "agent_5": {
+        "tp": 2,
+        "tn": 0,
+        "fp": 1,
+        "fn": 2,
+        "accuracy": 0.4
+      },
+      "agent_1": {
+        "tp": 2,
+        "tn": 0,
+        "fp": 1,
+        "fn": 2,
+        "accuracy": 0.4
+      },
+      "agent_4": {
+        "tp": 1,
+        "tn": 0,
+        "fp": 1,
+        "fn": 3,
+        "accuracy": 0.2
+      },
+      "agent_3": {
+        "tp": 0,
+        "tn": 1,
+        "fp": 0,
+        "fn": 4,
+        "accuracy": 0.2
+      },
+      "agent_2": {
+        "tp": 1,
+        "tn": 1,
+        "fp": 0,
+        "fn": 3,
+        "accuracy": 0.4
+      },
+      "human_3vf0": {
+        "tp": 5,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0,
+        "accuracy": 1.0
+      }
+    },
+    "aggregate": {
+      "tp": 11,
+      "tn": 2,
+      "fp": 3,
+      "fn": 14,
+      "accuracy": 0.43333333333333335
+    }
+  },
+  "classification_scores": {
+    "agent_5": 10,
+    "agent_1": 10,
+    "agent_4": 5,
+    "agent_3": 5,
+    "agent_2": 10,
+    "human_3vf0": 25
+  },
+  "final_scores": {
+    "agent_3": 15,
+    "agent_4": 0,
+    "agent_5": 30,
+    "agent_1": 35,
+    "agent_2": 40,
+    "human_3vf0": 55
+  },
+  "leaderboard": [
+    {
+      "player_id": "human_3vf0",
+      "score": 55,
+      "rank": 1
+    },
+    {
+      "player_id": "agent_2",
+      "score": 40,
+      "rank": 2
+    },
+    {
+      "player_id": "agent_1",
+      "score": 35,
+      "rank": 3
+    },
+    {
+      "player_id": "agent_5",
+      "score": 30,
+      "rank": 4
+    },
+    {
+      "player_id": "agent_3",
+      "score": 15,
+      "rank": 5
+    },
+    {
+      "player_id": "agent_4",
+      "score": 0,
+      "rank": 6
+    }
+  ]
+}

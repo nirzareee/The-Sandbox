@@ -1,0 +1,15 @@
+{"ts": "2026-05-02T07:09:05.765717+00:00", "event": "player_connected", "player": "HOST", "type": "HOST"}
+{"ts": "2026-05-02T07:09:22.070654+00:00", "event": "player_connected", "player": "human_1fej", "type": "HUMAN"}
+{"ts": "2026-05-02T07:09:41.504955+00:00", "event": "player_connected", "player": "human_8fwx", "type": "HUMAN"}
+{"ts": "2026-05-02T07:09:44.140276+00:00", "event": "player_connected", "player": "human_enih", "type": "HUMAN"}
+{"ts": "2026-05-02T07:09:51.718126+00:00", "event": "round_assignment", "round": 1, "imposter": "human_1fej", "topic": "TV Shows", "secret_word": "Game of Thrones", "grid": ["Ted Lasso", "Squid Game", "Friends", "Black Mirror", "Stranger Things", "Succession", "The Office", "Game of Thrones", "Breaking Bad", "Euphoria"]}
+{"ts": "2026-05-02T07:11:29.741963+00:00", "event": "hints_saved", "round": 1, "count": 3}
+{"ts": "2026-05-02T07:15:39.773446+00:00", "event": "votes_saved", "round": 1}
+{"ts": "2026-05-02T07:16:14.797826+00:00", "event": "round_assignment", "round": 2, "imposter": "human_enih", "topic": "Celebrities", "secret_word": "Dwayne Johnson", "grid": ["Elon Musk", "Dwayne Johnson", "Bad Bunny", "Rihanna", "Beyonc\u00c3\u00a9", "BTS", "LeBron James", "Billie Eilish", "Oprah", "Taylor Swift"]}
+{"ts": "2026-05-02T07:17:52.836578+00:00", "event": "hints_saved", "round": 2, "count": 3}
+{"ts": "2026-05-02T07:22:02.865316+00:00", "event": "votes_saved", "round": 2}
+{"ts": "2026-05-02T07:22:37.881908+00:00", "event": "round_assignment", "round": 3, "imposter": "human_8fwx", "topic": "Animals", "secret_word": "Lion", "grid": ["Lion", "Eagle", "Dolphin", "Kangaroo", "Giraffe", "Elephant", "Penguin", "Panda", "Tiger", "Wolf"]}
+{"ts": "2026-05-02T07:24:15.898628+00:00", "event": "hints_saved", "round": 3, "count": 3}
+{"ts": "2026-05-02T07:28:25.922428+00:00", "event": "votes_saved", "round": 3}
+{"ts": "2026-05-02T07:29:00.949004+00:00", "event": "round_assignment", "round": 4, "imposter": "human_1fej", "topic": "Countries", "secret_word": "India", "grid": ["Australia", "Japan", "Italy", "Egypt", "Mexico", "Canada", "France", "Germany", "India", "Brazil"]}
+{"ts": "2026-05-02T07:30:38.978468+00:00", "event": "hints_saved", "round": 4, "count": 3}

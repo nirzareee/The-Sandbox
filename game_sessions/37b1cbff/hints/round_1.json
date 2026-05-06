@@ -1,0 +1,26 @@
+{
+  "round": 1,
+  "topic": "TV Shows",
+  "secret_word": "Game of Thrones",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_2",
+      "display_name": "Player 3",
+      "hint": "classic choice lol",
+      "is_imposter": false
+    },
+    {
+      "player_id": "agent_3",
+      "display_name": "Player 1",
+      "hint": "kinda underrated honestly",
+      "is_imposter": false
+    },
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 2",
+      "hint": "seen it around a lot",
+      "is_imposter": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "round": 3,
+  "topic": "Desserts",
+  "secret_word": "Gelato",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "not bad at all imo",
+      "is_imposter": true
+    }
+  ]
+}

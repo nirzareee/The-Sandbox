@@ -1,0 +1,79 @@
+{
+  "session_id": "session_20260502_043039",
+  "started_at": "2026-05-02T08:30:39.778366+00:00",
+  "players": {
+    "human_un3f": {
+      "player_id": "human_un3f",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "real_name": "Alin",
+      "is_connected": true
+    },
+    "human_wszb": {
+      "player_id": "human_wszb",
+      "display_name": "Player",
+      "player_type": "HUMAN",
+      "model_name": null,
+      "real_name": "Kishor",
+      "is_connected": true
+    },
+    "agent_1": {
+      "player_id": "agent_1",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "claude-sonnet-4-5-20250514",
+      "real_name": "agent_1",
+      "is_connected": true
+    },
+    "agent_2": {
+      "player_id": "agent_2",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "gpt-4o",
+      "real_name": "agent_2",
+      "is_connected": true
+    },
+    "agent_3": {
+      "player_id": "agent_3",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "grok-3-mini",
+      "real_name": "agent_3",
+      "is_connected": true
+    },
+    "agent_4": {
+      "player_id": "agent_4",
+      "display_name": "Player",
+      "player_type": "AI",
+      "model_name": "meta-llama/llama-4-scout-17b-16e-instruct",
+      "real_name": "agent_4",
+      "is_connected": true
+    }
+  },
+  "config": {
+    "session_id": "session_20260502_043039",
+    "max_players": 6,
+    "num_rounds": 5,
+    "phase_durations": {
+      "LOBBY": 0,
+      "ASSIGNMENT": 10,
+      "HINT": 30,
+      "DISCUSSION": 90,
+      "VOTING": 25,
+      "RESULTS": 10,
+      "REFLECTION": 20,
+      "META_GAME": 60,
+      "SURVEY": 180,
+      "REVEAL": 15
+    },
+    "scoring": {
+      "correct_vote": 10,
+      "imposter_survives": 15,
+      "wrongly_accused": -5,
+      "correct_classification": 5
+    },
+    "timer_multiplier": 1.0,
+    "player_assignments": {}
+  }
+}

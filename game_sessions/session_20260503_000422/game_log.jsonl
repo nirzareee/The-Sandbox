@@ -1,0 +1,114 @@
+{"ts": "2026-05-03T04:04:22.274430+00:00", "event": "game_started", "num_rounds": 5}
+{"ts": "2026-05-03T04:04:22.279055+00:00", "event": "round_started", "round_number": 1, "imposter_id": "agent_1", "topic": "Musical Instruments", "secret_word": "Harmonica", "hint_order": ["agent_4", "agent_2", "agent_1", "agent_3"]}
+{"ts": "2026-05-03T04:04:34.944168+00:00", "event": "hint", "player_id": "agent_4", "hint": "blues", "round_number": 1}
+{"ts": "2026-05-03T04:04:35.911009+00:00", "event": "hint", "player_id": "agent_1", "hint": "...", "round_number": 1}
+{"ts": "2026-05-03T04:04:37.644389+00:00", "event": "hint", "player_id": "agent_2", "hint": "mouth sounds", "round_number": 1}
+{"ts": "2026-05-03T04:04:37.783475+00:00", "event": "hint", "player_id": "agent_3", "hint": "small mouth", "round_number": 1}
+{"ts": "2026-05-03T04:04:52.764780+00:00", "event": "group_chat", "player_id": "agent_4", "content": "anyone got a clue?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:04:53.440482+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p3 ur hint is literally nothing lol", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:04:56.290291+00:00", "event": "group_chat", "player_id": "agent_4", "content": "omg mouth sounds tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:04:58.105104+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk p1 i think mouth sounds tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:04:58.264096+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 cmon ur hint gives us nothing", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:03.069713+00:00", "event": "group_chat", "player_id": "agent_4", "content": "mouth sounds tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:03.120699+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah p1 blues is a good one", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:03.501107+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_1", "content": "yo why the silence hint? u gotta explain", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:13.119175+00:00", "event": "group_chat", "player_id": "agent_4", "content": "mouth sounds tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:20.134019+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 i think mouth sounds is a good clue tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:22.320970+00:00", "event": "group_chat", "player_id": "agent_4", "content": "p3 whats good", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:28.708637+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_1", "content": "hey p3 whats ur hint tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:30.618587+00:00", "event": "group_chat", "player_id": "agent_4", "content": "p3 whats ur thought process", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:35.552623+00:00", "event": "group_chat", "player_id": "agent_4", "content": "p3 still nothing?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:36.770822+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk p3 seems sus tho", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:40.383914+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p3 pls talk, ur hint left us hanging", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:43.542293+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 pls just say something anything", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:43.996141+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah p2 p3 is sus af", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:47.185354+00:00", "event": "group_chat", "player_id": "agent_4", "content": "cmon p3 say smth", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:05:50.999234+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_1", "content": "hey p3 did u jsut forget or wut", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:06:00.905060+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 you good? saying nothing is real sus rn", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:06:01.345172+00:00", "event": "group_chat", "player_id": "agent_4", "content": "p3 say smth pls", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:06:09.432101+00:00", "event": "group_chat", "player_id": "agent_2", "content": "ok p1 p4 do u think we just vote p3 or try to get more out of them?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:06:15.966458+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah lts try to get more out of p3", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:06:22.554017+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T04:06:22.634814+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T04:06:25.128095+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_2", "round_number": 1}
+{"ts": "2026-05-03T04:06:26.898704+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-03T04:06:26.901013+00:00", "event": "round_results", "round_number": 1, "imposter_id": "agent_1", "imposter_caught": true, "votes": {"agent_4": "agent_1", "agent_2": "agent_1", "agent_1": "agent_2", "agent_3": "agent_1"}, "correct_voters": ["agent_2", "agent_3", "agent_4"], "scores_this_round": {"agent_4": 10, "agent_2": 10, "agent_3": 10}, "cumulative_scores": {"agent_4": 10, "agent_2": 10, "agent_1": 0, "agent_3": 10}}
+{"ts": "2026-05-03T04:06:56.921208+00:00", "event": "round_started", "round_number": 2, "imposter_id": "agent_2", "topic": "World Capitals", "secret_word": "Seoul", "hint_order": ["agent_4", "agent_1", "agent_3", "agent_2"]}
+{"ts": "2026-05-03T04:07:10.346075+00:00", "event": "hint", "player_id": "agent_1", "hint": "...", "round_number": 2}
+{"ts": "2026-05-03T04:07:10.586259+00:00", "event": "hint", "player_id": "agent_2", "hint": "urban vibe", "round_number": 2}
+{"ts": "2026-05-03T04:07:10.947369+00:00", "event": "hint", "player_id": "agent_3", "hint": "asian city", "round_number": 2}
+{"ts": "2026-05-03T04:07:12.933599+00:00", "event": "hint", "player_id": "agent_4", "hint": "asia city", "round_number": 2}
+{"ts": "2026-05-03T04:07:27.167003+00:00", "event": "group_chat", "player_id": "agent_3", "content": "hey p2 what ur thinkin with 'urban vibe'?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:28.535269+00:00", "event": "group_chat", "player_id": "agent_2", "content": "so it's def in asia lol", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:30.829758+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk p2 urban vibe is pretty broad", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:32.922156+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah i felt like it could be tokyo or sth", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:37.020115+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p1 asia city is pretty vague", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:44.021210+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yeah def feels like tokyo more than others maybe", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:45.568304+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "what u mean by 'urban vibe'?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:07:49.577688+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "hey, i was just going for like a busy city feel. asian cities like tokyo can have that urban vibe, u know?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:00.124214+00:00", "event": "group_chat", "player_id": "agent_2", "content": "so p3... wheres ur hint at?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:01.747657+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_1", "content": "what did u mean by '...'", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:13.898487+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_4", "content": "ur hint was super vague", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:14.774820+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p4, ur hint is super similar to p1's... whats different?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:23.052919+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 still nothing huh?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:27.671597+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p4 r u sure its asian city? i mean its kinda similar to p1", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:27.789882+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 i think urban vibe is a good guess tho", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:36.217465+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 yeah urban vibe is a good guess", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:44.691820+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 still quiet? kinda sus", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:45.733210+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 i trust ur urban vibe tho", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:08:56.124161+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_2", "round_number": 2}
+{"ts": "2026-05-03T04:08:58.494590+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 2}
+{"ts": "2026-05-03T04:08:59.584433+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_2", "round_number": 2}
+{"ts": "2026-05-03T04:09:02.030634+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_1", "round_number": 2}
+{"ts": "2026-05-03T04:09:02.034148+00:00", "event": "round_results", "round_number": 2, "imposter_id": "agent_2", "imposter_caught": true, "votes": {"agent_4": "agent_2", "agent_2": "agent_1", "agent_1": "agent_2", "agent_3": "agent_1"}, "correct_voters": ["agent_1", "agent_4"], "scores_this_round": {"agent_4": 10, "agent_1": 10}, "cumulative_scores": {"agent_4": 20, "agent_2": 10, "agent_1": 10, "agent_3": 10}}
+{"ts": "2026-05-03T04:09:32.062540+00:00", "event": "round_started", "round_number": 3, "imposter_id": "agent_3", "topic": "Spices & Herbs", "secret_word": "Basil", "hint_order": ["agent_4", "agent_1", "agent_2", "agent_3"]}
+{"ts": "2026-05-03T04:09:44.940858+00:00", "event": "hint", "player_id": "agent_2", "hint": "pesto green", "round_number": 3}
+{"ts": "2026-05-03T04:09:45.987967+00:00", "event": "hint", "player_id": "agent_1", "hint": "...", "round_number": 3}
+{"ts": "2026-05-03T04:09:46.737797+00:00", "event": "hint", "player_id": "agent_3", "hint": "yellow spice", "round_number": 3}
+{"ts": "2026-05-03T04:09:50.709012+00:00", "event": "hint", "player_id": "agent_4", "hint": "...", "round_number": 3}
+{"ts": "2026-05-03T04:10:03.761540+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p3 what's up with ur hint", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:06.386807+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p4 why yellow spice lol", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:07.912692+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk p2 pesto green is a good guess tho", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:14.468669+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 pesto green is a good guess tho", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:20.459861+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 doing the silent treatment again?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:21.388970+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 ur hint is pretty specific tho", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:32.593317+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p2 yeah pesto green is a strong hint", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:34.767112+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "yo why u think yellow spice? doesn't fit the topic", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:38.385034+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "idk just seemed like a obvious one", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:10:54.249683+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p3 got anything to add?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:11:04.930574+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "tbh just turmeric came to mind", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:11:17.859464+00:00", "event": "group_chat", "player_id": "agent_3", "content": "yeah p2 turmeric makes sense i guess", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:11:30.022111+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_1", "content": "yo u there? ur hint is blank again", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:11:34.179992+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_3", "round_number": 3}
+{"ts": "2026-05-03T04:11:34.735193+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_1", "round_number": 3}
+{"ts": "2026-05-03T04:11:35.689134+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 3}
+{"ts": "2026-05-03T04:11:38.370750+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_4", "round_number": 3}
+{"ts": "2026-05-03T04:11:38.381965+00:00", "event": "round_results", "round_number": 3, "imposter_id": "agent_3", "imposter_caught": false, "votes": {"agent_1": "agent_3", "agent_4": "agent_1", "agent_2": "agent_1", "agent_3": "agent_4"}, "correct_voters": ["agent_1"], "scores_this_round": {"agent_1": 5, "agent_3": 15}, "cumulative_scores": {"agent_4": 20, "agent_2": 10, "agent_1": 15, "agent_3": 25}}
+{"ts": "2026-05-03T04:12:08.395354+00:00", "event": "round_started", "round_number": 4, "imposter_id": "agent_4", "topic": "Superheroes", "secret_word": "Captain America", "hint_order": ["agent_2", "agent_4", "agent_1", "agent_3"]}
+{"ts": "2026-05-03T04:12:21.785955+00:00", "event": "hint", "player_id": "agent_4", "hint": "...", "round_number": 4}
+{"ts": "2026-05-03T04:12:24.102374+00:00", "event": "hint", "player_id": "agent_2", "hint": "shield guy", "round_number": 4}
+{"ts": "2026-05-03T04:12:26.130492+00:00", "event": "hint", "player_id": "agent_1", "hint": "...", "round_number": 4}
+{"ts": "2026-05-03T04:12:27.479617+00:00", "event": "hint", "player_id": "agent_3", "hint": "star spangled", "round_number": 4}
+{"ts": "2026-05-03T04:12:40.774983+00:00", "event": "group_chat", "player_id": "agent_2", "content": "yo p1 and p3 where ur hints at", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:12:43.527418+00:00", "event": "group_chat", "player_id": "agent_3", "content": "hey p2 shield guy is pretty on point tho", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:12:44.898749+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "hey, p3's silence is kinda sus right? thoughts?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:12:50.035519+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "yeah p3 is being super sus rn", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:12:53.043497+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "yeah exactly p3 is sus and we probs wanna keep an eye on them... any thoughts on p1?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:02.938328+00:00", "event": "group_chat", "player_id": "agent_2", "content": "cmon p1 say smth", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:13.015490+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "hey p4 what do u think if p1 stays quiet?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:20.514724+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "if p1 stays quiet too we shld def keep em both on our radar", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:24.442894+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "yeah if p1 stays quiet it's def suspicious", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:28.027710+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "cool yeah i think we should def watch both n decide who to vote for once discussion ends", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:31.867216+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "yeah keepin them on radar rn", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:35.151007+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "def agree. let's keep watching them and maybe we can catch them slipping", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:42.242063+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "yeah let's see if p1 gives a hint", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:45.763256+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "yeah totally agree, let's keep an eye and decide based on their next moves", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:46.297422+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p1 stay quiet and p3 also sus", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:13:55.589150+00:00", "event": "group_chat", "player_id": "agent_2", "content": "p1 cmon chim in or sus", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:14:00.915094+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p3's silence is super sus rn", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:14:06.001086+00:00", "event": "group_chat", "player_id": "agent_3", "content": "p1 and p3 r sus af", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-03T04:14:12.676945+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 4}
+{"ts": "2026-05-03T04:14:15.468018+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-03T04:14:18.280259+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_4", "round_number": 4}
+{"ts": "2026-05-03T04:14:19.677182+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-03T04:14:19.681697+00:00", "event": "round_results", "round_number": 4, "imposter_id": "agent_4", "imposter_caught": false, "votes": {"agent_2": "agent_1", "agent_4": "agent_2", "agent_3": "agent_4", "agent_1": "agent_2"}, "correct_voters": ["agent_3"], "scores_this_round": {"agent_3": 10, "agent_4": 15, "agent_2": -5}, "cumulative_scores": {"agent_4": 35, "agent_2": 5, "agent_1": 15, "agent_3": 35}}

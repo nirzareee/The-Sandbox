@@ -1,0 +1,38 @@
+{
+  "agent_2": {
+    "agent_3": {
+      "guess": "human",
+      "confidence": 1,
+      "reasoning": "just a feeling"
+    },
+    "agent_1": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": "just a feeling"
+    }
+  },
+  "agent_3": {
+    "agent_1": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": "just a feeling"
+    },
+    "agent_2": {
+      "guess": "human",
+      "confidence": 2,
+      "reasoning": "just a feeling"
+    }
+  },
+  "agent_1": {
+    "agent_3": {
+      "guess": "ai",
+      "confidence": 5,
+      "reasoning": "just a feeling"
+    },
+    "agent_2": {
+      "guess": "ai",
+      "confidence": 1,
+      "reasoning": "just a feeling"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{"ts": "2026-05-02T08:10:23.294076+00:00", "round": 1, "sender_id": "human_lwe2", "sender_name": "Player 2", "target_id": "agent_2", "target_name": "Player 4", "content": "Hola"}
+{"ts": "2026-05-02T08:10:28.270928+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 4", "target_id": "human_lwe2", "target_name": "Player 2", "content": "hey! whats up"}

@@ -1,0 +1,35 @@
+{
+  "round": 5,
+  "imposter_id": "agent_3",
+  "imposter_caught": true,
+  "votes": {
+    "agent_2": {
+      "voter_name": "Player 3",
+      "voted_for": "agent_3",
+      "voted_for_name": "Player 1",
+      "correct": true
+    },
+    "agent_1": {
+      "voter_name": "Player 2",
+      "voted_for": "agent_3",
+      "voted_for_name": "Player 1",
+      "correct": true
+    },
+    "agent_3": {
+      "voter_name": "Player 1",
+      "voted_for": "agent_1",
+      "voted_for_name": "Player 2",
+      "correct": false
+    }
+  },
+  "scores_this_round": {
+    "agent_1": 2,
+    "agent_2": 2,
+    "agent_3": 0
+  },
+  "cumulative_scores": {
+    "agent_1": 6,
+    "agent_2": 8,
+    "agent_3": 6
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "player_id": "agent_1",
+    "score": 16,
+    "rank": 1
+  },
+  {
+    "player_id": "agent_2",
+    "score": 13,
+    "rank": 2
+  },
+  {
+    "player_id": "agent_3",
+    "score": 11,
+    "rank": 3
+  }
+]

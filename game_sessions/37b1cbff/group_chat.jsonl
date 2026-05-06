@@ -1,0 +1,73 @@
+{"ts": "2026-05-02T07:52:11.147343+00:00", "round": 1, "sender_id": "agent_3", "sender_name": "Player 1", "content": "the hints are in, lets figure this out"}
+{"ts": "2026-05-02T07:52:11.192849+00:00", "round": 1, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ok so looking at the hints... some are more specific than others"}
+{"ts": "2026-05-02T07:52:11.226398+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 3", "content": "hmm interesting hints this round"}
+{"ts": "2026-05-02T07:52:11.522897+00:00", "round": 1, "sender_id": "agent_3", "sender_name": "Player 1", "content": "idk Player 2 ur hint \"seen it around a lot\" doesnt really narrow it down"}
+{"ts": "2026-05-02T07:52:11.524169+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 3", "content": "ngl Player 2 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:52:11.557141+00:00", "round": 1, "sender_id": "agent_1", "sender_name": "Player 2", "content": "idk Player 3 ur hint \"classic choice lol\" doesnt really narrow it down"}
+{"ts": "2026-05-02T07:52:11.816803+00:00", "round": 1, "sender_id": "agent_1", "sender_name": "Player 2", "content": "tbh looking at Squid Game on the grid it could go either way"}
+{"ts": "2026-05-02T07:52:11.926637+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 3", "content": "wait Player 2 that doesnt add up"}
+{"ts": "2026-05-02T07:52:12.006827+00:00", "round": 1, "sender_id": "agent_3", "sender_name": "Player 1", "content": "the hints narrow it down, its definitely not Stranger Things"}
+{"ts": "2026-05-02T07:52:12.336558+00:00", "round": 1, "sender_id": "agent_3", "sender_name": "Player 1", "content": "nah Player 3 i think ur reading into it too much"}
+{"ts": "2026-05-02T07:52:12.527700+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 3", "content": "true Player 1 has a point"}
+{"ts": "2026-05-02T07:52:12.560993+00:00", "round": 1, "sender_id": "agent_1", "sender_name": "Player 2", "content": "true Player 1 has a point"}
+{"ts": "2026-05-02T07:52:13.023650+00:00", "round": 1, "sender_id": "agent_3", "sender_name": "Player 1", "content": "sorry Player 2 but im going with u"}
+{"ts": "2026-05-02T07:52:13.103160+00:00", "round": 1, "sender_id": "agent_1", "sender_name": "Player 2", "content": "my gut says Player 3"}
+{"ts": "2026-05-02T07:52:13.118706+00:00", "round": 1, "sender_id": "agent_2", "sender_name": "Player 3", "content": "im voting Player 2 tbh"}
+{"ts": "2026-05-02T07:52:23.327597+00:00", "round": 2, "sender_id": "agent_2", "sender_name": "Player 3", "content": "the hints are in, lets figure this out"}
+{"ts": "2026-05-02T07:52:23.374540+00:00", "round": 2, "sender_id": "agent_1", "sender_name": "Player 2", "content": "alright lets break down these hints"}
+{"ts": "2026-05-02T07:52:23.423712+00:00", "round": 2, "sender_id": "agent_3", "sender_name": "Player 1", "content": "ok so looking at the hints... some are more specific than others"}
+{"ts": "2026-05-02T07:52:23.676891+00:00", "round": 2, "sender_id": "agent_2", "sender_name": "Player 3", "content": "Player 1's hint was kinda vague... \"seen this a million times\" could apply to anything"}
+{"ts": "2026-05-02T07:52:23.712211+00:00", "round": 2, "sender_id": "agent_1", "sender_name": "Player 2", "content": "Player 3's hint was kinda vague... \"not bad at all imo\" could apply to anything"}
+{"ts": "2026-05-02T07:52:23.745966+00:00", "round": 2, "sender_id": "agent_3", "sender_name": "Player 1", "content": "ngl Player 3 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:52:23.941659+00:00", "round": 2, "sender_id": "agent_2", "sender_name": "Player 3", "content": "hmm Player 1 but what about the other hints tho"}
+{"ts": "2026-05-02T07:52:24.035258+00:00", "round": 2, "sender_id": "agent_1", "sender_name": "Player 2", "content": "if u look at the grid, some hints rule out Gelato at least"}
+{"ts": "2026-05-02T07:52:24.092803+00:00", "round": 2, "sender_id": "agent_3", "sender_name": "Player 1", "content": "nah Player 2 i think ur reading into it too much"}
+{"ts": "2026-05-02T07:52:24.479773+00:00", "round": 2, "sender_id": "agent_1", "sender_name": "Player 2", "content": "hmm Player 1 but what about the other hints tho"}
+{"ts": "2026-05-02T07:52:24.558747+00:00", "round": 2, "sender_id": "agent_3", "sender_name": "Player 1", "content": "wait Player 2 that doesnt add up"}
+{"ts": "2026-05-02T07:52:25.021975+00:00", "round": 2, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ok i think its Player 3, voting for them"}
+{"ts": "2026-05-02T07:52:25.037821+00:00", "round": 2, "sender_id": "agent_2", "sender_name": "Player 3", "content": "sorry Player 1 but im going with u"}
+{"ts": "2026-05-02T07:52:25.199441+00:00", "round": 2, "sender_id": "agent_3", "sender_name": "Player 1", "content": "sorry Player 3 but im going with u"}
+{"ts": "2026-05-02T07:52:35.557551+00:00", "round": 3, "sender_id": "agent_1", "sender_name": "Player 2", "content": "the hints are in, lets figure this out"}
+{"ts": "2026-05-02T07:52:35.587847+00:00", "round": 3, "sender_id": "agent_2", "sender_name": "Player 3", "content": "alright lets break down these hints"}
+{"ts": "2026-05-02T07:52:35.649478+00:00", "round": 3, "sender_id": "agent_3", "sender_name": "Player 1", "content": "alright lets break down these hints"}
+{"ts": "2026-05-02T07:52:35.958869+00:00", "round": 3, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ngl Player 1 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:52:36.047492+00:00", "round": 3, "sender_id": "agent_3", "sender_name": "Player 1", "content": "idk Player 3 ur hint \"everyone knows this one\" doesnt really narrow it down"}
+{"ts": "2026-05-02T07:52:36.049023+00:00", "round": 3, "sender_id": "agent_2", "sender_name": "Player 3", "content": "im looking at Player 1's hint and its giving imposter vibes"}
+{"ts": "2026-05-02T07:52:36.252499+00:00", "round": 3, "sender_id": "agent_1", "sender_name": "Player 2", "content": "true Player 3 has a point"}
+{"ts": "2026-05-02T07:52:36.304764+00:00", "round": 3, "sender_id": "agent_2", "sender_name": "Player 3", "content": "agreed, Player 2 nailed it"}
+{"ts": "2026-05-02T07:52:36.377091+00:00", "round": 3, "sender_id": "agent_3", "sender_name": "Player 1", "content": "most hints point to the same thing pretty clearly"}
+{"ts": "2026-05-02T07:52:36.712594+00:00", "round": 3, "sender_id": "agent_2", "sender_name": "Player 3", "content": "true Player 1 has a point"}
+{"ts": "2026-05-02T07:52:36.927563+00:00", "round": 3, "sender_id": "agent_1", "sender_name": "Player 2", "content": "lol exactly what Player 3 said"}
+{"ts": "2026-05-02T07:52:36.958626+00:00", "round": 3, "sender_id": "agent_3", "sender_name": "Player 1", "content": "nah Player 2 i think ur reading into it too much"}
+{"ts": "2026-05-02T07:52:37.037397+00:00", "round": 3, "sender_id": "agent_2", "sender_name": "Player 3", "content": "im between a couple people but leaning Player 1"}
+{"ts": "2026-05-02T07:52:37.325737+00:00", "round": 3, "sender_id": "agent_1", "sender_name": "Player 2", "content": "im between a couple people but leaning Player 1"}
+{"ts": "2026-05-02T07:52:37.486430+00:00", "round": 3, "sender_id": "agent_3", "sender_name": "Player 1", "content": "my gut says Player 3"}
+{"ts": "2026-05-02T07:52:47.791738+00:00", "round": 4, "sender_id": "agent_3", "sender_name": "Player 1", "content": "ok so looking at the hints... some are more specific than others"}
+{"ts": "2026-05-02T07:52:47.806250+00:00", "round": 4, "sender_id": "agent_2", "sender_name": "Player 3", "content": "ok who wants to start? some of these hints are sus"}
+{"ts": "2026-05-02T07:52:47.862115+00:00", "round": 4, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ok so looking at the hints... some are more specific than others"}
+{"ts": "2026-05-02T07:52:48.075165+00:00", "round": 4, "sender_id": "agent_2", "sender_name": "Player 3", "content": "ngl Player 2 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:52:48.157107+00:00", "round": 4, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ngl Player 3 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:52:48.287030+00:00", "round": 4, "sender_id": "agent_3", "sender_name": "Player 1", "content": "wait \"i think its cool honestly\" from Player 2?? thats super generic"}
+{"ts": "2026-05-02T07:52:48.391581+00:00", "round": 4, "sender_id": "agent_2", "sender_name": "Player 3", "content": "true Player 1 has a point"}
+{"ts": "2026-05-02T07:52:48.505338+00:00", "round": 4, "sender_id": "agent_3", "sender_name": "Player 1", "content": "yeah Player 3 i was thinking the same thing"}
+{"ts": "2026-05-02T07:52:48.658145+00:00", "round": 4, "sender_id": "agent_1", "sender_name": "Player 2", "content": "the grid has some tricky ones like Orange"}
+{"ts": "2026-05-02T07:52:48.912187+00:00", "round": 4, "sender_id": "agent_3", "sender_name": "Player 1", "content": "wait Player 2 that doesnt add up"}
+{"ts": "2026-05-02T07:52:49.141697+00:00", "round": 4, "sender_id": "agent_2", "sender_name": "Player 3", "content": "agreed, Player 1 nailed it"}
+{"ts": "2026-05-02T07:52:49.192615+00:00", "round": 4, "sender_id": "agent_1", "sender_name": "Player 2", "content": "wait Player 3 that doesnt add up"}
+{"ts": "2026-05-02T07:52:49.523015+00:00", "round": 4, "sender_id": "agent_2", "sender_name": "Player 3", "content": "ok i think its Player 2, voting for them"}
+{"ts": "2026-05-02T07:52:49.650686+00:00", "round": 4, "sender_id": "agent_3", "sender_name": "Player 1", "content": "ok i think its Player 2, voting for them"}
+{"ts": "2026-05-02T07:52:49.815612+00:00", "round": 4, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ok i think its Player 3, voting for them"}
+{"ts": "2026-05-02T07:53:00.112953+00:00", "round": 5, "sender_id": "agent_3", "sender_name": "Player 1", "content": "alright lets break down these hints"}
+{"ts": "2026-05-02T07:53:00.114163+00:00", "round": 5, "sender_id": "agent_1", "sender_name": "Player 2", "content": "hmm interesting hints this round"}
+{"ts": "2026-05-02T07:53:00.177375+00:00", "round": 5, "sender_id": "agent_2", "sender_name": "Player 3", "content": "the hints are in, lets figure this out"}
+{"ts": "2026-05-02T07:53:00.471357+00:00", "round": 5, "sender_id": "agent_1", "sender_name": "Player 2", "content": "ngl Player 1 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:53:00.489428+00:00", "round": 5, "sender_id": "agent_3", "sender_name": "Player 1", "content": "im looking at Player 2's hint and its giving imposter vibes"}
+{"ts": "2026-05-02T07:53:00.664671+00:00", "round": 5, "sender_id": "agent_2", "sender_name": "Player 3", "content": "ngl Player 1 that hint feels like u dont know the word"}
+{"ts": "2026-05-02T07:53:00.697669+00:00", "round": 5, "sender_id": "agent_1", "sender_name": "Player 2", "content": "idk Player 3 i dont see it that way"}
+{"ts": "2026-05-02T07:53:00.884663+00:00", "round": 5, "sender_id": "agent_3", "sender_name": "Player 1", "content": "the grid has some tricky ones like Arepas"}
+{"ts": "2026-05-02T07:53:01.001577+00:00", "round": 5, "sender_id": "agent_2", "sender_name": "Player 3", "content": "the hints narrow it down, its definitely not Pad Thai"}
+{"ts": "2026-05-02T07:53:01.513122+00:00", "round": 5, "sender_id": "agent_2", "sender_name": "Player 3", "content": "yeah Player 1 i was thinking the same thing"}
+{"ts": "2026-05-02T07:53:01.792411+00:00", "round": 5, "sender_id": "agent_3", "sender_name": "Player 1", "content": "yeah Player 3 i was thinking the same thing"}
+{"ts": "2026-05-02T07:53:01.954177+00:00", "round": 5, "sender_id": "agent_2", "sender_name": "Player 3", "content": "im between a couple people but leaning Player 1"}
+{"ts": "2026-05-02T07:53:02.057577+00:00", "round": 5, "sender_id": "agent_1", "sender_name": "Player 2", "content": "im between a couple people but leaning Player 1"}
+{"ts": "2026-05-02T07:53:02.428735+00:00", "round": 5, "sender_id": "agent_3", "sender_name": "Player 1", "content": "sorry Player 2 but im going with u"}

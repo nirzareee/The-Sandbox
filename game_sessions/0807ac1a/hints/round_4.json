@@ -1,0 +1,14 @@
+{
+  "round": 4,
+  "topic": "Video Games",
+  "secret_word": "Mario Kart",
+  "imposter_id": "agent_1",
+  "hints": [
+    {
+      "player_id": "agent_1",
+      "display_name": "Player 1",
+      "hint": "this one is pretty good",
+      "is_imposter": true
+    }
+  ]
+}

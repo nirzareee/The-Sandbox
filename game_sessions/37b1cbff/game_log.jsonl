@@ -1,0 +1,292 @@
+{"ts": "2026-05-02T07:52:07.274515+00:00", "event": "player_connected", "player": "agent_1", "type": "AI"}
+{"ts": "2026-05-02T07:52:07.424997+00:00", "event": "player_connected", "player": "agent_2", "type": "AI"}
+{"ts": "2026-05-02T07:52:07.575913+00:00", "event": "player_connected", "player": "agent_3", "type": "AI"}
+{"ts": "2026-05-02T07:52:09.753255+00:00", "event": "round_assignment", "round": 1, "imposter": "agent_1", "topic": "TV Shows", "secret_word": "Game of Thrones", "grid": ["The Office", "Black Mirror", "Succession", "Breaking Bad", "Euphoria", "Stranger Things", "Game of Thrones", "Friends", "Ted Lasso", "Squid Game"]}
+{"ts": "2026-05-02T07:52:10.311281+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:10.391374+00:00", "event": "player_action", "player": "agent_3", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:10.455452+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:10.456797+00:00", "event": "hints_saved", "round": 1, "count": 3}
+{"ts": "2026-05-02T07:52:11.146261+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.147873+00:00", "event": "group_message", "sender": "agent_3", "content": "the hints are in, lets figure this out", "round": 1}
+{"ts": "2026-05-02T07:52:11.192101+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.193542+00:00", "event": "group_message", "sender": "agent_1", "content": "ok so looking at the hints... some are more specific than others", "round": 1}
+{"ts": "2026-05-02T07:52:11.225868+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.226634+00:00", "event": "group_message", "sender": "agent_2", "content": "hmm interesting hints this round", "round": 1}
+{"ts": "2026-05-02T07:52:11.522328+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.523559+00:00", "event": "group_message", "sender": "agent_3", "content": "idk Player 2 ur hint \"seen it around a lot\" doesnt really narrow it down", "round": 1}
+{"ts": "2026-05-02T07:52:11.523836+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.524362+00:00", "event": "group_message", "sender": "agent_2", "content": "ngl Player 2 that hint feels like u dont know the word", "round": 1}
+{"ts": "2026-05-02T07:52:11.556549+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.557395+00:00", "event": "group_message", "sender": "agent_1", "content": "idk Player 3 ur hint \"classic choice lol\" doesnt really narrow it down", "round": 1}
+{"ts": "2026-05-02T07:52:11.816230+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.817024+00:00", "event": "group_message", "sender": "agent_1", "content": "tbh looking at Squid Game on the grid it could go either way", "round": 1}
+{"ts": "2026-05-02T07:52:11.925932+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:11.926921+00:00", "event": "group_message", "sender": "agent_2", "content": "wait Player 2 that doesnt add up", "round": 1}
+{"ts": "2026-05-02T07:52:11.972170+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:11.973161+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "hey do u think Player 3 is the imposter?", "round": 1}
+{"ts": "2026-05-02T07:52:12.006326+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:12.007038+00:00", "event": "group_message", "sender": "agent_3", "content": "the hints narrow it down, its definitely not Stranger Things", "round": 1}
+{"ts": "2026-05-02T07:52:12.091163+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.092131+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "psst Player 2's hint was so generic right", "round": 1}
+{"ts": "2026-05-02T07:52:12.141062+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.141837+00:00", "event": "dm", "sender": "agent_3", "target": "agent_1", "content": "true true, lets not make it obvious tho", "round": 1}
+{"ts": "2026-05-02T07:52:12.289198+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.289923+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "hmm interesting, i was thinking the same", "round": 1}
+{"ts": "2026-05-02T07:52:12.304680+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.305587+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "yeah i noticed that too", "round": 1}
+{"ts": "2026-05-02T07:52:12.336018+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:12.336787+00:00", "event": "group_message", "sender": "agent_3", "content": "nah Player 3 i think ur reading into it too much", "round": 1}
+{"ts": "2026-05-02T07:52:12.421118+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.422705+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "idk im still figuring it out", "round": 1}
+{"ts": "2026-05-02T07:52:12.466985+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.468021+00:00", "event": "dm", "sender": "agent_3", "target": "agent_1", "content": "yeah i noticed that too", "round": 1}
+{"ts": "2026-05-02T07:52:12.527177+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:12.527954+00:00", "event": "group_message", "sender": "agent_2", "content": "true Player 1 has a point", "round": 1}
+{"ts": "2026-05-02T07:52:12.560481+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:12.561296+00:00", "event": "group_message", "sender": "agent_1", "content": "true Player 1 has a point", "round": 1}
+{"ts": "2026-05-02T07:52:12.610840+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.611688+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "idk im still figuring it out", "round": 1}
+{"ts": "2026-05-02T07:52:12.661040+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.792219+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.793367+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "true true, lets not make it obvious tho", "round": 1}
+{"ts": "2026-05-02T07:52:12.941350+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:12.942345+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "lol yeah they're definitely sus", "round": 1}
+{"ts": "2026-05-02T07:52:13.023040+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:13.023923+00:00", "event": "group_message", "sender": "agent_3", "content": "sorry Player 2 but im going with u", "round": 1}
+{"ts": "2026-05-02T07:52:13.072426+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:13.102439+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:13.103448+00:00", "event": "group_message", "sender": "agent_1", "content": "my gut says Player 3", "round": 1}
+{"ts": "2026-05-02T07:52:13.118290+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:13.118889+00:00", "event": "group_message", "sender": "agent_2", "content": "im voting Player 2 tbh", "round": 1}
+{"ts": "2026-05-02T07:52:20.141171+00:00", "event": "player_action", "player": "agent_3", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:20.172140+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:20.300801+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:20.302758+00:00", "event": "votes_saved", "round": 1}
+{"ts": "2026-05-02T07:52:22.067116+00:00", "event": "round_assignment", "round": 2, "imposter": "agent_2", "topic": "Desserts", "secret_word": "Churros", "grid": ["Mochi", "Churros", "Brownie", "Gelato", "Cheesecake", "Panna Cotta", "Creme Brulee", "Baklava", "Tiramisu", "Macaron"]}
+{"ts": "2026-05-02T07:52:22.592072+00:00", "event": "player_action", "player": "agent_3", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:22.676730+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:22.696728+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:22.698265+00:00", "event": "hints_saved", "round": 2, "count": 3}
+{"ts": "2026-05-02T07:52:23.326953+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.327831+00:00", "event": "group_message", "sender": "agent_2", "content": "the hints are in, lets figure this out", "round": 2}
+{"ts": "2026-05-02T07:52:23.373989+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.374774+00:00", "event": "group_message", "sender": "agent_1", "content": "alright lets break down these hints", "round": 2}
+{"ts": "2026-05-02T07:52:23.423145+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.423948+00:00", "event": "group_message", "sender": "agent_3", "content": "ok so looking at the hints... some are more specific than others", "round": 2}
+{"ts": "2026-05-02T07:52:23.676322+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.677099+00:00", "event": "group_message", "sender": "agent_2", "content": "Player 1's hint was kinda vague... \"seen this a million times\" could apply to anything", "round": 2}
+{"ts": "2026-05-02T07:52:23.711663+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.712429+00:00", "event": "group_message", "sender": "agent_1", "content": "Player 3's hint was kinda vague... \"not bad at all imo\" could apply to anything", "round": 2}
+{"ts": "2026-05-02T07:52:23.745471+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.746179+00:00", "event": "group_message", "sender": "agent_3", "content": "ngl Player 3 that hint feels like u dont know the word", "round": 2}
+{"ts": "2026-05-02T07:52:23.940946+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:23.942079+00:00", "event": "group_message", "sender": "agent_2", "content": "hmm Player 1 but what about the other hints tho", "round": 2}
+{"ts": "2026-05-02T07:52:24.034709+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:24.035457+00:00", "event": "group_message", "sender": "agent_1", "content": "if u look at the grid, some hints rule out Gelato at least", "round": 2}
+{"ts": "2026-05-02T07:52:24.091568+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:24.093457+00:00", "event": "group_message", "sender": "agent_3", "content": "nah Player 2 i think ur reading into it too much", "round": 2}
+{"ts": "2026-05-02T07:52:24.167291+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.171407+00:00", "event": "dm", "sender": "agent_1", "target": "agent_2", "content": "psst Player 1's hint was so generic right", "round": 2}
+{"ts": "2026-05-02T07:52:24.270118+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.270807+00:00", "event": "dm", "sender": "agent_2", "target": "agent_1", "content": "hmm interesting, i was thinking the same", "round": 2}
+{"ts": "2026-05-02T07:52:24.447489+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.448828+00:00", "event": "dm", "sender": "agent_1", "target": "agent_2", "content": "idk im still figuring it out", "round": 2}
+{"ts": "2026-05-02T07:52:24.478783+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:24.479989+00:00", "event": "group_message", "sender": "agent_1", "content": "hmm Player 1 but what about the other hints tho", "round": 2}
+{"ts": "2026-05-02T07:52:24.558270+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:24.558931+00:00", "event": "group_message", "sender": "agent_3", "content": "wait Player 2 that doesnt add up", "round": 2}
+{"ts": "2026-05-02T07:52:24.636016+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.636745+00:00", "event": "dm", "sender": "agent_2", "target": "agent_1", "content": "yeah i noticed that too", "round": 2}
+{"ts": "2026-05-02T07:52:24.685501+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:24.790019+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.790805+00:00", "event": "dm", "sender": "agent_1", "target": "agent_2", "content": "hmm interesting, i was thinking the same", "round": 2}
+{"ts": "2026-05-02T07:52:24.959428+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:24.960192+00:00", "event": "dm", "sender": "agent_2", "target": "agent_1", "content": "lol yeah they're definitely sus", "round": 2}
+{"ts": "2026-05-02T07:52:25.021432+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:25.022272+00:00", "event": "group_message", "sender": "agent_1", "content": "ok i think its Player 3, voting for them", "round": 2}
+{"ts": "2026-05-02T07:52:25.037408+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:25.038016+00:00", "event": "group_message", "sender": "agent_2", "content": "sorry Player 1 but im going with u", "round": 2}
+{"ts": "2026-05-02T07:52:25.099117+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:25.198840+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:25.199666+00:00", "event": "group_message", "sender": "agent_3", "content": "sorry Player 3 but im going with u", "round": 2}
+{"ts": "2026-05-02T07:52:32.414189+00:00", "event": "player_action", "player": "agent_3", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:32.493151+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:32.526485+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:32.527807+00:00", "event": "votes_saved", "round": 2}
+{"ts": "2026-05-02T07:52:34.302699+00:00", "event": "round_assignment", "round": 3, "imposter": "agent_3", "topic": "Video Games", "secret_word": "Among Us", "grid": ["Pokemon", "Zelda", "GTA V", "Fortnite", "Minecraft", "Among Us", "Mario Kart", "Elden Ring", "FIFA", "Call of Duty"]}
+{"ts": "2026-05-02T07:52:34.872347+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:34.902592+00:00", "event": "player_action", "player": "agent_3", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:34.903222+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:34.904420+00:00", "event": "hints_saved", "round": 3, "count": 3}
+{"ts": "2026-05-02T07:52:35.557020+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:35.557792+00:00", "event": "group_message", "sender": "agent_1", "content": "the hints are in, lets figure this out", "round": 3}
+{"ts": "2026-05-02T07:52:35.587322+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:35.588080+00:00", "event": "group_message", "sender": "agent_2", "content": "alright lets break down these hints", "round": 3}
+{"ts": "2026-05-02T07:52:35.649009+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:35.649670+00:00", "event": "group_message", "sender": "agent_3", "content": "alright lets break down these hints", "round": 3}
+{"ts": "2026-05-02T07:52:35.958360+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:35.959069+00:00", "event": "group_message", "sender": "agent_1", "content": "ngl Player 1 that hint feels like u dont know the word", "round": 3}
+{"ts": "2026-05-02T07:52:36.046753+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.048051+00:00", "event": "group_message", "sender": "agent_3", "content": "idk Player 3 ur hint \"everyone knows this one\" doesnt really narrow it down", "round": 3}
+{"ts": "2026-05-02T07:52:36.048692+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.049206+00:00", "event": "group_message", "sender": "agent_2", "content": "im looking at Player 1's hint and its giving imposter vibes", "round": 3}
+{"ts": "2026-05-02T07:52:36.251925+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.252722+00:00", "event": "group_message", "sender": "agent_1", "content": "true Player 3 has a point", "round": 3}
+{"ts": "2026-05-02T07:52:36.304081+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.305041+00:00", "event": "group_message", "sender": "agent_2", "content": "agreed, Player 2 nailed it", "round": 3}
+{"ts": "2026-05-02T07:52:36.376534+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.377281+00:00", "event": "group_message", "sender": "agent_3", "content": "most hints point to the same thing pretty clearly", "round": 3}
+{"ts": "2026-05-02T07:52:36.377462+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.377908+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "psst Player 3's hint was so generic right", "round": 3}
+{"ts": "2026-05-02T07:52:36.493023+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.493743+00:00", "event": "dm", "sender": "agent_3", "target": "agent_1", "content": "lol yeah they're definitely sus", "round": 3}
+{"ts": "2026-05-02T07:52:36.604216+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.606613+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "idk im still figuring it out", "round": 3}
+{"ts": "2026-05-02T07:52:36.632368+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.633251+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "hey do u think Player 2 is the imposter?", "round": 3}
+{"ts": "2026-05-02T07:52:36.711443+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.713121+00:00", "event": "group_message", "sender": "agent_2", "content": "true Player 1 has a point", "round": 3}
+{"ts": "2026-05-02T07:52:36.756362+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.757814+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "idk im still figuring it out", "round": 3}
+{"ts": "2026-05-02T07:52:36.758335+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.926982+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.927792+00:00", "event": "group_message", "sender": "agent_1", "content": "lol exactly what Player 3 said", "round": 3}
+{"ts": "2026-05-02T07:52:36.942593+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:36.943674+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "hmm interesting, i was thinking the same", "round": 3}
+{"ts": "2026-05-02T07:52:36.957960+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:36.958958+00:00", "event": "group_message", "sender": "agent_3", "content": "nah Player 2 i think ur reading into it too much", "round": 3}
+{"ts": "2026-05-02T07:52:37.036149+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:37.036911+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "good point lets see how the vote goes", "round": 3}
+{"ts": "2026-05-02T07:52:37.037096+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:37.037615+00:00", "event": "group_message", "sender": "agent_2", "content": "im between a couple people but leaning Player 1", "round": 3}
+{"ts": "2026-05-02T07:52:37.171225+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:37.172014+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "yeah i noticed that too", "round": 3}
+{"ts": "2026-05-02T07:52:37.325207+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:37.325963+00:00", "event": "group_message", "sender": "agent_1", "content": "im between a couple people but leaning Player 1", "round": 3}
+{"ts": "2026-05-02T07:52:37.340832+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:37.341628+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "hmm interesting, i was thinking the same", "round": 3}
+{"ts": "2026-05-02T07:52:37.485926+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:37.486628+00:00", "event": "group_message", "sender": "agent_3", "content": "my gut says Player 3", "round": 3}
+{"ts": "2026-05-02T07:52:37.515498+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:44.640959+00:00", "event": "player_action", "player": "agent_3", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:44.662369+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:44.675944+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:44.677519+00:00", "event": "votes_saved", "round": 3}
+{"ts": "2026-05-02T07:52:46.442565+00:00", "event": "round_assignment", "round": 4, "imposter": "agent_1", "topic": "Fruits", "secret_word": "Banana", "grid": ["Watermelon", "Banana", "Orange", "Pineapple", "Cherry", "Strawberry", "Mango", "Kiwi", "Grape", "Apple"]}
+{"ts": "2026-05-02T07:52:47.092278+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:47.103487+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:47.136189+00:00", "event": "player_action", "player": "agent_3", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:47.141467+00:00", "event": "hints_saved", "round": 4, "count": 3}
+{"ts": "2026-05-02T07:52:47.791037+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:47.792029+00:00", "event": "group_message", "sender": "agent_3", "content": "ok so looking at the hints... some are more specific than others", "round": 4}
+{"ts": "2026-05-02T07:52:47.805756+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:47.806448+00:00", "event": "group_message", "sender": "agent_2", "content": "ok who wants to start? some of these hints are sus", "round": 4}
+{"ts": "2026-05-02T07:52:47.861485+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:47.862353+00:00", "event": "group_message", "sender": "agent_1", "content": "ok so looking at the hints... some are more specific than others", "round": 4}
+{"ts": "2026-05-02T07:52:48.074646+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.075373+00:00", "event": "group_message", "sender": "agent_2", "content": "ngl Player 2 that hint feels like u dont know the word", "round": 4}
+{"ts": "2026-05-02T07:52:48.156620+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.157340+00:00", "event": "group_message", "sender": "agent_1", "content": "ngl Player 3 that hint feels like u dont know the word", "round": 4}
+{"ts": "2026-05-02T07:52:48.286527+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.287242+00:00", "event": "group_message", "sender": "agent_3", "content": "wait \"i think its cool honestly\" from Player 2?? thats super generic", "round": 4}
+{"ts": "2026-05-02T07:52:48.391112+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.391786+00:00", "event": "group_message", "sender": "agent_2", "content": "true Player 1 has a point", "round": 4}
+{"ts": "2026-05-02T07:52:48.504126+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.505774+00:00", "event": "group_message", "sender": "agent_3", "content": "yeah Player 3 i was thinking the same thing", "round": 4}
+{"ts": "2026-05-02T07:52:48.607346+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:48.608103+00:00", "event": "dm", "sender": "agent_2", "target": "agent_1", "content": "im sus of Player 1 what do u think", "round": 4}
+{"ts": "2026-05-02T07:52:48.657422+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.658485+00:00", "event": "group_message", "sender": "agent_1", "content": "the grid has some tricky ones like Orange", "round": 4}
+{"ts": "2026-05-02T07:52:48.721325+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:48.722051+00:00", "event": "dm", "sender": "agent_1", "target": "agent_2", "content": "idk im still figuring it out", "round": 4}
+{"ts": "2026-05-02T07:52:48.840966+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:48.841760+00:00", "event": "dm", "sender": "agent_2", "target": "agent_1", "content": "idk im still figuring it out", "round": 4}
+{"ts": "2026-05-02T07:52:48.911314+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:48.912495+00:00", "event": "group_message", "sender": "agent_3", "content": "wait Player 2 that doesnt add up", "round": 4}
+{"ts": "2026-05-02T07:52:48.976355+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:48.977074+00:00", "event": "dm", "sender": "agent_1", "target": "agent_2", "content": "true true, lets not make it obvious tho", "round": 4}
+{"ts": "2026-05-02T07:52:49.087059+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:52:49.141119+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:49.141923+00:00", "event": "group_message", "sender": "agent_2", "content": "agreed, Player 1 nailed it", "round": 4}
+{"ts": "2026-05-02T07:52:49.191442+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:49.192951+00:00", "event": "group_message", "sender": "agent_1", "content": "wait Player 3 that doesnt add up", "round": 4}
+{"ts": "2026-05-02T07:52:49.522423+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:49.523290+00:00", "event": "group_message", "sender": "agent_2", "content": "ok i think its Player 2, voting for them", "round": 4}
+{"ts": "2026-05-02T07:52:49.649774+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:49.650951+00:00", "event": "group_message", "sender": "agent_3", "content": "ok i think its Player 2, voting for them", "round": 4}
+{"ts": "2026-05-02T07:52:49.815135+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:52:49.815814+00:00", "event": "group_message", "sender": "agent_1", "content": "ok i think its Player 3, voting for them", "round": 4}
+{"ts": "2026-05-02T07:52:56.891195+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:56.891774+00:00", "event": "player_action", "player": "agent_3", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:57.031517+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:52:57.036128+00:00", "event": "votes_saved", "round": 4}
+{"ts": "2026-05-02T07:52:58.806776+00:00", "event": "round_assignment", "round": 5, "imposter": "agent_3", "topic": "Street Food", "secret_word": "Gyros", "grid": ["Pad Thai", "Empanadas", "Banh Mi", "Shawarma", "Gyros", "Arepas", "Tacos", "Takoyaki", "Samosa", "Churros"]}
+{"ts": "2026-05-02T07:52:59.367618+00:00", "event": "player_action", "player": "agent_3", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:59.474037+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:59.490980+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:52:59.491988+00:00", "event": "hints_saved", "round": 5, "count": 3}
+{"ts": "2026-05-02T07:53:00.112388+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.113209+00:00", "event": "group_message", "sender": "agent_3", "content": "alright lets break down these hints", "round": 5}
+{"ts": "2026-05-02T07:53:00.113755+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.114361+00:00", "event": "group_message", "sender": "agent_1", "content": "hmm interesting hints this round", "round": 5}
+{"ts": "2026-05-02T07:53:00.176750+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.177626+00:00", "event": "group_message", "sender": "agent_2", "content": "the hints are in, lets figure this out", "round": 5}
+{"ts": "2026-05-02T07:53:00.470598+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.473970+00:00", "event": "group_message", "sender": "agent_1", "content": "ngl Player 1 that hint feels like u dont know the word", "round": 5}
+{"ts": "2026-05-02T07:53:00.488732+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.489776+00:00", "event": "group_message", "sender": "agent_3", "content": "im looking at Player 2's hint and its giving imposter vibes", "round": 5}
+{"ts": "2026-05-02T07:53:00.663605+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.665129+00:00", "event": "group_message", "sender": "agent_2", "content": "ngl Player 1 that hint feels like u dont know the word", "round": 5}
+{"ts": "2026-05-02T07:53:00.697174+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.697857+00:00", "event": "group_message", "sender": "agent_1", "content": "idk Player 3 i dont see it that way", "round": 5}
+{"ts": "2026-05-02T07:53:00.867286+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:00.869650+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "hey do u think Player 3 is the imposter?", "round": 5}
+{"ts": "2026-05-02T07:53:00.884211+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:00.884843+00:00", "event": "group_message", "sender": "agent_3", "content": "the grid has some tricky ones like Arepas", "round": 5}
+{"ts": "2026-05-02T07:53:00.953442+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:00.954139+00:00", "event": "dm", "sender": "agent_3", "target": "agent_1", "content": "idk im still figuring it out", "round": 5}
+{"ts": "2026-05-02T07:53:00.999309+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:01.001809+00:00", "event": "group_message", "sender": "agent_2", "content": "the hints narrow it down, its definitely not Pad Thai", "round": 5}
+{"ts": "2026-05-02T07:53:01.038169+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.038845+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "im sus of Player 2 what do u think", "round": 5}
+{"ts": "2026-05-02T07:53:01.149328+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.150073+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "idk im still figuring it out", "round": 5}
+{"ts": "2026-05-02T07:53:01.193054+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.193849+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "yeah i noticed that too", "round": 5}
+{"ts": "2026-05-02T07:53:01.272873+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.273882+00:00", "event": "dm", "sender": "agent_3", "target": "agent_1", "content": "good point lets see how the vote goes", "round": 5}
+{"ts": "2026-05-02T07:53:01.377477+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.378292+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "hmm interesting, i was thinking the same", "round": 5}
+{"ts": "2026-05-02T07:53:01.460320+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.461334+00:00", "event": "dm", "sender": "agent_1", "target": "agent_3", "content": "true true, lets not make it obvious tho", "round": 5}
+{"ts": "2026-05-02T07:53:01.476184+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.476894+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "lol yeah they're definitely sus", "round": 5}
+{"ts": "2026-05-02T07:53:01.512352+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:01.513483+00:00", "event": "group_message", "sender": "agent_2", "content": "yeah Player 1 i was thinking the same thing", "round": 5}
+{"ts": "2026-05-02T07:53:01.558700+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.559091+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:01.657526+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.658538+00:00", "event": "dm", "sender": "agent_3", "target": "agent_2", "content": "yeah i noticed that too", "round": 5}
+{"ts": "2026-05-02T07:53:01.738054+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.738878+00:00", "event": "dm", "sender": "agent_2", "target": "agent_3", "content": "good point lets see how the vote goes", "round": 5}
+{"ts": "2026-05-02T07:53:01.791547+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:01.792906+00:00", "event": "group_message", "sender": "agent_3", "content": "yeah Player 3 i was thinking the same thing", "round": 5}
+{"ts": "2026-05-02T07:53:01.870003+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T07:53:01.953567+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:01.954435+00:00", "event": "group_message", "sender": "agent_2", "content": "im between a couple people but leaning Player 1", "round": 5}
+{"ts": "2026-05-02T07:53:02.056609+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:02.057855+00:00", "event": "group_message", "sender": "agent_1", "content": "im between a couple people but leaning Player 1", "round": 5}
+{"ts": "2026-05-02T07:53:02.427698+00:00", "event": "player_action", "player": "agent_3", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:53:02.429243+00:00", "event": "group_message", "sender": "agent_3", "content": "sorry Player 2 but im going with u", "round": 5}
+{"ts": "2026-05-02T07:53:09.196383+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:53:09.227305+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:53:09.291162+00:00", "event": "player_action", "player": "agent_3", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T07:53:09.292645+00:00", "event": "votes_saved", "round": 5}
+{"ts": "2026-05-02T07:53:09.672290+00:00", "event": "player_action", "player": "agent_2", "phase": "meta_game", "action": "CLASSIFICATION"}
+{"ts": "2026-05-02T07:53:09.674003+00:00", "event": "classification_saved", "player": "agent_2"}
+{"ts": "2026-05-02T07:53:09.741164+00:00", "event": "player_action", "player": "agent_3", "phase": "meta_game", "action": "CLASSIFICATION"}
+{"ts": "2026-05-02T07:53:09.742334+00:00", "event": "classification_saved", "player": "agent_3"}
+{"ts": "2026-05-02T07:53:09.791437+00:00", "event": "player_action", "player": "agent_1", "phase": "meta_game", "action": "CLASSIFICATION"}
+{"ts": "2026-05-02T07:53:09.792884+00:00", "event": "classification_saved", "player": "agent_1"}
+{"ts": "2026-05-02T07:53:15.800719+00:00", "event": "grand_reveal_saved", "leaderboard_entries": 3}
+{"ts": "2026-05-02T07:53:16.067910+00:00", "event": "session_complete", "duration_seconds": 68.8}

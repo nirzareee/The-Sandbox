@@ -1,0 +1,51 @@
+{"ts": "2026-05-02T07:50:59.719400+00:00", "event": "player_connected", "player": "agent_1", "type": "AI"}
+{"ts": "2026-05-02T07:51:01.871616+00:00", "event": "round_assignment", "round": 1, "imposter": "agent_1", "topic": "Animals", "secret_word": "Elephant", "grid": ["Dolphin", "Eagle", "Lion", "Elephant", "Penguin", "Kangaroo", "Panda", "Giraffe", "Wolf", "Tiger"]}
+{"ts": "2026-05-02T07:51:02.467895+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:51:02.468846+00:00", "event": "hints_saved", "round": 1, "count": 1}
+{"ts": "2026-05-02T07:51:03.177567+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:03.178477+00:00", "event": "group_message", "sender": "agent_1", "content": "ok so looking at the hints... some are more specific than others", "round": 1}
+{"ts": "2026-05-02T07:51:03.545315+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:03.546001+00:00", "event": "group_message", "sender": "agent_1", "content": "someone's hint feels way too generic", "round": 1}
+{"ts": "2026-05-02T07:51:04.001080+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:04.001624+00:00", "event": "group_message", "sender": "agent_1", "content": "yeah thats a good point", "round": 1}
+{"ts": "2026-05-02T07:51:04.323268+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:05.006546+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:05.010113+00:00", "event": "group_message", "sender": "agent_1", "content": "im between a couple people but leaning", "round": 1}
+{"ts": "2026-05-02T07:51:14.995184+00:00", "event": "votes_saved", "round": 1}
+{"ts": "2026-05-02T07:51:16.772291+00:00", "event": "round_assignment", "round": 2, "imposter": "agent_1", "topic": "Movies", "secret_word": "La La Land", "grid": ["Titanic", "Dune", "Interstellar", "Avatar", "Parasite", "Inception", "The Dark Knight", "Everything Everywhere", "La La Land", "Get Out"]}
+{"ts": "2026-05-02T07:51:17.431157+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:51:17.432065+00:00", "event": "hints_saved", "round": 2, "count": 1}
+{"ts": "2026-05-02T07:51:18.091185+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:18.091729+00:00", "event": "group_message", "sender": "agent_1", "content": "ok so looking at the hints... some are more specific than others", "round": 2}
+{"ts": "2026-05-02T07:51:18.411167+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:18.411704+00:00", "event": "group_message", "sender": "agent_1", "content": "someone's hint feels way too generic", "round": 2}
+{"ts": "2026-05-02T07:51:18.663513+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:18.664061+00:00", "event": "group_message", "sender": "agent_1", "content": "yeah thats a good point", "round": 2}
+{"ts": "2026-05-02T07:51:19.121170+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:19.491042+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:19.491702+00:00", "event": "group_message", "sender": "agent_1", "content": "my gut says", "round": 2}
+{"ts": "2026-05-02T07:51:29.958667+00:00", "event": "votes_saved", "round": 2}
+{"ts": "2026-05-02T07:51:31.728491+00:00", "event": "round_assignment", "round": 3, "imposter": "agent_1", "topic": "Sports", "secret_word": "Tennis", "grid": ["Soccer", "Golf", "Boxing", "Volleyball", "Gymnastics", "Basketball", "Tennis", "Rugby", "Swimming", "Baseball"]}
+{"ts": "2026-05-02T07:51:32.340199+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:51:32.341389+00:00", "event": "hints_saved", "round": 3, "count": 1}
+{"ts": "2026-05-02T07:51:33.000223+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:33.001175+00:00", "event": "group_message", "sender": "agent_1", "content": "hmm interesting hints this round", "round": 3}
+{"ts": "2026-05-02T07:51:33.295595+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:33.296123+00:00", "event": "group_message", "sender": "agent_1", "content": "someone's hint feels way too generic", "round": 3}
+{"ts": "2026-05-02T07:51:33.774430+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:33.775013+00:00", "event": "group_message", "sender": "agent_1", "content": "yeah thats a good point", "round": 3}
+{"ts": "2026-05-02T07:51:34.405581+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:34.852973+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:34.853662+00:00", "event": "group_message", "sender": "agent_1", "content": "im between a couple people but leaning", "round": 3}
+{"ts": "2026-05-02T07:51:44.867030+00:00", "event": "votes_saved", "round": 3}
+{"ts": "2026-05-02T07:51:46.641020+00:00", "event": "round_assignment", "round": 4, "imposter": "agent_1", "topic": "Fruits", "secret_word": "Watermelon", "grid": ["Strawberry", "Apple", "Kiwi", "Banana", "Cherry", "Mango", "Watermelon", "Grape", "Pineapple", "Orange"]}
+{"ts": "2026-05-02T07:51:47.221769+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T07:51:47.225835+00:00", "event": "hints_saved", "round": 4, "count": 1}
+{"ts": "2026-05-02T07:51:47.991890+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:47.992532+00:00", "event": "group_message", "sender": "agent_1", "content": "ok who wants to start? some of these hints are sus", "round": 4}
+{"ts": "2026-05-02T07:51:48.256439+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:48.256999+00:00", "event": "group_message", "sender": "agent_1", "content": "someone's hint feels way too generic", "round": 4}
+{"ts": "2026-05-02T07:51:48.542323+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:48.543001+00:00", "event": "group_message", "sender": "agent_1", "content": "most hints point to the same thing pretty clearly", "round": 4}
+{"ts": "2026-05-02T07:51:48.947264+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T07:51:48.947863+00:00", "event": "group_message", "sender": "agent_1", "content": "yeah thats a good point", "round": 4}

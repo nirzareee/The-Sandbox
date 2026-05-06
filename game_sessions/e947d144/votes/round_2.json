@@ -1,0 +1,16 @@
+{
+  "round": 2,
+  "imposter_id": "human_enih",
+  "imposter_caught": false,
+  "votes": {},
+  "scores_this_round": {
+    "human_1fej": 0,
+    "human_8fwx": 0,
+    "human_enih": 3
+  },
+  "cumulative_scores": {
+    "human_1fej": 3,
+    "human_8fwx": 0,
+    "human_enih": 3
+  }
+}

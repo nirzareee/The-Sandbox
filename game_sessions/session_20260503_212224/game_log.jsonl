@@ -1,0 +1,210 @@
+{"ts": "2026-05-04T01:22:24.430698+00:00", "event": "game_started", "num_rounds": 5}
+{"ts": "2026-05-04T01:22:24.434054+00:00", "event": "round_started", "round_number": 1, "imposter_id": "agent_3", "topic": "Musical Instruments", "secret_word": "Trumpet", "hint_order": ["agent_4", "agent_3", "human_3vf0", "agent_2", "agent_1", "agent_5"]}
+{"ts": "2026-05-04T01:22:28.404799+00:00", "event": "hint", "player_id": "agent_1", "hint": "obvious", "round_number": 1}
+{"ts": "2026-05-04T01:22:28.703837+00:00", "event": "hint", "player_id": "agent_2", "hint": "simple", "round_number": 1}
+{"ts": "2026-05-04T01:22:28.807782+00:00", "event": "hint", "player_id": "agent_4", "hint": "easy pick", "round_number": 1}
+{"ts": "2026-05-04T01:22:28.871516+00:00", "event": "hint", "player_id": "agent_5", "hint": "nice one", "round_number": 1}
+{"ts": "2026-05-04T01:22:29.472389+00:00", "event": "hint", "player_id": "agent_3", "hint": "...", "round_number": 1}
+{"ts": "2026-05-04T01:22:36.312609+00:00", "event": "hint", "player_id": "human_3vf0", "hint": "music", "round_number": 1}
+{"ts": "2026-05-04T01:22:41.801485+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agreed", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:42.201422+00:00", "event": "group_chat", "player_id": "agent_4", "content": "agreed", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:42.567599+00:00", "event": "group_chat", "player_id": "agent_5", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:43.219412+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_1", "content": "Hi", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:43.406565+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol who even knows", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:45.441772+00:00", "event": "group_chat", "player_id": "agent_4", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:45.483383+00:00", "event": "group_chat", "player_id": "agent_1", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:45.648774+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk anyone could be it", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:46.347195+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_2", "content": "Hi", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:48.065803+00:00", "event": "group_chat", "player_id": "agent_3", "content": "hmm suspicious", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:49.045917+00:00", "event": "group_chat", "player_id": "agent_2", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:50.827538+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_3", "content": "Hi", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:51.248866+00:00", "event": "group_chat", "player_id": "agent_2", "content": "hmm suspicious", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:51.505710+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_3", "content": "what do you think?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:53.079898+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_2", "content": "lets team up", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:53.572217+00:00", "event": "group_chat", "player_id": "agent_3", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:54.010414+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_4", "content": "Hi", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:54.670508+00:00", "event": "group_chat", "player_id": "agent_5", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:57.067123+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_5", "content": "Hi", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:58.571044+00:00", "event": "group_chat", "player_id": "agent_4", "content": "lol who even knows", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:59.169089+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "human_3vf0", "content": "lets team up", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:59.482461+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agreed", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:22:59.786905+00:00", "event": "group_chat", "player_id": "agent_3", "content": "seems fine to me", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:02.520464+00:00", "event": "group_chat", "player_id": "agent_4", "content": "agreed", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:03.343691+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_3vf0", "content": "what do you think?", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:04.884987+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not sure about this", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:05.651859+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "what", "round_number": 1, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:07.492686+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "human_3vf0", "round_number": 1}
+{"ts": "2026-05-04T01:23:08.242053+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_1", "round_number": 1}
+{"ts": "2026-05-04T01:23:08.623917+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_4", "round_number": 1}
+{"ts": "2026-05-04T01:23:08.894950+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "human_3vf0", "round_number": 1}
+{"ts": "2026-05-04T01:23:08.947437+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "human_3vf0", "round_number": 1}
+{"ts": "2026-05-04T01:23:09.833638+00:00", "event": "vote", "voter_id": "human_3vf0", "voted_for": "agent_3", "round_number": 1}
+{"ts": "2026-05-04T01:23:09.840733+00:00", "event": "round_results", "round_number": 1, "imposter_id": "agent_3", "imposter_caught": false, "votes": {"agent_1": "human_3vf0", "agent_3": "agent_1", "agent_2": "agent_4", "agent_4": "human_3vf0", "agent_5": "human_3vf0", "human_3vf0": "agent_3"}, "correct_voters": ["human_3vf0"], "scores_this_round": {"human_3vf0": 5, "agent_3": 15}, "cumulative_scores": {"agent_4": 0, "agent_3": 15, "human_3vf0": 5, "agent_2": 0, "agent_1": 0, "agent_5": 0}}
+{"ts": "2026-05-04T01:23:26.353948+00:00", "event": "round_started", "round_number": 2, "imposter_id": "agent_4", "topic": "Beach Day", "secret_word": "Beach Umbrella", "hint_order": ["agent_2", "agent_5", "agent_4", "agent_1", "human_3vf0", "agent_3"]}
+{"ts": "2026-05-04T01:23:30.408415+00:00", "event": "hint", "player_id": "agent_1", "hint": "nice one", "round_number": 2}
+{"ts": "2026-05-04T01:23:30.825344+00:00", "event": "hint", "player_id": "agent_4", "hint": "...", "round_number": 2}
+{"ts": "2026-05-04T01:23:31.140832+00:00", "event": "hint", "player_id": "agent_5", "hint": "obvious", "round_number": 2}
+{"ts": "2026-05-04T01:23:31.847101+00:00", "event": "hint", "player_id": "agent_3", "hint": "obvious", "round_number": 2}
+{"ts": "2026-05-04T01:23:32.016051+00:00", "event": "hint", "player_id": "agent_2", "hint": "vibes", "round_number": 2}
+{"ts": "2026-05-04T01:23:38.380104+00:00", "event": "hint", "player_id": "human_3vf0", "hint": "...", "round_number": 2}
+{"ts": "2026-05-04T01:23:43.588196+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_1", "content": "lets team up", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:43.818057+00:00", "event": "group_chat", "player_id": "agent_5", "content": "seems fine to me", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:45.018296+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol who even knows", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:46.482787+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol who even knows", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:47.596255+00:00", "event": "group_chat", "player_id": "agent_2", "content": "seems fine to me", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:48.580044+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "no", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:48.740637+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_4", "content": "who are you voting for?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:48.800489+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_2", "content": "kinda sus ngl", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:49.394342+00:00", "event": "group_chat", "player_id": "agent_3", "content": "I think it's human_3vf0", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:49.612088+00:00", "event": "group_chat", "player_id": "agent_1", "content": "I think it's human_3vf0", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:51.899992+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "i am doomed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:52.308081+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_2", "content": "who are you voting for?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:53.064906+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agreed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:54.017792+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_3vf0", "content": "what do you think?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:54.565802+00:00", "event": "group_chat", "player_id": "agent_4", "content": "I think it's human_3vf0", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:55.227150+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agent_3 is being weird", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:56.205648+00:00", "event": "group_chat", "player_id": "agent_1", "content": "hmm suspicious", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:57.496521+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agent_1 is being weird", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:57.731882+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "who is human?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:57.967224+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "who are you voting for?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:59.548081+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_2", "content": "lets team up", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:23:59.974096+00:00", "event": "group_chat", "player_id": "agent_5", "content": "agreed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:00.285544+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol who even knows", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:01.428211+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agreed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:03.363301+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agreed", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:04.635605+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "who is agent?", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:05.204502+00:00", "event": "group_chat", "player_id": "agent_5", "content": "idk anyone could be it", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:08.030466+00:00", "event": "group_chat", "player_id": "agent_5", "content": "not sure about this", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:08.211962+00:00", "event": "group_chat", "player_id": "agent_3", "content": "lol who even knows", "round_number": 2, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:10.056293+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_3", "round_number": 2}
+{"ts": "2026-05-04T01:24:10.387172+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "agent_4", "round_number": 2}
+{"ts": "2026-05-04T01:24:10.546499+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_1", "round_number": 2}
+{"ts": "2026-05-04T01:24:10.680364+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "human_3vf0", "round_number": 2}
+{"ts": "2026-05-04T01:24:10.969475+00:00", "event": "vote", "voter_id": "human_3vf0", "voted_for": "agent_4", "round_number": 2}
+{"ts": "2026-05-04T01:24:12.741596+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 2}
+{"ts": "2026-05-04T01:24:12.750881+00:00", "event": "round_results", "round_number": 2, "imposter_id": "agent_4", "imposter_caught": true, "votes": {"agent_1": "agent_3", "agent_5": "agent_4", "agent_4": "agent_1", "agent_2": "human_3vf0", "human_3vf0": "agent_4", "agent_3": "agent_2"}, "correct_voters": ["agent_5", "human_3vf0"], "scores_this_round": {"agent_5": 10, "human_3vf0": 10}, "cumulative_scores": {"agent_4": 0, "agent_3": 15, "human_3vf0": 15, "agent_2": 0, "agent_1": 0, "agent_5": 10}}
+{"ts": "2026-05-04T01:24:29.262955+00:00", "event": "round_started", "round_number": 3, "imposter_id": "agent_5", "topic": "Disney Animated Films", "secret_word": "Frozen", "hint_order": ["agent_2", "agent_4", "agent_1", "agent_3", "human_3vf0", "agent_5"]}
+{"ts": "2026-05-04T01:24:33.557349+00:00", "event": "hint", "player_id": "agent_2", "hint": "obvious", "round_number": 3}
+{"ts": "2026-05-04T01:24:34.174133+00:00", "event": "hint", "player_id": "agent_3", "hint": "for sure", "round_number": 3}
+{"ts": "2026-05-04T01:24:34.672479+00:00", "event": "hint", "player_id": "agent_4", "hint": "yep", "round_number": 3}
+{"ts": "2026-05-04T01:24:35.181662+00:00", "event": "hint", "player_id": "agent_1", "hint": "nice one", "round_number": 3}
+{"ts": "2026-05-04T01:24:35.346902+00:00", "event": "hint", "player_id": "agent_5", "hint": "...", "round_number": 3}
+{"ts": "2026-05-04T01:24:37.096859+00:00", "event": "hint", "player_id": "human_3vf0", "hint": "ice", "round_number": 3}
+{"ts": "2026-05-04T01:24:41.808178+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_1", "content": "kinda sus ngl", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:42.785886+00:00", "event": "group_chat", "player_id": "agent_5", "content": "agreed", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:43.233335+00:00", "event": "group_chat", "player_id": "agent_1", "content": "hmm suspicious", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:43.378293+00:00", "event": "group_chat", "player_id": "agent_4", "content": "idk anyone could be it", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:45.959596+00:00", "event": "group_chat", "player_id": "agent_4", "content": "hmm suspicious", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:46.294157+00:00", "event": "group_chat", "player_id": "agent_2", "content": "hmm suspicious", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:46.315559+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agreed", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:47.889832+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "i am tired", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:49.140436+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol who even knows", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:49.748685+00:00", "event": "group_chat", "player_id": "agent_5", "content": "not sure about this", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:49.830039+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_5", "content": "kinda sus ngl", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:51.613640+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_5", "content": "what do you think?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:52.204010+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "human_3vf0", "content": "what do you think?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:52.681781+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_3", "content": "kinda sus ngl", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:55.223920+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_4", "content": "who are you voting for?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:57.858902+00:00", "event": "group_chat", "player_id": "agent_3", "content": "hmm suspicious", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:57.937318+00:00", "event": "dm", "sender_id": "human_3vf0", "recipient_id": "agent_4", "content": "ice?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:58.018877+00:00", "event": "group_chat", "player_id": "agent_4", "content": "I think it's agent_5", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:24:58.702110+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_5", "content": "who are you voting for?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:01.398076+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_3", "content": "lets team up", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:02.300087+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk anyone could be it", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:02.557859+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "human_3vf0", "content": "kinda sus ngl", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:03.330573+00:00", "event": "group_chat", "player_id": "agent_2", "content": "I think it's agent_1", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:04.012560+00:00", "event": "group_chat", "player_id": "agent_5", "content": "lol who even knows", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:05.787767+00:00", "event": "group_chat", "player_id": "agent_3", "content": "agent_1 is being weird", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:06.065731+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_4", "content": "who are you voting for?", "round_number": 3, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:09.052239+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "human_3vf0", "round_number": 3}
+{"ts": "2026-05-04T01:25:09.180321+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_5", "round_number": 3}
+{"ts": "2026-05-04T01:25:09.712249+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_3", "round_number": 3}
+{"ts": "2026-05-04T01:25:10.545763+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_5", "round_number": 3}
+{"ts": "2026-05-04T01:25:10.616197+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "agent_1", "round_number": 3}
+{"ts": "2026-05-04T01:25:11.071579+00:00", "event": "vote", "voter_id": "human_3vf0", "voted_for": "agent_4", "round_number": 3}
+{"ts": "2026-05-04T01:25:11.078056+00:00", "event": "round_results", "round_number": 3, "imposter_id": "agent_5", "imposter_caught": true, "votes": {"agent_3": "human_3vf0", "agent_2": "agent_5", "agent_4": "agent_3", "agent_1": "agent_5", "agent_5": "agent_1", "human_3vf0": "agent_4"}, "correct_voters": ["agent_1", "agent_2"], "scores_this_round": {"agent_2": 10, "agent_1": 10}, "cumulative_scores": {"agent_4": 0, "agent_3": 15, "human_3vf0": 15, "agent_2": 10, "agent_1": 10, "agent_5": 10}}
+{"ts": "2026-05-04T01:25:27.595540+00:00", "event": "round_started", "round_number": 4, "imposter_id": "agent_1", "topic": "Desserts", "secret_word": "Apple Pie", "hint_order": ["human_3vf0", "agent_2", "agent_5", "agent_3", "agent_4", "agent_1"]}
+{"ts": "2026-05-04T01:25:31.610414+00:00", "event": "hint", "player_id": "agent_2", "hint": "simple", "round_number": 4}
+{"ts": "2026-05-04T01:25:32.129485+00:00", "event": "hint", "player_id": "agent_1", "hint": "...", "round_number": 4}
+{"ts": "2026-05-04T01:25:32.200287+00:00", "event": "hint", "player_id": "agent_3", "hint": "simple", "round_number": 4}
+{"ts": "2026-05-04T01:25:33.028649+00:00", "event": "hint", "player_id": "agent_4", "hint": "vibes", "round_number": 4}
+{"ts": "2026-05-04T01:25:34.151876+00:00", "event": "hint", "player_id": "agent_5", "hint": "nice one", "round_number": 4}
+{"ts": "2026-05-04T01:25:36.025222+00:00", "event": "hint", "player_id": "human_3vf0", "hint": "yammi", "round_number": 4}
+{"ts": "2026-05-04T01:25:41.536836+00:00", "event": "group_chat", "player_id": "agent_5", "content": "seems fine to me", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:41.731341+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_3", "content": "lets team up", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:42.134624+00:00", "event": "group_chat", "player_id": "agent_1", "content": "lol who even knows", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:42.141925+00:00", "event": "group_chat", "player_id": "agent_3", "content": "seems fine to me", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:44.994437+00:00", "event": "group_chat", "player_id": "agent_1", "content": "I think it's human_3vf0", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:45.434779+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "testy", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:46.285623+00:00", "event": "group_chat", "player_id": "agent_4", "content": "I think it's human_3vf0", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:46.296326+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_3", "content": "who are you voting for?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:46.836458+00:00", "event": "group_chat", "player_id": "agent_5", "content": "I think it's agent_2", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:49.640035+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_2", "content": "lets team up", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:51.568962+00:00", "event": "group_chat", "player_id": "agent_4", "content": "I think it's agent_5", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:51.639411+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_1", "content": "lets team up", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:51.797302+00:00", "event": "group_chat", "player_id": "agent_2", "content": "agent_1 is being weird", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:52.731640+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_5", "content": "kinda sus ngl", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:55.286550+00:00", "event": "group_chat", "player_id": "agent_3", "content": "agent_1 is being weird", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:56.009207+00:00", "event": "group_chat", "player_id": "agent_4", "content": "human_3vf0 is being weird", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:56.516156+00:00", "event": "group_chat", "player_id": "agent_2", "content": "idk anyone could be it", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:56.778966+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_4", "content": "lets team up", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:59.224633+00:00", "event": "group_chat", "player_id": "agent_2", "content": "not sure about this", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:25:59.302939+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not sure about this", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:00.830292+00:00", "event": "dm", "sender_id": "agent_4", "recipient_id": "agent_2", "content": "kinda sus ngl", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:02.737960+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol who even knows", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:03.165227+00:00", "event": "group_chat", "player_id": "agent_5", "content": "hmm suspicious", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:03.179118+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "human_3vf0", "content": "who are you voting for?", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:03.346952+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "you are weird", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:03.730671+00:00", "event": "group_chat", "player_id": "agent_1", "content": "I think it's human_3vf0", "round_number": 4, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:07.551939+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_3", "round_number": 4}
+{"ts": "2026-05-04T01:26:07.820680+00:00", "event": "vote", "voter_id": "human_3vf0", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-04T01:26:07.933917+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_4", "round_number": 4}
+{"ts": "2026-05-04T01:26:08.947656+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "agent_1", "round_number": 4}
+{"ts": "2026-05-04T01:26:09.093572+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_2", "round_number": 4}
+{"ts": "2026-05-04T01:26:10.357698+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "agent_3", "round_number": 4}
+{"ts": "2026-05-04T01:26:10.362234+00:00", "event": "round_results", "round_number": 4, "imposter_id": "agent_1", "imposter_caught": false, "votes": {"agent_4": "agent_3", "human_3vf0": "agent_2", "agent_1": "agent_4", "agent_2": "agent_1", "agent_3": "agent_2", "agent_5": "agent_3"}, "correct_voters": ["agent_2"], "scores_this_round": {"agent_2": 10, "agent_1": 15, "agent_3": -5}, "cumulative_scores": {"agent_4": 0, "agent_3": 10, "human_3vf0": 15, "agent_2": 20, "agent_1": 25, "agent_5": 10}}
+{"ts": "2026-05-04T01:26:26.880285+00:00", "event": "round_started", "round_number": 5, "imposter_id": "human_3vf0", "topic": "World Capitals", "secret_word": "London", "hint_order": ["agent_5", "agent_2", "human_3vf0", "agent_1", "agent_3", "agent_4"]}
+{"ts": "2026-05-04T01:26:31.518380+00:00", "event": "hint", "player_id": "agent_4", "hint": "you know it", "round_number": 5}
+{"ts": "2026-05-04T01:26:31.810368+00:00", "event": "hint", "player_id": "agent_1", "hint": "no brainer", "round_number": 5}
+{"ts": "2026-05-04T01:26:32.016717+00:00", "event": "hint", "player_id": "agent_3", "hint": "simple", "round_number": 5}
+{"ts": "2026-05-04T01:26:32.430959+00:00", "event": "hint", "player_id": "agent_5", "hint": "simple", "round_number": 5}
+{"ts": "2026-05-04T01:26:33.074225+00:00", "event": "hint", "player_id": "agent_2", "hint": "no brainer", "round_number": 5}
+{"ts": "2026-05-04T01:26:38.892905+00:00", "event": "hint", "player_id": "human_3vf0", "hint": "...", "round_number": 5}
+{"ts": "2026-05-04T01:26:44.341668+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_5", "content": "what do you think?", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:44.750685+00:00", "event": "group_chat", "player_id": "agent_2", "content": "lol who even knows", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:45.236323+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agent_2 is being weird", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:45.652879+00:00", "event": "group_chat", "player_id": "agent_5", "content": "lol who even knows", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:46.569825+00:00", "event": "dm", "sender_id": "agent_3", "recipient_id": "agent_1", "content": "who are you voting for?", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:47.084182+00:00", "event": "group_chat", "player_id": "agent_1", "content": "agreed", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:47.480357+00:00", "event": "group_chat", "player_id": "agent_4", "content": "not sure about this", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:47.826274+00:00", "event": "group_chat", "player_id": "agent_2", "content": "hmm suspicious", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:48.139632+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "tough", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:50.818551+00:00", "event": "group_chat", "player_id": "agent_4", "content": "hmm suspicious", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:51.071209+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "human_3vf0", "content": "kinda sus ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:51.210181+00:00", "event": "group_chat", "player_id": "agent_3", "content": "idk anyone could be it", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:51.926394+00:00", "event": "group_chat", "player_id": "agent_2", "content": "seems fine to me", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:52.329035+00:00", "event": "group_chat", "player_id": "agent_1", "content": "not sure about this", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:55.849420+00:00", "event": "group_chat", "player_id": "agent_1", "content": "I think it's agent_4", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:56.347626+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_2", "content": "kinda sus ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:56.388065+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "what to do?", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:56.512189+00:00", "event": "group_chat", "player_id": "agent_3", "content": "not sure about this", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:56.924996+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "agent_5", "content": "kinda sus ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:26:58.174873+00:00", "event": "group_chat", "player_id": "agent_4", "content": "idk anyone could be it", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:02.350284+00:00", "event": "group_chat", "player_id": "agent_2", "content": "idk anyone could be it", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:02.368097+00:00", "event": "group_chat", "player_id": "agent_1", "content": "I think it's agent_3", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:02.557469+00:00", "event": "group_chat", "player_id": "agent_4", "content": "agent_2 is being weird", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:02.557292+00:00", "event": "dm", "sender_id": "agent_5", "recipient_id": "agent_4", "content": "kinda sus ngl", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:05.499697+00:00", "event": "group_chat", "player_id": "human_3vf0", "content": "i am doomed", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:06.076806+00:00", "event": "dm", "sender_id": "agent_2", "recipient_id": "human_3vf0", "content": "lets team up", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:07.462267+00:00", "event": "dm", "sender_id": "agent_1", "recipient_id": "agent_4", "content": "lets team up", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:07.622767+00:00", "event": "group_chat", "player_id": "agent_3", "content": "not sure about this", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:07.852254+00:00", "event": "group_chat", "player_id": "agent_5", "content": "agreed", "round_number": 5, "phase": "DISCUSSION"}
+{"ts": "2026-05-04T01:27:11.419771+00:00", "event": "vote", "voter_id": "human_3vf0", "voted_for": "agent_5", "round_number": 5}
+{"ts": "2026-05-04T01:27:11.421699+00:00", "event": "vote", "voter_id": "agent_1", "voted_for": "agent_4", "round_number": 5}
+{"ts": "2026-05-04T01:27:11.780836+00:00", "event": "vote", "voter_id": "agent_2", "voted_for": "human_3vf0", "round_number": 5}
+{"ts": "2026-05-04T01:27:11.912671+00:00", "event": "vote", "voter_id": "agent_4", "voted_for": "agent_3", "round_number": 5}
+{"ts": "2026-05-04T01:27:11.995801+00:00", "event": "vote", "voter_id": "agent_3", "voted_for": "agent_4", "round_number": 5}
+{"ts": "2026-05-04T01:27:12.885601+00:00", "event": "vote", "voter_id": "agent_5", "voted_for": "human_3vf0", "round_number": 5}
+{"ts": "2026-05-04T01:27:12.896018+00:00", "event": "round_results", "round_number": 5, "imposter_id": "human_3vf0", "imposter_caught": false, "votes": {"human_3vf0": "agent_5", "agent_1": "agent_4", "agent_2": "human_3vf0", "agent_4": "agent_3", "agent_3": "agent_4", "agent_5": "human_3vf0"}, "correct_voters": ["agent_2", "agent_5"], "scores_this_round": {"agent_2": 10, "agent_5": 10, "human_3vf0": 15, "agent_4": -5}, "cumulative_scores": {"agent_4": -5, "agent_3": 10, "human_3vf0": 30, "agent_2": 30, "agent_1": 25, "agent_5": 20}}
+{"ts": "2026-05-04T01:27:53.670846+00:00", "event": "grand_reveal", "final_scores": {"agent_3": 15, "agent_4": 0, "agent_5": 30, "agent_1": 35, "agent_2": 40, "human_3vf0": 55}, "leaderboard": [{"player_id": "human_3vf0", "score": 55, "rank": 1}, {"player_id": "agent_2", "score": 40, "rank": 2}, {"player_id": "agent_1", "score": 35, "rank": 3}, {"player_id": "agent_5", "score": 30, "rank": 4}, {"player_id": "agent_3", "score": 15, "rank": 5}, {"player_id": "agent_4", "score": 0, "rank": 6}]}
+{"ts": "2026-05-04T01:28:11.764822+00:00", "event": "game_finished", "final_scores": {"agent_4": -5, "agent_3": 10, "human_3vf0": 30, "agent_2": 30, "agent_1": 25, "agent_5": 20}}

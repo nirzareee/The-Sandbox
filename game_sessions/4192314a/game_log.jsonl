@@ -1,0 +1,65 @@
+{"ts": "2026-05-02T08:08:33.191624+00:00", "event": "player_connected", "player": "human_lwe2", "type": "HUMAN"}
+{"ts": "2026-05-02T08:08:38.384779+00:00", "event": "player_connected", "player": "human_d7ss", "type": "HUMAN"}
+{"ts": "2026-05-02T08:08:40.400754+00:00", "event": "player_connected", "player": "HOST", "type": "HOST"}
+{"ts": "2026-05-02T08:08:49.537146+00:00", "event": "player_connected", "player": "agent_1", "type": "AI"}
+{"ts": "2026-05-02T08:08:49.540405+00:00", "event": "player_connected", "player": "agent_2", "type": "AI"}
+{"ts": "2026-05-02T08:08:51.545043+00:00", "event": "round_assignment", "round": 1, "imposter": "agent_2", "topic": "Desserts", "secret_word": "Baklava", "grid": ["Gelato", "Creme Brulee", "Cheesecake", "Brownie", "Tiramisu", "Macaron", "Mochi", "Churros", "Panna Cotta", "Baklava"]}
+{"ts": "2026-05-02T08:09:06.214744+00:00", "event": "player_action", "player": "agent_1", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T08:09:06.385302+00:00", "event": "player_action", "player": "agent_2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T08:09:17.748525+00:00", "event": "player_action", "player": "human_lwe2", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T08:09:34.212410+00:00", "event": "player_action", "player": "human_d7ss", "phase": "hint", "action": "HINT"}
+{"ts": "2026-05-02T08:09:34.215699+00:00", "event": "hints_saved", "round": 1, "count": 4}
+{"ts": "2026-05-02T08:09:49.681328+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:09:49.682533+00:00", "event": "group_message", "sender": "agent_1", "content": "layered pastry sounds interesting, but I'm thinking more chilled desserts like cheesecake or something. What do you all think?", "round": 1}
+{"ts": "2026-05-02T08:09:52.942458+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:09:52.946314+00:00", "event": "group_message", "sender": "agent_2", "content": "yeah cheesecake's a good call... but that 'pasta' hint is kinda throwing me off lol. cold and creamy narrows it down though", "round": 1}
+{"ts": "2026-05-02T08:10:00.248736+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:00.254539+00:00", "event": "group_message", "sender": "agent_1", "content": "yeah, that 'pasta' hint is wild! but layered pastry sounds delish, could be something like a baklava, right?", "round": 1}
+{"ts": "2026-05-02T08:10:09.478911+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:09.481697+00:00", "event": "group_message", "sender": "agent_2", "content": "okay but 'pasta' is throwing me off lol. i'm torn between the layered and creamy clues though, could def be tiramisu or something similar", "round": 1}
+{"ts": "2026-05-02T08:10:16.949049+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:16.952202+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "HI", "round": 1}
+{"ts": "2026-05-02T08:10:22.169273+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:22.171178+00:00", "event": "group_message", "sender": "agent_1", "content": "i dunno, layered pastry makes me think more of something like baklava, ya know? but cheesecake and tiramisu both sound good too.", "round": 1}
+{"ts": "2026-05-02T08:10:23.148363+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:23.149288+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "hey! what\u2019s up?", "round": 1}
+{"ts": "2026-05-02T08:10:23.292876+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:23.294961+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_2", "content": "Hola", "round": 1}
+{"ts": "2026-05-02T08:10:26.117791+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:26.119470+00:00", "event": "group_message", "sender": "agent_2", "content": "ok wait the pasta thing is throwing me off lol. but yeah cold and creamy + layered sounds right... tiramisu maybe? that's got both vibes", "round": 1}
+{"ts": "2026-05-02T08:10:28.269216+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:28.271695+00:00", "event": "dm", "sender": "agent_2", "target": "human_lwe2", "content": "hey! whats up", "round": 1}
+{"ts": "2026-05-02T08:10:29.780593+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:29.782350+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "Nice", "round": 1}
+{"ts": "2026-05-02T08:10:31.124741+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:31.129810+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "you>", "round": 1}
+{"ts": "2026-05-02T08:10:34.885796+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:34.887404+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "thanks! you too! how's the game going for you?", "round": 1}
+{"ts": "2026-05-02T08:10:35.540343+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:10:35.542036+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "hey! what's up? you got a clue or something?", "round": 1}
+{"ts": "2026-05-02T08:10:39.020812+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:39.022540+00:00", "event": "group_message", "sender": "agent_2", "content": "lol yeah the pasta hint is throwing me off but i'm leaning toward tiramisu honestly, that layered cold thing hits different", "round": 1}
+{"ts": "2026-05-02T08:10:59.338475+00:00", "event": "player_action", "player": "agent_2", "phase": "discussion", "action": "GROUP_MESSAGE"}
+{"ts": "2026-05-02T08:10:59.341478+00:00", "event": "group_message", "sender": "agent_2", "content": "ok wait tiramisu checks like all the boxes right? its cold, creamy, AND has those layers... plus that pasta hint kinda makes sense with the ladyfinger thing? idk im probably overthinking lol", "round": 1}
+{"ts": "2026-05-02T08:11:01.437259+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:01.439358+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "i think player 4 is imposter", "round": 1}
+{"ts": "2026-05-02T08:11:05.337994+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:05.340604+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "lol really? why do you think that?", "round": 1}
+{"ts": "2026-05-02T08:11:09.780539+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:09.782583+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "i feel it", "round": 1}
+{"ts": "2026-05-02T08:11:15.687627+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:15.689239+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "same here! got a good vibe goin' \ud83d\ude04 what do you think?", "round": 1}
+{"ts": "2026-05-02T08:11:18.748969+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:18.750292+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "let's vote him out", "round": 1}
+{"ts": "2026-05-02T08:11:23.236628+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:11:23.238572+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "hey, not sure yet. let's see what everyone else thinks first. might be too quick to vote!", "round": 1}
+{"ts": "2026-05-02T08:12:31.860506+00:00", "event": "player_action", "player": "human_lwe2", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:12:31.862221+00:00", "event": "dm", "sender": "human_lwe2", "target": "agent_1", "content": "ok", "round": 1}
+{"ts": "2026-05-02T08:12:35.963308+00:00", "event": "player_action", "player": "agent_1", "phase": "discussion", "action": "DM"}
+{"ts": "2026-05-02T08:12:35.966213+00:00", "event": "dm", "sender": "agent_1", "target": "human_lwe2", "content": "hey! what's up?", "round": 1}
+{"ts": "2026-05-02T08:12:47.727060+00:00", "event": "player_action", "player": "human_lwe2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T08:12:51.110654+00:00", "event": "player_action", "player": "human_d7ss", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T08:12:53.574433+00:00", "event": "player_action", "player": "agent_2", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T08:12:54.904244+00:00", "event": "player_action", "player": "agent_1", "phase": "voting", "action": "VOTE"}
+{"ts": "2026-05-02T08:12:54.906174+00:00", "event": "votes_saved", "round": 1}
+{"ts": "2026-05-02T08:13:29.915369+00:00", "event": "round_assignment", "round": 2, "imposter": "human_lwe2", "topic": "Movies", "secret_word": "The Dark Knight", "grid": ["The Dark Knight", "Inception", "Parasite", "Everything Everywhere", "Titanic", "La La Land", "Avatar", "Interstellar", "Get Out", "Dune"]}
