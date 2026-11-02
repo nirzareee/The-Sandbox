@@ -246,4 +246,26 @@ Run `python evaluation.py` after a session to produce summary analytics from the
 | `TIMER_MULTIPLIER` | `1.0` | Scale every game timer (set to `0.1` for fast dev) |
 | `MAX_PLAYERS` | `6` | Max players per session |
 
-Plus one API key per provider you intend to use (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `TOGETHER_API_KEY`, `GROQ_API_KEY`).
+Plus one API key per provider you intend to use (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `TOGETHER_API_KEY`, `GROQ_API_KEY`, `GROK_API_KEY`).
+
+---
+
+## TODO — Kishor's Branch
+
+> Work-in-progress items tracked here.
+
+### Bugs / fixes
+- [ ] **PORT env var not propagated to `/setup`** — when `--port` differs from 8000, the `/setup` endpoint reads `os.getenv("PORT", 8000)` and tries to spawn agents on the wrong port. Fix: pass the actual bound port through `app.state` or an env var set before uvicorn starts.
+- [ ] **Frontend not rebuilt** — `HostDashboard.jsx` changes (±count UI, "✓ Added" label) are in source but the pre-built `frontend/` bundle still reflects the old version. Run `cd frontend-src && npm install && npm run build` to regenerate.
+
+### Features
+- [ ] **Grok agent** — created (`agents/grok_agent.py`), but `grok-3-mini` model availability on the xAI API needs verification.
+- [ ] **Gemini agent** — `GOOGLE_API_KEY` not yet set; populate `.env` and test `--agents gemini`.
+- [ ] **Together AI agents** (llama, qwen, deepseek) — need `TOGETHER_API_KEY` in `.env`.
+- [ ] **Host UI: show queued agent count** — lobby header shows connected humans but doesn't reflect agents that have been queued via `/setup` yet.
+- [ ] **Multi-session support** — after a game ends, reset server state so a new game can start without restarting the process.
+
+### Research / evaluation
+- [ ] Run a full 6-agent game (no humans) in fast mode and verify `evaluation.py` produces clean output.
+- [ ] Run a mixed session (2 humans + 4 AI) and collect baseline human-detection accuracy scores.
+- [ ] Compare hint/discussion behavior across Claude vs GPT-4o vs Grok vs Scout.

@@ -190,6 +190,8 @@ function HostDMBubble({ msg, players, leftPlayerId }) {
 function LobbySetup({ playerList, connectedCount }) {
   const [availableAgents, setAvailableAgents] = useState([]);
   const [addingAgent, setAddingAgent] = useState(null);
+  // counts how many times each agent type has been added
+  const [addedCounts, setAddedCounts] = useState({});
   const [gameStarted, setGameStarted] = useState(false);
   const [startLoading, setStartLoading] = useState(false);
   // Per-agent-type "use native reasoning" toggle. The state of the checkbox
@@ -227,6 +229,7 @@ function LobbySetup({ playerList, connectedCount }) {
           agents: [{ type: agentType, use_native_reasoning: useNative }],
         }),
       });
+      setAddedCounts(prev => ({ ...prev, [agentType]: (prev[agentType] ?? 0) + 1 }));
     } catch (e) {
       console.error('Failed to add agent:', e);
     }
@@ -251,6 +254,22 @@ function LobbySetup({ playerList, connectedCount }) {
     }
   }, []);
 
+  const handleRemoveAgent = useCallback(async (agentType) => {
+    const count = addedCounts[agentType] ?? 0;
+    if (count === 0) return;
+    // Ask server to remove one instance of this agent type from pending
+    try {
+      await fetch('/setup/remove', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: agentType }),
+      });
+      setAddedCounts(prev => ({ ...prev, [agentType]: Math.max(0, (prev[agentType] ?? 0) - 1) }));
+    } catch (e) {
+      console.error('Failed to remove agent:', e);
+    }
+  }, [addedCounts]);
+
   const handleStartGame = useCallback(async () => {
     setStartLoading(true);
     try {
@@ -261,6 +280,8 @@ function LobbySetup({ playerList, connectedCount }) {
     }
     setStartLoading(false);
   }, []);
+
+  const totalAgentsQueued = Object.values(addedCounts).reduce((a, b) => a + b, 0);
 
   return (
     <div className="host-lobby">
@@ -287,11 +308,14 @@ function LobbySetup({ playerList, connectedCount }) {
               </li>
             ))}
           </ul>
-          <p className="host-muted-note">{connectedCount} player(s) connected</p>
+          <p style={{ color: 'var(--text-secondary)', margin: '12px 0', fontSize: '0.85rem' }}>
+            {connectedCount} human(s) + {totalAgentsQueued} agent(s) queued
+          </p>
         </div>
 
         <div className="host-setup-section">
-          <h3>Available Agents</h3>
+          <h3>Add AI Agents</h3>
+
           <div className="host-agent-grid">
             {availableAgents.map(agent => (
               <div key={agent.type} className="host-agent-slot">
@@ -326,10 +350,15 @@ function LobbySetup({ playerList, connectedCount }) {
             <button
               className="btn-start"
               onClick={handleStartGame}
-              disabled={startLoading || gameStarted || connectedCount < 2}
+              disabled={startLoading || gameStarted || connectedCount < 1}
             >
               {gameStarted ? 'Game Started!' : 'Start Game'}
             </button>
+            {connectedCount < 1 && !gameStarted && (
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '6px' }}>
+                Waiting for at least 1 human player...
+              </p>
+            )}
           </div>
         </div>
       </div>
